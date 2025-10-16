@@ -1,0 +1,12 @@
+CREATE DATABASE Project;
+
+
+USE Project;
+
+
+CREATE USER 'Admin'@'localhost' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON *.* TO 'Admin'@'localhost' WITH GRANT OPTION;
+
+CREATE USER 'Dean'@'localhost' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON mydatabase.* TO 'Dean'@'localhost';
+
