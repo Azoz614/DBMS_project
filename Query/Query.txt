@@ -8,5 +8,19 @@ CREATE USER 'Admin'@'localhost' IDENTIFIED BY 'password';
 GRANT ALL PRIVILEGES ON *.* TO 'Admin'@'localhost' WITH GRANT OPTION;
 
 CREATE USER 'Dean'@'localhost' IDENTIFIED BY 'password';
-GRANT ALL PRIVILEGES ON mydatabase.* TO 'Dean'@'localhost';
+GRANT ALL PRIVILEGES ON Project.* TO 'Dean'@'localhost';
+
+CREATE USER 'Lecturer'@'localhost' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON Project.* TO 'Lecturer'@'localhost';
+
+CREATE USER 'Technical_officer'@'localhost' IDENTIFIED BY 'password';
+
+
+
+
+
+
+
+
+
 
