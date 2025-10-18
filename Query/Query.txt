@@ -98,4 +98,8 @@ Dep_id VARCHAR(5),
 FOREIGN KEY (Dem_id) REFERENCES Academic_staff(Staff_id),
 FOREIGN KEY (Dep_id) REFERENCES Department(Dep_id));
 
-
+INSERT INTO Demo(Dem_id,Type,Dep_id) VALUES
+('EMP0116','Temporary','ICT')
+('EMP0117','Permanant','ICT'),
+('EMP0118','Permanant','ICT'),
+('EMP0119','Permanant','ICT');
