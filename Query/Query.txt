@@ -35,7 +35,7 @@ FOREIGN KEY(Fac_id) REFERENCES faculty(Fac_id)) ON DELETE CASCADE;
 
 INSERT INTO department(Dep_id,Dep_name,HOD,Fac_id) VALUES
 ('ICT','Information and Communication Technology','EMP0101','FAC07'),
-('BST','Bio System Technology','EMP0110','FAC07'),                                                                               ->      ('BST','Bio System Technology','EMP0110','FAC07'),
+('BST','Bio System Technology','EMP0110','FAC07'),
 ('ET','Engneering Technology','EMP0121','FAC07');
 
 CREATE TABLE academic_staff(Staff_id VARCHAR(10) PRIMARY KEY,
