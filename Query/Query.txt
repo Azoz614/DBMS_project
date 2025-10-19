@@ -169,84 +169,6 @@ INSERT INTO Demo(Dem_id,Type,Dep_id) VALUES
 
 
 
-<<<<<<< HEAD
-//newwww
-
-CREATE TABLE Subject (
-    Sub_code VARCHAR(10) PRIMARY KEY,
-    Sub_name VARCHAR(100) NOT NULL,
-    Credit INT,
-    Total_hours INT
-);
-
-
-
-
-CREATE TABLE Exam (
-    Exam_code VARCHAR(10) PRIMARY KEY,
-    Exam_name VARCHAR(100) NOT NULL,
-    Hour INT,
-    Credit INT,
-    Sub_code VARCHAR(10),
-    FOREIGN KEY (Sub_code) REFERENCES Subject(Sub_code)
-);
-
-
-
-
->>>>>>> 8dfba4ae69aeb970791b3de79644b04305f8a214
-
-CREATE TABLE Course(Course_id VARCHAR(5) PRIMARY KEY,
-Course_name VARCHAR(50) NOT NULL,
-Total_credits INT NOT NULL,
-Dep_id VARCHAR(5) NOT NULL,
-FOREIGN KEY(Dep_id) REFERENCES Department(Dep_id));
-
-INSERT INTO Course(Course_id,Course_name,Total_credits,Dep_id) VALUES
-('BICT','Becholor of Information Communication Technology',120,'ICT'),
-('BST','Becholor of Biosysytem Technology',120,'BST'),
-('BET','BEcholor of Engneering Technology','120','ET');
-
-
-CREATE TABLE Student(Reg_no VARCHAR(12) PRIMARY KEY,
-F_name VARCHAR(30) NOT NULL,
-L_name VARCHAR(30) NOT NULL,
-NIC VARCHAR(12) NOT NULL,
-Batch VARCHAR(10),
-Address VARCHAR(50),
-Gender ENUM('Male','Female') NOT NULL,
-E_mail VARCHAR(30),
-DOB DATE,
-Course_id VARCHAR(5) NOT NULL,
-Dep_id VARCHAR(5) NOT NULL,
-FOREIGN KEY(Course_id) REFERENCES Course(Course_id) ON DELETE CASCADE,
-FOREIGN KEY(Dep_id) REFERENCES Department(Dep_id) ON DELETE CASCADE);
-
-INSERT INTO Student(Reg_no,F_name,L_name,NIC,Batch,Address,Gender,E_mail,DOB,Course_id,Dep_id) VALUES
-('TG/2023/1775','Nivethan','Rajkumar','200323311521','2022/2023','Main Street, Jaffna','Male','nivethan.rk@gmail.com','2003-07-15','BICT','ICT'),
-('TG/2023/1776','Kavindya','Perera','200323311522','2022/2023','Lake View, Kandy','Female','kavindya.perera@gmail.com','2003-09-10','BICT','ICT'),
-('TG/2023/1777','Tharindu','Senanayake','200323311523','2022/2023','Temple Road, Galle','Male','tharindu.sena@gmail.com','2003-06-25','BICT','ICT'),
-('TG/2023/1778','Yalini','Sivakumar','200323311524','2022/2023','Beach Road, Trincomalee','Female','yalini.siva@gmail.com','2003-11-05','BICT','ICT'),
-('TG/2023/1779','Ravindu','Fernando','200323311525','2022/2023','Hilltop Lane, Nuwara Eliya','Male','ravindu.fernando@gmail.com','2003-10-12','BICT','ICT'),
-('TG/2023/1780','Sharanya','Kumar','200323311526','2022/2023','Market Street, Vavuniya','Female','sharanya.kumar@gmail.com','2003-08-30','BICT','ICT'),
-('TG/2023/1781','Ishara','Jayasinghe','200323311527','2022/2023','Green Park, Colombo','Female','ishara.jaya@gmail.com','2003-05-18','BICT','ICT'),
-('TG/2023/1782','Harshan','De Silva','200323311528','2022/2023','River Road, Matara','Male','harshan.desilva@gmail.com','2003-12-01','BICT','ICT'),
-('TG/2023/1783','Nimesha','Wijesinghe','200323311529','2022/2023','Sunset Avenue, Kurunegala','Female','nimesha.wije@gmail.com','2003-04-22','BICT','ICT'),
-('TG/2021/1452','Kishan','Tharmalingam','200123311420','2020/2021','Station Road, Batticaloa','Male','kishan.t2001@gmail.com','2001-06-14','BICT','ICT'),
-('TG/2021/1453','Nadeesha','Gunawardena','200123311421','2020/2021','Palm Street, Gampaha','Female','nadeesha.guna@gmail.com','2001-09-22','BICT','ICT'),
-('TG/2021/1454','Sutharsan','Mahendran','200123311422','2020/2021','Market Lane, Kilinochchi','Male','sutharsan.m2001@gmail.com','2001-12-03','BICT','ICT'),
-('TG/2021/1455','Thushari','Rathnayake','200123311423','2020/2021','Hill Road, Badulla','Female','thushari.rathna@gmail.com','2001-08-17','BICT','ICT'),
-('TG/2021/1456','Roshan','Jayawardena','200123311424','2020/2021','Riverbank, Anuradhapura','Male','roshan.jaya@gmail.com','2001-05-29','BICT','ICT'),
-('TG/2023/1784','Dilshan','Abeysekara','200323311530','2022/2023','Tech Lane, Colombo','Male','dilshan.abey@gmail.com','2003-03-12','BET','ET'),
-('TG/2023/1785','Vishaka','Sundaram','200323311531','2022/2023','University Road, Batticaloa','Female','vishaka.sundaram@gmail.com','2003-07-08','BST','BST'),
-('TG/2023/1786','Ruwan','Edirisinghe','200323311532','2022/2023','Lake View, Kandy','Male','ruwan.ediri@gmail.com','2003-05-20','BET','BST'),
-('TG/2023/1787','Anushka','Rajendran','200323311533','2022/2023','Main Street, Jaffna','Female','anushka.raj@gmail.com','2003-11-30','BST','ET'),
-('TG/2023/1788','Kavindu','Silva','200323311534','2022/2023','Hilltop Avenue, Galle','Male','kavindu.silva@gmail.com','2003-09-14','BET','ET');
-
-
-   //ADD NON-ACADAMIC-STAFF-TABLE
-=======
->>>>>>> 1a99887f9220495e535512f533182948058d5f26
 
 CREATE TABLE Non_academic_staff(
      Nac_staff_id VARCHAR(10) PRIMARY KEY,
@@ -346,9 +268,6 @@ CREATE TABLE Non_academic_staff(
 
 
 
-<<<<<<< HEAD
-	 
-=======
 	 
 
 //newwww
@@ -422,4 +341,3 @@ INSERT INTO Student(Reg_no,F_name,L_name,NIC,Batch,Address,Gender,E_mail,DOB,Cou
 ('TG/2023/1786','Ruwan','Edirisinghe','200323311532','2022/2023','Lake View, Kandy','Male','ruwan.ediri@gmail.com','2003-05-20','BET','BST'),
 ('TG/2023/1787','Anushka','Rajendran','200323311533','2022/2023','Main Street, Jaffna','Female','anushka.raj@gmail.com','2003-11-30','BST','ET'),
 ('TG/2023/1788','Kavindu','Silva','200323311534','2022/2023','Hilltop Avenue, Galle','Male','kavindu.silva@gmail.com','2003-09-14','BET','ET');
->>>>>>> 1a99887f9220495e535512f533182948058d5f26
