@@ -103,8 +103,6 @@ INSERT INTO Demo(Dem_id,Type,Dep_id) VALUES
 ('EMP0117','Permanant','ICT'),
 ('EMP0118','Permanant','ICT'),
 ('EMP0119','Permanant','ICT');
-<<<<<<< HEAD
-=======
 
 
 
@@ -132,7 +130,6 @@ CREATE TABLE Exam (
 
 
 
->>>>>>> 8dfba4ae69aeb970791b3de79644b04305f8a214
 
 CREATE TABLE Course(Course_id VARCHAR(5) PRIMARY KEY,
 Course_name VARCHAR(50) NOT NULL,
