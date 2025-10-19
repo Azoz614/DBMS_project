@@ -20,7 +20,190 @@ CREATE USER 'Technical_officer'@'localhost' IDENTIFIED BY 'password';
 
 
 
+CREATE TABLE faculty(Fac_id VARCHAR(5) PRIMARY KEY,
+Fac_name VARCHAR(30) NOT NULL,
+Dean VARCHAR(10));
+
+INSERT INTO faculty(Fac_id,Fac_name,Dean) VALUES('FAC07','Faculty of
+Technology','EMP0043');
+
+CREATE TABLE Department(Dep_id VARCHAR(5) PRIMARY KEY,
+Dep_name VARCHAR(20) NOT NULL,
+HOD VARCHAR(10) NOT NULL,
+Fac_id VARCHAR(5) NOT NULL,
+FOREIGN KEY(Fac_id) REFERENCES faculty(Fac_id)) ON DELETE CASCADE;
+
+INSERT INTO department(Dep_id,Dep_name,HOD,Fac_id) VALUES
+('ICT','Information and Communication Technology','EMP0101','FAC07'),
+('BST','Bio System Technology','EMP0110','FAC07'),
+('ET','Engneering Technology','EMP0121','FAC07');
+
+CREATE TABLE academic_staff(Staff_id VARCHAR(10) PRIMARY KEY,
+F_name VARCHAR(20) NOT NULL,
+L_name VARCHAR(20) NOT NULL,
+NIC_number VARCHAR(15) NOT NULL,
+Appoint_date DATE NOT NULL,
+Address VARCHAR(40),
+Gender ENUM('Male','Female') NOT NULL,
+Status ENUM('Working','Not_Working') DEFAULT 'Working',
+Fac_id VARCHAR(5) NOT NULL,
+FOREIGN KEY(Fac_id) REFERENCES faculty(Fac_id) ON DELETE CASCADE);
+
+INSERT INTO academic_staff(Staff_id,F_name,L_name,NIC_number,Appoint_date,Address,Gender,Fac_id) VALUES
+('EMP0110', 'Chamari', 'Abeykoon', '742345678V', '2010-03-15', 'No. 12, Lake Road, Kandy', 'Female','FAC07'),
+('EMP0121', 'Dilani', 'Senanayake', '682345678V', '2008-07-22', '45/3, Temple Lane, Galle', 'Female','FAC07'),
+('EMP0101', 'Dinesh', 'Wickramasinghe', '792345678V', '2010-12-03', '19, Riverside Lane, Hambantota', 'Male','FAC07'),
+('EMP0111', 'Malsha', 'Wijesinghe', '752345678V', '2012-01-10', '88, Rose Garden, Matara', 'Female','FAC07'),
+('EMP0112', 'Ruwanthi', 'De Silva', '198412345678', '2015-06-05', '23, Palm Street, Colombo 07', 'Female','FAC07'),
+('EMP0102', 'Ishara', 'Fernando', '812345678V', '2011-09-18', '17, Ocean View, Negombo', 'Female','FAC07'),
+('EMP0043', 'Nuwan', 'Perera', '197845678901', '2009-02-12', '10, Hill Crest, Kurunegala', 'Male','FAC07'),
+('EMP0113', 'Tharindu', 'Jayasinghe', '198212345678', '2013-11-30', '56, Lotus Avenue, Anuradhapura', 'Male','FAC07'),
+('EMP0114', 'Kasun', 'Rathnayake', '198512345678', '2014-08-25', '34, Sunrise Road, Badulla', 'Male','FAC07'),
+('EMP0115', 'Tharindu', 'Jayasinghe', '198212345678', '2013-11-30', '56, Lotus Avenue, Anuradhapura', 'Male','FAC07'),
+('EMP0116', 'Dilani', 'Senanayake', '682345678V', '2008-07-22', '45/3, Temple Lane, Galle', 'Female','FAC07'),
+('EMP0117', 'Sanjeewa', 'Gunawardena', '197912345678', '2007-04-19', '78, Green Park, Nuwara Eliya', 'Male','FAC07'),
+('EMP0118', 'Malsha', 'Wijesinghe', '752345678V', '2009-01-10', '88, Rose Garden, Matara', 'Female','FAC07'),
+('EMP0119', 'Dinesh', 'Wickramasinghe', '792345678V', '2008-12-03', '19, Riverside Lane, Hambantota', 'Male','FAC07');
+
+
+CREATE TABLE Lecturer(Lec_id VARCHAR(10) PRIMARY KEY,
+Type ENUM('Assistant lecturer','Lecturer','Senior lecturer') NOT NULL,
+Dep_id VARCHAR(5) NOT NULL,
+FOREIGN KEY(Lec_id) REFERENCES Academic_staff(Staff_id),
+FOREIGN KEY(Dep_id) REFERENCES Department(Dep_id));
+
+INSERT INTO Lecturer(Lec_id,Type,Dep_id) VALUES
+('EMP0110','Senior lecturer','BST'),
+('EMP0121','Senior lecturer','ET'),
+('EMP0101','Senior lecturer','ICT'),
+('EMP0102','Lecturer','ICT'),
+('EMP0111','Lecturer','ICT'),
+('EMP0112','Lecturer','ICT'),
+('EMP0113','Lecturer','ICT'),
+('EMP0114','Lecturer','ICT'),
+('EMP0115','Lecturer','ICT');
+
+
+CREATE TABLE Dean(Dean_id VARCHAR(10) PRIMARY KEY,
+Appoint_date DATE NOT NULL,
+End_date DATE,
+FOREIGN KEY (Dean_id) REFERENCES Academic_staff(Staff_id));
+
+INSERT INTO Dean(Dean_id,Appoint_date) VALUES ('EMP0043','2009-02-12');
+
+
+CREATE TABLE Demo(Dem_id VARCHAR(10) PRIMARY KEY,
+Type ENUM('Temporary','Permanant'),
+Dep_id VARCHAR(5),
+FOREIGN KEY (Dem_id) REFERENCES Academic_staff(Staff_id),
+FOREIGN KEY (Dep_id) REFERENCES Department(Dep_id));
+
+INSERT INTO Demo(Dem_id,Type,Dep_id) VALUES
+('EMP0116','Temporary','ICT')
+('EMP0117','Permanant','ICT'),
+('EMP0118','Permanant','ICT'),
+('EMP0119','Permanant','ICT');
 
 
 
+
+CREATE TABLE Non_academic_staff(
+     Nac_staff_id VARCHAR(10) PRIMARY KEY,
+	 F_name VARCHAR(25) NOT NULL,
+	 L_name VARCHAR(25) NOT NULL,
+	 Gender ENUM('Male','Female') NOT NULL,
+	 Address VARCHAR(60),
+	 NIC_number VARCHAR(15) NOT NULL,
+	 E_mail VARCHAR(30),
+	 Status ENUM('Working','Not_Working') DEFAULT 'Working',
+	 Appoint_date DATE NOT NULL,
+	 Fac_id VARCHAR(5) NOT NULL,
+	 FOREIGN KEY(Fac_id) REFERENCES faculty(Fac_id) ON DELETE CASCADE ON UPDATE CASCADE
+	 );
+	 
+	 CREATE TABLE NAC_staff_CONTACT(
+	      Nac_staff_id VARCHAR(10),
+		  Contact_no CHAR(10),
+		  PRIMARY KEY(Nac_staff_id, Contact_no),
+		  FOREIGN KEY(Nac_staff_id) REFERENCES Non_academic_staff(Nac_staff_id)
+		  );
+		  
+	 
+	 CREATE TABLE Security(
+	     Sec_id VARCHAR(10) PRIMARY KEY,
+		 Work_shift ENUM('Day','Night') DEFAULT 'Day',
+		 Duty_area VARCHAR(30),
+		 FOREIGN KEY(Sec_id) REFERENCES Non_academic_staff(Nac_staff_id)
+		 );
+		 
+	CREATE TABLE Cleaner(
+	     Cleaner_id VARCHAR(10) PRIMARY KEY,
+		 Work_shift ENUM('Morning','Evening'),
+		 Assigned_area VARCHAR(30),
+		 FOREIGN KEY(Cleaner_id) REFERENCES Non_academic_staff(Nac_staff_id)
+		 );
+		 
+	CREATE TABLE Administrator(
+	   AD_id VARCHAR(10) PRIMARY KEY,
+	   Office_room_no VARCHAR(10),
+	   FOREIGN KEY(AD_id) REFERENCES Non_academic_staff(Nac_staff_id)
+	   );
+	   
+	CREATE TABLE Tech_officer(
+	   TO_id VARCHAR(10) PRIMARY KEY,
+	   Lab_assigned VARCHAR(25),
+	   FOREIGN KEY(TO_id) REFERENCES Non_academic_staff(Nac_staff_id)
+	   );
+	   
+		 
+		 
+	INSERT INTO Non_academic_staff (Nac_staff_id, F_name, L_name, Gender, Address, NIC_number, E_mail, Status, Appoint_date, Fac_id)
+     VALUES
+    ('NAC001','Sunil','Perera','Male','No.12,Main Street,Galle','931234567V','sunil.perera@uni.lk','Working','1993-03-21','FAC07'),
+    ('NAC002','Kamal','Fernando','Male','No.45,Temple Road,Matara','902345678V','kamal.fernando@uni.lk','Working','1990-06-12','FAC07'),
+    ('NAC003','Nimali','Silva','Female','No.10,Station Road,Kandy','952134567V','nimali.silva@uni.lk','Not_Working','1995-01-10','FAC07'),
+    ('NAC004','Ruwan','Jayasinghe','Male','No.32,Lake View,Colombo','881245678V','ruwan.j@uni.lk','Working','2012-09-14','FAC07'),
+    ('NAC005','Dilani','Weerasinghe','Female','No.55,Hill Street,Kurunegala','972346578V','dilani.w@uni.lk','Working','2020-02-05','FAC07'),
+    ('NAC006','Roshan','Abeywickrama','Male','No.8,New Road,Hambantota','911234589V','roshan.a@uni.lk','Working','2016-07-28','FAC07'),
+    ('NAC007','Shanika','Perera','Female','No.76,Galle Road,Panadura','993456781V','shanika.p@uni.lk','Not_Working','2021-03-11','FAC07');
+
+
+   INSERT INTO NAC_staff_CONTACT (Nac_staff_id, Contact_no) 
+   VALUES
+     ('NAC001', '0712345678'),
+     ('NAC001', '0779876543'),
+     ('NAC002', '0723456789'),
+     ('NAC003', '0719876543'),
+     ('NAC004', '0751234567'),
+     ('NAC004', '0771234567');
+
+		 
+	INSERT INTO Security (Sec_id, Work_shift, Duty_area) 
+	VALUES
+    ('NAC001', 'Day', 'Main Gate'),
+    ('NAC004', 'Night', 'Laboratory Area');
+
+	 
+	INSERT INTO Cleaner (Cleaner_id, Work_shift, Assigned_area) 
+	VALUES
+    ('NAC005', 'Morning', 'Lecture Hall'),
+    ('NAC002', 'Evening', 'Laboratory Area');
+	
+	INSERT INTO Administrator (AD_id, Office_room_no) 
+	VALUES
+     ('NAC003', 'A101');
+	 
+	 
+	INSERT INTO Tech_officer (TO_id,Lab_assigned) 
+	VALUES
+    ('NAC006','Computer Lab'),
+    ('NAC007','Electronics Lab');
+
+	 
+	 
+	 
+
+
+
+	 
 
