@@ -66,6 +66,69 @@ INSERT INTO academic_staff(Staff_id,F_name,L_name,NIC_number,Appoint_date,Addres
 ('EMP0119', 'Dinesh', 'Wickramasinghe', '792345678V', '2008-12-03', '19, Riverside Lane, Hambantota', 'Male','FAC07');
 
 
+
+
+CREATE TABLE Ac_staff_contuct(Contuct_id INT PRIMARY KEY AUTO_INCREMENT,
+Staff_id VARCHAR(10),
+Phone_number VARCHAR(13) NOT NULL,
+FOREIGN KEY (Staff_id) REFERENCES Academic_staff(Staff_id) ON DELETE CASCADE);
+
+
+INSERT INTO Ac_staff_contuct(Staff_id,Phone_number) VALUES
+('EMP0110', '077-4567890'),
+('EMP0110', '071-2345678'),
+('EMP0121', '075-1122334'),
+('EMP0121', '076-9988776'),
+('EMP0101', '078-5566778'),
+('EMP0111', '072-4433221'),
+('EMP0111', '077-8899001'),
+('EMP0112', '071-2233445'),
+('EMP0102', '075-3344556'),
+('EMP0043', '076-7788990'),
+('EMP0043', '078-9900112'),
+('EMP0113', '070-6655443'),
+('EMP0113', '072-9988776'),
+('EMP0114', '074-1122334'),
+('EMP0115', '071-3344556'),
+('EMP0116', '075-7788990'),
+('EMP0117', '076-9900112'),
+('EMP0117', '077-2233445'),
+('EMP0119', '078-4433221');
+
+
+CREATE TABLE Ac_staff_degree(Id INT PRIMARY KEY AUTO_INCREMENT,
+Staff_id VARCHAR(10) NOT NULL,
+Degree VARCHAR(40) NOT NULL,
+FOREIGN KEY (Staff_id) REFERENCES Academic_staff(Staff_id) ON DELETE CASCADE);
+
+INSERT INTO Ac_staff_degree(Staff_id,Degree) VALUES
+('EMP0110', 'BSc in Biological Science'),
+('EMP0110', 'MSc in Biotechnology'),
+('EMP0121', 'BEng in Electrical Engineering'),
+('EMP0101', 'BSc in Information Technology'),
+('EMP0101', 'MSc in Computer Networks'),
+('EMP0102', 'BSc in Computer Science'),
+('EMP0102', 'PhD in Artificial Intelligence'),
+('EMP0102', 'Diploma in Data Analytics'),
+('EMP0111', 'BSc in Software Engineering'),
+('EMP0111', 'MSc in Data Science'),
+('EMP0112', 'BSc in Computer Applications'),
+('EMP0113', 'BSc in Information Technology'),
+('EMP0113', 'MPhil in Cyber Security'),
+('EMP0114', 'BSc in Multimedia Technology'),
+('EMP0114', 'MBA in Technology Management'),
+('EMP0115', 'BSc in Information Systems'),
+('EMP0115', 'MSc in Information Technology'),
+('EMP0115', 'PhD in Computer Engineering'),
+('EMP0116', 'BSc in Information Technology'),
+('EMP0116', 'MSc in Computer Networks'),
+('EMP0117', 'BSc in Software Engineering'),
+('EMP0118', 'BSc in Computer Science'),
+('EMP0118', 'MSc in Information Security'),
+('EMP0119', 'BSc in Data Science'),
+('EMP0119', 'Diploma in Web Development');
+
+
 CREATE TABLE Lecturer(Lec_id VARCHAR(10) PRIMARY KEY,
 Type ENUM('Assistant lecturer','Lecturer','Senior lecturer') NOT NULL,
 Dep_id VARCHAR(5) NOT NULL,
