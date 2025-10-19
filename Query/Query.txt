@@ -341,3 +341,24 @@ INSERT INTO Student(Reg_no,F_name,L_name,NIC,Batch,Address,Gender,E_mail,DOB,Cou
 ('TG/2023/1786','Ruwan','Edirisinghe','200323311532','2022/2023','Lake View, Kandy','Male','ruwan.ediri@gmail.com','2003-05-20','BET','BST'),
 ('TG/2023/1787','Anushka','Rajendran','200323311533','2022/2023','Main Street, Jaffna','Female','anushka.raj@gmail.com','2003-11-30','BST','ET'),
 ('TG/2023/1788','Kavindu','Silva','200323311534','2022/2023','Hilltop Avenue, Galle','Male','kavindu.silva@gmail.com','2003-09-14','BET','ET');
+
+
+
+CREATE TABLE Medical(
+	     Med_id VARCHAR(10) PRIMARY KEY,
+		 Med_name VARCHAR(30),
+		 Status ENUM('Approved','Not approved') DEFAULT 'Not approved',
+		 Date_issued DATE,
+		 Reason VARCHAR(60),
+		 Reg_no VARCHAR(12),
+		 FOREIGN KEY(Reg_no) REFERENCES Student(Reg_no) ON DELETE CASCADE ON UPDATE CASCADE
+		 );
+		 
+		 
+		 INSERT INTO Medical (Med_id, Med_name, Status, Date_issued, Reason, Reg_no) 
+		 VALUES
+              ('MED001','Flu Report','Approved','2025-03-12','Absent due to high fever','TG/2023/1775'),
+              ('MED002','Injury Certificate','Approved','2025-05-04','Leg injury during sports','TG/2023/1780'),
+              ('MED003','Medical Leave Form','Not Approved','2025-06-15','Late submission','TG/2021/1452'),
+              ('MED004','Covid-19 Test Report','Approved','2025-02-22','Positive for COVID-19','TG/2023/1784'),
+              ('MED005','Eye Infection Report','Not Approved','2025-07-10','Unclear medical document','TG/2023/1787');
