@@ -91,7 +91,51 @@ CREATE TABLE Non_academic_staff(
     ('NAC007','Electronics Lab');
 
 	 
-	 
+	 CREATE TABLE Medical(
+	     Med_id VARCHAR(10) PRIMARY KEY,
+		 Med_name VARCHAR(30),
+		 Status ENUM('Approved','Not approved') DEFAULT 'Not approved',
+		 Date_issued DATE,
+		 Reason VARCHAR(60),
+		 Reg_no VARCHAR(12),
+		 FOREIGN KEY(Reg_no) REFERENCES Student(Reg_no) ON DELETE CASCADE ON UPDATE CASCADE
+		 );
+		 
+		 
+		 INSERT INTO Medical (Med_id, Med_name, Status, Date_issued, Reason, Reg_no) 
+		 VALUES
+              ('MED001','Flu Report','Approved','2025-03-12','Absent due to high fever','TG/2023/1775'),
+              ('MED002','Injury Certificate','Approved','2025-05-04','Leg injury during sports','TG/2023/1780'),
+              ('MED003','Medical Leave Form','Not Approved','2025-06-15','Late submission','TG/2021/1452'),
+              ('MED004','Covid-19 Test Report','Approved','2025-02-22','Positive for COVID-19','TG/2023/1784'),
+              ('MED005','Eye Infection Report','Not Approved','2025-07-10','Unclear medical document','TG/2023/1787');
+			  
+			  
+			  
+			  //////////////////////////////////////////////////////////////////////
+			  
+			  
+	
+      CREATE TABLE Session(
+             Sub_code VARCHAR(10),
+			 Session_id VARCHAR(10),
+			 Session_name VARCHAR(20),
+			 Hour INT,
+			 PRIMARY KEY(Sub_code, Session_id),
+			 FOREIGN KEY(Sub_code) REFERENCES Subject(Sub_code)
+			  ON DELETE CASCADE ON UPDATE CASCADE
+			 );
+			 
+	
+	CREATE TABLE Session_Student(
+	        Sub_code VARCHAR(10),
+			Session_id VARCHAR(10),
+			Reg_no VARCHAR(12),
+			Status ENUM('Present','Absent') DEFAULT 'Absent',
+			PRIMARY KEY(Sub_code,Session_id,Reg_no),
+			FOREIGN KEY(Sub_code, Session_id) REFERENCES Session(Sub_code, Session_id),
+			FOREIGN KEY(Reg_no) REFERENCES Student(Reg_no)
+			);
 	 
 
 
