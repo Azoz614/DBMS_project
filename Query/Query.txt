@@ -1,6 +1,4 @@
 CREATE DATABASE Project;
-
-
 USE Project;
 
 
@@ -18,6 +16,150 @@ CREATE USER 'Technical_officer'@'localhost' IDENTIFIED BY 'password';
 
 
 
+CREATE TABLE faculty(Fac_id VARCHAR(5) PRIMARY KEY,
+Fac_name VARCHAR(30) NOT NULL,
+Dean VARCHAR(10));
+
+INSERT INTO faculty(Fac_id,Fac_name,Dean) VALUES('FAC07','Faculty of Technology','EMP0043');
+
+
+CREATE TABLE Department(Dep_id VARCHAR(5) PRIMARY KEY,
+Dep_name VARCHAR(20) NOT NULL,
+HOD VARCHAR(10) NOT NULL,
+Fac_id VARCHAR(5) NOT NULL,
+FOREIGN KEY(Fac_id) REFERENCES faculty(Fac_id) ON DELETE CASCADE);
+
+INSERT INTO department(Dep_id,Dep_name,HOD,Fac_id) VALUES
+('ICT','Information and Communication Technology','EMP0101','FAC07'),
+('BST','Bio System Technology','EMP0110','FAC07'),
+('ET','Engineering Technology','EMP0121','FAC07');  -- FIXED: "Engneering" → "Engineering"
+
+
+CREATE TABLE academic_staff(Staff_id VARCHAR(10) PRIMARY KEY,
+F_name VARCHAR(20) NOT NULL,
+L_name VARCHAR(20) NOT NULL,
+NIC_number VARCHAR(15) NOT NULL,
+Appoint_date DATE NOT NULL,
+Address VARCHAR(40),
+Gender ENUM('Male','Female') NOT NULL,
+Status ENUM('Working','Not_Working') DEFAULT 'Working',
+Fac_id VARCHAR(5) NOT NULL,
+FOREIGN KEY(Fac_id) REFERENCES faculty(Fac_id) ON DELETE CASCADE);
+
+INSERT INTO academic_staff(Staff_id,F_name,L_name,NIC_number,Appoint_date,Address,Gender,Fac_id) VALUES
+('EMP0110', 'Chamari', 'Abeykoon', '742345678V', '2010-03-15', 'No. 12, Lake Road, Kandy', 'Female','FAC07'),
+('EMP0121', 'Dilani', 'Senanayake', '682345678V', '2008-07-22', '45/3, Temple Lane, Galle', 'Female','FAC07'),
+('EMP0101', 'Dinesh', 'Wickramasinghe', '792345678V', '2010-12-03', '19, Riverside Lane, Hambantota', 'Male','FAC07'),
+('EMP0111', 'Malsha', 'Wijesinghe', '752345678V', '2012-01-10', '88, Rose Garden, Matara', 'Female','FAC07'),
+('EMP0112', 'Ruwanthi', 'De Silva', '198412345678', '2015-06-05', '23, Palm Street, Colombo 07', 'Female','FAC07'),
+('EMP0102', 'Ishara', 'Fernando', '812345678V', '2011-09-18', '17, Ocean View, Negombo', 'Female','FAC07'),
+('EMP0043', 'Nuwan', 'Perera', '197845678901', '2009-02-12', '10, Hill Crest, Kurunegala', 'Male','FAC07'),
+('EMP0113', 'Tharindu', 'Jayasinghe', '198212345678', '2013-11-30', '56, Lotus Avenue, Anuradhapura', 'Male','FAC07'),
+('EMP0114', 'Kasun', 'Rathnayake', '198512345678', '2014-08-25', '34, Sunrise Road, Badulla', 'Male','FAC07'),
+('EMP0115', 'Tharindu', 'Jayasinghe', '198212345678', '2013-11-30', '56, Lotus Avenue, Anuradhapura', 'Male','FAC07'),
+('EMP0116', 'Dilani', 'Senanayake', '682345678V', '2008-07-22', '45/3, Temple Lane, Galle', 'Female','FAC07'),
+('EMP0117', 'Sanjeewa', 'Gunawardena', '197912345678', '2007-04-19', '78, Green Park, Nuwara Eliya', 'Male','FAC07'),
+('EMP0118', 'Malsha', 'Wijesinghe', '752345678V', '2009-01-10', '88, Rose Garden, Matara', 'Female','FAC07'),
+('EMP0119', 'Dinesh', 'Wickramasinghe', '792345678V', '2008-12-03', '19, Riverside Lane, Hambantota', 'Male','FAC07');
+
+
+CREATE TABLE Lecturer(Lec_id VARCHAR(10) PRIMARY KEY,
+Type ENUM('Assistant lecturer','Lecturer','Senior lecturer') NOT NULL,
+Dep_id VARCHAR(5) NOT NULL,
+FOREIGN KEY(Lec_id) REFERENCES Academic_staff(Staff_id),
+FOREIGN KEY(Dep_id) REFERENCES Department(Dep_id));
+
+INSERT INTO Lecturer(Lec_id,Type,Dep_id) VALUES
+('EMP0110','Senior lecturer','BST'),
+('EMP0121','Senior lecturer','ET'),
+('EMP0101','Senior lecturer','ICT'),
+('EMP0102','Lecturer','ICT'),
+('EMP0111','Lecturer','ICT'),
+('EMP0112','Lecturer','ICT'),
+('EMP0113','Lecturer','ICT'),
+('EMP0114','Lecturer','ICT'),
+('EMP0115','Lecturer','ICT');
+
+
+CREATE TABLE Dean(Dean_id VARCHAR(10) PRIMARY KEY,
+Appoint_date DATE NOT NULL,
+End_date DATE,
+FOREIGN KEY (Dean_id) REFERENCES Academic_staff(Staff_id));
+
+INSERT INTO Dean(Dean_id,Appoint_date) VALUES ('EMP0043','2009-02-12');
+
+CREATE TABLE Demo(Dem_id VARCHAR(10) PRIMARY KEY,
+Type ENUM('Temporary','Permanant'),
+Dep_id VARCHAR(5),
+FOREIGN KEY (Dem_id) REFERENCES Academic_staff(Staff_id),
+FOREIGN KEY (Dep_id) REFERENCES Department(Dep_id));
+
+INSERT INTO Demo(Dem_id,Type,Dep_id) VALUES
+('EMP0116','Temporary','ICT'),      -- FIXED: Added missing comma
+('EMP0117','Permanant','ICT'),
+('EMP0118','Permanant','ICT'),
+('EMP0119','Permanant','ICT');
+
+
+CREATE TABLE Course(Course_id VARCHAR(5) PRIMARY KEY,
+Course_name VARCHAR(50) NOT NULL,
+Total_credits INT NOT NULL,
+Dep_id VARCHAR(5) NOT NULL,
+FOREIGN KEY(Dep_id) REFERENCES Department(Dep_id));
+
+INSERT INTO Course(Course_id,Course_name,Total_credits,Dep_id) VALUES
+('BICT','Bachelor of Information Communication Technology',120,'ICT'),  
+('BST','Bachelor of Biosystem Technology',120,'BST'),                   
+('BET','Bachelor of Engineering Technology',120,'ET');                  
+
+
+CREATE TABLE Student(Reg_no VARCHAR(12) PRIMARY KEY,
+F_name VARCHAR(30) NOT NULL,
+L_name VARCHAR(30) NOT NULL,
+NIC VARCHAR(12) NOT NULL,
+Batch VARCHAR(10),
+Address VARCHAR(50),
+Gender ENUM('Male','Female') NOT NULL,
+E_mail VARCHAR(30),
+DOB DATE,
+Course_id VARCHAR(5) NOT NULL,
+Dep_id VARCHAR(5) NOT NULL,
+FOREIGN KEY(Course_id) REFERENCES Course(Course_id) ON DELETE CASCADE,
+FOREIGN KEY(Dep_id) REFERENCES Department(Dep_id) ON DELETE CASCADE);
+
+
+
+
+INSERT INTO Subject (Sub_code, Sub_name, Credit, Total_hours, Course_id, Lec_id) VALUES
+('ENG1222', 'English II', 2, 30, 'BICT','EMP0111'),
+('ICT1212', 'Database Management Systems', 2, 30, 'BICT', 'EMP0112'),
+('ICT1222', 'Database Management Systems Practicum', 2, 30, 'BICT', 'EMP0112'),
+('ICT1233', 'Server-Side Web Development', 3, 60, 'BICT', 'EMP0113'),
+('ICT1242', 'Computer Architecture', 2, 60, 'BICT', 'EMP0114'),
+('ICT1253', 'Computer Networks', 3, 60, 'BICT', 'EMP0115'),
+('TCS1212', 'Fundamentals of Management', 2, 60, 'BICT','EMP0102'), 
+('TCS1233', 'Discrete Mathematics', 3, 60, 'BICT', 'EMP0117');
+
+
+
+
+CREATE TABLE Course_Subject (
+    Course_id VARCHAR(5),          
+    Sub_code VARCHAR(10),
+    PRIMARY KEY (Course_id, Sub_code),
+    FOREIGN KEY (Course_id) REFERENCES Course(Course_id),     
+    FOREIGN KEY (Sub_code) REFERENCES Subject(Sub_code)
+);
+
+INSERT INTO Course_Subject (Course_id, Sub_code) VALUES      
+('BICT', 'ENG1222'),  
+('BICT', 'ICT1212'),
+('BICT', 'ICT1222'),
+('BICT', 'ICT1233'),
+('BICT', 'ICT1242'),
+('BICT', 'ICT1253'),
+('BICT', 'TCS1212'),
+('BICT', 'TCS1233');
 
 
 
