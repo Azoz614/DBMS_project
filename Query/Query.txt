@@ -595,7 +595,8 @@ INSERT INTO Medical (Med_id, Med_name, Status, Date_issued, Reason, Reg_no) VALU
 ('MED003','Medical Leave Form','Not Approved','2025-06-15','Late submission','TG/2021/1452'),
 ('MED004','Covid-19 Test Report','Approved','2025-02-22','Positive for COVID-19','TG/2023/1784'),
 ('MED005','Eye Infection Report','Not Approved','2025-07-10','Unclear medical document','TG/2023/1787');
-
+ 
+ hi
 
 		 INSERT INTO Medical (Med_id, Med_name, Status, Date_issued, Reason, Reg_no) 
 		 VALUES
