@@ -420,8 +420,6 @@ CREATE TABLE Exam (Exam_code VARCHAR(10) PRIMARY KEY,
 );
 
 
-
-
 CREATE TABLE End_Theory (
     Exam_code VARCHAR(10) PRIMARY KEY,
     Date DATE,
@@ -429,12 +427,22 @@ CREATE TABLE End_Theory (
     FOREIGN KEY (Exam_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
 );
 
+INSERT INTO End_Theory (Exam_code, Date, Location) VALUES
+('EX004', '2025-08-20', 'Main Hall');
+
+
+
 CREATE TABLE End_Practical (
     Exam_code VARCHAR(10) PRIMARY KEY,
     Date DATE,
-    Location VARCHAR(30)
+    Location VARCHAR(30),
     FOREIGN KEY (Exam_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
 );
+
+INSERT INTO End_Practical (Exam_code, Date, Location) VALUES
+('EX005', '2025-08-22', 'Database Lab');
+
+
 
 CREATE TABLE Mid_Theory (
     Exam_code VARCHAR(10) PRIMARY KEY,
@@ -443,33 +451,48 @@ CREATE TABLE Mid_Theory (
     FOREIGN KEY (Exam_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
 );
 
+INSERT INTO Mid_Theory (Exam_code, Date, Location) VALUES
+('EX002', '2025-05-15', 'NBSLT');
+
+
+
 CREATE TABLE Mid_Practical (
     Exam_code VARCHAR(10) PRIMARY KEY,
     Date DATE,
-    Location VARCHAR(30)
+    Location VARCHAR(30),
     FOREIGN KEY (Exam_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
 );
 
-INSERT INTO Mid_Theory (Exam_code, Date, Location) VALUES
-('EX002', '2025-05-15', 'Lecture Hall A');
+INSERT INTO Mid_Practical (Exam_code, Date, Location) VALUES
+('EX003', '2025-05-10', 'NLBT');
+
+
 
 CREATE TABLE Quiz (
     Exam_code VARCHAR(10) PRIMARY KEY,
     Date DATE,
-    Location VARCHAR(30)
+    Location VARCHAR(30),
     FOREIGN KEY (Exam_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
 );
 
 INSERT INTO Quiz (Exam_code, Date, Location) VALUES
-('EX001', '2025-03-10', 30, 10.00),
-('EX006', '2025-04-05', 45, 15.00);
+('EX006', '2025-05-06', 'NLBT'),
+('EX007', '2025-05-16', 'NLBT'),
+('EX008', '2025-05-26', 'NLBT');
 
-CREATE TABLE Assesment (
+
+CREATE TABLE Assessment (
     Exam_code VARCHAR(10) PRIMARY KEY,
     Date DATE,
-    Location VARCHAR(30)
+    Location VARCHAR(30),
     FOREIGN KEY (Exam_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
 );
+
+INSERT INTO Assessment (Exam_code, Date, Location) VALUES
+('EX009', '2025-05-15', 'NBSLT');
+
+
+
 
 
 CREATE TABLE Course(Course_id VARCHAR(5) PRIMARY KEY,
@@ -500,24 +523,24 @@ FOREIGN KEY(Dep_id) REFERENCES Department(Dep_id) ON DELETE CASCADE);
 
 
 
-INSERT INTO Subject (Sub_code, Sub_name, Credit, Total_hours, Course_id, Lec_id) VALUES
-('ENG1222', 'English II', 2, 30, 'BICT','EMP0111'),
-('ICT1212', 'Database Management Systems', 2, 30, 'BICT', 'EMP0112'),
-('ICT1222', 'Database Management Systems Practicum', 2, 30, 'BICT', 'EMP0112'),
-('ICT1233', 'Server-Side Web Development', 3, 60, 'BICT', 'EMP0113'),
-('ICT1242', 'Computer Architecture', 2, 60, 'BICT', 'EMP0114'),
-('ICT1253', 'Computer Networks', 3, 60, 'BICT', 'EMP0115'),
-('TCS1212', 'Fundamentals of Management', 2, 60, 'BICT','EMP0102'), 
-('TCS1233', 'Discrete Mathematics', 3, 60, 'BICT', 'EMP0117');
+INSERT INTO Subject (Sub_code, Sub_name, Credit, Total_hours) VALUES
+('ENG1222', 'English II', 2, 30),
+('ICT1212', 'Database Management Systems', 2, 30),
+('ICT1222', 'Database Management Systems Practicum', 2, 30),
+('ICT1233', 'Server-Side Web Development', 3, 60),
+('ICT1242', 'Computer Architecture', 2, 60),
+('ICT1253', 'Computer Networks', 3, 60),
+('TCS1212', 'Fundamentals of Management', 2, 60), 
+('TCS1233', 'Discrete Mathematics', 3, 60);
 
 
 
 CREATE TABLE Course_Subject (
-    Course_id VARCHAR(5),          
-    Sub_code VARCHAR(10),
-    PRIMARY KEY (Course_id, Sub_code),
-    FOREIGN KEY (Course_id) REFERENCES Course(Course_id),     
-    FOREIGN KEY (Sub_code) REFERENCES Subject(Sub_code)
+Course_id VARCHAR(5),          
+Sub_code VARCHAR(10),
+PRIMARY KEY (Course_id, Sub_code),
+FOREIGN KEY (Course_id) REFERENCES Course(Course_id),     
+FOREIGN KEY (Sub_code) REFERENCES Subject(Sub_code)
 );
 
 INSERT INTO Course_Subject (Course_id, Sub_code) VALUES      
@@ -579,14 +602,14 @@ INSERT INTO Course_Subject (Course_id, Sub_code) VALUES
 
 
 CREATE TABLE Medical(
-	     Med_id VARCHAR(10) PRIMARY KEY,
-		 Med_name VARCHAR(30),
-		 Status ENUM('Approved','Not approved') DEFAULT 'Not approved',
-		 Date_issued DATE,
-		 Reason VARCHAR(60),
-		 Reg_no VARCHAR(12),
-		 FOREIGN KEY(Reg_no) REFERENCES Student(Reg_no) ON DELETE CASCADE ON UPDATE CASCADE
-		 );
+Med_id VARCHAR(10) PRIMARY KEY,
+Med_name VARCHAR(30),
+Status ENUM('Approved','Not approved') DEFAULT 'Not approved',
+Date_issued DATE,
+Reason VARCHAR(60),
+Reg_no VARCHAR(12),
+FOREIGN KEY(Reg_no) REFERENCES Student(Reg_no) ON DELETE CASCADE ON UPDATE CASCADE
+);
 		 
 
 INSERT INTO Medical (Med_id, Med_name, Status, Date_issued, Reason, Reg_no) VALUES
