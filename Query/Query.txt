@@ -392,74 +392,74 @@ FOREIGN KEY (Sub_code) REFERENCES Subject(Sub_code)
 
 
 CREATE TABLE End_Theory (
-Exam_code VARCHAR(10) PRIMARY KEY,
+ET_code VARCHAR(10) PRIMARY KEY,
 Date DATE,
 Location VARCHAR(30),
-FOREIGN KEY (Exam_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
+FOREIGN KEY (ET_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
 );
 
-INSERT INTO End_Theory (Exam_code, Date, Location) VALUES
+INSERT INTO End_Theory (ET_code, Date, Location) VALUES
 ('EX004', '2025-08-20', 'Main Hall');
 
 
 
 CREATE TABLE End_Practical (
-Exam_code VARCHAR(10) PRIMARY KEY,
+EP_code VARCHAR(10) PRIMARY KEY,
 Date DATE,
 Location VARCHAR(30),
-FOREIGN KEY (Exam_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
+FOREIGN KEY (EP_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
 );
 
-INSERT INTO End_Practical (Exam_code, Date, Location) VALUES
+INSERT INTO End_Practical (EP_code, Date, Location) VALUES
 ('EX005', '2025-08-22', 'Database Lab');
 
 
 
 CREATE TABLE Mid_Theory (
-Exam_code VARCHAR(10) PRIMARY KEY,
+MT_code VARCHAR(10) PRIMARY KEY,
 Date DATE,
 Location VARCHAR(30),
-FOREIGN KEY (Exam_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
+FOREIGN KEY (MT_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
 );
 
-INSERT INTO Mid_Theory (Exam_code, Date, Location) VALUES
+INSERT INTO Mid_Theory (MT_code, Date, Location) VALUES
 ('EX002', '2025-05-15', 'NBSLT');
 
 
 
 CREATE TABLE Mid_Practical (
-Exam_code VARCHAR(10) PRIMARY KEY,
+MP_code VARCHAR(10) PRIMARY KEY,
 Date DATE,
 Location VARCHAR(30),
-FOREIGN KEY (Exam_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
+FOREIGN KEY (MP_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
 );
 
-INSERT INTO Mid_Practical (Exam_code, Date, Location) VALUES
+INSERT INTO Mid_Practical (MP_code, Date, Location) VALUES
 ('EX003', '2025-05-10', 'NLBT');
 
 
 
 CREATE TABLE Quiz (
-Exam_code VARCHAR(10) PRIMARY KEY,
+Q_code VARCHAR(10) PRIMARY KEY,
 Date DATE,
 Location VARCHAR(30),
-FOREIGN KEY (Exam_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
+FOREIGN KEY (Q_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
 );
 
-INSERT INTO Quiz (Exam_code, Date, Location) VALUES
+INSERT INTO Quiz (Q_code, Date, Location) VALUES
 ('EX006', '2025-05-06', 'NLBT'),
 ('EX007', '2025-05-16', 'NLBT'),
 ('EX008', '2025-05-26', 'NLBT');
 
 
 CREATE TABLE Assessment (
-Exam_code VARCHAR(10) PRIMARY KEY,
+A_code VARCHAR(10) PRIMARY KEY,
 Date DATE,
 Location VARCHAR(30),
-FOREIGN KEY (Exam_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
+FOREIGN KEY (A_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
 );
 
-INSERT INTO Assessment (Exam_code, Date, Location) VALUES
+INSERT INTO Assessment (A_code, Date, Location) VALUES
 ('EX009', '2025-05-15', 'NBSLT');
 
 
