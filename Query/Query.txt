@@ -500,7 +500,6 @@ FOREIGN KEY(Dep_id) REFERENCES Department(Dep_id) ON DELETE CASCADE);
 
 
 
-
 INSERT INTO Subject (Sub_code, Sub_name, Credit, Total_hours, Course_id, Lec_id) VALUES
 ('ENG1222', 'English II', 2, 30, 'BICT','EMP0111'),
 ('ICT1212', 'Database Management Systems', 2, 30, 'BICT', 'EMP0112'),
