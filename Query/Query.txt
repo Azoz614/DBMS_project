@@ -38,7 +38,7 @@ FOREIGN KEY(Fac_id) REFERENCES faculty(Fac_id) ON DELETE CASCADE);
 INSERT INTO department(Dep_id,Dep_name,HOD,Fac_id) VALUES
 ('ICT','Information and Communication Technology','EMP0101','FAC07'),
 ('BST','Bio System Technology','EMP0110','FAC07'),
-('ET','Engineering Technology','EMP0121','FAC07');  -- FIXED: "Engneering" → "Engineering"
+('ET','Engineering Technology','EMP0121','FAC07');  
 
 
 
@@ -168,7 +168,7 @@ FOREIGN KEY (Dem_id) REFERENCES Academic_staff(Staff_id),
 FOREIGN KEY (Dep_id) REFERENCES Department(Dep_id));
 
 INSERT INTO Demo(Dem_id,Type,Dep_id) VALUES
-('EMP0116','Temporary','ICT'),      -- FIXED: Added missing comma
+('EMP0116','Temporary','ICT'),     
 ('EMP0117','Permanant','ICT'),
 ('EMP0118','Permanant','ICT'),
 ('EMP0119','Permanant','ICT');
@@ -400,3 +400,5 @@ INSERT INTO Medical (Med_id, Med_name, Status, Date_issued, Reason, Reg_no) VALU
 ('MED003','Medical Leave Form','Not Approved','2025-06-15','Late submission','TG/2021/1452'),
 ('MED004','Covid-19 Test Report','Approved','2025-02-22','Positive for COVID-19','TG/2023/1784'),
 ('MED005','Eye Infection Report','Not Approved','2025-07-10','Unclear medical document','TG/2023/1787');
+
+
