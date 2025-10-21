@@ -1,6 +1,4 @@
 CREATE DATABASE Project;
-
-
 USE Project;
 
 
@@ -14,29 +12,38 @@ CREATE USER 'Lecturer'@'localhost' IDENTIFIED BY 'password';
 GRANT ALL PRIVILEGES ON Project.* TO 'Lecturer'@'localhost';
 
 CREATE USER 'Technical_officer'@'localhost' IDENTIFIED BY 'password';
+GRANT SELECT, INSERT, UPDATE ON Project.* TO 'Technical_officer'@'localhost';
 
 
 
-
-
+#################################           Faculty Table
 
 CREATE TABLE faculty(Fac_id VARCHAR(5) PRIMARY KEY,
 Fac_name VARCHAR(30) NOT NULL,
 Dean VARCHAR(10));
 
-INSERT INTO faculty(Fac_id,Fac_name,Dean) VALUES('FAC07','Faculty of
-Technology','EMP0043');
+INSERT INTO faculty(Fac_id,Fac_name,Dean) VALUES('FAC07','Faculty of Technology','EMP0043');
+
+
+
+
+###############################             DEPARTMENT Table
 
 CREATE TABLE Department(Dep_id VARCHAR(5) PRIMARY KEY,
 Dep_name VARCHAR(20) NOT NULL,
 HOD VARCHAR(10) NOT NULL,
 Fac_id VARCHAR(5) NOT NULL,
-FOREIGN KEY(Fac_id) REFERENCES faculty(Fac_id)) ON DELETE CASCADE;
+FOREIGN KEY(Fac_id) REFERENCES faculty(Fac_id) ON DELETE CASCADE);
 
 INSERT INTO department(Dep_id,Dep_name,HOD,Fac_id) VALUES
 ('ICT','Information and Communication Technology','EMP0101','FAC07'),
 ('BST','Bio System Technology','EMP0110','FAC07'),
-('ET','Engneering Technology','EMP0121','FAC07');
+('ET','Engineering Technology','EMP0121','FAC07');  
+
+
+
+
+####################################            ACEDEMIC STAFF
 
 CREATE TABLE academic_staff(Staff_id VARCHAR(10) PRIMARY KEY,
 F_name VARCHAR(20) NOT NULL,
@@ -68,6 +75,51 @@ INSERT INTO academic_staff(Staff_id,F_name,L_name,NIC_number,Appoint_date,Addres
 
 
 
+CREATE TABLE faculty(Fac_id VARCHAR(5) PRIMARY KEY,
+Fac_name VARCHAR(30) NOT NULL,
+Dean VARCHAR(10));
+
+INSERT INTO faculty(Fac_id,Fac_name,Dean) VALUES('FAC07','Faculty of Technology','EMP0043');
+
+
+CREATE TABLE Department(Dep_id VARCHAR(5) PRIMARY KEY,
+Dep_name VARCHAR(20) NOT NULL,
+HOD VARCHAR(10) NOT NULL,
+Fac_id VARCHAR(5) NOT NULL,
+FOREIGN KEY(Fac_id) REFERENCES faculty(Fac_id) ON DELETE CASCADE);
+
+INSERT INTO department(Dep_id,Dep_name,HOD,Fac_id) VALUES
+('ICT','Information and Communication Technology','EMP0101','FAC07'),
+('BST','Bio System Technology','EMP0110','FAC07'),
+('ET','Engineering Technology','EMP0121','FAC07');  -- FIXED: "Engneering" → "Engineering"
+
+
+CREATE TABLE academic_staff(Staff_id VARCHAR(10) PRIMARY KEY,
+F_name VARCHAR(20) NOT NULL,
+L_name VARCHAR(20) NOT NULL,
+NIC_number VARCHAR(15) NOT NULL,
+Appoint_date DATE NOT NULL,
+Address VARCHAR(40),
+Gender ENUM('Male','Female') NOT NULL,
+Status ENUM('Working','Not_Working') DEFAULT 'Working',
+Fac_id VARCHAR(5) NOT NULL,
+FOREIGN KEY(Fac_id) REFERENCES faculty(Fac_id) ON DELETE CASCADE);
+
+INSERT INTO academic_staff(Staff_id,F_name,L_name,NIC_number,Appoint_date,Address,Gender,Fac_id) VALUES
+('EMP0110', 'Chamari', 'Abeykoon', '742345678V', '2010-03-15', 'No. 12, Lake Road, Kandy', 'Female','FAC07'),
+('EMP0121', 'Dilani', 'Senanayake', '682345678V', '2008-07-22', '45/3, Temple Lane, Galle', 'Female','FAC07'),
+('EMP0101', 'Dinesh', 'Wickramasinghe', '792345678V', '2010-12-03', '19, Riverside Lane, Hambantota', 'Male','FAC07'),
+('EMP0111', 'Malsha', 'Wijesinghe', '752345678V', '2012-01-10', '88, Rose Garden, Matara', 'Female','FAC07'),
+('EMP0112', 'Ruwanthi', 'De Silva', '198412345678', '2015-06-05', '23, Palm Street, Colombo 07', 'Female','FAC07'),
+('EMP0102', 'Ishara', 'Fernando', '812345678V', '2011-09-18', '17, Ocean View, Negombo', 'Female','FAC07'),
+('EMP0043', 'Nuwan', 'Perera', '197845678901', '2009-02-12', '10, Hill Crest, Kurunegala', 'Male','FAC07'),
+('EMP0113', 'Tharindu', 'Jayasinghe', '198212345678', '2013-11-30', '56, Lotus Avenue, Anuradhapura', 'Male','FAC07'),
+('EMP0114', 'Kasun', 'Rathnayake', '198512345678', '2014-08-25', '34, Sunrise Road, Badulla', 'Male','FAC07'),
+('EMP0115', 'Tharindu', 'Jayasinghe', '198212345678', '2013-11-30', '56, Lotus Avenue, Anuradhapura', 'Male','FAC07'),
+('EMP0116', 'Dilani', 'Senanayake', '682345678V', '2008-07-22', '45/3, Temple Lane, Galle', 'Female','FAC07'),
+('EMP0117', 'Sanjeewa', 'Gunawardena', '197912345678', '2007-04-19', '78, Green Park, Nuwara Eliya', 'Male','FAC07'),
+('EMP0118', 'Malsha', 'Wijesinghe', '752345678V', '2009-01-10', '88, Rose Garden, Matara', 'Female','FAC07'),
+('EMP0119', 'Dinesh', 'Wickramasinghe', '792345678V', '2008-12-03', '19, Riverside Lane, Hambantota', 'Male','FAC07');
 CREATE TABLE Ac_staff_contuct(Contuct_id INT PRIMARY KEY AUTO_INCREMENT,
 Staff_id VARCHAR(10),
 Phone_number VARCHAR(13) NOT NULL,
@@ -162,16 +214,81 @@ FOREIGN KEY (Dem_id) REFERENCES Academic_staff(Staff_id),
 FOREIGN KEY (Dep_id) REFERENCES Department(Dep_id));
 
 INSERT INTO Demo(Dem_id,Type,Dep_id) VALUES
-('EMP0116','Temporary','ICT')
+('EMP0116','Temporary','ICT'),      -- FIXED: Added missing comma
+('EMP0117','Permanant','ICT'),
+('EMP0118','Permanant','ICT'),
+('EMP0119','Permanant','ICT');
+
+
+CREATE TABLE Course(Course_id VARCHAR(5) PRIMARY KEY,
+Course_name VARCHAR(50) NOT NULL,
+Total_credits INT NOT NULL,
+Dep_id VARCHAR(5) NOT NULL,
+FOREIGN KEY(Dep_id) REFERENCES Department(Dep_id));
+
+INSERT INTO Course(Course_id,Course_name,Total_credits,Dep_id) VALUES
+('BICT','Bachelor of Information Communication Technology',120,'ICT'),  
+('BST','Bachelor of Biosystem Technology',120,'BST'),                   
+('BET','Bachelor of Engineering Technology',120,'ET');                  
+
+
+CREATE TABLE Student(Reg_no VARCHAR(12) PRIMARY KEY,
+F_name VARCHAR(30) NOT NULL,
+L_name VARCHAR(30) NOT NULL,
+NIC VARCHAR(12) NOT NULL,
+Batch VARCHAR(10),
+Address VARCHAR(50),
+Gender ENUM('Male','Female') NOT NULL,
+E_mail VARCHAR(30),
+DOB DATE,
+Course_id VARCHAR(5) NOT NULL,
+Dep_id VARCHAR(5) NOT NULL,
+FOREIGN KEY(Course_id) REFERENCES Course(Course_id) ON DELETE CASCADE,
+FOREIGN KEY(Dep_id) REFERENCES Department(Dep_id) ON DELETE CASCADE);
+
+
+
+
+INSERT INTO Subject (Sub_code, Sub_name, Credit, Total_hours, Course_id, Lec_id) VALUES
+('ENG1222', 'English II', 2, 30, 'BICT','EMP0111'),
+('ICT1212', 'Database Management Systems', 2, 30, 'BICT', 'EMP0112'),
+('ICT1222', 'Database Management Systems Practicum', 2, 30, 'BICT', 'EMP0112'),
+('ICT1233', 'Server-Side Web Development', 3, 60, 'BICT', 'EMP0113'),
+('ICT1242', 'Computer Architecture', 2, 60, 'BICT', 'EMP0114'),
+('ICT1253', 'Computer Networks', 3, 60, 'BICT', 'EMP0115'),
+('TCS1212', 'Fundamentals of Management', 2, 60, 'BICT','EMP0102'), 
+('TCS1233', 'Discrete Mathematics', 3, 60, 'BICT', 'EMP0117');
+
+
+
+
+CREATE TABLE Course_Subject (
+    Course_id VARCHAR(5),          
+    Sub_code VARCHAR(10),
+    PRIMARY KEY (Course_id, Sub_code),
+    FOREIGN KEY (Course_id) REFERENCES Course(Course_id),     
+    FOREIGN KEY (Sub_code) REFERENCES Subject(Sub_code)
+);
+
+INSERT INTO Course_Subject (Course_id, Sub_code) VALUES      
+('BICT', 'ENG1222'),  
+('BICT', 'ICT1212'),
+('BICT', 'ICT1222'),
+('BICT', 'ICT1233'),
+('BICT', 'ICT1242'),
+('BICT', 'ICT1253'),
+('BICT', 'TCS1212'),
+('BICT', 'TCS1233');
+('EMP0116','Temporary','ICT'),     
 ('EMP0117','Permanant','ICT'),
 ('EMP0118','Permanant','ICT'),
 ('EMP0119','Permanant','ICT');
 
 
 
+#########################################      NONACEDEMIC STAFF
 
-CREATE TABLE Non_academic_staff(
-     Nac_staff_id VARCHAR(10) PRIMARY KEY,
+CREATE TABLE Non_academic_staff(Nac_staff_id VARCHAR(10) PRIMARY KEY,
 	 F_name VARCHAR(25) NOT NULL,
 	 L_name VARCHAR(25) NOT NULL,
 	 Gender ENUM('Male','Female') NOT NULL,
@@ -199,6 +316,7 @@ CREATE TABLE Non_academic_staff(
 		 FOREIGN KEY(Sec_id) REFERENCES Non_academic_staff(Nac_staff_id)
 		 );
 		 
+		
 	CREATE TABLE Cleaner(
 	     Cleaner_id VARCHAR(10) PRIMARY KEY,
 		 Work_shift ENUM('Morning','Evening'),
@@ -206,17 +324,20 @@ CREATE TABLE Non_academic_staff(
 		 FOREIGN KEY(Cleaner_id) REFERENCES Non_academic_staff(Nac_staff_id)
 		 );
 		 
+		 
 	CREATE TABLE Administrator(
 	   AD_id VARCHAR(10) PRIMARY KEY,
 	   Office_room_no VARCHAR(10),
 	   FOREIGN KEY(AD_id) REFERENCES Non_academic_staff(Nac_staff_id)
 	   );
 	   
+	   
 	CREATE TABLE Tech_officer(
 	   TO_id VARCHAR(10) PRIMARY KEY,
 	   Lab_assigned VARCHAR(25),
 	   FOREIGN KEY(TO_id) REFERENCES Non_academic_staff(Nac_staff_id)
 	   );
+	   
 	   
 		 
 		 
@@ -239,6 +360,7 @@ CREATE TABLE Non_academic_staff(
      ('NAC003', '0719876543'),
      ('NAC004', '0751234567'),
      ('NAC004', '0771234567');
+
 
 		 
 	INSERT INTO Security (Sec_id, Work_shift, Duty_area) 
@@ -267,29 +389,107 @@ CREATE TABLE Non_academic_staff(
 	 
 
 
-
+#########################################             SUBJECT TABLE
 	 
 
-//newwww
-
-CREATE TABLE Subject (
-    Sub_code VARCHAR(10) PRIMARY KEY,
+CREATE TABLE Subject (Sub_code VARCHAR(10) PRIMARY KEY,
     Sub_name VARCHAR(100) NOT NULL,
     Credit INT,
     Total_hours INT
 );
 
+INSERT INTO Subject (Sub_code, Sub_name, Credit, Total_hours, Course_id, Lec_id) VALUES
+('ENG1222', 'English II', 2, 30, 'BICT','EMP0111'),
+('ICT1212', 'Database Management Systems', 2, 30, 'BICT', 'EMP0112'),
+('ICT1222', 'Database Management Systems Practicum', 2, 30, 'BICT', 'EMP0112'),
+('ICT1233', 'Server-Side Web Development', 3, 60, 'BICT', 'EMP0113'),
+('ICT1242', 'Computer Architecture', 2, 60, 'BICT', 'EMP0114'),
+('ICT1253', 'Computer Networks', 3, 60, 'BICT', 'EMP0115'),
+('TCS1212', 'Fundamentals of Management', 2, 60, 'BICT','EMP0102'), 
+('TCS1233', 'Discrete Mathematics', 3, 60, 'BICT', 'EMP0117');
 
 
 
-CREATE TABLE Exam (
-    Exam_code VARCHAR(10) PRIMARY KEY,
+
+CREATE TABLE Exam (Exam_code VARCHAR(10) PRIMARY KEY,
     Exam_name VARCHAR(100) NOT NULL,
     Hour INT,
     Credit INT,
     Sub_code VARCHAR(10),
     FOREIGN KEY (Sub_code) REFERENCES Subject(Sub_code)
 );
+
+
+CREATE TABLE End_Theory (
+    Exam_code VARCHAR(10) PRIMARY KEY,
+    Date DATE,
+    Location VARCHAR(30),
+    FOREIGN KEY (Exam_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
+);
+
+INSERT INTO End_Theory (Exam_code, Date, Location) VALUES
+('EX004', '2025-08-20', 'Main Hall');
+
+
+
+CREATE TABLE End_Practical (
+    Exam_code VARCHAR(10) PRIMARY KEY,
+    Date DATE,
+    Location VARCHAR(30),
+    FOREIGN KEY (Exam_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
+);
+
+INSERT INTO End_Practical (Exam_code, Date, Location) VALUES
+('EX005', '2025-08-22', 'Database Lab');
+
+
+
+CREATE TABLE Mid_Theory (
+    Exam_code VARCHAR(10) PRIMARY KEY,
+    Date DATE,
+    Location VARCHAR(30),
+    FOREIGN KEY (Exam_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
+);
+
+INSERT INTO Mid_Theory (Exam_code, Date, Location) VALUES
+('EX002', '2025-05-15', 'NBSLT');
+
+
+
+CREATE TABLE Mid_Practical (
+    Exam_code VARCHAR(10) PRIMARY KEY,
+    Date DATE,
+    Location VARCHAR(30),
+    FOREIGN KEY (Exam_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
+);
+
+INSERT INTO Mid_Practical (Exam_code, Date, Location) VALUES
+('EX003', '2025-05-10', 'NLBT');
+
+
+
+CREATE TABLE Quiz (
+    Exam_code VARCHAR(10) PRIMARY KEY,
+    Date DATE,
+    Location VARCHAR(30),
+    FOREIGN KEY (Exam_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
+);
+
+INSERT INTO Quiz (Exam_code, Date, Location) VALUES
+('EX006', '2025-05-06', 'NLBT'),
+('EX007', '2025-05-16', 'NLBT'),
+('EX008', '2025-05-26', 'NLBT');
+
+
+CREATE TABLE Assessment (
+    Exam_code VARCHAR(10) PRIMARY KEY,
+    Date DATE,
+    Location VARCHAR(30),
+    FOREIGN KEY (Exam_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
+);
+
+INSERT INTO Assessment (Exam_code, Date, Location) VALUES
+('EX009', '2025-05-15', 'NBSLT');
 
 
 
@@ -302,9 +502,9 @@ Dep_id VARCHAR(5) NOT NULL,
 FOREIGN KEY(Dep_id) REFERENCES Department(Dep_id));
 
 INSERT INTO Course(Course_id,Course_name,Total_credits,Dep_id) VALUES
-('BICT','Becholor of Information Communication Technology',120,'ICT'),
-('BST','Becholor of Biosysytem Technology',120,'BST'),
-('BET','BEcholor of Engneering Technology','120','ET');
+('BICT','Bachelor of Information Communication Technology',120,'ICT'),  
+('BST','Bachelor of Biosystem Technology',120,'BST'),                   
+('BET','Bachelor of Engineering Technology',120,'ET');                  
 
 
 CREATE TABLE Student(Reg_no VARCHAR(12) PRIMARY KEY,
@@ -320,6 +520,39 @@ Course_id VARCHAR(5) NOT NULL,
 Dep_id VARCHAR(5) NOT NULL,
 FOREIGN KEY(Course_id) REFERENCES Course(Course_id) ON DELETE CASCADE,
 FOREIGN KEY(Dep_id) REFERENCES Department(Dep_id) ON DELETE CASCADE);
+
+
+
+INSERT INTO Subject (Sub_code, Sub_name, Credit, Total_hours) VALUES
+('ENG1222', 'English II', 2, 30),
+('ICT1212', 'Database Management Systems', 2, 30),
+('ICT1222', 'Database Management Systems Practicum', 2, 30),
+('ICT1233', 'Server-Side Web Development', 3, 60),
+('ICT1242', 'Computer Architecture', 2, 60),
+('ICT1253', 'Computer Networks', 3, 60),
+('TCS1212', 'Fundamentals of Management', 2, 60), 
+('TCS1233', 'Discrete Mathematics', 3, 60);
+
+
+
+CREATE TABLE Course_Subject (
+Course_id VARCHAR(5),          
+Sub_code VARCHAR(10),
+PRIMARY KEY (Course_id, Sub_code),
+FOREIGN KEY (Course_id) REFERENCES Course(Course_id),     
+FOREIGN KEY (Sub_code) REFERENCES Subject(Sub_code)
+);
+
+INSERT INTO Course_Subject (Course_id, Sub_code) VALUES      
+('BICT', 'ENG1222'),  
+('BICT', 'ICT1212'),
+('BICT', 'ICT1222'),
+('BICT', 'ICT1233'),
+('BICT', 'ICT1242'),
+('BICT', 'ICT1253'),
+('BICT', 'TCS1212'),
+('BICT', 'TCS1233');
+
 
 INSERT INTO Student(Reg_no,F_name,L_name,NIC,Batch,Address,Gender,E_mail,DOB,Course_id,Dep_id) VALUES
 ('TG/2023/1775','Nivethan','Rajkumar','200323311521','2022/2023','Main Street, Jaffna','Male','nivethan.rk@gmail.com','2003-07-15','BICT','ICT'),
@@ -344,17 +577,60 @@ INSERT INTO Student(Reg_no,F_name,L_name,NIC,Batch,Address,Gender,E_mail,DOB,Cou
 
 
 
+
+
+
+CREATE TABLE Course_Subject (Course_id VARCHAR(5),          
+Sub_code VARCHAR(10),
+PRIMARY KEY (Course_id, Sub_code),
+FOREIGN KEY (Course_id) REFERENCES Course(Course_id),     
+FOREIGN KEY (Sub_code) REFERENCES Subject(Sub_code)
+);
+
+INSERT INTO Course_Subject (Course_id, Sub_code) VALUES      
+('BICT', 'ENG1222'),  
+('BICT', 'ICT1212'),
+('BICT', 'ICT1222'),
+('BICT', 'ICT1233'),
+('BICT', 'ICT1242'),
+('BICT', 'ICT1253'),
+('BICT', 'TCS1212'),
+('BICT', 'TCS1233');
+
+
+
+
+
 CREATE TABLE Medical(
-	     Med_id VARCHAR(10) PRIMARY KEY,
-		 Med_name VARCHAR(30),
-		 Status ENUM('Approved','Not approved') DEFAULT 'Not approved',
-		 Date_issued DATE,
-		 Reason VARCHAR(60),
-		 Reg_no VARCHAR(12),
-		 FOREIGN KEY(Reg_no) REFERENCES Student(Reg_no) ON DELETE CASCADE ON UPDATE CASCADE
-		 );
+Med_id VARCHAR(10) PRIMARY KEY,
+Med_name VARCHAR(30),
+Status ENUM('Approved','Not approved') DEFAULT 'Not approved',
+Date_issued DATE,
+Reason VARCHAR(60),
+Reg_no VARCHAR(12),
+FOREIGN KEY(Reg_no) REFERENCES Student(Reg_no) ON DELETE CASCADE ON UPDATE CASCADE
+);
 		 
+
+<<<<<<< HEAD
+=======
 		 
+<<<<<<< HEAD
+>>>>>>> c423f58aec4132da74aec211d9551ff82c38a433
+INSERT INTO Medical (Med_id, Med_name, Status, Date_issued, Reason, Reg_no) VALUES
+('MED001','Flu Report','Approved','2025-03-12','Absent due to high fever','TG/2023/1775'),
+('MED002','Injury Certificate','Approved','2025-05-04','Leg injury during sports','TG/2023/1780'),
+('MED003','Medical Leave Form','Not Approved','2025-06-15','Late submission','TG/2021/1452'),
+('MED004','Covid-19 Test Report','Approved','2025-02-22','Positive for COVID-19','TG/2023/1784'),
+('MED005','Eye Infection Report','Not Approved','2025-07-10','Unclear medical document','TG/2023/1787');
+ 
+ hi
+
+<<<<<<< HEAD
+		 
+
+=======
+=======
 		 INSERT INTO Medical (Med_id, Med_name, Status, Date_issued, Reason, Reg_no) 
 		 VALUES
               ('MED001','Flu Report','Approved','2025-03-12','Absent due to high fever','TG/2023/1775'),
@@ -362,3 +638,130 @@ CREATE TABLE Medical(
               ('MED003','Medical Leave Form','Not Approved','2025-06-15','Late submission','TG/2021/1452'),
               ('MED004','Covid-19 Test Report','Approved','2025-02-22','Positive for COVID-19','TG/2023/1784'),
               ('MED005','Eye Infection Report','Not Approved','2025-07-10','Unclear medical document','TG/2023/1787');
+
+-- Relatives of Academic Staff
+CREATE TABLE Rel_academic(
+    NIC VARCHAR(12) NOT NULL,
+    Address VARCHAR(40),
+    Rel_name VARCHAR(20),
+    Gender ENUM('F', 'M'),
+    Relationship VARCHAR(20),
+    Staff_id VARCHAR(10) NOT NULL,
+    PRIMARY KEY (NIC, Staff_id),
+    FOREIGN KEY (Staff_id) REFERENCES academic_staff(Staff_id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+);
+
+-- Lecturer_Subject relation
+CREATE TABLE Lecturer_Subject (
+    Lec_id VARCHAR(10) NOT NULL,
+    Sub_code VARCHAR(10) NOT NULL,
+    PRIMARY KEY (Lec_id, Sub_code),
+    FOREIGN KEY (Lec_id) REFERENCES Lecturer(Lec_id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
+    FOREIGN KEY (Sub_code) REFERENCES Subject(Sub_code)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+);
+
+-- Exam_Subject relation
+CREATE TABLE Exam_Subject (
+    Exam_code VARCHAR(10) NOT NULL,
+    Sub_code VARCHAR(10) NOT NULL,
+    PRIMARY KEY (Exam_code, Sub_code),
+    FOREIGN KEY (Exam_code) REFERENCES Exam(Exam_code)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
+    FOREIGN KEY (Sub_code) REFERENCES Subject(Sub_code)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+);
+
+-- Student_Subject relation
+CREATE TABLE Student_Subject (
+    Reg_no VARCHAR(12) NOT NULL,
+    Sub_code VARCHAR(10) NOT NULL,
+    Enroll_date DATE,
+    PRIMARY KEY (Reg_no, Sub_code),
+    FOREIGN KEY (Reg_no) REFERENCES Student(Reg_no)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
+    FOREIGN KEY (Sub_code) REFERENCES Subject(Sub_code)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+);
+
+-- Guardians of Students
+CREATE TABLE Guardian_for_stu (
+    NIC VARCHAR(12) NOT NULL,
+    Address VARCHAR(50),
+    Gender ENUM('Male', 'Female') NOT NULL,
+    Relationship VARCHAR(20),
+    Rel_name VARCHAR(30) NOT NULL,
+    Reg_no VARCHAR(12) NOT NULL,
+    PRIMARY KEY (Reg_no, NIC),
+    FOREIGN KEY (Reg_no) REFERENCES Student(Reg_no)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+);
+
+-- Student_Guardian relation
+CREATE TABLE Student_Guardian_dep (
+    Reg_no VARCHAR(12) NOT NULL,
+    NIC VARCHAR(12) NOT NULL,
+    PRIMARY KEY (Reg_no, NIC),
+    FOREIGN KEY (Reg_no) REFERENCES Student(Reg_no)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
+    FOREIGN KEY (NIC) REFERENCES Guardian_for_stu(NIC)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+);
+
+-- Sports table
+CREATE TABLE Sports (
+    Sport_id VARCHAR(5) PRIMARY KEY,
+    Sport_name VARCHAR(50) NOT NULL
+);
+
+-- Student_Sports relation
+CREATE TABLE Student_Sports (
+    Reg_no VARCHAR(12) NOT NULL,
+    Sport_id VARCHAR(5) NOT NULL,
+    Joined_date DATE,
+    Position VARCHAR(30),
+    PRIMARY KEY (Reg_no, Sport_id),
+    FOREIGN KEY (Reg_no) REFERENCES Student(Reg_no)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
+    FOREIGN KEY (Sport_id) REFERENCES Sports(Sport_id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+);
+>>>>>>> TGl1714
+>>>>>>> c423f58aec4132da74aec211d9551ff82c38a433
+
+
+
+      CREATE TABLE Session(
+             Sub_code VARCHAR(10),
+			 Session_id VARCHAR(10),
+			 Session_name VARCHAR(20),
+			 Hour INT,
+			 PRIMARY KEY(Sub_code, Session_id),
+			 FOREIGN KEY(Sub_code) REFERENCES Subject(Sub_code)
+			  ON DELETE CASCADE ON UPDATE CASCADE
+			 );
+			 
+	
+	CREATE TABLE Session_Student(
+	        Sub_code VARCHAR(10),
+			Session_id VARCHAR(10),
+			Reg_no VARCHAR(12),
+			Status ENUM('Present','Absent') DEFAULT 'Absent',
+			PRIMARY KEY(Sub_code,Session_id,Reg_no),
+			FOREIGN KEY(Sub_code, Session_id) REFERENCES Session(Sub_code, Session_id),
+			FOREIGN KEY(Reg_no) REFERENCES Student(Reg_no)
+			);
