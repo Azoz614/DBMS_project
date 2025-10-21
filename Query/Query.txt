@@ -15,12 +15,19 @@ CREATE USER 'Technical_officer'@'localhost' IDENTIFIED BY 'password';
 GRANT SELECT, INSERT, UPDATE ON Project.* TO 'Technical_officer'@'localhost';
 
 
+
+#################################           Faculty Table
+
 CREATE TABLE faculty(Fac_id VARCHAR(5) PRIMARY KEY,
 Fac_name VARCHAR(30) NOT NULL,
 Dean VARCHAR(10));
 
 INSERT INTO faculty(Fac_id,Fac_name,Dean) VALUES('FAC07','Faculty of Technology','EMP0043');
 
+
+
+
+###############################             DEPARTMENT Table
 
 CREATE TABLE Department(Dep_id VARCHAR(5) PRIMARY KEY,
 Dep_name VARCHAR(20) NOT NULL,
@@ -33,6 +40,10 @@ INSERT INTO department(Dep_id,Dep_name,HOD,Fac_id) VALUES
 ('BST','Bio System Technology','EMP0110','FAC07'),
 ('ET','Engineering Technology','EMP0121','FAC07');  -- FIXED: "Engneering" → "Engineering"
 
+
+
+
+####################################            ACEDEMIC STAFF
 
 CREATE TABLE academic_staff(Staff_id VARCHAR(10) PRIMARY KEY,
 F_name VARCHAR(20) NOT NULL,
@@ -164,123 +175,137 @@ INSERT INTO Demo(Dem_id,Type,Dep_id) VALUES
 
 
 
+#########################################      NONACEDEMIC STAFF
 
-CREATE TABLE Non_academic_staff(
-     Nac_staff_id VARCHAR(10) PRIMARY KEY,
-	 F_name VARCHAR(25) NOT NULL,
-	 L_name VARCHAR(25) NOT NULL,
-	 Gender ENUM('Male','Female') NOT NULL,
-	 Address VARCHAR(60),
-	 NIC_number VARCHAR(15) NOT NULL,
-	 E_mail VARCHAR(30),
-	 Status ENUM('Working','Not_Working') DEFAULT 'Working',
-	 Appoint_date DATE NOT NULL,
-	 Fac_id VARCHAR(5) NOT NULL,
-	 FOREIGN KEY(Fac_id) REFERENCES faculty(Fac_id) ON DELETE CASCADE ON UPDATE CASCADE
-	 );
+CREATE TABLE Non_academic_staff(Nac_staff_id VARCHAR(10) PRIMARY KEY,
+F_name VARCHAR(25) NOT NULL,
+L_name VARCHAR(25) NOT NULL,
+Gender ENUM('Male','Female') NOT NULL,
+Address VARCHAR(60),
+NIC_number VARCHAR(15) NOT NULL,
+E_mail VARCHAR(30),
+Status ENUM('Working','Not_Working') DEFAULT 'Working',
+Appoint_date DATE NOT NULL,
+Fac_id VARCHAR(5) NOT NULL,
+FOREIGN KEY(Fac_id) REFERENCES faculty(Fac_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
 	 
-	 CREATE TABLE NAC_staff_CONTACT(
-	      Nac_staff_id VARCHAR(10),
-		  Contact_no CHAR(10),
-		  PRIMARY KEY(Nac_staff_id, Contact_no),
-		  FOREIGN KEY(Nac_staff_id) REFERENCES Non_academic_staff(Nac_staff_id)
-		  );
+CREATE TABLE NAC_staff_CONTACT(
+Nac_staff_id VARCHAR(10),
+Contact_no CHAR(10),
+PRIMARY KEY(Nac_staff_id, Contact_no),
+FOREIGN KEY(Nac_staff_id) REFERENCES Non_academic_staff(Nac_staff_id)
+);
 		  
 	 
-	 CREATE TABLE Security(
-	     Sec_id VARCHAR(10) PRIMARY KEY,
-		 Work_shift ENUM('Day','Night') DEFAULT 'Day',
-		 Duty_area VARCHAR(30),
-		 FOREIGN KEY(Sec_id) REFERENCES Non_academic_staff(Nac_staff_id)
-		 );
+CREATE TABLE Security(
+Sec_id VARCHAR(10) PRIMARY KEY,
+Work_shift ENUM('Day','Night') DEFAULT 'Day',
+Duty_area VARCHAR(30),
+FOREIGN KEY(Sec_id) REFERENCES Non_academic_staff(Nac_staff_id)
+);
+		
+		
+CREATE TABLE Cleaner(
+Cleaner_id VARCHAR(10) PRIMARY KEY,
+Work_shift ENUM('Morning','Evening'),
+Assigned_area VARCHAR(30),
+FOREIGN KEY(Cleaner_id) REFERENCES Non_academic_staff(Nac_staff_id)
+);
 		 
-	CREATE TABLE Cleaner(
-	     Cleaner_id VARCHAR(10) PRIMARY KEY,
-		 Work_shift ENUM('Morning','Evening'),
-		 Assigned_area VARCHAR(30),
-		 FOREIGN KEY(Cleaner_id) REFERENCES Non_academic_staff(Nac_staff_id)
-		 );
 		 
-	CREATE TABLE Administrator(
-	   AD_id VARCHAR(10) PRIMARY KEY,
-	   Office_room_no VARCHAR(10),
-	   FOREIGN KEY(AD_id) REFERENCES Non_academic_staff(Nac_staff_id)
-	   );
+CREATE TABLE Administrator(
+AD_id VARCHAR(10) PRIMARY KEY,
+Office_room_no VARCHAR(10),
+FOREIGN KEY(AD_id) REFERENCES Non_academic_staff(Nac_staff_id)
+);
 	   
-	CREATE TABLE Tech_officer(
-	   TO_id VARCHAR(10) PRIMARY KEY,
-	   Lab_assigned VARCHAR(25),
-	   FOREIGN KEY(TO_id) REFERENCES Non_academic_staff(Nac_staff_id)
-	   );
+	   
+CREATE TABLE Tech_officer(
+TO_id VARCHAR(10) PRIMARY KEY,
+Lab_assigned VARCHAR(25),
+FOREIGN KEY(TO_id) REFERENCES Non_academic_staff(Nac_staff_id)
+);
 	   
 		 
 		 
-	INSERT INTO Non_academic_staff (Nac_staff_id, F_name, L_name, Gender, Address, NIC_number, E_mail, Status, Appoint_date, Fac_id)
-     VALUES
-    ('NAC001','Sunil','Perera','Male','No.12,Main Street,Galle','931234567V','sunil.perera@uni.lk','Working','1993-03-21','FAC07'),
-    ('NAC002','Kamal','Fernando','Male','No.45,Temple Road,Matara','902345678V','kamal.fernando@uni.lk','Working','1990-06-12','FAC07'),
-    ('NAC003','Nimali','Silva','Female','No.10,Station Road,Kandy','952134567V','nimali.silva@uni.lk','Not_Working','1995-01-10','FAC07'),
-    ('NAC004','Ruwan','Jayasinghe','Male','No.32,Lake View,Colombo','881245678V','ruwan.j@uni.lk','Working','2012-09-14','FAC07'),
-    ('NAC005','Dilani','Weerasinghe','Female','No.55,Hill Street,Kurunegala','972346578V','dilani.w@uni.lk','Working','2020-02-05','FAC07'),
-    ('NAC006','Roshan','Abeywickrama','Male','No.8,New Road,Hambantota','911234589V','roshan.a@uni.lk','Working','2016-07-28','FAC07'),
-    ('NAC007','Shanika','Perera','Female','No.76,Galle Road,Panadura','993456781V','shanika.p@uni.lk','Not_Working','2021-03-11','FAC07');
+		 
+INSERT INTO Non_academic_staff (Nac_staff_id, F_name, L_name, Gender, Address, NIC_number, E_mail, Status, Appoint_date, Fac_id)
+VALUES
+('NAC001','Sunil','Perera','Male','No.12,Main Street,Galle','931234567V','sunil.perera@uni.lk','Working','1993-03-21','FAC07'),
+('NAC002','Kamal','Fernando','Male','No.45,Temple Road,Matara','902345678V','kamal.fernando@uni.lk','Working','1990-06-12','FAC07'),
+('NAC003','Nimali','Silva','Female','No.10,Station Road,Kandy','952134567V','nimali.silva@uni.lk','Not_Working','1995-01-10','FAC07'),
+('NAC004','Ruwan','Jayasinghe','Male','No.32,Lake View,Colombo','881245678V','ruwan.j@uni.lk','Working','2012-09-14','FAC07'),
+('NAC005','Dilani','Weerasinghe','Female','No.55,Hill Street,Kurunegala','972346578V','dilani.w@uni.lk','Working','2020-02-05','FAC07'),
+('NAC006','Roshan','Abeywickrama','Male','No.8,New Road,Hambantota','911234589V','roshan.a@uni.lk','Working','2016-07-28','FAC07'),
+('NAC007','Shanika','Perera','Female','No.76,Galle Road,Panadura','993456781V','shanika.p@uni.lk','Not_Working','2021-03-11','FAC07');
 
 
-   INSERT INTO NAC_staff_CONTACT (Nac_staff_id, Contact_no) 
-   VALUES
-     ('NAC001', '0712345678'),
-     ('NAC001', '0779876543'),
-     ('NAC002', '0723456789'),
-     ('NAC003', '0719876543'),
-     ('NAC004', '0751234567'),
-     ('NAC004', '0771234567');
+INSERT INTO NAC_staff_CONTACT (Nac_staff_id, Contact_no) 
+VALUES
+('NAC001', '0712345678'),
+('NAC001', '0779876543'),
+('NAC002', '0723456789'),
+('NAC003', '0719876543'),
+('NAC004', '0751234567'),
+('NAC004', '0771234567');
 
 		 
-	INSERT INTO Security (Sec_id, Work_shift, Duty_area) 
-	VALUES
-    ('NAC001', 'Day', 'Main Gate'),
-    ('NAC004', 'Night', 'Laboratory Area');
+		 
+INSERT INTO Security (Sec_id, Work_shift, Duty_area) 
+VALUES
+('NAC001', 'Day', 'Main Gate'),
+('NAC004', 'Night', 'Laboratory Area');
 
 	 
-	INSERT INTO Cleaner (Cleaner_id, Work_shift, Assigned_area) 
-	VALUES
-    ('NAC005', 'Morning', 'Lecture Hall'),
-    ('NAC002', 'Evening', 'Laboratory Area');
+INSERT INTO Cleaner (Cleaner_id, Work_shift, Assigned_area) 
+VALUES
+('NAC005', 'Morning', 'Lecture Hall'),
+('NAC002', 'Evening', 'Laboratory Area');
 	
-	INSERT INTO Administrator (AD_id, Office_room_no) 
-	VALUES
-     ('NAC003', 'A101');
+INSERT INTO Administrator (AD_id, Office_room_no) 
+VALUES
+('NAC003', 'A101');
 	 
 	 
-	INSERT INTO Tech_officer (TO_id,Lab_assigned) 
-	VALUES
-    ('NAC006','Computer Lab'),
-    ('NAC007','Electronics Lab');
+INSERT INTO Tech_officer (TO_id,Lab_assigned) 
+VALUES
+('NAC006','Computer Lab'),
+('NAC007','Electronics Lab');
 
 	 
 	 
 	 
 
 
-
+#########################################             SUBJECT TABLE
 	 
 
-CREATE TABLE Subject (
-    Sub_code VARCHAR(10) PRIMARY KEY,
-    Sub_name VARCHAR(100) NOT NULL,
-    Credit INT,
-    Total_hours INT
+CREATE TABLE Subject (Sub_code VARCHAR(10) PRIMARY KEY,
+Sub_name VARCHAR(100) NOT NULL,
+Credit INT,
+Total_hours INT
 );
 
+INSERT INTO Subject (Sub_code, Sub_name, Credit, Total_hours, Course_id, Lec_id) VALUES
+('ENG1222', 'English II', 2, 30, 'BICT','EMP0111'),
+('ICT1212', 'Database Management Systems', 2, 30, 'BICT', 'EMP0112'),
+('ICT1222', 'Database Management Systems Practicum', 2, 30, 'BICT', 'EMP0112'),
+('ICT1233', 'Server-Side Web Development', 3, 60, 'BICT', 'EMP0113'),
+('ICT1242', 'Computer Architecture', 2, 60, 'BICT', 'EMP0114'),
+('ICT1253', 'Computer Networks', 3, 60, 'BICT', 'EMP0115'),
+('TCS1212', 'Fundamentals of Management', 2, 60, 'BICT','EMP0102'), 
+('TCS1233', 'Discrete Mathematics', 3, 60, 'BICT', 'EMP0117');
 
 
-CREATE TABLE Exam (
-    Exam_code VARCHAR(10) PRIMARY KEY,
-    Exam_name VARCHAR(100) NOT NULL,
-    Hour INT,
-    Credit INT,
-    Sub_code VARCHAR(10),
-    FOREIGN KEY (Sub_code) REFERENCES Subject(Sub_code)
+
+
+CREATE TABLE Exam (Exam_code VARCHAR(10) PRIMARY KEY,
+Exam_name VARCHAR(100) NOT NULL,
+Hour INT,
+Credit INT,
+Sub_code VARCHAR(10),
+FOREIGN KEY (Sub_code) REFERENCES Subject(Sub_code)
 );
 
 
@@ -311,40 +336,6 @@ Dep_id VARCHAR(5) NOT NULL,
 FOREIGN KEY(Course_id) REFERENCES Course(Course_id) ON DELETE CASCADE,
 FOREIGN KEY(Dep_id) REFERENCES Department(Dep_id) ON DELETE CASCADE);
 
-
-
-
-INSERT INTO Subject (Sub_code, Sub_name, Credit, Total_hours, Course_id, Lec_id) VALUES
-('ENG1222', 'English II', 2, 30, 'BICT','EMP0111'),
-('ICT1212', 'Database Management Systems', 2, 30, 'BICT', 'EMP0112'),
-('ICT1222', 'Database Management Systems Practicum', 2, 30, 'BICT', 'EMP0112'),
-('ICT1233', 'Server-Side Web Development', 3, 60, 'BICT', 'EMP0113'),
-('ICT1242', 'Computer Architecture', 2, 60, 'BICT', 'EMP0114'),
-('ICT1253', 'Computer Networks', 3, 60, 'BICT', 'EMP0115'),
-('TCS1212', 'Fundamentals of Management', 2, 60, 'BICT','EMP0102'), 
-('TCS1233', 'Discrete Mathematics', 3, 60, 'BICT', 'EMP0117');
-
-
-
-CREATE TABLE Course_Subject (
-    Course_id VARCHAR(5),          
-    Sub_code VARCHAR(10),
-    PRIMARY KEY (Course_id, Sub_code),
-    FOREIGN KEY (Course_id) REFERENCES Course(Course_id),     
-    FOREIGN KEY (Sub_code) REFERENCES Subject(Sub_code)
-);
-
-INSERT INTO Course_Subject (Course_id, Sub_code) VALUES      
-('BICT', 'ENG1222'),  
-('BICT', 'ICT1212'),
-('BICT', 'ICT1222'),
-('BICT', 'ICT1233'),
-('BICT', 'ICT1242'),
-('BICT', 'ICT1253'),
-('BICT', 'TCS1212'),
-('BICT', 'TCS1233');
-
-
 INSERT INTO Student(Reg_no,F_name,L_name,NIC,Batch,Address,Gender,E_mail,DOB,Course_id,Dep_id) VALUES
 ('TG/2023/1775','Nivethan','Rajkumar','200323311521','2022/2023','Main Street, Jaffna','Male','nivethan.rk@gmail.com','2003-07-15','BICT','ICT'),
 ('TG/2023/1776','Kavindya','Perera','200323311522','2022/2023','Lake View, Kandy','Female','kavindya.perera@gmail.com','2003-09-10','BICT','ICT'),
@@ -368,21 +359,44 @@ INSERT INTO Student(Reg_no,F_name,L_name,NIC,Batch,Address,Gender,E_mail,DOB,Cou
 
 
 
+
+
+
+CREATE TABLE Course_Subject (Course_id VARCHAR(5),          
+Sub_code VARCHAR(10),
+PRIMARY KEY (Course_id, Sub_code),
+FOREIGN KEY (Course_id) REFERENCES Course(Course_id),     
+FOREIGN KEY (Sub_code) REFERENCES Subject(Sub_code)
+);
+
+INSERT INTO Course_Subject (Course_id, Sub_code) VALUES      
+('BICT', 'ENG1222'),  
+('BICT', 'ICT1212'),
+('BICT', 'ICT1222'),
+('BICT', 'ICT1233'),
+('BICT', 'ICT1242'),
+('BICT', 'ICT1253'),
+('BICT', 'TCS1212'),
+('BICT', 'TCS1233');
+
+
+
+
+
 CREATE TABLE Medical(
-	     Med_id VARCHAR(10) PRIMARY KEY,
-		 Med_name VARCHAR(30),
-		 Status ENUM('Approved','Not approved') DEFAULT 'Not approved',
-		 Date_issued DATE,
-		 Reason VARCHAR(60),
-		 Reg_no VARCHAR(12),
-		 FOREIGN KEY(Reg_no) REFERENCES Student(Reg_no) ON DELETE CASCADE ON UPDATE CASCADE
-		 );
+Med_id VARCHAR(10) PRIMARY KEY,
+Med_name VARCHAR(30),
+Status ENUM('Approved','Not approved') DEFAULT 'Not approved',
+Date_issued DATE,
+Reason VARCHAR(60),
+Reg_no VARCHAR(12),
+FOREIGN KEY(Reg_no) REFERENCES Student(Reg_no) ON DELETE CASCADE ON UPDATE CASCADE
+);
 		 
 		 
-		 INSERT INTO Medical (Med_id, Med_name, Status, Date_issued, Reason, Reg_no) 
-		 VALUES
-              ('MED001','Flu Report','Approved','2025-03-12','Absent due to high fever','TG/2023/1775'),
-              ('MED002','Injury Certificate','Approved','2025-05-04','Leg injury during sports','TG/2023/1780'),
-              ('MED003','Medical Leave Form','Not Approved','2025-06-15','Late submission','TG/2021/1452'),
-              ('MED004','Covid-19 Test Report','Approved','2025-02-22','Positive for COVID-19','TG/2023/1784'),
-              ('MED005','Eye Infection Report','Not Approved','2025-07-10','Unclear medical document','TG/2023/1787');
+INSERT INTO Medical (Med_id, Med_name, Status, Date_issued, Reason, Reg_no) VALUES
+('MED001','Flu Report','Approved','2025-03-12','Absent due to high fever','TG/2023/1775'),
+('MED002','Injury Certificate','Approved','2025-05-04','Leg injury during sports','TG/2023/1780'),
+('MED003','Medical Leave Form','Not Approved','2025-06-15','Late submission','TG/2021/1452'),
+('MED004','Covid-19 Test Report','Approved','2025-02-22','Positive for COVID-19','TG/2023/1784'),
+('MED005','Eye Infection Report','Not Approved','2025-07-10','Unclear medical document','TG/2023/1787');
