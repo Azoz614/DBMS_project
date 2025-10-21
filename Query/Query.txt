@@ -397,7 +397,6 @@ CREATE TABLE Medical(
 		 );
 		 
 
-<<<<<<< HEAD
 INSERT INTO Medical (Med_id, Med_name, Status, Date_issued, Reason, Reg_no) VALUES
 ('MED001','Flu Report','Approved','2025-03-12','Absent due to high fever','TG/2023/1775'),
 ('MED002','Injury Certificate','Approved','2025-05-04','Leg injury during sports','TG/2023/1780'),
@@ -406,7 +405,6 @@ INSERT INTO Medical (Med_id, Med_name, Status, Date_issued, Reason, Reg_no) VALU
 ('MED005','Eye Infection Report','Not Approved','2025-07-10','Unclear medical document','TG/2023/1787');
 
 
-=======
 		 INSERT INTO Medical (Med_id, Med_name, Status, Date_issued, Reason, Reg_no) 
 		 VALUES
               ('MED001','Flu Report','Approved','2025-03-12','Absent due to high fever','TG/2023/1775'),
@@ -516,4 +514,3 @@ CREATE TABLE Student_Sports (
         ON UPDATE CASCADE
         ON DELETE CASCADE
 );
->>>>>>> TGl1714
