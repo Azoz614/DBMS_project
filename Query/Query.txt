@@ -422,6 +422,26 @@ CREATE TABLE Mid_Practical (
     FOREIGN KEY (Exam_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
 );
 
+INSERT INTO Mid_Theory (Exam_code, Date, Location) VALUES
+('EX002', '2025-05-15', 'Lecture Hall A');
+
+CREATE TABLE Quiz (
+    Exam_code VARCHAR(10) PRIMARY KEY,
+    Date DATE,
+    Location VARCHAR(30)
+    FOREIGN KEY (Exam_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
+);
+
+INSERT INTO Quiz (Exam_code, Date, Location) VALUES
+('EX001', '2025-03-10', 30, 10.00),
+('EX006', '2025-04-05', 45, 15.00);
+
+CREATE TABLE Assesment (
+    Exam_code VARCHAR(10) PRIMARY KEY,
+    Date DATE,
+    Location VARCHAR(30)
+    FOREIGN KEY (Exam_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
+);
 
 
 CREATE TABLE Course(Course_id VARCHAR(5) PRIMARY KEY,
