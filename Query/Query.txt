@@ -364,19 +364,21 @@ CREATE TABLE Medical(
               ('MED004','Covid-19 Test Report','Approved','2025-02-22','Positive for COVID-19','TG/2023/1784'),
               ('MED005','Eye Infection Report','Not Approved','2025-07-10','Unclear medical document','TG/2023/1787');
 
+-- Relatives of Academic Staff
 CREATE TABLE Rel_academic(
-    NIC VARCHAR(10) NOT NULL,
+    NIC VARCHAR(12) NOT NULL,
     Address VARCHAR(40),
     Rel_name VARCHAR(20),
     Gender ENUM('F', 'M'),
     Relationship VARCHAR(20),
     Staff_id VARCHAR(10) NOT NULL,
     PRIMARY KEY (NIC, Staff_id),
-    FOREIGN KEY (Staff_id) REFERENCES Staff(Staff_id)
+    FOREIGN KEY (Staff_id) REFERENCES academic_staff(Staff_id)
         ON UPDATE CASCADE
         ON DELETE CASCADE
 );
 
+-- Lecturer_Subject relation
 CREATE TABLE Lecturer_Subject (
     Lec_id VARCHAR(10) NOT NULL,
     Sub_code VARCHAR(10) NOT NULL,
@@ -389,19 +391,7 @@ CREATE TABLE Lecturer_Subject (
         ON DELETE CASCADE
 );
 
-CREATE TABLE Course_Subject (
-    Course_id VARCHAR(5) NOT NULL,
-    Sub_code VARCHAR(10) NOT NULL,
-    PRIMARY KEY (Course_id, Sub_code),
-    FOREIGN KEY (Course_id) REFERENCES Course(Course_id)
-        ON UPDATE CASCADE
-        ON DELETE CASCADE,
-    FOREIGN KEY (Sub_code) REFERENCES Subject(Sub_code)
-        ON UPDATE CASCADE
-        ON DELETE CASCADE
-);
-
-
+-- Exam_Subject relation
 CREATE TABLE Exam_Subject (
     Exam_code VARCHAR(10) NOT NULL,
     Sub_code VARCHAR(10) NOT NULL,
@@ -414,6 +404,7 @@ CREATE TABLE Exam_Subject (
         ON DELETE CASCADE
 );
 
+-- Student_Subject relation
 CREATE TABLE Student_Subject (
     Reg_no VARCHAR(12) NOT NULL,
     Sub_code VARCHAR(10) NOT NULL,
@@ -427,6 +418,7 @@ CREATE TABLE Student_Subject (
         ON DELETE CASCADE
 );
 
+-- Guardians of Students
 CREATE TABLE Guardian_for_stu (
     NIC VARCHAR(12) NOT NULL,
     Address VARCHAR(50),
@@ -439,6 +431,8 @@ CREATE TABLE Guardian_for_stu (
         ON UPDATE CASCADE
         ON DELETE CASCADE
 );
+
+-- Student_Guardian relation
 CREATE TABLE Student_Guardian_dep (
     Reg_no VARCHAR(12) NOT NULL,
     NIC VARCHAR(12) NOT NULL,
@@ -446,16 +440,18 @@ CREATE TABLE Student_Guardian_dep (
     FOREIGN KEY (Reg_no) REFERENCES Student(Reg_no)
         ON UPDATE CASCADE
         ON DELETE CASCADE,
-    FOREIGN KEY (NIC) REFERENCES Stu_guardian(NIC)
+    FOREIGN KEY (NIC) REFERENCES Guardian_for_stu(NIC)
         ON UPDATE CASCADE
         ON DELETE CASCADE
 );
 
+-- Sports table
 CREATE TABLE Sports (
     Sport_id VARCHAR(5) PRIMARY KEY,
     Sport_name VARCHAR(50) NOT NULL
 );
 
+-- Student_Sports relation
 CREATE TABLE Student_Sports (
     Reg_no VARCHAR(12) NOT NULL,
     Sport_id VARCHAR(5) NOT NULL,
