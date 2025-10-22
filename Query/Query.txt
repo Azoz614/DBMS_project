@@ -617,10 +617,7 @@ CREATE TABLE Student_Sports (
         ON UPDATE CASCADE
         ON DELETE CASCADE
 );
-<<<<<<< HEAD
 
-=======
->>>>>>> d4ae2f8735aee5b64a358c0bf76c623766a98b9a
 
 #################################    SESSION
 
@@ -1036,3 +1033,4 @@ INSERT INTO Marks (Reg_no, Sub_code, Exam_code, Mark, Type) VALUES
 
 
 
+  
