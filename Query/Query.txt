@@ -13,7 +13,7 @@ GRANT SELECT, INSERT, UPDATE ON Project.* TO 'Technical_officer'@'localhost';
 
 
 
-#################################           Faculty Table
+################################################         Faculty Table
 
 CREATE TABLE faculty(Fac_id VARCHAR(5) PRIMARY KEY,
 Fac_name VARCHAR(30) NOT NULL,
@@ -24,7 +24,7 @@ INSERT INTO faculty(Fac_id,Fac_name,Dean) VALUES('FAC07','Faculty of Technology'
 
 
 
-###############################             DEPARTMENT Table
+###############################################      DEPARTMENT Table
 
 CREATE TABLE Department(Dep_id VARCHAR(5) PRIMARY KEY,
 Dep_name VARCHAR(100) NOT NULL,
@@ -40,7 +40,7 @@ INSERT INTO department(Dep_id,Dep_name,HOD,Fac_id) VALUES
 
 
 
-####################################            ACEDEMIC STAFF
+############################################      ACEDEMIC STAFF
 
 CREATE TABLE academic_staff(Staff_id VARCHAR(10) PRIMARY KEY,
 F_name VARCHAR(20) NOT NULL,
@@ -73,7 +73,7 @@ INSERT INTO academic_staff(Staff_id,F_name,L_name,NIC_number,Appoint_date,Addres
 
 
 
-
+###########################################      AS_STAFF_CONTUCT
 
 
 CREATE TABLE Ac_staff_contuct(Contuct_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -103,6 +103,8 @@ INSERT INTO Ac_staff_contuct(Staff_id,Phone_number) VALUES
 ('EMP0117', '077-2233445'),
 ('EMP0119', '078-4433221');
 
+
+#########################################     AC_STAFF_DEGREE
 
 CREATE TABLE Ac_staff_degree(Id INT PRIMARY KEY AUTO_INCREMENT,
 Staff_id VARCHAR(10) NOT NULL,
@@ -137,6 +139,8 @@ INSERT INTO Ac_staff_degree(Staff_id,Degree) VALUES
 ('EMP0119', 'Diploma in Web Development');
 
 
+##########################################     LECTURER
+
 CREATE TABLE Lecturer(Lec_id VARCHAR(10) PRIMARY KEY,
 Type ENUM('Assistant lecturer','Lecturer','Senior lecturer') NOT NULL,
 Dep_id VARCHAR(5) NOT NULL,
@@ -155,6 +159,9 @@ INSERT INTO Lecturer(Lec_id,Type,Dep_id) VALUES
 ('EMP0115','Lecturer','ICT');
 
 
+#############################################     DEAN 
+
+
 CREATE TABLE Dean(Dean_id VARCHAR(10) PRIMARY KEY,
 Appoint_date DATE NOT NULL,
 End_date DATE,
@@ -162,6 +169,8 @@ FOREIGN KEY (Dean_id) REFERENCES Academic_staff(Staff_id));
 
 INSERT INTO Dean(Dean_id,Appoint_date) VALUES ('EMP0043','2009-02-12');
 
+
+#############################################      DEMO 
 
 CREATE TABLE Demo(Dem_id VARCHAR(10) PRIMARY KEY,
 Type ENUM('Temporary','Permanant'),
@@ -176,8 +185,7 @@ INSERT INTO Demo(Dem_id,Type,Dep_id) VALUES
 ('EMP0119','Permanant','ICT');
 
 
-
-/////////////////////////////COURSE ////////////////
+###############################################    COURSE 
 
 CREATE TABLE Course(Course_id VARCHAR(5) PRIMARY KEY,
 Course_name VARCHAR(50) NOT NULL,
@@ -194,7 +202,7 @@ INSERT INTO Course(Course_id,Course_name,Total_credits,Dep_id) VALUES
 
 
 
-####################################             STUDENT TABLE 
+#################################################     STUDENT TABLE 
 
 
 
@@ -242,7 +250,7 @@ INSERT INTO Student(Reg_no,F_name,L_name,NIC,Batch,Address,Gender,E_mail,DOB,Cou
 
 
 
-////////////////////////////     SUBJECT TABLE //////////////
+ #########################################     SUBJECT TABLE 
 
 CREATE TABLE Subject (Sub_code VARCHAR(10) PRIMARY KEY,
     Sub_name VARCHAR(100) NOT NULL,
@@ -262,6 +270,7 @@ INSERT INTO Subject (Sub_code, Sub_name, Credit, Total_hours) VALUES
 ('TCS1233', 'Discrete Mathematics', 3, 60);
 
 
+#########################################     COURSE_SUBJECT
 
 CREATE TABLE Course_Subject (
     Course_id VARCHAR(5),          
@@ -283,7 +292,7 @@ INSERT INTO Course_Subject (Course_id, Sub_code) VALUES
 
 
 
-///////////////////////////////// EXAM/////////////////
+########################################     EXAM
 
 
 
@@ -303,42 +312,42 @@ INSERT INTO Exam(Exam_code,Exam_name) VALUES
     ('EP','End Practical'
 );
 
+######################################     MID THEORY 
 
 CREATE TABLE Mid_Theory (
     MT_code VARCHAR(10) PRIMARY KEY,
     FOREIGN KEY (MT_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
 );
 
+#####################################     MID PRACTICAL 
 
 CREATE TABLE Mid_Practical (
     MP_code VARCHAR(10) PRIMARY KEY,
     FOREIGN KEY (MP_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
 );
 
+#####################################       QUIZ
 
 CREATE TABLE Quiz (
     Q_code VARCHAR(10) PRIMARY KEY,
     FOREIGN KEY (Q_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
 );
 
-
-CREATE TABLE Assessment (
-    AS_code VARCHAR(10) PRIMARY KEY,
-    FOREIGN KEY (AS_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
-);
+#####################################    END THEORY 
 
 CREATE TABLE End_Theory (
     ET_code VARCHAR(10) PRIMARY KEY,
     FOREIGN KEY (ET_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
 );
 
+#####################################     END PRACTICAL 
 
 CREATE TABLE End_Practical (
     EP_code VARCHAR(10) PRIMARY KEY,
     FOREIGN KEY (EP_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
 );
 
-
+#####################################     EXAM_SUBJECT
 
 CREATE TABLE Exam_Subject(
     Exam_code VARCHAR(10),
@@ -398,7 +407,7 @@ INSERT INTO Exam_Subject (Exam_code, Sub_code, Date, Duration) VALUES
 
 
 
-#########################################      NONACEDEMIC STAFF
+#########################################     NONACEDEMIC STAFF
 
 CREATE TABLE Non_academic_staff(Nac_staff_id VARCHAR(10) PRIMARY KEY,
 F_name VARCHAR(25) NOT NULL,
@@ -413,13 +422,16 @@ Fac_id VARCHAR(5) NOT NULL,
 FOREIGN KEY(Fac_id) REFERENCES faculty(Fac_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 	 
+######################################     NAC_STAFF_CONTACT
+
 CREATE TABLE NAC_staff_CONTACT(
 Nac_staff_id VARCHAR(10),
 Contact_no CHAR(10),
 PRIMARY KEY(Nac_staff_id, Contact_no),
 FOREIGN KEY(Nac_staff_id) REFERENCES Non_academic_staff(Nac_staff_id)
 );
-		  
+
+#####################################    SECURITY	  
 	 
 CREATE TABLE Security(
 Sec_id VARCHAR(10) PRIMARY KEY,
@@ -428,7 +440,8 @@ Duty_area VARCHAR(30),
 FOREIGN KEY(Sec_id) REFERENCES Non_academic_staff(Nac_staff_id)
 );
 		 
-		
+#####################################    CLEANER 
+
 CREATE TABLE Cleaner(
 Cleaner_id VARCHAR(10) PRIMARY KEY,
 Work_shift ENUM('Morning','Evening'),
@@ -436,7 +449,8 @@ Assigned_area VARCHAR(30),
 FOREIGN KEY(Cleaner_id) REFERENCES Non_academic_staff(Nac_staff_id)
 );
 		 
-		 
+
+####################################     ADMINISTOR 	 
 
 CREATE TABLE Administrator(
 AD_id VARCHAR(10) PRIMARY KEY,
@@ -444,7 +458,8 @@ Office_room_no VARCHAR(10),
 FOREIGN KEY(AD_id) REFERENCES Non_academic_staff(Nac_staff_id)
 );
 	   
-	   
+###################################    OFFICER 
+
 CREATE TABLE Tech_officer(
 TO_id VARCHAR(10) PRIMARY KEY,
 Lab_assigned VARCHAR(25),
@@ -498,7 +513,7 @@ INSERT INTO Tech_officer (TO_id,Lab_assigned) VALUES
 
 
 
-######################################## MEDICAL
+########################################    MEDICAL
 
 CREATE TABLE Medical(
 Med_id VARCHAR(10) PRIMARY KEY,
@@ -522,9 +537,9 @@ INSERT INTO Medical (Med_id, Med_name, Status, Date_issued, Reason, Reg_no) VALU
 
 
 
+######################################    REL_ACADEMIC
 
 
--- Relatives of Academic Staff
 CREATE TABLE Rel_academic(
 NIC VARCHAR(12) NOT NULL,
 Address VARCHAR(40),
@@ -536,7 +551,8 @@ PRIMARY KEY (NIC, Staff_id),
 FOREIGN KEY (Staff_id) REFERENCES academic_staff(Staff_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
--- Lecturer_Subject relation
+#####################################    LECTURER_SUBJECT 
+
 CREATE TABLE Lecturer_Subject (
     Lec_id VARCHAR(10) NOT NULL,
     Sub_code VARCHAR(10) NOT NULL,
@@ -549,8 +565,8 @@ CREATE TABLE Lecturer_Subject (
         ON DELETE CASCADE
 );
 
+###################################   STUDENT_SUBJECT
 
--- Student_Subject relation
 CREATE TABLE Student_Subject (
     Reg_no VARCHAR(12) NOT NULL,
     Sub_code VARCHAR(10) NOT NULL,
@@ -564,7 +580,8 @@ CREATE TABLE Student_Subject (
         ON DELETE CASCADE
 );
 
--- Guardians of Students
+##################################  GARDIAN FOR STUDENT
+
 CREATE TABLE Guardian_for_stu (
     NIC VARCHAR(12) NOT NULL,
     Address VARCHAR(50),
@@ -578,14 +595,15 @@ CREATE TABLE Guardian_for_stu (
         ON DELETE CASCADE
 );
 
+#################################    SPORTS
 
--- Sports table
 CREATE TABLE Sports (
     Sport_id VARCHAR(5) PRIMARY KEY,
     Sport_name VARCHAR(50) NOT NULL
 );
 
--- Student_Sports relation
+#################################    STUDENT_SPORTS
+
 CREATE TABLE Student_Sports (
     Reg_no VARCHAR(12) NOT NULL,
     Sport_id VARCHAR(5) NOT NULL,
@@ -599,21 +617,20 @@ CREATE TABLE Student_Sports (
         ON UPDATE CASCADE
         ON DELETE CASCADE
 );
->>>>>>> c423f58aec4132da74aec211d9551ff82c38a433
->>>>>>> TG/1774
 
+#################################    SESSION
 
-
-      CREATE TABLE Session(
-             Sub_code VARCHAR(10),
-			 Session_id VARCHAR(10),
-			 Session_name VARCHAR(20),
-			 Hour INT,
-			 PRIMARY KEY(Sub_code, Session_id),
-			 FOREIGN KEY(Sub_code) REFERENCES Subject(Sub_code)
-			  ON DELETE CASCADE ON UPDATE CASCADE
+     CREATE TABLE Session(
+         Sub_code VARCHAR(10),
+		 Session_id VARCHAR(10),
+		 Session_name VARCHAR(20),
+		 Hour INT,
+		 PRIMARY KEY(Sub_code, Session_id),
+		 FOREIGN KEY(Sub_code) REFERENCES Subject(Sub_code)
+		 ON DELETE CASCADE ON UPDATE CASCADE
 			 );
-			 
+
+#################################     SESSION_STUDENT		 
 	
 	CREATE TABLE Session_Student(
 	        Sub_code VARCHAR(10),
