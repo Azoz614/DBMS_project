@@ -590,8 +590,7 @@ CREATE TABLE Student_Sports (
         ON UPDATE CASCADE
         ON DELETE CASCADE
 );
->>>>>>> c423f58aec4132da74aec211d9551ff82c38a433
->>>>>>> TG/1774
+
 
 
 
