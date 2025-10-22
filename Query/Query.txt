@@ -465,3 +465,60 @@ CREATE TABLE Student_Sports (
         ON UPDATE CASCADE
         ON DELETE CASCADE
 );
+CREATE OR REPLACE VIEW Best_2_Quiz AS
+SELECT
+	Reg_no,
+	Exam_code,
+	Sub_code,
+	stu_status,
+	((Quiz1+Quiz2+Quiz3)-LEAST(Quiz1,Quiz2,Quiz3)) AS Best2Quiz
+FROM Quiz;
+	
+CREATE OR REPLACE VIEW Tota_CA AS
+SELECT	
+	a.Reg_no,
+	a.Exam_code,
+	a.Sub_code,
+	a.Stu_status,
+	a.Marks AS Assess_marks,
+	B.Best2Quiz,
+	mt.Marks AS Mid_Theory,
+	mp.Marks AS Mid_Practical,
+	(a.Marks + q.Best2Quiz + mt. Marks + mp.Marks) AS CA_Total
+	FROM Assessment a
+	JOIN Best_2_Quiz B
+		ON a.Reg_no=B.Reg_no
+		AND a.Exam_code=B.Exam_code
+		AND a.Sub_code=B.Sub_code
+	JOIN Mid_Theory
+		ON a.Reg_no=mt.Reg_no
+		AND a.Exam_code=mt.Exam_code
+		AND a.Sub_code=mt.Sub_code
+	JOIN Mid_Practical
+		ON a.Reg_no=mp.Reg_no
+		AND a.Exam_code=mp.Exam_code
+		AND a.Sub_code=mp.Sub_code;
+		
+	CREATE TABLE Eligible(
+	Reg_no VARCHAR(12),
+	Exam_code VARCHAR(10),
+	Sub_code VARCHAR(10),
+	Stu_status ENUM('Proper','Repeat'),
+	CA_Total INT,
+	Eligibility ENUM('Eligible','Not Eligible'),
+	PRIMARY KEY(Reg_no,Exam_code,Sub_code)
+	);
+	
+	
+	INSERT INTO Eligible(Reg_no,Exam_code,Sub_code,Stu_status,CA_Total,Eligibility)
+	SELECT
+		Reg_no,
+		Exam_code,
+		Sub_code,
+		Stu_status,
+		CA_Total,
+		CASE
+			WHEN CA_Total >= 40 THEN 'Eligible'
+			ELSE 'Not Eligible'
+		END AS Eligibility
+	FROM Tota_CA;		
