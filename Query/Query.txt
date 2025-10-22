@@ -247,7 +247,7 @@ CREATE TABLE Subject (Sub_code VARCHAR(10) PRIMARY KEY,
 INSERT INTO Subject (Sub_code, Sub_name, Credit, Total_hours) VALUES
 ('ENG1222', 'English II', 2, 30),
 ('ICT1212', 'Database Management Systems', 2, 30),
-('ICT1222', 'Database Management Systems Practicum', 2, 30),
+('ICT1213', 'Database Management Systems Practicum', 2, 30),
 ('ICT1233', 'Server-Side Web Development', 3, 60),
 ('ICT1242', 'Computer Architecture', 2, 60),
 ('ICT1253', 'Computer Networks', 3, 60),
@@ -269,14 +269,11 @@ INSERT INTO Course_Subject (Course_id, Sub_code) VALUES
 ('BICT', 'ICT1212'),
 ('BICT', 'ICT1222'),
 ('BICT', 'ICT1233'),
-('BICT', 'ICT1242'),
+('BICT', 'ICT1242'),    
 ('BICT', 'ICT1253'),
 ('BICT', 'TCS1212'),
 ('BICT', 'TCS1233');
-('EMP0116','Temporary','ICT'),     
-('EMP0117','Permanant','ICT'),
-('EMP0118','Permanant','ICT'),
-('EMP0119','Permanant','ICT');
+
 
 
 
@@ -378,17 +375,23 @@ INSERT INTO Tech_officer (TO_id,Lab_assigned) VALUES
 	 
 	 
 
-
+///////////////////////////////// EXAM/////////////////
 
 
 
 CREATE TABLE Exam (Exam_code VARCHAR(10) PRIMARY KEY,
 Exam_name VARCHAR(100) NOT NULL,
-Hour INT,
-Credit INT,
-Sub_code VARCHAR(10),
-FOREIGN KEY (Sub_code) REFERENCES Subject(Sub_code)
 );
+
+INSERT INTO Exam(Exam_code,Exam_name) VALUES
+    ('Q1','Quiz1'),
+    ('Q2','Quiz2'),
+    ('Q3','Quiz3'),
+    ('As','Assesment'),
+    ('MT','Mid Theory'),
+    ('MP','Mid Practical'),
+    ('ET','End Theory'),
+    ('EP','End Practical');
 
 
 CREATE TABLE End_Theory (
@@ -398,10 +401,6 @@ Location VARCHAR(30),
 FOREIGN KEY (ET_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
 );
 
-INSERT INTO End_Theory (ET_code, Date, Location) VALUES
-('EX004', '2025-08-20', 'Main Hall');
-
-
 
 CREATE TABLE End_Practical (
 EP_code VARCHAR(10) PRIMARY KEY,
@@ -409,10 +408,6 @@ Date DATE,
 Location VARCHAR(30),
 FOREIGN KEY (EP_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
 );
-
-INSERT INTO End_Practical (EP_code, Date, Location) VALUES
-('EX005', '2025-08-22', 'Database Lab');
-
 
 
 CREATE TABLE Mid_Theory (
@@ -422,10 +417,6 @@ Location VARCHAR(30),
 FOREIGN KEY (MT_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
 );
 
-INSERT INTO Mid_Theory (MT_code, Date, Location) VALUES
-('EX002', '2025-05-15', 'NBSLT');
-
-
 
 CREATE TABLE Mid_Practical (
 MP_code VARCHAR(10) PRIMARY KEY,
@@ -433,10 +424,6 @@ Date DATE,
 Location VARCHAR(30),
 FOREIGN KEY (MP_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
 );
-
-INSERT INTO Mid_Practical (MP_code, Date, Location) VALUES
-('EX003', '2025-05-10', 'NLBT');
-
 
 
 CREATE TABLE Quiz (
@@ -446,23 +433,69 @@ Location VARCHAR(30),
 FOREIGN KEY (Q_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
 );
 
-INSERT INTO Quiz (Q_code, Date, Location) VALUES
-('EX006', '2025-05-06', 'NLBT'),
-('EX007', '2025-05-16', 'NLBT'),
-('EX008', '2025-05-26', 'NLBT');
-
 
 CREATE TABLE Assessment (
-A_code VARCHAR(10) PRIMARY KEY,
+AS_code VARCHAR(10) PRIMARY KEY,
 Date DATE,
 Location VARCHAR(30),
 FOREIGN KEY (A_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
 );
 
-INSERT INTO Assessment (A_code, Date, Location) VALUES
-('EX009', '2025-05-15', 'NBSLT');
 
 
+CREATE TABLE Exam_Subject(
+Exam_code VARCHAR(10),
+Sub_code VARCHAR(10),
+Date DATE,
+Duration DECIMAL(2,2),
+FOREIGN KEY (Exam_code) REFERENCES Exam (Exam_code),
+FOREIGN KEY (Sub_code) REFERENCES Subject (Sub_code));
+
+
+INSERT INTO Exam_Subject (Exam_code, Sub_code, Date, Duration) VALUES
+('Q1', 'ICT1212', '2025-10-01', 0.30),
+('Q1', 'ICT1233', '2025-10-02', 0.45),
+('Q1', 'ICT1242', '2025-10-03', 0.45),
+('Q1', 'ICT1253', '2025-10-04', 0.45),
+('Q1', 'TCS1212', '2025-10-05', 0.30),
+('Q1', 'TCS1233', '2025-10-06', 0.45),
+('Q2', 'ICT1212', '2025-10-08', 0.30),
+('Q2', 'ICT1233', '2025-10-09', 0.45),
+('Q2', 'ICT1242', '2025-10-10', 0.45),
+('Q2', 'ICT1253', '2025-10-11', 0.45),
+('Q2', 'TCS1212', '2025-10-12', 0.30),
+('Q2', 'TCS1233', '2025-10-13', 0.45),
+('Q3', 'ICT1212', '2025-10-15', 0.30),
+('Q3', 'ICT1233', '2025-10-16', 0.45),
+('Q3', 'ICT1242', '2025-10-17', 0.45),
+('Q3', 'ICT1253', '2025-10-18', 0.45),
+('Q3', 'TCS1212', '2025-10-19', 0.30),
+('Q3', 'TCS1233', '2025-10-20', 0.45),
+('AS', 'ENG1222', '2025-10-22', 0.30),
+('AS', 'ICT1212', '2025-10-23', 0.30),
+('AS', 'ICT1233', '2025-10-24', 0.45),
+('AS', 'ICT1242', '2025-10-25', 0.45),
+('AS', 'ICT1253', '2025-10-26', 0.45),
+('AS', 'TCS1212', '2025-10-27', 0.30),
+('AS', 'TCS1233', '2025-10-28', 0.45),
+('MT', 'ENG1222', '2025-10-29', 1.00),
+('MT', 'ICT1212', '2025-10-30', 2.00),
+('MT', 'ICT1242', '2025-10-31', 2.00),
+('MT', 'TCS1212', '2025-11-01', 3.00),
+('MT', 'TCS1233', '2025-11-02', 2.00),
+('MP', 'ICT1212', '2025-11-03', 1.00),
+('MP', 'ICT1233', '2025-11-04', 1.00),
+('MP', 'ICT1253', '2025-11-05', 2.00),
+('ET', 'ENG1222', '2025-11-06', 3.00),
+('ET', 'ICT1212', '2025-11-07', 3.00),
+('ET', 'ICT1233', '2025-11-08', 2.00),
+('ET', 'ICT1242', '2025-11-09', 1.00),
+('ET', 'ICT1253', '2025-11-10', 1.00),
+('ET', 'TCS1212', '2025-11-11', 2.00),
+('ET', 'TCS1233', '2025-11-12', 3.00),
+('EP', 'ICT1212', '2025-11-13', 3.00),
+('EP', 'ICT1233', '2025-11-14', 2.00),
+('EP', 'ICT1253', '2025-11-15', 1.00);
 
 
 ######################################## MEDICAL
