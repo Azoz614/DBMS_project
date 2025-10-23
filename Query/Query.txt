@@ -1039,7 +1039,28 @@ INSERT IGNORE INTO Exam (Exam_code, Exam_name) VALUES
 ('ET','End Theory'),('EP','End Practical');
 
 ############################################################################################
+CREATE TABLE Course_Value (
+  Sub_code   VARCHAR(20),
+  Component  VARCHAR(50),
+  Weight     DECIMAL(5,2) NOT NULL,
+  PRIMARY KEY (Sub_code, Component),
+  FOREIGN KEY (Sub_code)
+    REFERENCES Subject(Sub_code)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
+);
 
+INSERT INTO Course_Value (Sub_code, Component, Weight) VALUES
+('ENG1222','AS',20), ('ENG1222','MT',20),
+('ICT1212','Best_2_Quiz',10), ('ICT1212','MT',30),
+('ICT1222','Best_2_Quiz',0),  ('ICT1222','AS',20), ('ICT1222','MP',20),
+('ICT1233','Best_2_Quiz',10), ('ICT1233','MP',10), ('ICT1233','AS',20),
+('ICT1242','Best_2_Quiz',10), ('ICT1242','MT',25), ('ICT1242','AS',5),
+('ICT1253','Best_2_Quiz',10), ('ICT1253','MP',20), ('ICT1253','AS',10),
+('TCS1212','Best_2_Quiz',10), ('TCS1212','AS',10), ('TCS1212','MT',20),
+('TCS1233','Best_2_Quiz',10), ('TCS1233','MT',25), ('TCS1233','AS',5);
+
+#####################################################################################
 CREATE OR REPLACE VIEW Best_2_Quiz AS
 SELECT
     Reg_no,
