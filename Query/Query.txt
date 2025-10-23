@@ -1061,14 +1061,26 @@ INSERT INTO Course_Value (Sub_code, Component, Weight) VALUES
 ('TCS1233','Best_2_Quiz',10), ('TCS1233','MT',25), ('TCS1233','AS',5);
 
 #####################################################################################
-CREATE OR REPLACE VIEW Best_2_Quiz AS
+CREATE OR REPLACE VIEW v_best2_quiz AS
 SELECT
-    Reg_no,
-    Sub_code,
-    stu_status,
-    ((COALESCE(Q1,0) + COALESCE(Q2,0) + COALESCE(Q3,0)) 
-      - LEAST(COALESCE(Q1,0), COALESCE(Q2,0), COALESCE(Q3,0))) AS Best2Quiz
-FROM Marks;
+  Reg_no,
+  Sub_code,
+  (
+    COALESCE(MAX(CASE WHEN Exam_code='Q1' THEN Mark END), 0) +
+    COALESCE(MAX(CASE WHEN Exam_code='Q2' THEN Mark END), 0) +
+    COALESCE(MAX(CASE WHEN Exam_code='Q3' THEN Mark END), 0)
+  )
+  -
+  LEAST(
+    COALESCE(MAX(CASE WHEN Exam_code='Q1' THEN Mark END), 0),
+    COALESCE(MAX(CASE WHEN Exam_code='Q2' THEN Mark END), 0),
+    COALESCE(MAX(CASE WHEN Exam_code='Q3' THEN Mark END), 0)
+  ) AS Best2Quiz
+FROM Marks
+WHERE Exam_code IN ('Q1','Q2','Q3')
+GROUP BY Reg_no, Sub_code;
+
+###########################################################################################
 
 
 
