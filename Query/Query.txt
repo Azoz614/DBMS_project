@@ -402,4 +402,11 @@ INSERT INTO Medical (Med_id, Med_name, Status, Date_issued, Reason, Reg_no) VALU
 ('MED005','Eye Infection Report','Not Approved','2025-07-10','Unclear medical document','TG/2023/1787');
  
  hi
-
+CREATE OR REPLACE VIEW Best_2_Quiz AS
+SELECT
+    Reg_no,
+    Sub_code,
+    stu_status,
+    ((COALESCE(Q1,0) + COALESCE(Q2,0) + COALESCE(Q3,0)) 
+      - LEAST(COALESCE(Q1,0), COALESCE(Q2,0), COALESCE(Q3,0))) AS Best2Quiz
+FROM Marks;
