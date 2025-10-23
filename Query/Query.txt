@@ -264,10 +264,10 @@ INSERT INTO Subject (Sub_code, Sub_name, Credit, Total_hours) VALUES
 ('ICT1212', 'Database Management Systems', 2, 30),
 ('ICT1213', 'Database Management Systems Practicum', 2, 30),
 ('ICT1233', 'Server-Side Web Development', 3, 60),
-('ICT1242', 'Computer Architecture', 2, 60),
+('ICT1242', 'Computer Architecture', 2, 30),
 ('ICT1253', 'Computer Networks', 3, 60),
-('TCS1212', 'Fundamentals of Management', 2, 60), 
-('TCS1233', 'Discrete Mathematics', 3, 60);
+('TCS1212', 'Fundamentals of Management', 2, 30), 
+('TCS1233', 'Discrete Mathematics', 3, 45);
 
 
 #########################################     COURSE_SUBJECT
@@ -626,6 +626,8 @@ CREATE TABLE Student_Sports (
 		 Session_id VARCHAR(10),
 		 Session_name VARCHAR(20),
 		 Hour INT,
+         Ses_date DATE,
+		 TYPE ENUM('Theory','Absent'),
 		 PRIMARY KEY(Sub_code, Session_id),
 		 FOREIGN KEY(Sub_code) REFERENCES Subject(Sub_code)
 		 ON DELETE CASCADE ON UPDATE CASCADE

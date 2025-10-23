@@ -121,6 +121,7 @@ CREATE TABLE Non_academic_staff(
 			 Session_id VARCHAR(10),
 			 Session_name VARCHAR(20),
 			 Hour INT,
+			 Ses_date DATE,
 			 PRIMARY KEY(Sub_code, Session_id),
 			 FOREIGN KEY(Sub_code) REFERENCES Subject(Sub_code)
 			  ON DELETE CASCADE ON UPDATE CASCADE
@@ -139,5 +140,52 @@ CREATE TABLE Non_academic_staff(
 	 
 
 
-
+         CREATE VIEW Attendance_table AS
+SELECT st.Reg_no,
+       st.F_name,
+	   st.L_name,
+	   ss.Sub_code,
+	   ROUND(
+	        (
+			SUM(
+			  CASE
+			     WHEN ss.Status='Present' THEN 1
+				 WHEN ss.Status='Absent'
+				      AND m.Status='Approved' THEN 1
+				 ELSE 0
+			  END
+			  )/ COUNT(ss.Session_id)
+			  )*100,2
+			  )AS Attendance_Percentage,
+	  CASE
+        WHEN (
+            SUM(
+                CASE
+                    WHEN ss.Status='Present' THEN 1
+                    WHEN ss.Status='Absent' AND m.Status='Approved' THEN 1
+                    ELSE 0
+                END
+            ) / COUNT(ss.Session_id)
+        ) * 100 >= 80 THEN 'Eligible'
+        ELSE 'Not Eligible'
+    END AS Exam_Eligibility
+	FROM Student st
+	JOIN Session_Student ss ON st.Reg_no = ss.Reg_no
+	JOIN Session se ON se.Session_id = ss.Session_id
+	LEFT JOIN Medical m ON st.Reg_no = m.Reg_no AND 
+	  m.Status='Approved' AND m.Date_issued = se.Ses_date
+    GROUP BY st.Reg_no,ss.Sub_code
+    ORDER BY st.Reg_no,ss.Sub_code;	
+	
+	     
+		
+		mysql> SELECT * FROM Attendance_table;
++--------------+----------+------------+----------+-----------------------+------------------+
+| Reg_no       | F_name   | L_name     | Sub_code | Attendance_Percentage | Exam_Eligibility |
++--------------+----------+------------+----------+-----------------------+------------------+
+| TG/2023/1775 | Nivethan | Rajkumar   | ICT1212  |                 66.67 | Not Eligible     |
+| TG/2023/1780 | Sharanya | Kumar      | ICT1212  |                 66.67 | Not Eligible     |
+| TG/2023/1784 | Dilshan  | Abeysekara | ICT1233  |                 66.67 | Not Eligible     |
++--------------+----------+------------+----------+-----------------------+------------------+
+		 
 	 
