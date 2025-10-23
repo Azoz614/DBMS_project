@@ -1021,6 +1021,24 @@ INSERT INTO Marks (Reg_no, Sub_code, Exam_code, Mark, Type) VALUES
 ('TG/2021/1455','TCS1233','MT',75,'Repeat'),
 ('TG/2021/1456','ICT1242','ET',80,'Repeat');
 
+####################################################################
+
+INSERT INTO Student (Reg_no,F_name,L_name,NIC,Batch,Address,Gender,E_mail,DOB,Course_id,Dep_id)
+VALUES ('TG/2023/1774','<First>','<Last>','200323311520','2022/2023',
+        '<Address>','Male','tg1774@example.com','2003-07-01','BICT','ICT');
+
+
+INSERT INTO Subject (Sub_code, Sub_name, Credit, Total_hours)
+VALUES ('ICT1222','Programming Fundamentals',2,30)
+ON DUPLICATE KEY UPDATE Sub_name = VALUES(Sub_name);
+
+
+INSERT IGNORE INTO Exam (Exam_code, Exam_name) VALUES
+('Q1','Quiz1'),('Q2','Quiz2'),('Q3','Quiz3'),
+('AS','Assessment'),('MT','Mid Theory'),('MP','Mid Practical'),
+('ET','End Theory'),('EP','End Practical');
+
+############################################################################################
 
 CREATE OR REPLACE VIEW Best_2_Quiz AS
 SELECT
