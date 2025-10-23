@@ -1,9 +1,6 @@
+
 CREATE DATABASE Project;
-USE Project;
-
-
-CREATE USER 'Admin'@'localhost' IDENTIFIED BY 'password';
-GRANT ALL PRIVILEGES ON *.* TO 'Admin'@'localhost' WITH GRANT OPTION;
+USE project;
 
 CREATE USER 'Dean'@'localhost' IDENTIFIED BY 'password';
 GRANT ALL PRIVILEGES ON Project.* TO 'Dean'@'localhost';
@@ -16,7 +13,7 @@ GRANT SELECT, INSERT, UPDATE ON Project.* TO 'Technical_officer'@'localhost';
 
 
 
-#################################           Faculty Table
+################################################         Faculty Table
 
 CREATE TABLE faculty(Fac_id VARCHAR(5) PRIMARY KEY,
 Fac_name VARCHAR(30) NOT NULL,
@@ -27,10 +24,10 @@ INSERT INTO faculty(Fac_id,Fac_name,Dean) VALUES('FAC07','Faculty of Technology'
 
 
 
-###############################             DEPARTMENT Table
+###############################################      DEPARTMENT Table
 
 CREATE TABLE Department(Dep_id VARCHAR(5) PRIMARY KEY,
-Dep_name VARCHAR(20) NOT NULL,
+Dep_name VARCHAR(100) NOT NULL,
 HOD VARCHAR(10) NOT NULL,
 Fac_id VARCHAR(5) NOT NULL,
 FOREIGN KEY(Fac_id) REFERENCES faculty(Fac_id) ON DELETE CASCADE);
@@ -43,7 +40,7 @@ INSERT INTO department(Dep_id,Dep_name,HOD,Fac_id) VALUES
 
 
 
-####################################            ACEDEMIC STAFF
+############################################      ACEDEMIC STAFF
 
 CREATE TABLE academic_staff(Staff_id VARCHAR(10) PRIMARY KEY,
 F_name VARCHAR(20) NOT NULL,
@@ -75,51 +72,10 @@ INSERT INTO academic_staff(Staff_id,F_name,L_name,NIC_number,Appoint_date,Addres
 
 
 
-CREATE TABLE faculty(Fac_id VARCHAR(5) PRIMARY KEY,
-Fac_name VARCHAR(30) NOT NULL,
-Dean VARCHAR(10));
 
-INSERT INTO faculty(Fac_id,Fac_name,Dean) VALUES('FAC07','Faculty of Technology','EMP0043');
+###########################################      AS_STAFF_CONTUCT
 
 
-CREATE TABLE Department(Dep_id VARCHAR(5) PRIMARY KEY,
-Dep_name VARCHAR(20) NOT NULL,
-HOD VARCHAR(10) NOT NULL,
-Fac_id VARCHAR(5) NOT NULL,
-FOREIGN KEY(Fac_id) REFERENCES faculty(Fac_id) ON DELETE CASCADE);
-
-INSERT INTO department(Dep_id,Dep_name,HOD,Fac_id) VALUES
-('ICT','Information and Communication Technology','EMP0101','FAC07'),
-('BST','Bio System Technology','EMP0110','FAC07'),
-('ET','Engineering Technology','EMP0121','FAC07');  -- FIXED: "Engneering" → "Engineering"
-
-
-CREATE TABLE academic_staff(Staff_id VARCHAR(10) PRIMARY KEY,
-F_name VARCHAR(20) NOT NULL,
-L_name VARCHAR(20) NOT NULL,
-NIC_number VARCHAR(15) NOT NULL,
-Appoint_date DATE NOT NULL,
-Address VARCHAR(40),
-Gender ENUM('Male','Female') NOT NULL,
-Status ENUM('Working','Not_Working') DEFAULT 'Working',
-Fac_id VARCHAR(5) NOT NULL,
-FOREIGN KEY(Fac_id) REFERENCES faculty(Fac_id) ON DELETE CASCADE);
-
-INSERT INTO academic_staff(Staff_id,F_name,L_name,NIC_number,Appoint_date,Address,Gender,Fac_id) VALUES
-('EMP0110', 'Chamari', 'Abeykoon', '742345678V', '2010-03-15', 'No. 12, Lake Road, Kandy', 'Female','FAC07'),
-('EMP0121', 'Dilani', 'Senanayake', '682345678V', '2008-07-22', '45/3, Temple Lane, Galle', 'Female','FAC07'),
-('EMP0101', 'Dinesh', 'Wickramasinghe', '792345678V', '2010-12-03', '19, Riverside Lane, Hambantota', 'Male','FAC07'),
-('EMP0111', 'Malsha', 'Wijesinghe', '752345678V', '2012-01-10', '88, Rose Garden, Matara', 'Female','FAC07'),
-('EMP0112', 'Ruwanthi', 'De Silva', '198412345678', '2015-06-05', '23, Palm Street, Colombo 07', 'Female','FAC07'),
-('EMP0102', 'Ishara', 'Fernando', '812345678V', '2011-09-18', '17, Ocean View, Negombo', 'Female','FAC07'),
-('EMP0043', 'Nuwan', 'Perera', '197845678901', '2009-02-12', '10, Hill Crest, Kurunegala', 'Male','FAC07'),
-('EMP0113', 'Tharindu', 'Jayasinghe', '198212345678', '2013-11-30', '56, Lotus Avenue, Anuradhapura', 'Male','FAC07'),
-('EMP0114', 'Kasun', 'Rathnayake', '198512345678', '2014-08-25', '34, Sunrise Road, Badulla', 'Male','FAC07'),
-('EMP0115', 'Tharindu', 'Jayasinghe', '198212345678', '2013-11-30', '56, Lotus Avenue, Anuradhapura', 'Male','FAC07'),
-('EMP0116', 'Dilani', 'Senanayake', '682345678V', '2008-07-22', '45/3, Temple Lane, Galle', 'Female','FAC07'),
-('EMP0117', 'Sanjeewa', 'Gunawardena', '197912345678', '2007-04-19', '78, Green Park, Nuwara Eliya', 'Male','FAC07'),
-('EMP0118', 'Malsha', 'Wijesinghe', '752345678V', '2009-01-10', '88, Rose Garden, Matara', 'Female','FAC07'),
-('EMP0119', 'Dinesh', 'Wickramasinghe', '792345678V', '2008-12-03', '19, Riverside Lane, Hambantota', 'Male','FAC07');
 CREATE TABLE Ac_staff_contuct(Contuct_id INT PRIMARY KEY AUTO_INCREMENT,
 Staff_id VARCHAR(10),
 Phone_number VARCHAR(13) NOT NULL,
@@ -147,6 +103,8 @@ INSERT INTO Ac_staff_contuct(Staff_id,Phone_number) VALUES
 ('EMP0117', '077-2233445'),
 ('EMP0119', '078-4433221');
 
+
+#########################################     AC_STAFF_DEGREE
 
 CREATE TABLE Ac_staff_degree(Id INT PRIMARY KEY AUTO_INCREMENT,
 Staff_id VARCHAR(10) NOT NULL,
@@ -181,6 +139,8 @@ INSERT INTO Ac_staff_degree(Staff_id,Degree) VALUES
 ('EMP0119', 'Diploma in Web Development');
 
 
+##########################################     LECTURER
+
 CREATE TABLE Lecturer(Lec_id VARCHAR(10) PRIMARY KEY,
 Type ENUM('Assistant lecturer','Lecturer','Senior lecturer') NOT NULL,
 Dep_id VARCHAR(5) NOT NULL,
@@ -199,6 +159,9 @@ INSERT INTO Lecturer(Lec_id,Type,Dep_id) VALUES
 ('EMP0115','Lecturer','ICT');
 
 
+#############################################     DEAN 
+
+
 CREATE TABLE Dean(Dean_id VARCHAR(10) PRIMARY KEY,
 Appoint_date DATE NOT NULL,
 End_date DATE,
@@ -207,6 +170,8 @@ FOREIGN KEY (Dean_id) REFERENCES Academic_staff(Staff_id));
 INSERT INTO Dean(Dean_id,Appoint_date) VALUES ('EMP0043','2009-02-12');
 
 
+#############################################      DEMO 
+
 CREATE TABLE Demo(Dem_id VARCHAR(10) PRIMARY KEY,
 Type ENUM('Temporary','Permanant'),
 Dep_id VARCHAR(5),
@@ -214,11 +179,13 @@ FOREIGN KEY (Dem_id) REFERENCES Academic_staff(Staff_id),
 FOREIGN KEY (Dep_id) REFERENCES Department(Dep_id));
 
 INSERT INTO Demo(Dem_id,Type,Dep_id) VALUES
-('EMP0116','Temporary','ICT'),      -- FIXED: Added missing comma
+('EMP0116','Temporary','ICT'),      
 ('EMP0117','Permanant','ICT'),
 ('EMP0118','Permanant','ICT'),
 ('EMP0119','Permanant','ICT');
 
+
+###############################################    COURSE 
 
 CREATE TABLE Course(Course_id VARCHAR(5) PRIMARY KEY,
 Course_name VARCHAR(50) NOT NULL,
@@ -230,6 +197,14 @@ INSERT INTO Course(Course_id,Course_name,Total_credits,Dep_id) VALUES
 ('BICT','Bachelor of Information Communication Technology',120,'ICT'),  
 ('BST','Bachelor of Biosystem Technology',120,'BST'),                   
 ('BET','Bachelor of Engineering Technology',120,'ET');                  
+
+
+
+
+
+#################################################     STUDENT TABLE 
+
+
 
 
 CREATE TABLE Student(Reg_no VARCHAR(12) PRIMARY KEY,
@@ -246,312 +221,6 @@ Dep_id VARCHAR(5) NOT NULL,
 FOREIGN KEY(Course_id) REFERENCES Course(Course_id) ON DELETE CASCADE,
 FOREIGN KEY(Dep_id) REFERENCES Department(Dep_id) ON DELETE CASCADE);
 
-
-
-
-INSERT INTO Subject (Sub_code, Sub_name, Credit, Total_hours, Course_id, Lec_id) VALUES
-('ENG1222', 'English II', 2, 30, 'BICT','EMP0111'),
-('ICT1212', 'Database Management Systems', 2, 30, 'BICT', 'EMP0112'),
-('ICT1222', 'Database Management Systems Practicum', 2, 30, 'BICT', 'EMP0112'),
-('ICT1233', 'Server-Side Web Development', 3, 60, 'BICT', 'EMP0113'),
-('ICT1242', 'Computer Architecture', 2, 60, 'BICT', 'EMP0114'),
-('ICT1253', 'Computer Networks', 3, 60, 'BICT', 'EMP0115'),
-('TCS1212', 'Fundamentals of Management', 2, 60, 'BICT','EMP0102'), 
-('TCS1233', 'Discrete Mathematics', 3, 60, 'BICT', 'EMP0117');
-
-
-
-
-CREATE TABLE Course_Subject (
-    Course_id VARCHAR(5),          
-    Sub_code VARCHAR(10),
-    PRIMARY KEY (Course_id, Sub_code),
-    FOREIGN KEY (Course_id) REFERENCES Course(Course_id),     
-    FOREIGN KEY (Sub_code) REFERENCES Subject(Sub_code)
-);
-
-INSERT INTO Course_Subject (Course_id, Sub_code) VALUES      
-('BICT', 'ENG1222'),  
-('BICT', 'ICT1212'),
-('BICT', 'ICT1222'),
-('BICT', 'ICT1233'),
-('BICT', 'ICT1242'),
-('BICT', 'ICT1253'),
-('BICT', 'TCS1212'),
-('BICT', 'TCS1233');
-('EMP0116','Temporary','ICT'),     
-('EMP0117','Permanant','ICT'),
-('EMP0118','Permanant','ICT'),
-('EMP0119','Permanant','ICT');
-
-
-
-#########################################      NONACEDEMIC STAFF
-
-CREATE TABLE Non_academic_staff(Nac_staff_id VARCHAR(10) PRIMARY KEY,
-	 F_name VARCHAR(25) NOT NULL,
-	 L_name VARCHAR(25) NOT NULL,
-	 Gender ENUM('Male','Female') NOT NULL,
-	 Address VARCHAR(60),
-	 NIC_number VARCHAR(15) NOT NULL,
-	 E_mail VARCHAR(30),
-	 Status ENUM('Working','Not_Working') DEFAULT 'Working',
-	 Appoint_date DATE NOT NULL,
-	 Fac_id VARCHAR(5) NOT NULL,
-	 FOREIGN KEY(Fac_id) REFERENCES faculty(Fac_id) ON DELETE CASCADE ON UPDATE CASCADE
-	 );
-	 
-	 CREATE TABLE NAC_staff_CONTACT(
-	      Nac_staff_id VARCHAR(10),
-		  Contact_no CHAR(10),
-		  PRIMARY KEY(Nac_staff_id, Contact_no),
-		  FOREIGN KEY(Nac_staff_id) REFERENCES Non_academic_staff(Nac_staff_id)
-		  );
-		  
-	 
-	 CREATE TABLE Security(
-	     Sec_id VARCHAR(10) PRIMARY KEY,
-		 Work_shift ENUM('Day','Night') DEFAULT 'Day',
-		 Duty_area VARCHAR(30),
-		 FOREIGN KEY(Sec_id) REFERENCES Non_academic_staff(Nac_staff_id)
-		 );
-		 
-		
-	CREATE TABLE Cleaner(
-	     Cleaner_id VARCHAR(10) PRIMARY KEY,
-		 Work_shift ENUM('Morning','Evening'),
-		 Assigned_area VARCHAR(30),
-		 FOREIGN KEY(Cleaner_id) REFERENCES Non_academic_staff(Nac_staff_id)
-		 );
-		 
-		 
-	CREATE TABLE Administrator(
-	   AD_id VARCHAR(10) PRIMARY KEY,
-	   Office_room_no VARCHAR(10),
-	   FOREIGN KEY(AD_id) REFERENCES Non_academic_staff(Nac_staff_id)
-	   );
-	   
-	   
-	CREATE TABLE Tech_officer(
-	   TO_id VARCHAR(10) PRIMARY KEY,
-	   Lab_assigned VARCHAR(25),
-	   FOREIGN KEY(TO_id) REFERENCES Non_academic_staff(Nac_staff_id)
-	   );
-	   
-	   
-		 
-		 
-	INSERT INTO Non_academic_staff (Nac_staff_id, F_name, L_name, Gender, Address, NIC_number, E_mail, Status, Appoint_date, Fac_id)
-     VALUES
-    ('NAC001','Sunil','Perera','Male','No.12,Main Street,Galle','931234567V','sunil.perera@uni.lk','Working','1993-03-21','FAC07'),
-    ('NAC002','Kamal','Fernando','Male','No.45,Temple Road,Matara','902345678V','kamal.fernando@uni.lk','Working','1990-06-12','FAC07'),
-    ('NAC003','Nimali','Silva','Female','No.10,Station Road,Kandy','952134567V','nimali.silva@uni.lk','Not_Working','1995-01-10','FAC07'),
-    ('NAC004','Ruwan','Jayasinghe','Male','No.32,Lake View,Colombo','881245678V','ruwan.j@uni.lk','Working','2012-09-14','FAC07'),
-    ('NAC005','Dilani','Weerasinghe','Female','No.55,Hill Street,Kurunegala','972346578V','dilani.w@uni.lk','Working','2020-02-05','FAC07'),
-    ('NAC006','Roshan','Abeywickrama','Male','No.8,New Road,Hambantota','911234589V','roshan.a@uni.lk','Working','2016-07-28','FAC07'),
-    ('NAC007','Shanika','Perera','Female','No.76,Galle Road,Panadura','993456781V','shanika.p@uni.lk','Not_Working','2021-03-11','FAC07');
-
-
-   INSERT INTO NAC_staff_CONTACT (Nac_staff_id, Contact_no) 
-   VALUES
-     ('NAC001', '0712345678'),
-     ('NAC001', '0779876543'),
-     ('NAC002', '0723456789'),
-     ('NAC003', '0719876543'),
-     ('NAC004', '0751234567'),
-     ('NAC004', '0771234567');
-
-
-		 
-	INSERT INTO Security (Sec_id, Work_shift, Duty_area) 
-	VALUES
-    ('NAC001', 'Day', 'Main Gate'),
-    ('NAC004', 'Night', 'Laboratory Area');
-
-	 
-	INSERT INTO Cleaner (Cleaner_id, Work_shift, Assigned_area) 
-	VALUES
-    ('NAC005', 'Morning', 'Lecture Hall'),
-    ('NAC002', 'Evening', 'Laboratory Area');
-	
-	INSERT INTO Administrator (AD_id, Office_room_no) 
-	VALUES
-     ('NAC003', 'A101');
-	 
-	 
-	INSERT INTO Tech_officer (TO_id,Lab_assigned) 
-	VALUES
-    ('NAC006','Computer Lab'),
-    ('NAC007','Electronics Lab');
-
-	 
-	 
-	 
-
-
-#########################################             SUBJECT TABLE
-	 
-
-CREATE TABLE Subject (Sub_code VARCHAR(10) PRIMARY KEY,
-    Sub_name VARCHAR(100) NOT NULL,
-    Credit INT,
-    Total_hours INT
-);
-
-INSERT INTO Subject (Sub_code, Sub_name, Credit, Total_hours, Course_id, Lec_id) VALUES
-('ENG1222', 'English II', 2, 30, 'BICT','EMP0111'),
-('ICT1212', 'Database Management Systems', 2, 30, 'BICT', 'EMP0112'),
-('ICT1222', 'Database Management Systems Practicum', 2, 30, 'BICT', 'EMP0112'),
-('ICT1233', 'Server-Side Web Development', 3, 60, 'BICT', 'EMP0113'),
-('ICT1242', 'Computer Architecture', 2, 60, 'BICT', 'EMP0114'),
-('ICT1253', 'Computer Networks', 3, 60, 'BICT', 'EMP0115'),
-('TCS1212', 'Fundamentals of Management', 2, 60, 'BICT','EMP0102'), 
-('TCS1233', 'Discrete Mathematics', 3, 60, 'BICT', 'EMP0117');
-
-
-
-
-CREATE TABLE Exam (Exam_code VARCHAR(10) PRIMARY KEY,
-    Exam_name VARCHAR(100) NOT NULL,
-    Hour INT,
-    Credit INT,
-    Sub_code VARCHAR(10),
-    FOREIGN KEY (Sub_code) REFERENCES Subject(Sub_code)
-);
-
-
-CREATE TABLE End_Theory (
-    Exam_code VARCHAR(10) PRIMARY KEY,
-    Date DATE,
-    Location VARCHAR(30),
-    FOREIGN KEY (Exam_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
-);
-
-INSERT INTO End_Theory (Exam_code, Date, Location) VALUES
-('EX004', '2025-08-20', 'Main Hall');
-
-
-
-CREATE TABLE End_Practical (
-    Exam_code VARCHAR(10) PRIMARY KEY,
-    Date DATE,
-    Location VARCHAR(30),
-    FOREIGN KEY (Exam_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
-);
-
-INSERT INTO End_Practical (Exam_code, Date, Location) VALUES
-('EX005', '2025-08-22', 'Database Lab');
-
-
-
-CREATE TABLE Mid_Theory (
-    Exam_code VARCHAR(10) PRIMARY KEY,
-    Date DATE,
-    Location VARCHAR(30),
-    FOREIGN KEY (Exam_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
-);
-
-INSERT INTO Mid_Theory (Exam_code, Date, Location) VALUES
-('EX002', '2025-05-15', 'NBSLT');
-
-
-
-CREATE TABLE Mid_Practical (
-    Exam_code VARCHAR(10) PRIMARY KEY,
-    Date DATE,
-    Location VARCHAR(30),
-    FOREIGN KEY (Exam_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
-);
-
-INSERT INTO Mid_Practical (Exam_code, Date, Location) VALUES
-('EX003', '2025-05-10', 'NLBT');
-
-
-
-CREATE TABLE Quiz (
-    Exam_code VARCHAR(10) PRIMARY KEY,
-    Date DATE,
-    Location VARCHAR(30),
-    FOREIGN KEY (Exam_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
-);
-
-INSERT INTO Quiz (Exam_code, Date, Location) VALUES
-('EX006', '2025-05-06', 'NLBT'),
-('EX007', '2025-05-16', 'NLBT'),
-('EX008', '2025-05-26', 'NLBT');
-
-
-CREATE TABLE Assessment (
-    Exam_code VARCHAR(10) PRIMARY KEY,
-    Date DATE,
-    Location VARCHAR(30),
-    FOREIGN KEY (Exam_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
-);
-
-INSERT INTO Assessment (Exam_code, Date, Location) VALUES
-('EX009', '2025-05-15', 'NBSLT');
-
-
-
-
-
-CREATE TABLE Course(Course_id VARCHAR(5) PRIMARY KEY,
-Course_name VARCHAR(50) NOT NULL,
-Total_credits INT NOT NULL,
-Dep_id VARCHAR(5) NOT NULL,
-FOREIGN KEY(Dep_id) REFERENCES Department(Dep_id));
-
-INSERT INTO Course(Course_id,Course_name,Total_credits,Dep_id) VALUES
-('BICT','Bachelor of Information Communication Technology',120,'ICT'),  
-('BST','Bachelor of Biosystem Technology',120,'BST'),                   
-('BET','Bachelor of Engineering Technology',120,'ET');                  
-
-
-CREATE TABLE Student(Reg_no VARCHAR(12) PRIMARY KEY,
-F_name VARCHAR(30) NOT NULL,
-L_name VARCHAR(30) NOT NULL,
-NIC VARCHAR(12) NOT NULL,
-Batch VARCHAR(10),
-Address VARCHAR(50),
-Gender ENUM('Male','Female') NOT NULL,
-E_mail VARCHAR(30),
-DOB DATE,
-Course_id VARCHAR(5) NOT NULL,
-Dep_id VARCHAR(5) NOT NULL,
-FOREIGN KEY(Course_id) REFERENCES Course(Course_id) ON DELETE CASCADE,
-FOREIGN KEY(Dep_id) REFERENCES Department(Dep_id) ON DELETE CASCADE);
-
-
-
-INSERT INTO Subject (Sub_code, Sub_name, Credit, Total_hours) VALUES
-('ENG1222', 'English II', 2, 30),
-('ICT1212', 'Database Management Systems', 2, 30),
-('ICT1222', 'Database Management Systems Practicum', 2, 30),
-('ICT1233', 'Server-Side Web Development', 3, 60),
-('ICT1242', 'Computer Architecture', 2, 60),
-('ICT1253', 'Computer Networks', 3, 60),
-('TCS1212', 'Fundamentals of Management', 2, 60), 
-('TCS1233', 'Discrete Mathematics', 3, 60);
-
-
-
-CREATE TABLE Course_Subject (
-Course_id VARCHAR(5),          
-Sub_code VARCHAR(10),
-PRIMARY KEY (Course_id, Sub_code),
-FOREIGN KEY (Course_id) REFERENCES Course(Course_id),     
-FOREIGN KEY (Sub_code) REFERENCES Subject(Sub_code)
-);
-
-INSERT INTO Course_Subject (Course_id, Sub_code) VALUES      
-('BICT', 'ENG1222'),  
-('BICT', 'ICT1212'),
-('BICT', 'ICT1222'),
-('BICT', 'ICT1233'),
-('BICT', 'ICT1242'),
-('BICT', 'ICT1253'),
-('BICT', 'TCS1212'),
-('BICT', 'TCS1233');
 
 
 INSERT INTO Student(Reg_no,F_name,L_name,NIC,Batch,Address,Gender,E_mail,DOB,Course_id,Dep_id) VALUES
@@ -575,31 +244,276 @@ INSERT INTO Student(Reg_no,F_name,L_name,NIC,Batch,Address,Gender,E_mail,DOB,Cou
 ('TG/2023/1787','Anushka','Rajendran','200323311533','2022/2023','Main Street, Jaffna','Female','anushka.raj@gmail.com','2003-11-30','BST','ET'),
 ('TG/2023/1788','Kavindu','Silva','200323311534','2022/2023','Hilltop Avenue, Galle','Male','kavindu.silva@gmail.com','2003-09-14','BET','ET');
 
+....................................................................
 
 
 
 
 
-CREATE TABLE Course_Subject (Course_id VARCHAR(5),          
-Sub_code VARCHAR(10),
-PRIMARY KEY (Course_id, Sub_code),
-FOREIGN KEY (Course_id) REFERENCES Course(Course_id),     
-FOREIGN KEY (Sub_code) REFERENCES Subject(Sub_code)
+ #########################################     SUBJECT TABLE 
+
+CREATE TABLE Subject (Sub_code VARCHAR(10) PRIMARY KEY,
+    Sub_name VARCHAR(100) NOT NULL,
+    Credit INT,
+    Total_hours INT
+);
+
+
+INSERT INTO Subject (Sub_code, Sub_name, Credit, Total_hours) VALUES
+('ENG1222', 'English II', 2, 30),
+('ICT1212', 'Database Management Systems', 2, 30),
+('ICT1213', 'Database Management Systems Practicum', 2, 30),
+('ICT1233', 'Server-Side Web Development', 3, 60),
+('ICT1242', 'Computer Architecture', 2, 60),
+('ICT1253', 'Computer Networks', 3, 60),
+('TCS1212', 'Fundamentals of Management', 2, 60), 
+('TCS1233', 'Discrete Mathematics', 3, 60);
+
+
+#########################################     COURSE_SUBJECT
+
+CREATE TABLE Course_Subject (
+    Course_id VARCHAR(5),          
+    Sub_code VARCHAR(10),
+    PRIMARY KEY (Course_id, Sub_code),
+    FOREIGN KEY (Course_id) REFERENCES Course(Course_id),     
+    FOREIGN KEY (Sub_code) REFERENCES Subject(Sub_code)
 );
 
 INSERT INTO Course_Subject (Course_id, Sub_code) VALUES      
 ('BICT', 'ENG1222'),  
 ('BICT', 'ICT1212'),
-('BICT', 'ICT1222'),
+('BICT', 'ICT1213'),
 ('BICT', 'ICT1233'),
-('BICT', 'ICT1242'),
+('BICT', 'ICT1242'),    
 ('BICT', 'ICT1253'),
 ('BICT', 'TCS1212'),
 ('BICT', 'TCS1233');
 
 
 
+########################################     EXAM
 
+
+
+CREATE TABLE Exam (
+    Exam_code VARCHAR(10) PRIMARY KEY,
+    Exam_name VARCHAR(100) NOT NULL
+);
+
+INSERT INTO Exam(Exam_code,Exam_name) VALUES
+    ('Q1','Quiz1'),
+    ('Q2','Quiz2'),
+    ('Q3','Quiz3'),
+    ('AS','Assesment'),
+    ('MT','Mid Theory'),
+    ('MP','Mid Practical'),
+    ('ET','End Theory'),
+    ('EP','End Practical'
+);
+
+######################################     MID THEORY 
+
+CREATE TABLE Mid_Theory (
+    MT_code VARCHAR(10) PRIMARY KEY,
+    FOREIGN KEY (MT_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
+);
+
+#####################################     MID PRACTICAL 
+
+CREATE TABLE Mid_Practical (
+    MP_code VARCHAR(10) PRIMARY KEY,
+    FOREIGN KEY (MP_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
+);
+
+#####################################       QUIZ
+
+CREATE TABLE Quiz (
+    Q_code VARCHAR(10) PRIMARY KEY,
+    FOREIGN KEY (Q_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
+);
+
+#####################################    END THEORY 
+
+CREATE TABLE End_Theory (
+    ET_code VARCHAR(10) PRIMARY KEY,
+    FOREIGN KEY (ET_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
+);
+
+#####################################     END PRACTICAL 
+
+CREATE TABLE End_Practical (
+    EP_code VARCHAR(10) PRIMARY KEY,
+    FOREIGN KEY (EP_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
+);
+
+#####################################     EXAM_SUBJECT
+
+CREATE TABLE Exam_Subject(
+    Exam_code VARCHAR(10),
+    Sub_code VARCHAR(10),
+    Date DATE,
+    Duration DECIMAL(3,2),
+    PRIMARY KEY (Exam_code,Sub_code,Date),
+    FOREIGN KEY (Exam_code) REFERENCES Exam (Exam_code),
+    FOREIGN KEY (Sub_code) REFERENCES Subject (Sub_code)
+);
+
+
+INSERT INTO Exam_Subject (Exam_code, Sub_code, Date, Duration) VALUES
+('Q1', 'ICT1212', '2025-07-01', 0.30),
+('Q1', 'ICT1233', '2025-07-02', 0.45),
+('Q1', 'ICT1242', '2025-07-03', 0.45),
+('Q1', 'ICT1253', '2025-07-04', 0.45),
+('Q1', 'TCS1212', '2025-07-05', 0.30),
+('Q1', 'TCS1233', '2025-07-06', 0.45),
+('Q2', 'ICT1212', '2025-08-08', 0.30),
+('Q2', 'ICT1233', '2025-08-09', 0.45),
+('Q2', 'ICT1242', '2025-08-10', 0.45),
+('Q2', 'ICT1253', '2025-08-11', 0.45),
+('Q2', 'TCS1212', '2025-08-12', 0.30),
+('Q2', 'TCS1233', '2025-08-13', 0.45),
+('Q3', 'ICT1212', '2025-10-15', 0.30),
+('Q3', 'ICT1233', '2025-10-16', 0.45),
+('Q3', 'ICT1242', '2025-10-17', 0.45),
+('Q3', 'ICT1253', '2025-10-18', 0.45),
+('Q3', 'TCS1212', '2025-10-19', 0.30),
+('Q3', 'TCS1233', '2025-10-20', 0.45),
+('AS', 'ENG1222', '2025-10-22', 0.30),
+('AS', 'ICT1212', '2025-10-23', 0.30),
+('AS', 'ICT1233', '2025-10-24', 0.45),
+('AS', 'ICT1242', '2025-10-25', 0.45),
+('AS', 'ICT1253', '2025-10-26', 0.45),
+('AS', 'TCS1212', '2025-10-27', 0.30),
+('AS', 'TCS1233', '2025-10-28', 0.45),
+('MT', 'ENG1222', '2025-09-29', 1.00),
+('MT', 'ICT1212', '2025-09-30', 2.00),
+('MT', 'ICT1242', '2025-09-30', 2.00),
+('MT', 'TCS1212', '2025-09-01', 3.00),
+('MT', 'TCS1233', '2025-09-02', 2.00),
+('MP', 'ICT1212', '2025-09-03', 1.00),
+('MP', 'ICT1233', '2025-09-04', 1.00),
+('MP', 'ICT1253', '2025-09-05', 2.00),
+('ET', 'ENG1222', '2025-11-06', 3.00),
+('ET', 'ICT1212', '2025-11-07', 3.00),
+('ET', 'ICT1233', '2025-11-08', 2.00),
+('ET', 'ICT1242', '2025-11-09', 1.00),
+('ET', 'ICT1253', '2025-11-10', 1.00),
+('ET', 'TCS1212', '2025-11-11', 2.00),
+('ET', 'TCS1233', '2025-11-12', 3.00),
+('EP', 'ICT1212', '2025-11-13', 3.00),
+('EP', 'ICT1233', '2025-11-14', 2.00),
+('EP', 'ICT1253', '2025-11-15', 1.00);
+
+
+
+#########################################     NONACEDEMIC STAFF
+
+CREATE TABLE Non_academic_staff(Nac_staff_id VARCHAR(10) PRIMARY KEY,
+F_name VARCHAR(25) NOT NULL,
+L_name VARCHAR(25) NOT NULL,
+Gender ENUM('Male','Female') NOT NULL,
+Address VARCHAR(60),
+NIC_number VARCHAR(15) NOT NULL,
+E_mail VARCHAR(30),
+Status ENUM('Working','Not_Working') DEFAULT 'Working',
+Appoint_date DATE NOT NULL,
+Fac_id VARCHAR(5) NOT NULL,
+FOREIGN KEY(Fac_id) REFERENCES faculty(Fac_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+	 
+######################################     NAC_STAFF_CONTACT
+
+CREATE TABLE NAC_staff_CONTACT(
+Nac_staff_id VARCHAR(10),
+Contact_no CHAR(10),
+PRIMARY KEY(Nac_staff_id, Contact_no),
+FOREIGN KEY(Nac_staff_id) REFERENCES Non_academic_staff(Nac_staff_id)
+);
+
+#####################################    SECURITY	  
+	 
+CREATE TABLE Security(
+Sec_id VARCHAR(10) PRIMARY KEY,
+Work_shift ENUM('Day','Night') DEFAULT 'Day',
+Duty_area VARCHAR(30),
+FOREIGN KEY(Sec_id) REFERENCES Non_academic_staff(Nac_staff_id)
+);
+		 
+#####################################    CLEANER 
+
+CREATE TABLE Cleaner(
+Cleaner_id VARCHAR(10) PRIMARY KEY,
+Work_shift ENUM('Morning','Evening'),
+Assigned_area VARCHAR(30),
+FOREIGN KEY(Cleaner_id) REFERENCES Non_academic_staff(Nac_staff_id)
+);
+		 
+
+####################################     ADMINISTOR 	 
+
+CREATE TABLE Administrator(
+AD_id VARCHAR(10) PRIMARY KEY,
+Office_room_no VARCHAR(10),
+FOREIGN KEY(AD_id) REFERENCES Non_academic_staff(Nac_staff_id)
+);
+	   
+###################################    OFFICER 
+
+CREATE TABLE Tech_officer(
+TO_id VARCHAR(10) PRIMARY KEY,
+Lab_assigned VARCHAR(25),
+FOREIGN KEY(TO_id) REFERENCES Non_academic_staff(Nac_staff_id)
+);
+	   
+	   
+		 
+		 
+INSERT INTO Non_academic_staff (Nac_staff_id, F_name, L_name, Gender, Address, NIC_number, E_mail, Status, Appoint_date, Fac_id)
+VALUES
+('NAC001','Sunil','Perera','Male','No.12,Main Street,Galle','931234567V','sunil.perera@uni.lk','Working','1993-03-21','FAC07'),
+('NAC002','Kamal','Fernando','Male','No.45,Temple Road,Matara','902345678V','kamal.fernando@uni.lk','Working','1990-06-12','FAC07'),
+('NAC003','Nimali','Silva','Female','No.10,Station Road,Kandy','952134567V','nimali.silva@uni.lk','Not_Working','1995-01-10','FAC07'),
+('NAC004','Ruwan','Jayasinghe','Male','No.32,Lake View,Colombo','881245678V','ruwan.j@uni.lk','Working','2012-09-14','FAC07'),
+('NAC005','Dilani','Weerasinghe','Female','No.55,Hill Street,Kurunegala','972346578V','dilani.w@uni.lk','Working','2020-02-05','FAC07'),
+('NAC006','Roshan','Abeywickrama','Male','No.8,New Road,Hambantota','911234589V','roshan.a@uni.lk','Working','2016-07-28','FAC07'),
+('NAC007','Shanika','Perera','Female','No.76,Galle Road,Panadura','993456781V','shanika.p@uni.lk','Not_Working','2021-03-11','FAC07');
+
+
+INSERT INTO NAC_staff_CONTACT (Nac_staff_id, Contact_no) VALUES
+('NAC001', '0712345678'),
+('NAC001', '0779876543'),
+('NAC002', '0723456789'),
+('NAC003', '0719876543'),
+('NAC004', '0751234567'),
+('NAC004', '0771234567');
+
+
+		
+INSERT INTO Security (Sec_id, Work_shift, Duty_area) VALUES
+('NAC001', 'Day', 'Main Gate'),
+('NAC004', 'Night', 'Laboratory Area');
+
+	 
+INSERT INTO Cleaner (Cleaner_id, Work_shift, Assigned_area) VALUES
+('NAC005', 'Morning', 'Lecture Hall'),
+('NAC002', 'Evening', 'Laboratory Area');
+	
+INSERT INTO Administrator (AD_id, Office_room_no) VALUES
+('NAC003', 'A101');
+	 
+	 
+INSERT INTO Tech_officer (TO_id,Lab_assigned) VALUES
+('NAC006','Computer Lab'),
+('NAC007','Electronics Lab');
+
+	 
+	 
+	 
+
+
+
+########################################    MEDICAL
 
 CREATE TABLE Medical(
 Med_id VARCHAR(10) PRIMARY KEY,
@@ -612,11 +526,7 @@ FOREIGN KEY(Reg_no) REFERENCES Student(Reg_no) ON DELETE CASCADE ON UPDATE CASCA
 );
 		 
 
-<<<<<<< HEAD
-=======
-		 
-<<<<<<< HEAD
->>>>>>> c423f58aec4132da74aec211d9551ff82c38a433
+
 INSERT INTO Medical (Med_id, Med_name, Status, Date_issued, Reason, Reg_no) VALUES
 ('MED001','Flu Report','Approved','2025-03-12','Absent due to high fever','TG/2023/1775'),
 ('MED002','Injury Certificate','Approved','2025-05-04','Leg injury during sports','TG/2023/1780'),
@@ -624,36 +534,25 @@ INSERT INTO Medical (Med_id, Med_name, Status, Date_issued, Reason, Reg_no) VALU
 ('MED004','Covid-19 Test Report','Approved','2025-02-22','Positive for COVID-19','TG/2023/1784'),
 ('MED005','Eye Infection Report','Not Approved','2025-07-10','Unclear medical document','TG/2023/1787');
  
- hi
 
-<<<<<<< HEAD
-		 
 
-=======
-=======
-		 INSERT INTO Medical (Med_id, Med_name, Status, Date_issued, Reason, Reg_no) 
-		 VALUES
-              ('MED001','Flu Report','Approved','2025-03-12','Absent due to high fever','TG/2023/1775'),
-              ('MED002','Injury Certificate','Approved','2025-05-04','Leg injury during sports','TG/2023/1780'),
-              ('MED003','Medical Leave Form','Not Approved','2025-06-15','Late submission','TG/2021/1452'),
-              ('MED004','Covid-19 Test Report','Approved','2025-02-22','Positive for COVID-19','TG/2023/1784'),
-              ('MED005','Eye Infection Report','Not Approved','2025-07-10','Unclear medical document','TG/2023/1787');
 
--- Relatives of Academic Staff
+######################################    REL_ACADEMIC
+
+
 CREATE TABLE Rel_academic(
-    NIC VARCHAR(12) NOT NULL,
-    Address VARCHAR(40),
-    Rel_name VARCHAR(20),
-    Gender ENUM('F', 'M'),
-    Relationship VARCHAR(20),
-    Staff_id VARCHAR(10) NOT NULL,
-    PRIMARY KEY (NIC, Staff_id),
-    FOREIGN KEY (Staff_id) REFERENCES academic_staff(Staff_id)
-        ON UPDATE CASCADE
-        ON DELETE CASCADE
+NIC VARCHAR(12) NOT NULL,
+Address VARCHAR(40),
+Rel_name VARCHAR(20),
+Gender ENUM('F', 'M'),
+Relationship VARCHAR(20),
+Staff_id VARCHAR(10) NOT NULL,
+PRIMARY KEY (NIC, Staff_id),
+FOREIGN KEY (Staff_id) REFERENCES academic_staff(Staff_id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
--- Lecturer_Subject relation
+#####################################    LECTURER_SUBJECT 
+
 CREATE TABLE Lecturer_Subject (
     Lec_id VARCHAR(10) NOT NULL,
     Sub_code VARCHAR(10) NOT NULL,
@@ -666,20 +565,8 @@ CREATE TABLE Lecturer_Subject (
         ON DELETE CASCADE
 );
 
--- Exam_Subject relation
-CREATE TABLE Exam_Subject (
-    Exam_code VARCHAR(10) NOT NULL,
-    Sub_code VARCHAR(10) NOT NULL,
-    PRIMARY KEY (Exam_code, Sub_code),
-    FOREIGN KEY (Exam_code) REFERENCES Exam(Exam_code)
-        ON UPDATE CASCADE
-        ON DELETE CASCADE,
-    FOREIGN KEY (Sub_code) REFERENCES Subject(Sub_code)
-        ON UPDATE CASCADE
-        ON DELETE CASCADE
-);
+###################################   STUDENT_SUBJECT
 
--- Student_Subject relation
 CREATE TABLE Student_Subject (
     Reg_no VARCHAR(12) NOT NULL,
     Sub_code VARCHAR(10) NOT NULL,
@@ -693,7 +580,8 @@ CREATE TABLE Student_Subject (
         ON DELETE CASCADE
 );
 
--- Guardians of Students
+##################################  GARDIAN FOR STUDENT
+
 CREATE TABLE Guardian_for_stu (
     NIC VARCHAR(12) NOT NULL,
     Address VARCHAR(50),
@@ -707,26 +595,15 @@ CREATE TABLE Guardian_for_stu (
         ON DELETE CASCADE
 );
 
--- Student_Guardian relation
-CREATE TABLE Student_Guardian_dep (
-    Reg_no VARCHAR(12) NOT NULL,
-    NIC VARCHAR(12) NOT NULL,
-    PRIMARY KEY (Reg_no, NIC),
-    FOREIGN KEY (Reg_no) REFERENCES Student(Reg_no)
-        ON UPDATE CASCADE
-        ON DELETE CASCADE,
-    FOREIGN KEY (NIC) REFERENCES Guardian_for_stu(NIC)
-        ON UPDATE CASCADE
-        ON DELETE CASCADE
-);
+#################################    SPORTS
 
--- Sports table
 CREATE TABLE Sports (
     Sport_id VARCHAR(5) PRIMARY KEY,
     Sport_name VARCHAR(50) NOT NULL
 );
 
--- Student_Sports relation
+#################################    STUDENT_SPORTS
+
 CREATE TABLE Student_Sports (
     Reg_no VARCHAR(12) NOT NULL,
     Sport_id VARCHAR(5) NOT NULL,
@@ -740,21 +617,24 @@ CREATE TABLE Student_Sports (
         ON UPDATE CASCADE
         ON DELETE CASCADE
 );
->>>>>>> TGl1714
->>>>>>> c423f58aec4132da74aec211d9551ff82c38a433
+<<<<<<< HEAD
 
+=======
+>>>>>>> d4ae2f8735aee5b64a358c0bf76c623766a98b9a
 
+#################################    SESSION
 
-      CREATE TABLE Session(
-             Sub_code VARCHAR(10),
-			 Session_id VARCHAR(10),
-			 Session_name VARCHAR(20),
-			 Hour INT,
-			 PRIMARY KEY(Sub_code, Session_id),
-			 FOREIGN KEY(Sub_code) REFERENCES Subject(Sub_code)
-			  ON DELETE CASCADE ON UPDATE CASCADE
+     CREATE TABLE Session(
+         Sub_code VARCHAR(10),
+		 Session_id VARCHAR(10),
+		 Session_name VARCHAR(20),
+		 Hour INT,
+		 PRIMARY KEY(Sub_code, Session_id),
+		 FOREIGN KEY(Sub_code) REFERENCES Subject(Sub_code)
+		 ON DELETE CASCADE ON UPDATE CASCADE
 			 );
-			 
+
+#################################     SESSION_STUDENT		 
 	
 	CREATE TABLE Session_Student(
 	        Sub_code VARCHAR(10),
@@ -765,3 +645,428 @@ CREATE TABLE Student_Sports (
 			FOREIGN KEY(Sub_code, Session_id) REFERENCES Session(Sub_code, Session_id),
 			FOREIGN KEY(Reg_no) REFERENCES Student(Reg_no)
 			);
+
+
+
+
+############################################### MARKS TABLE
+
+INSERT INTO Marks (Reg_no, Sub_code, Exam_code, Mark, Type) VALUES
+('TG/2023/1774', 'ENG1222', 'AS', 15, 'Proper'),
+('TG/2023/1774', 'ENG1222', 'ET', 50, 'Proper'),
+('TG/2023/1774', 'ENG1222', 'MT', 13, 'Proper'),
+('TG/2023/1774', 'ICT1212', 'AS', 8, 'Proper'),
+('TG/2023/1774', 'ICT1212', 'ET', 58, 'Proper'),
+('TG/2023/1774', 'ICT1212', 'MT', 18, 'Proper'),
+('TG/2023/1774', 'ICT1212', 'Q1', 4, 'Proper'),
+('TG/2023/1774', 'ICT1212', 'Q2', 4, 'Proper'),
+('TG/2023/1774', 'ICT1212', 'Q3', 4, 'Proper'),
+('TG/2023/1774', 'ICT1222', 'AS', 15, 'Proper'),
+('TG/2023/1774', 'ICT1222', 'EP', 45, 'Proper'),
+('TG/2023/1774', 'ICT1222', 'MP', 15, 'Proper'),
+('TG/2023/1774', 'ICT1233', 'AS', 7, 'Proper'),
+('TG/2023/1774', 'ICT1233', 'EP', 27, 'Proper'),
+('TG/2023/1774', 'ICT1233', 'ET', 27, 'Proper'),
+('TG/2023/1774', 'ICT1233', 'MP', 17, 'Proper'),
+('TG/2023/1774', 'ICT1233', 'Q1', 5, 'Proper'),
+('TG/2023/1774', 'ICT1233', 'Q2', 5, 'Proper'),
+('TG/2023/1774', 'ICT1233', 'Q3', 3, 'Proper'),
+('TG/2023/1774', 'ICT1242', 'AS', 8, 'Proper'),
+('TG/2023/1774', 'ICT1242', 'ET', 48, 'Proper'),
+('TG/2023/1774', 'ICT1242', 'MT', 18, 'Proper'),
+('TG/2023/1774', 'ICT1242', 'Q1', 5, 'Proper'),
+('TG/2023/1774', 'ICT1242', 'Q2', 4, 'Proper'),
+('TG/2023/1774', 'ICT1242', 'Q3', 5, 'Proper'),
+('TG/2023/1774', 'ICT1253', 'AS', 9, 'Proper'),
+('TG/2023/1774', 'ICT1253', 'EP', 19, 'Proper'),
+('TG/2023/1774', 'ICT1253', 'ET', 19, 'Proper'),
+('TG/2023/1774', 'ICT1253', 'MP', 19, 'Proper'),
+('TG/2023/1774', 'ICT1253', 'Q1', 4, 'Proper'),
+('TG/2023/1774', 'ICT1253', 'Q2', 5, 'Proper'),
+('TG/2023/1774', 'ICT1253', 'Q3', 5, 'Proper'),
+('TG/2023/1774', 'TCS1212', 'AS', 9, 'Proper'),
+('TG/2023/1774', 'TCS1212', 'Q1', 5, 'Proper'),
+('TG/2023/1774', 'TCS1212', 'Q2', 5, 'Proper'),
+('TG/2023/1775', 'ENG1222', 'AS', 13, 'Proper'),
+('TG/2023/1775', 'ENG1222', 'ET', 57, 'Proper'),
+('TG/2023/1775', 'ENG1222', 'MT', 13, 'Proper'),
+('TG/2023/1775', 'ICT1212', 'AS', 9, 'Proper'),
+('TG/2023/1775', 'ICT1212', 'ET', 59, 'Proper'),
+('TG/2023/1775', 'ICT1212', 'MT', 19, 'Proper'),
+('TG/2023/1775', 'ICT1212', 'Q1', 3, 'Proper'),
+('TG/2023/1775', 'ICT1212', 'Q2', 3, 'Proper'),
+('TG/2023/1775', 'ICT1212', 'Q3', 3, 'Proper'),
+('TG/2023/1775', 'ICT1222', 'AS', 19, 'Proper'),
+('TG/2023/1775', 'ICT1222', 'EP', 39, 'Proper'),
+('TG/2023/1775', 'ICT1222', 'MP', 19, 'Proper'),
+('TG/2023/1775', 'ICT1233', 'AS', 8, 'Proper'),
+('TG/2023/1775', 'ICT1233', 'EP', 28, 'Proper'),
+('TG/2023/1775', 'ICT1233', 'ET', 28, 'Proper'),
+('TG/2023/1775', 'ICT1233', 'MP', 18, 'Proper'),
+('TG/2023/1775', 'ICT1233', 'Q1', 3, 'Proper'),
+('TG/2023/1775', 'ICT1233', 'Q2', 3, 'Proper'),
+('TG/2023/1775', 'ICT1233', 'Q3', 4, 'Proper'),
+('TG/2023/1775', 'ICT1242', 'AS', 7, 'Proper'),
+('TG/2023/1775', 'ICT1242', 'ET', 57, 'Proper'),
+('TG/2023/1775', 'ICT1242', 'MT', 17, 'Proper'),
+('TG/2023/1775', 'ICT1242', 'Q1', 3, 'Proper'),
+('TG/2023/1775', 'ICT1242', 'Q2', 5, 'Proper'),
+('TG/2023/1775', 'ICT1242', 'Q3', 5, 'Proper'),
+('TG/2023/1775', 'ICT1253', 'AS', 7, 'Proper'),
+('TG/2023/1775', 'ICT1253', 'EP', 27, 'Proper'),
+('TG/2023/1775', 'ICT1253', 'ET', 27, 'Proper'),
+('TG/2023/1775', 'ICT1253', 'MP', 17, 'Proper'),
+('TG/2023/1775', 'ICT1253', 'Q1', 5, 'Proper'),
+('TG/2023/1775', 'ICT1253', 'Q2', 5, 'Proper'),
+('TG/2023/1775', 'ICT1253', 'Q3', 4, 'Proper'),
+('TG/2023/1775', 'TCS1212', 'AS', 8.5, 'Proper'),
+('TG/2023/1775', 'TCS1212', 'Q1', 4, 'Proper'),
+('TG/2023/1775', 'TCS1212', 'Q2', 4.5, 'Proper'),
+('TG/2023/1776', 'ENG1222', 'AS', 12, 'Proper'),
+('TG/2023/1776', 'ENG1222', 'ET', 54, 'Proper'),
+('TG/2023/1776', 'ENG1222', 'MT', 12, 'Proper'),
+('TG/2023/1776', 'ICT1212', 'AS', 10, 'Proper'),
+('TG/2023/1776', 'ICT1212', 'ET', 45, 'Proper'),
+('TG/2023/1776', 'ICT1212', 'MT', 15, 'Proper'),
+('TG/2023/1776', 'ICT1212', 'Q1', 5, 'Proper'),
+('TG/2023/1776', 'ICT1212', 'Q2', 5, 'Proper'),
+('TG/2023/1776', 'ICT1212', 'Q3', 2, 'Proper'),
+('TG/2023/1776', 'ICT1222', 'AS', 17, 'Proper'),
+('TG/2023/1776', 'ICT1222', 'EP', 27, 'Proper'),
+('TG/2023/1776', 'ICT1222', 'MP', 17, 'Proper'),
+('TG/2023/1776', 'ICT1233', 'AS', 9, 'Proper'),
+('TG/2023/1776', 'ICT1233', 'EP', 19, 'Proper'),
+('TG/2023/1776', 'ICT1233', 'ET', 19, 'Proper'),
+('TG/2023/1776', 'ICT1233', 'MP', 19, 'Proper'),
+('TG/2023/1776', 'ICT1233', 'Q1', 2, 'Proper'),
+('TG/2023/1776', 'ICT1233', 'Q2', 2, 'Proper'),
+('TG/2023/1776', 'ICT1233', 'Q3', 0, 'Proper'),
+('TG/2023/1776', 'ICT1242', 'AS', 5, 'Proper'),
+('TG/2023/1776', 'ICT1242', 'ET', 56, 'Proper'),
+('TG/2023/1776', 'ICT1242', 'MT', 16, 'Proper'),
+('TG/2023/1776', 'ICT1242', 'Q1', 2, 'Proper'),
+('TG/2023/1776', 'ICT1242', 'Q2', 2, 'Proper'),
+('TG/2023/1776', 'ICT1242', 'Q3', 5, 'Proper'),
+('TG/2023/1776', 'ICT1253', 'AS', 5, 'Proper'),
+('TG/2023/1776', 'ICT1253', 'EP', 25, 'Proper'),
+('TG/2023/1776', 'ICT1253', 'ET', 25, 'Proper'),
+('TG/2023/1776', 'ICT1253', 'MP', 15, 'Proper'),
+('TG/2023/1776', 'ICT1253', 'Q1', 5, 'Proper'),
+('TG/2023/1776', 'ICT1253', 'Q2', 5, 'Proper'),
+('TG/2023/1776', 'ICT1253', 'Q3', 5, 'Proper'),
+('TG/2023/1776', 'TCS1212', 'AS', 7, 'Proper'),
+('TG/2023/1776', 'TCS1212', 'Q1', 4.5, 'Proper'),
+('TG/2023/1776', 'TCS1212', 'Q2', 4, 'Proper'),
+('TG/2023/1777', 'ENG1222', 'AS', 10, 'Proper'),
+('TG/2023/1777', 'ENG1222', 'ET', 53, 'Proper'),
+('TG/2023/1777', 'ENG1222', 'MT', 10, 'Proper'),
+('TG/2023/1777', 'ICT1212', 'AS', 7.5, 'Proper'),
+('TG/2023/1777', 'ICT1212', 'ET', 37.5, 'Proper'),
+('TG/2023/1777', 'ICT1212', 'MT', 17.5, 'Proper'),
+('TG/2023/1777', 'ICT1212', 'Q1', 5, 'Proper'),
+('TG/2023/1777', 'ICT1212', 'Q2', 5, 'Proper'),
+('TG/2023/1777', 'ICT1212', 'Q3', 4, 'Proper'),
+('TG/2023/1777', 'ICT1222', 'AS', 13, 'Proper'),
+('TG/2023/1777', 'ICT1222', 'EP', 13, 'Proper'),
+('TG/2023/1777', 'ICT1222', 'MP', 13, 'Proper'),
+('TG/2023/1777', 'ICT1233', 'AS', 10, 'Proper'),
+('TG/2023/1777', 'ICT1233', 'EP', 20, 'Proper'),
+('TG/2023/1777', 'ICT1233', 'ET', 20, 'Proper'),
+('TG/2023/1777', 'ICT1233', 'MP', 10, 'Proper'),
+('TG/2023/1777', 'ICT1233', 'Q1', 3, 'Proper'),
+('TG/2023/1777', 'ICT1233', 'Q2', 3, 'Proper'),
+('TG/2023/1777', 'ICT1233', 'Q3', 4, 'Proper'),
+('TG/2023/1777', 'ICT1242', 'AS', 7, 'Proper'),
+('TG/2023/1777', 'ICT1242', 'ET', 37, 'Proper'),
+('TG/2023/1777', 'ICT1242', 'MT', 17, 'Proper'),
+('TG/2023/1777', 'ICT1242', 'Q1', 4, 'Proper'),
+('TG/2023/1777', 'ICT1242', 'Q2', 5, 'Proper'),
+('TG/2023/1777', 'ICT1242', 'Q3', 5, 'Proper'),
+('TG/2023/1777', 'ICT1253', 'AS', 5, 'Proper'),
+('TG/2023/1777', 'ICT1253', 'EP', 25, 'Proper'),
+('TG/2023/1777', 'ICT1253', 'ET', 25, 'Proper'),
+('TG/2023/1777', 'ICT1253', 'MP', 15, 'Proper'),
+('TG/2023/1777', 'ICT1253', 'Q1', 3, 'Proper'),
+('TG/2023/1777', 'ICT1253', 'Q2', 3, 'Proper'),
+('TG/2023/1777', 'ICT1253', 'Q3', 5, 'Proper'),
+('TG/2023/1777', 'TCS1212', 'AS', 8.5, 'Proper'),
+('TG/2023/1777', 'TCS1212', 'Q1', 3.5, 'Proper'),
+('TG/2023/1777', 'TCS1212', 'Q2', 3.5, 'Proper'),
+('TG/2023/1778', 'ENG1222', 'AS', 10, 'Proper'),
+('TG/2023/1778', 'ENG1222', 'ET', 53, 'Proper'),
+('TG/2023/1778', 'ENG1222', 'MT', 15, 'Proper'),
+('TG/2023/1778', 'ICT1212', 'AS', 8, 'Proper'),
+('TG/2023/1778', 'ICT1212', 'ET', 46, 'Proper'),
+('TG/2023/1778', 'ICT1212', 'MT', 16, 'Proper'),
+('TG/2023/1778', 'ICT1212', 'Q1', 4, 'Proper'),
+('TG/2023/1778', 'ICT1212', 'Q2', 4, 'Proper'),
+('TG/2023/1778', 'ICT1212', 'Q3', 4, 'Proper'),
+('TG/2023/1778', 'ICT1222', 'AS', 12, 'Proper'),
+('TG/2023/1778', 'ICT1222', 'EP', 12, 'Proper'),
+('TG/2023/1778', 'ICT1222', 'MP', 12, 'Proper'),
+('TG/2023/1778', 'ICT1233', 'AS', 5, 'Proper'),
+('TG/2023/1778', 'ICT1233', 'EP', 25, 'Proper'),
+('TG/2023/1778', 'ICT1233', 'ET', 25, 'Proper'),
+('TG/2023/1778', 'ICT1233', 'MP', 15, 'Proper'),
+('TG/2023/1778', 'ICT1233', 'Q1', 5, 'Proper'),
+('TG/2023/1778', 'ICT1233', 'Q2', 5, 'Proper'),
+('TG/2023/1778', 'ICT1233', 'Q3', 3, 'Proper'),
+('TG/2023/1778', 'ICT1242', 'AS', 8, 'Proper'),
+('TG/2023/1778', 'ICT1242', 'ET', 48, 'Proper'),
+('TG/2023/1778', 'ICT1242', 'MT', 8, 'Proper'),
+('TG/2023/1778', 'ICT1242', 'Q1', 3, 'Proper'),
+('TG/2023/1778', 'ICT1242', 'Q2', 3, 'Proper'),
+('TG/2023/1778', 'ICT1242', 'Q3', 3, 'Proper'),
+('TG/2023/1778', 'ICT1253', 'AS', 8, 'Proper'),
+('TG/2023/1778', 'ICT1253', 'EP', 28, 'Proper'),
+('TG/2023/1778', 'ICT1253', 'ET', 28, 'Proper'),
+('TG/2023/1778', 'ICT1253', 'MP', 18, 'Proper'),
+('TG/2023/1778', 'ICT1253', 'Q1', 4, 'Proper'),
+('TG/2023/1778', 'ICT1253', 'Q2', 4, 'Proper'),
+('TG/2023/1778', 'ICT1253', 'Q3', 4, 'Proper'),
+('TG/2023/1778', 'TCS1212', 'AS', 7, 'Proper'),
+('TG/2023/1778', 'TCS1212', 'Q1', 4, 'Proper'),
+('TG/2023/1778', 'TCS1212', 'Q2', 4, 'Proper'),
+('TG/2023/1779', 'ENG1222', 'AS', 15, 'Proper'),
+('TG/2023/1779', 'ENG1222', 'ET', 43, 'Proper'),
+('TG/2023/1779', 'ENG1222', 'MT', 13, 'Proper'),
+('TG/2023/1779', 'ICT1212', 'AS', 6.5, 'Proper'),
+('TG/2023/1779', 'ICT1212', 'ET', 56.5, 'Proper'),
+('TG/2023/1779', 'ICT1212', 'MT', 16.5, 'Proper'),
+('TG/2023/1779', 'ICT1212', 'Q1', 4.5, 'Proper'),
+('TG/2023/1779', 'ICT1212', 'Q2', 4.5, 'Proper'),
+('TG/2023/1779', 'ICT1212', 'Q3', 3.5, 'Proper'),
+('TG/2023/1779', 'ICT1222', 'AS', 17, 'Proper'),
+('TG/2023/1779', 'ICT1222', 'EP', 47, 'Proper'),
+('TG/2023/1779', 'ICT1222', 'MP', 17, 'Proper'),
+('TG/2023/1779', 'ICT1233', 'AS', 4, 'Proper'),
+('TG/2023/1779', 'ICT1233', 'EP', 14, 'Proper'),
+('TG/2023/1779', 'ICT1233', 'ET', 14, 'Proper'),
+('TG/2023/1779', 'ICT1233', 'MP', 14, 'Proper'),
+('TG/2023/1779', 'ICT1233', 'Q1', 4, 'Proper'),
+('TG/2023/1779', 'ICT1233', 'Q2', 4, 'Proper'),
+('TG/2023/1779', 'ICT1233', 'Q3', 2, 'Proper'),
+('TG/2023/1779', 'ICT1242', 'AS', 8, 'Proper'),
+('TG/2023/1779', 'ICT1242', 'ET', 58, 'Proper'),
+('TG/2023/1779', 'ICT1242', 'MT', 18, 'Proper'),
+('TG/2023/1779', 'ICT1242', 'Q1', 4, 'Proper'),
+('TG/2023/1779', 'ICT1242', 'Q2', 4, 'Proper'),
+('TG/2023/1779', 'ICT1242', 'Q3', 4, 'Proper'),
+('TG/2023/1779', 'ICT1253', 'AS', 9, 'Proper'),
+('TG/2023/1779', 'ICT1253', 'EP', 29, 'Proper'),
+('TG/2023/1779', 'ICT1253', 'ET', 29, 'Proper'),
+('TG/2023/1779', 'ICT1253', 'MP', 19, 'Proper'),
+('TG/2023/1779', 'ICT1253', 'Q1', 5, 'Proper'),
+('TG/2023/1779', 'ICT1253', 'Q2', 5, 'Proper'),
+('TG/2023/1779', 'ICT1253', 'Q3', 5, 'Proper'),
+('TG/2023/1779', 'TCS1212', 'AS', 8.5, 'Proper'),
+('TG/2023/1779', 'TCS1212', 'Q1', 4, 'Proper'),
+('TG/2023/1779', 'TCS1212', 'Q2', 4.5, 'Proper'),
+('TG/2023/1780', 'ENG1222', 'AS', 15, 'Proper'),
+('TG/2023/1780', 'ENG1222', 'ET', 49, 'Proper'),
+('TG/2023/1780', 'ENG1222', 'MT', 14, 'Proper'),
+('TG/2023/1780', 'ICT1212', 'AS', 9.5, 'Proper'),
+('TG/2023/1780', 'ICT1212', 'ET', 30.5, 'Proper'),
+('TG/2023/1780', 'ICT1212', 'MT', 19.5, 'Proper'),
+('TG/2023/1780', 'ICT1212', 'Q1', 3.5, 'Proper'),
+('TG/2023/1780', 'ICT1212', 'Q2', 3.5, 'Proper'),
+('TG/2023/1780', 'ICT1212', 'Q3', 2.5, 'Proper'),
+('TG/2023/1780', 'ICT1222', 'AS', 18, 'Proper'),
+('TG/2023/1780', 'ICT1222', 'EP', 58, 'Proper'),
+('TG/2023/1780', 'ICT1222', 'MP', 18, 'Proper'),
+('TG/2023/1780', 'ICT1233', 'AS', 3, 'Proper'),
+('TG/2023/1780', 'ICT1233', 'EP', 13, 'Proper'),
+('TG/2023/1780', 'ICT1233', 'ET', 13, 'Proper'),
+('TG/2023/1780', 'ICT1233', 'MP', 13, 'Proper'),
+('TG/2023/1780', 'ICT1233', 'Q1', 3.5, 'Proper'),
+('TG/2023/1780', 'ICT1233', 'Q2', 3.5, 'Proper'),
+('TG/2023/1780', 'ICT1233', 'Q3', 3.5, 'Proper'),
+('TG/2023/1780', 'ICT1242', 'AS', 8, 'Proper'),
+('TG/2023/1780', 'ICT1242', 'ET', 48, 'Proper'),
+('TG/2023/1780', 'ICT1242', 'MT', 8, 'Proper'),
+('TG/2023/1780', 'ICT1242', 'Q1', 4, 'Proper'),
+('TG/2023/1780', 'ICT1242', 'Q2', 4, 'Proper'),
+('TG/2023/1780', 'ICT1242', 'Q3', 4, 'Proper'),
+('TG/2023/1780', 'ICT1253', 'AS', 9, 'Proper'),
+('TG/2023/1780', 'ICT1253', 'EP', 24, 'Proper'),
+('TG/2023/1780', 'ICT1253', 'ET', 24, 'Proper'),
+('TG/2023/1780', 'ICT1253', 'MP', 19, 'Proper'),
+('TG/2023/1780', 'ICT1253', 'Q1', 4, 'Proper'),
+('TG/2023/1780', 'ICT1253', 'Q2', 4, 'Proper'),
+('TG/2023/1780', 'ICT1253', 'Q3', 4, 'Proper'),
+('TG/2023/1780', 'TCS1212', 'AS', 5, 'Proper'),
+('TG/2023/1780', 'TCS1212', 'Q1', 4, 'Proper'),
+('TG/2023/1780', 'TCS1212', 'Q2', 4, 'Proper'),
+('TG/2023/1781', 'ENG1222', 'AS', 15, 'Proper'),
+('TG/2023/1781', 'ENG1222', 'ET', 39, 'Proper'),
+('TG/2023/1781', 'ENG1222', 'MT', 12, 'Proper'),
+('TG/2023/1781', 'ICT1212', 'AS', 10, 'Proper'),
+('TG/2023/1781', 'ICT1212', 'ET', 30, 'Proper'),
+('TG/2023/1781', 'ICT1212', 'MT', 20, 'Proper'),
+('TG/2023/1781', 'ICT1212', 'Q1', 4, 'Proper'),
+('TG/2023/1781', 'ICT1212', 'Q2', 4, 'Proper'),
+('TG/2023/1781', 'ICT1212', 'Q3', 5, 'Proper'),
+('TG/2023/1781', 'ICT1222', 'AS', 19, 'Proper'),
+('TG/2023/1781', 'ICT1222', 'EP', 49, 'Proper'),
+('TG/2023/1781', 'ICT1222', 'MP', 19, 'Proper'),
+('TG/2023/1781', 'ICT1233', 'AS', 8, 'Proper'),
+('TG/2023/1781', 'ICT1233', 'EP', 28, 'Proper'),
+('TG/2023/1781', 'ICT1233', 'ET', 28, 'Proper'),
+('TG/2023/1781', 'ICT1233', 'MP', 18, 'Proper'),
+('TG/2023/1781', 'ICT1233', 'Q1', 4, 'Proper'),
+('TG/2023/1781', 'ICT1233', 'Q2', 4, 'Proper'),
+('TG/2023/1781', 'ICT1233', 'Q3', 1, 'Proper'),
+('TG/2023/1781', 'ICT1242', 'AS', 3, 'Proper'),
+('TG/2023/1781', 'ICT1242', 'MT', 3, 'Proper'),
+('TG/2023/1781', 'ICT1242', 'Q1', 2, 'Proper'),
+('TG/2023/1781', 'ICT1242', 'Q2', 3, 'Proper'),
+('TG/2023/1781', 'ICT1242', 'Q3', 3, 'Proper'),
+('TG/2023/1781', 'ICT1253', 'AS', 10, 'Proper'),
+('TG/2023/1781', 'ICT1253', 'EP', 25, 'Proper'),
+('TG/2023/1781', 'ICT1253', 'ET', 25, 'Proper'),
+('TG/2023/1781', 'ICT1253', 'MP', 14, 'Proper'),
+('TG/2023/1781', 'ICT1253', 'Q1', 3, 'Proper'),
+('TG/2023/1781', 'ICT1253', 'Q2', 5, 'Proper'),
+('TG/2023/1781', 'ICT1253', 'Q3', 5, 'Proper'),
+('TG/2023/1781', 'TCS1212', 'AS', 6.5, 'Proper'),
+('TG/2023/1781', 'TCS1212', 'Q1', 5, 'Proper'),
+('TG/2023/1781', 'TCS1212', 'Q2', 3.5, 'Proper'),
+('TG/2023/1782', 'ENG1222', 'AS', 15, 'Proper'),
+('TG/2023/1782', 'ENG1222', 'ET', 39, 'Proper'),
+('TG/2023/1782', 'ENG1222', 'MT', 12, 'Proper'),
+('TG/2023/1782', 'ICT1212', 'AS', 10, 'Proper'),
+('TG/2023/1782', 'ICT1212', 'ET', 40, 'Proper'),
+('TG/2023/1782', 'ICT1212', 'MT', 10, 'Proper'),
+('TG/2023/1782', 'ICT1212', 'Q1', 3, 'Proper'),
+('TG/2023/1782', 'ICT1212', 'Q2', 3, 'Proper'),
+('TG/2023/1782', 'ICT1212', 'Q3', 5, 'Proper'),
+('TG/2023/1782', 'ICT1222', 'AS', 17, 'Proper'),
+('TG/2023/1782', 'ICT1222', 'EP', 47, 'Proper'),
+('TG/2023/1782', 'ICT1222', 'MP', 17, 'Proper'),
+('TG/2023/1782', 'ICT1233', 'AS', 7, 'Proper'),
+('TG/2023/1782', 'ICT1233', 'EP', 27, 'Proper'),
+('TG/2023/1782', 'ICT1233', 'ET', 27, 'Proper'),
+('TG/2023/1782', 'ICT1233', 'MP', 17, 'Proper'),
+('TG/2023/1782', 'ICT1233', 'Q1', 5, 'Proper'),
+('TG/2023/1782', 'ICT1233', 'Q2', 5, 'Proper'),
+('TG/2023/1782', 'ICT1233', 'Q3', 3, 'Proper'),
+('TG/2023/1782', 'ICT1242', 'AS', 3, 'Proper'),
+('TG/2023/1782', 'ICT1242', 'MT', 3, 'Proper'),
+('TG/2023/1782', 'ICT1242', 'Q1', 2, 'Proper'),
+('TG/2023/1782', 'ICT1242', 'Q2', 2, 'Proper'),
+('TG/2023/1782', 'ICT1242', 'Q3', 3, 'Proper'),
+('TG/2023/1782', 'ICT1253', 'AS', 10, 'Proper'),
+('TG/2023/1782', 'ICT1253', 'EP', 19, 'Proper'),
+('TG/2023/1782', 'ICT1253', 'ET', 19, 'Proper'),
+('TG/2023/1782', 'ICT1253', 'MP', 15, 'Proper'),
+('TG/2023/1782', 'ICT1253', 'Q1', 3, 'Proper'),
+('TG/2023/1782', 'ICT1253', 'Q2', 5, 'Proper'),
+('TG/2023/1782', 'ICT1253', 'Q3', 5, 'Proper'),
+('TG/2023/1782', 'TCS1212', 'AS', 8, 'Proper'),
+('TG/2023/1782', 'TCS1212', 'Q1', 3, 'Proper'),
+('TG/2023/1782', 'TCS1212', 'Q2', 3, 'Proper'),
+('TG/2023/1783', 'ENG1222', 'AS', 19, 'Proper'),
+('TG/2023/1783', 'ENG1222', 'ET', 19, 'Proper'),
+('TG/2023/1783', 'ENG1222', 'MT', 16, 'Proper'),
+('TG/2023/1783', 'ICT1212', 'AS', 4, 'Proper'),
+('TG/2023/1783', 'ICT1212', 'ET', 25, 'Proper'),
+('TG/2023/1783', 'ICT1212', 'MT', 14, 'Proper'),
+('TG/2023/1783', 'ICT1212', 'Q1', 5, 'Proper'),
+('TG/2023/1783', 'ICT1212', 'Q2', 5, 'Proper'),
+('TG/2023/1783', 'ICT1212', 'Q3', 5, 'Proper'),
+('TG/2023/1783', 'ICT1222', 'AS', 16, 'Proper'),
+('TG/2023/1783', 'ICT1222', 'EP', 46, 'Proper'),
+('TG/2023/1783', 'ICT1222', 'MP', 19, 'Proper'),
+('TG/2023/1783', 'ICT1233', 'AS', 4, 'Proper'),
+('TG/2023/1783', 'ICT1233', 'EP', 24, 'Proper'),
+('TG/2023/1783', 'ICT1233', 'ET', 24, 'Proper'),
+('TG/2023/1783', 'ICT1233', 'MP', 14, 'Proper'),
+('TG/2023/1783', 'ICT1233', 'Q1', 4.5, 'Proper'),
+('TG/2023/1783', 'ICT1233', 'Q2', 4.5, 'Proper'),
+('TG/2023/1783', 'ICT1233', 'Q3', 4.5, 'Proper'),
+('TG/2023/1783', 'ICT1242', 'AS', 45, 'Proper'),
+('TG/2023/1783', 'ICT1242', 'ET', 15, 'Proper'),
+('TG/2023/1783', 'ICT1242', 'MT', 15, 'Proper'),
+('TG/2023/1783', 'ICT1242', 'Q1', 5, 'Proper'),
+('TG/2023/1783', 'ICT1242', 'Q2', 5, 'Proper'),
+('TG/2023/1783', 'ICT1253', 'AS', 10, 'Proper'),
+('TG/2023/1783', 'ICT1253', 'EP', 27, 'Proper'),
+('TG/2023/1783', 'ICT1253', 'ET', 27, 'Proper'),
+('TG/2023/1783', 'ICT1253', 'MP', 17, 'Proper'),
+('TG/2023/1783', 'ICT1253', 'Q1', 5, 'Proper'),
+('TG/2023/1783', 'ICT1253', 'Q2', 5, 'Proper'),
+('TG/2023/1783', 'ICT1253', 'Q3', 7, 'Proper'),
+('TG/2023/1783', 'TCS1212', 'AS', 9, 'Proper'),
+('TG/2023/1783', 'TCS1212', 'Q1', 5, 'Proper'),
+('TG/2023/1783', 'TCS1212', 'Q2', 5, 'Proper'),
+('TG/2023/1774','TCS1212','MT',15,'Proper'),
+('TG/2023/1775','TCS1212','MT',14.5,'Proper'),
+('TG/2023/1776','TCS1212','MT',14,'Proper'),
+('TG/2023/1777','TCS1212','MT',18.5,'Proper'),
+('TG/2023/1778','TCS1212','MT',19,'Proper'),
+('TG/2023/1779','TCS1212','MT',18.5,'Proper'),
+('TG/2023/1780','TCS1212','MT',17,'Proper'),
+('TG/2023/1781','TCS1212','MT',13.5,'Proper'),
+('TG/2023/1782','TCS1212','MT',13,'Proper'),
+('TG/2023/1783','TCS1212','MT',15,'Proper'),
+('TG/2023/1774','TCS1212','ET',55,'Proper'),
+('TG/2023/1775','TCS1212','ET',44.5,'Proper'),
+('TG/2023/1776','TCS1212','ET',54,'Proper'),
+('TG/2023/1777','TCS1212','ET',48.5,'Proper'),
+('TG/2023/1778','TCS1212','ET',59,'Proper'),
+('TG/2023/1779','TCS1212','ET',38.5,'Proper'),
+('TG/2023/1780','TCS1212','ET',27,'Proper'),
+('TG/2023/1781','TCS1212','ET',43.5,'Proper'),
+('TG/2023/1782','TCS1212','ET',43,'Proper'),
+('TG/2023/1783','TCS1212','ET',35,'Proper'),
+('TG/2023/1774','TCS1233','Q1',5,'Proper'),
+('TG/2023/1775','TCS1233','Q1',4.5,'Proper'),
+('TG/2023/1776','TCS1233','Q1',5,'Proper'),
+('TG/2023/1777','TCS1233','Q1',4,'Proper'),
+('TG/2023/1778','TCS1233','Q1',5,'Proper'),
+('TG/2023/1779','TCS1233','Q1',5,'Proper'),
+('TG/2023/1780','TCS1233','Q1',2,'Proper'),
+('TG/2023/1781','TCS1233','Q1',4.5,'Proper'),
+('TG/2023/1782','TCS1233','Q1',3,'Proper'),
+('TG/2023/1783','TCS1233','Q1',5,'Proper'),
+('TG/2023/1774','TCS1233','Q2',5,'Proper'),
+('TG/2023/1775','TCS1233','Q2',4.5,'Proper'),
+('TG/2023/1776','TCS1233','Q2',5,'Proper'),
+('TG/2023/1777','TCS1233','Q2',4,'Proper'),
+('TG/2023/1778','TCS1233','Q2',5,'Proper'),
+('TG/2023/1779','TCS1233','Q2',5,'Proper'),
+('TG/2023/1780','TCS1233','Q2',2,'Proper'),
+('TG/2023/1781','TCS1233','Q2',4.5,'Proper'),
+('TG/2023/1782','TCS1233','Q2',3,'Proper'),
+('TG/2023/1783','TCS1233','Q2',5,'Proper'),
+('TG/2023/1774','TCS1233','MT',15,'Proper'),
+('TG/2023/1775','TCS1233','MT',14.5,'Proper'),
+('TG/2023/1776','TCS1233','MT',14,'Proper'),
+('TG/2023/1777','TCS1233','MT',18.5,'Proper'),
+('TG/2023/1778','TCS1233','MT',19,'Proper'),
+('TG/2023/1779','TCS1233','MT',18.5,'Proper'),
+('TG/2023/1780','TCS1233','MT',17,'Proper'),
+('TG/2023/1781','TCS1233','MT',13.5,'Proper'),
+('TG/2023/1782','TCS1233','MT',13,'Proper'),
+('TG/2023/1783','TCS1233','MT',15,'Proper'),
+('TG/2023/1774','TCS1233','ET',55,'Proper'),
+('TG/2023/1775','TCS1233','ET',44.5,'Proper'),
+('TG/2023/1776','TCS1233','ET',54,'Proper'),
+('TG/2023/1777','TCS1233','ET',48.5,'Proper'),
+('TG/2023/1778','TCS1233','ET',59,'Proper'),
+('TG/2023/1779','TCS1233','ET',38.5,'Proper'),
+('TG/2023/1780','TCS1233','ET',27,'Proper'),
+('TG/2023/1781','TCS1233','ET',43.5,'Proper'),
+('TG/2023/1782','TCS1233','ET',43,'Proper'),
+('TG/2023/1783','TCS1233','ET',35,'Proper'),
+('TG/2021/1456','TCS1233','ET',35,'Repeat'),
+('TG/2021/1452','TCS1233','ET',35,'Repeat'),
+('TG/2021/1453','TCS1233','ET',55,'Repeat'),
+('TG/2021/1454','TCS1212','ET',45,'Repeat'),
+('TG/2021/1455','TCS1233','Q1',5,'Repeat'),
+('TG/2021/1455','TCS1233','Q2',3,'Repeat'),
+('TG/2021/1455','TCS1233','MT',25,'Repeat'),
+('TG/2021/1456','ICT1242','ET',35,'Repeat');
+
+
+
