@@ -1022,6 +1022,14 @@ INSERT INTO Marks (Reg_no, Sub_code, Exam_code, Mark, Type) VALUES
 ('TG/2021/1456','ICT1242','ET',80,'Repeat');
 
 
+CREATE OR REPLACE VIEW Best_2_Quiz AS
+SELECT
+    Reg_no,
+    Sub_code,
+    stu_status,
+    ((COALESCE(Q1,0) + COALESCE(Q2,0) + COALESCE(Q3,0)) 
+      - LEAST(COALESCE(Q1,0), COALESCE(Q2,0), COALESCE(Q3,0))) AS Best2Quiz
+FROM Marks;
 
 
 
