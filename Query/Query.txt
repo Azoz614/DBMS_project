@@ -396,7 +396,42 @@ INSERT INTO Course_Subject (Course_id, Sub_code) VALUES
 ('BICT', 'TCS1212'),
 ('BICT', 'TCS1233');
 
+INSERT INTO Student (Reg_no,F_name,L_name,NIC,Batch,Address,Gender,E_mail,DOB,Course_id,Dep_id)
+VALUES ('TG/2023/1774','<First>','<Last>','200323311520','2022/2023',
+        '<Address>','Male','tg1774@example.com','2003-07-01','BICT','ICT');
 
+
+INSERT INTO Subject (Sub_code, Sub_name, Credit, Total_hours)
+VALUES ('ICT1222','Programming Fundamentals',2,30)
+ON DUPLICATE KEY UPDATE Sub_name = VALUES(Sub_name);
+
+
+INSERT IGNORE INTO Exam (Exam_code, Exam_name) VALUES
+('Q1','Quiz1'),('Q2','Quiz2'),('Q3','Quiz3'),
+('AS','Assessment'),('MT','Mid Theory'),('MP','Mid Practical'),
+('ET','End Theory'),('EP','End Practical');
+
+############################################################################################
+CREATE TABLE Course_Value (
+  Sub_code   VARCHAR(20),
+  Component  VARCHAR(50),
+  Weight     DECIMAL(5,2) NOT NULL,
+  PRIMARY KEY (Sub_code, Component),
+  FOREIGN KEY (Sub_code)
+    REFERENCES Subject(Sub_code)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
+);
+
+INSERT INTO Course_Value (Sub_code, Component, Weight) VALUES
+('ENG1222','AS',20), ('ENG1222','MT',20),
+('ICT1212','Best_2_Quiz',10), ('ICT1212','MT',30),
+('ICT1222','Best_2_Quiz',0),  ('ICT1222','AS',20), ('ICT1222','MP',20),
+('ICT1233','Best_2_Quiz',10), ('ICT1233','MP',10), ('ICT1233','AS',20),
+('ICT1242','Best_2_Quiz',10), ('ICT1242','MT',25), ('ICT1242','AS',5),
+('ICT1253','Best_2_Quiz',10), ('ICT1253','MP',20), ('ICT1253','AS',10),
+('TCS1212','Best_2_Quiz',10), ('TCS1212','AS',10), ('TCS1212','MT',20),
+('TCS1233','Best_2_Quiz',10), ('TCS1233','MT',25), ('TCS1233','AS',5);
 
 
 
