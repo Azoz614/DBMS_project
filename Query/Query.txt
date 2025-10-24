@@ -1278,6 +1278,39 @@ END //
 
 
 
+DELIMITER $$
 
+CREATE PROCEDURE final_student_whole_sub(IN p_reg_no VARCHAR(12))
+BEGIN
+  SELECT
+    'ENG1222' AS Sub_code, ENG1222 AS CA_total FROM whole_batch_CA WHERE Reg_no = p_reg_no
+    UNION ALL
+  SELECT 
+  'ICT1212' AS Sub_code, ICT1212 AS CA_total FROM whole_batch_CA WHERE Reg_no = p_reg_no
+    UNION ALL
+  SELECT 
+  'ICT1222' AS Sub_code, ICT1222 AS CA_total FROM whole_batch_CA WHERE Reg_no = p_reg_no
+    UNION ALL
+  SELECT 
+  'ICT1233' AS Sub_code, ICT1233 AS CA_total FROM whole_batch_CA WHERE Reg_no = p_reg_no
+    UNION ALL
+  SELECT
+  'ICT1242' AS Sub_code, ICT1242 AS CA_total FROM whole_batch_CA WHERE Reg_no = p_reg_no
+    UNION ALL
+  SELECT
+  'ICT1253' AS Sub_code, ICT1253 AS CA_total FROM whole_batch_CA WHERE Reg_no = p_reg_no
+    UNION ALL
+  SELECT 
+  'TCS1212' AS Sub_code, TCS1212 AS CA_total FROM whole_batch_CA WHERE Reg_no = p_reg_no
+    UNION ALL
+  SELECT 
+  'TCS1233' AS Sub_code, TCS1233 AS CA_total FROM whole_batch_CA WHERE Reg_no = p_reg_no
+  ORDER BY Sub_code;
+END $$
+
+DELIMITER ;
+CALL final_student_whole_sub('TG/2023/1774');
+
+#############################################################################################################3
 
   
