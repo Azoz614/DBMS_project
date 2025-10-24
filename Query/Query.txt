@@ -1089,7 +1089,7 @@ subject_ca AS (
     CASE Sub_code
       WHEN 'ENG1222' THEN AS_contrib + MT_contrib
       WHEN 'ICT1212' THEN BQ_contrib + MT_contrib + AS_contrib
-      WHEN 'ICT1222' THEN AS_contrib + MP_contrib              -- no BQ
+      WHEN 'ICT1222' THEN AS_contrib + MP_contrib            
       WHEN 'ICT1233' THEN BQ_contrib + MP_contrib + AS_contrib
       WHEN 'ICT1242' THEN BQ_contrib + MT_contrib + AS_contrib
       WHEN 'ICT1253' THEN BQ_contrib + MP_contrib + AS_contrib
@@ -1311,6 +1311,8 @@ END $$
 DELIMITER ;
 CALL final_student_whole_sub('TG/2023/1774');
 
-#############################################################################################################3
+#############################################################################################################
+
+
 
   
