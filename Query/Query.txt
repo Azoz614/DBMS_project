@@ -1021,10 +1021,119 @@ INSERT INTO Marks (Reg_no, Sub_code, Exam_code, Mark, Type) VALUES
 
 
 
+##############################################################################
 
 
+   
+CREATE OR REPLACE VIEW whole_batch_CA AS
+WITH
+
+Best2_quiz AS (
+  SELECT
+    Reg_no,
+    Sub_code,
+    (
+      COALESCE(MAX(CASE WHEN Exam_code='Q1' THEN Mark END), 0) +
+      COALESCE(MAX(CASE WHEN Exam_code='Q2' THEN Mark END), 0) +
+      COALESCE(MAX(CASE WHEN Exam_code='Q3' THEN Mark END), 0)
+    )
+    -
+    LEAST(
+      COALESCE(MAX(CASE WHEN Exam_code='Q1' THEN Mark END), 0),
+      COALESCE(MAX(CASE WHEN Exam_code='Q2' THEN Mark END), 0),
+      COALESCE(MAX(CASE WHEN Exam_code='Q3' THEN Mark END), 0)
+    ) AS Best2Quiz
+  FROM Marks
+  WHERE Exam_code IN ('Q1','Q2','Q3')
+  GROUP BY Reg_no, Sub_code
+),
 
 
+core AS (
+  SELECT
+    Reg_no,
+    Sub_code,
+    COALESCE(MAX(CASE WHEN Exam_code='AS' THEN Mark END), 0) AS AS_raw,
+    COALESCE(MAX(CASE WHEN Exam_code='MT' THEN Mark END), 0) AS MT_raw,
+    COALESCE(MAX(CASE WHEN Exam_code='MP' THEN Mark END), 0) AS MP_raw
+  FROM Marks
+  GROUP BY Reg_no, Sub_code
+),
+
+
+components AS (
+  SELECT
+    c.Reg_no,
+    c.Sub_code,
+    
+    COALESCE(
+      CASE WHEN c.Sub_code IN ('ENG1222','ICT1222')
+           THEN c.AS_raw * 0.20
+           ELSE c.AS_raw * 0.10
+      END, 0
+    ) AS AS_contrib,
+    COALESCE(c.MT_raw * 0.20, 0) AS MT_contrib,
+    COALESCE(c.MP_raw * 0.20, 0) AS MP_contrib,
+    
+    COALESCE(b.Best2Quiz / 200.0 * 10.0, 0) AS BQ_contrib
+  FROM core c
+  LEFT JOIN Best2_quiz b
+    ON b.Reg_no = c.Reg_no AND b.Sub_code = c.Sub_code
+),
+
+
+subject_ca AS (
+  SELECT
+    Reg_no,
+    Sub_code,
+    CASE Sub_code
+      WHEN 'ENG1222' THEN AS_contrib + MT_contrib
+      WHEN 'ICT1212' THEN BQ_contrib + MT_contrib + AS_contrib
+      WHEN 'ICT1222' THEN AS_contrib + MP_contrib              -- no BQ
+      WHEN 'ICT1233' THEN BQ_contrib + MP_contrib + AS_contrib
+      WHEN 'ICT1242' THEN BQ_contrib + MT_contrib + AS_contrib
+      WHEN 'ICT1253' THEN BQ_contrib + MP_contrib + AS_contrib
+      WHEN 'TCS1212' THEN BQ_contrib + AS_contrib + MT_contrib
+      WHEN 'TCS1233' THEN BQ_contrib + MT_contrib + AS_contrib
+      ELSE NULL
+    END AS ca_raw,
+    40 AS ca_max
+  FROM components
+),
+
+
+scaled AS (
+  SELECT
+    Reg_no,
+    Sub_code,
+    ROUND(
+      CASE
+        WHEN ca_raw IS NULL THEN 0
+        ELSE ca_raw * 40.0 / ca_max   -- identity
+      END, 2
+    ) AS ca_40
+  FROM subject_ca
+)
+
+
+SELECT
+  s.Reg_no,
+  COALESCE(MAX(CASE WHEN Sub_code='ENG1222' THEN ca_40 END), 0) AS ENG1222,
+  COALESCE(MAX(CASE WHEN Sub_code='ICT1212' THEN ca_40 END), 0) AS ICT1212,
+  COALESCE(MAX(CASE WHEN Sub_code='ICT1222' THEN ca_40 END), 0) AS ICT1222,
+  COALESCE(MAX(CASE WHEN Sub_code='ICT1233' THEN ca_40 END), 0) AS ICT1233,
+  COALESCE(MAX(CASE WHEN Sub_code='ICT1242' THEN ca_40 END), 0) AS ICT1242,
+  COALESCE(MAX(CASE WHEN Sub_code='ICT1253' THEN ca_40 END), 0) AS ICT1253,
+  COALESCE(MAX(CASE WHEN Sub_code='TCS1212' THEN ca_40 END), 0) AS TCS1212,
+  COALESCE(MAX(CASE WHEN Sub_code='TCS1233' THEN ca_40 END), 0) AS TCS1233
+FROM Student s
+LEFT JOIN scaled x
+  ON x.Reg_no = s.Reg_no
+GROUP BY s.Reg_no
+ORDER BY s.Reg_no;
+
+
+#############################################################################################
 
 
 
