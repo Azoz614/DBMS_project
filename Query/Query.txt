@@ -252,7 +252,7 @@ INSERT INTO Subject (Sub_code, Sub_name, Credit, Total_hours, Course_id, Lec_id)
 ('ICT1242', 'Computer Architecture', 2, 60, 'BICT', 'EMP0114'),
 ('ICT1253', 'Computer Networks', 3, 60, 'BICT', 'EMP0115'),
 ('TCS1212', 'Fundamentals of Management', 2, 60, 'BICT','EMP0102'), 
-('TCS1233', 'Discrete Mathematics', 3, 60, 'BICT', 'EMP0117');
+('TCS1233', 'Discrete Mathematics', 3, 60, 'BICT', 'EMP0101');
 
 
 
@@ -276,10 +276,7 @@ INSERT INTO Course_Subject (Course_id, Sub_code) VALUES
 ('BICT', 'ICT1253'),
 ('BICT', 'TCS1212'),
 ('BICT', 'TCS1233');
-('EMP0116','Temporary','ICT'),     
-('EMP0117','Permanant','ICT'),
-('EMP0118','Permanant','ICT'),
-('EMP0119','Permanant','ICT');
+
 
 
 
@@ -390,85 +387,115 @@ INSERT INTO Tech_officer (TO_id,Lab_assigned) VALUES
 
 
 
-CREATE TABLE Exam (Exam_code VARCHAR(10) PRIMARY KEY,
-    Exam_name VARCHAR(100) NOT NULL,
-    Hour INT,
-    Credit INT,
-    Sub_code VARCHAR(10),
-    FOREIGN KEY (Sub_code) REFERENCES Subject(Sub_code)
-);
-
-
-CREATE TABLE End_Theory (
+CREATE TABLE Exam (
     Exam_code VARCHAR(10) PRIMARY KEY,
-    Date DATE,
-    Location VARCHAR(30),
-    FOREIGN KEY (Exam_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
+    Exam_name VARCHAR(100) NOT NULL
 );
 
-INSERT INTO End_Theory (Exam_code, Date, Location) VALUES
-('EX004', '2025-08-20', 'Main Hall');
-
-
-
-CREATE TABLE End_Practical (
-    Exam_code VARCHAR(10) PRIMARY KEY,
-    Date DATE,
-    Location VARCHAR(30),
-    FOREIGN KEY (Exam_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
+INSERT INTO Exam(Exam_code,Exam_name) VALUES
+    ('Q1','Quiz1'),
+    ('Q2','Quiz2'),
+    ('Q3','Quiz3'),
+    ('AS','Assesment'),
+    ('MT','Mid Theory'),
+    ('MP','Mid Practical'),
+    ('ET','End Theory'),
+    ('EP','End Practical'
 );
 
-INSERT INTO End_Practical (Exam_code, Date, Location) VALUES
-('EX005', '2025-08-22', 'Database Lab');
-
-
+######################################     MID THEORY 
 
 CREATE TABLE Mid_Theory (
-    Exam_code VARCHAR(10) PRIMARY KEY,
-    Date DATE,
-    Location VARCHAR(30),
-    FOREIGN KEY (Exam_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
+    MT_code VARCHAR(10) PRIMARY KEY,
+    FOREIGN KEY (MT_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
 );
 
-INSERT INTO Mid_Theory (Exam_code, Date, Location) VALUES
-('EX002', '2025-05-15', 'NBSLT');
-
-
+#####################################     MID PRACTICAL 
 
 CREATE TABLE Mid_Practical (
-    Exam_code VARCHAR(10) PRIMARY KEY,
-    Date DATE,
-    Location VARCHAR(30),
-    FOREIGN KEY (Exam_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
+    MP_code VARCHAR(10) PRIMARY KEY,
+    FOREIGN KEY (MP_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
 );
 
-INSERT INTO Mid_Practical (Exam_code, Date, Location) VALUES
-('EX003', '2025-05-10', 'NLBT');
-
-
+#####################################       QUIZ
 
 CREATE TABLE Quiz (
-    Exam_code VARCHAR(10) PRIMARY KEY,
-    Date DATE,
-    Location VARCHAR(30),
-    FOREIGN KEY (Exam_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
+    Q_code VARCHAR(10) PRIMARY KEY,
+    FOREIGN KEY (Q_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
 );
 
-INSERT INTO Quiz (Exam_code, Date, Location) VALUES
-('EX006', '2025-05-06', 'NLBT'),
-('EX007', '2025-05-16', 'NLBT'),
-('EX008', '2025-05-26', 'NLBT');
+#####################################    END THEORY 
 
-
-CREATE TABLE Assessment (
-    Exam_code VARCHAR(10) PRIMARY KEY,
-    Date DATE,
-    Location VARCHAR(30),
-    FOREIGN KEY (Exam_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
+CREATE TABLE End_Theory (
+    ET_code VARCHAR(10) PRIMARY KEY,
+    FOREIGN KEY (ET_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
 );
 
-INSERT INTO Assessment (Exam_code, Date, Location) VALUES
-('EX009', '2025-05-15', 'NBSLT');
+#####################################     END PRACTICAL 
+
+CREATE TABLE End_Practical (
+    EP_code VARCHAR(10) PRIMARY KEY,
+    FOREIGN KEY (EP_code) REFERENCES Exam(Exam_code) ON DELETE CASCADE
+);
+
+#####################################     EXAM_SUBJECT
+
+CREATE TABLE Exam_Subject(
+    Exam_code VARCHAR(10),
+    Sub_code VARCHAR(10),
+    Date DATE,
+    Duration DECIMAL(3,2),
+    PRIMARY KEY (Exam_code,Sub_code,Date),
+    FOREIGN KEY (Exam_code) REFERENCES Exam (Exam_code),
+    FOREIGN KEY (Sub_code) REFERENCES Subject (Sub_code)
+);
+
+
+INSERT INTO Exam_Subject (Exam_code, Sub_code, Date, Duration) VALUES
+('Q1', 'ICT1212', '2025-07-01', 0.30),
+('Q1', 'ICT1233', '2025-07-02', 0.45),
+('Q1', 'ICT1242', '2025-07-03', 0.45),
+('Q1', 'ICT1253', '2025-07-04', 0.45),
+('Q1', 'TCS1212', '2025-07-05', 0.30),
+('Q1', 'TCS1233', '2025-07-06', 0.45),
+('Q2', 'ICT1212', '2025-08-08', 0.30),
+('Q2', 'ICT1233', '2025-08-09', 0.45),
+('Q2', 'ICT1242', '2025-08-10', 0.45),
+('Q2', 'ICT1253', '2025-08-11', 0.45),
+('Q2', 'TCS1212', '2025-08-12', 0.30),
+('Q2', 'TCS1233', '2025-08-13', 0.45),
+('Q3', 'ICT1212', '2025-10-15', 0.30),
+('Q3', 'ICT1233', '2025-10-16', 0.45),
+('Q3', 'ICT1242', '2025-10-17', 0.45),
+('Q3', 'ICT1253', '2025-10-18', 0.45),
+('Q3', 'TCS1212', '2025-10-19', 0.30),
+('Q3', 'TCS1233', '2025-10-20', 0.45),
+('AS', 'ENG1222', '2025-10-22', 0.30),
+('AS', 'ICT1212', '2025-10-23', 0.30),
+('AS', 'ICT1233', '2025-10-24', 0.45),
+('AS', 'ICT1242', '2025-10-25', 0.45),
+('AS', 'ICT1253', '2025-10-26', 0.45),
+('AS', 'TCS1212', '2025-10-27', 0.30),
+('AS', 'TCS1233', '2025-10-28', 0.45),
+('MT', 'ENG1222', '2025-09-29', 1.00),
+('MT', 'ICT1212', '2025-09-30', 2.00),
+('MT', 'ICT1242', '2025-09-30', 2.00),
+('MT', 'TCS1212', '2025-09-01', 3.00),
+('MT', 'TCS1233', '2025-09-02', 2.00),
+('MP', 'ICT1212', '2025-09-03', 1.00),
+('MP', 'ICT1233', '2025-09-04', 1.00),
+('MP', 'ICT1253', '2025-09-05', 2.00),
+('ET', 'ENG1222', '2025-11-06', 3.00),
+('ET', 'ICT1212', '2025-11-07', 3.00),
+('ET', 'ICT1233', '2025-11-08', 2.00),
+('ET', 'ICT1242', '2025-11-09', 1.00),
+('ET', 'ICT1253', '2025-11-10', 1.00),
+('ET', 'TCS1212', '2025-11-11', 2.00),
+('ET', 'TCS1233', '2025-11-12', 3.00),
+('EP', 'ICT1212', '2025-11-13', 3.00),
+('EP', 'ICT1233', '2025-11-14', 2.00),
+('EP', 'ICT1253', '2025-11-15', 1.00);
+
 
 
 
@@ -523,18 +550,7 @@ CREATE TABLE Lecturer_Subject (
         ON DELETE CASCADE
 );
 
-############################################################# Exam_Subject relation
-CREATE TABLE Exam_Subject (
-    Exam_code VARCHAR(10) NOT NULL,
-    Sub_code VARCHAR(10) NOT NULL,
-    PRIMARY KEY (Exam_code, Sub_code),
-    FOREIGN KEY (Exam_code) REFERENCES Exam(Exam_code)
-        ON UPDATE CASCADE
-        ON DELETE CASCADE,
-    FOREIGN KEY (Sub_code) REFERENCES Subject(Sub_code)
-        ON UPDATE CASCADE
-        ON DELETE CASCADE
-);
+
 
 ######################################################    Student_Subject relation
 CREATE TABLE Student_Subject (
@@ -631,7 +647,7 @@ FOREIGN KEY(Reg_no) REFERENCES Student(Reg_no)
 
 ############################################### MARKS TABLE
 
-CREATE TABLE Ma(Reg_no VARCHAR(12),
+CREATE TABLE Marks(Reg_no VARCHAR(12),
 Sub_code VARCHAR(10),
 Exam_code VARCHAR(10),
 Mark FLOAT,
