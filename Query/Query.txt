@@ -1314,5 +1314,56 @@ CALL final_student_whole_sub('TG/2023/1774');
 #############################################################################################################
 
 
+CREATE VIEW Medical_Per AS 
+SELECT
+    ss.Reg_no,
+    ROUND(
+        SUM(CASE 
+            WHEN ss.Status='Absent' AND m.Status='Approved' THEN s.Hour 
+            ELSE 0 
+        END) / SUM(s.Hour) * 100, 2
+    ) AS Medical_Per
+FROM Session_Student ss
+JOIN Session s
+    ON ss.Sub_code = s.Sub_code AND ss.Session_id = s.Session_id
+LEFT JOIN Medical m
+    ON ss.Reg_no = m.Reg_no AND ss.Sub_code = s.Sub_code AND s.Ses_date = m.Date_issued AND m.Status='Approved'
+GROUP BY ss.Reg_no;
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+CREATE PROCEDURE Attendance_indivitualS(IN p_reg_no VARCHAR(20))
+BEGIN  
+ 
+  SELECT ab.Sub_code,ab.Sub_name,ab.Total_Course_Hours,
+  ab.Attended_Hours,ab.Attendance_Percentage,mp.Medical_Per
+  FROM Attendance_AS_Type ab
+  JOIN Medical_Per mp ON mp.Reg_no=ab.Reg_no
+	WHERE ab.Reg_no=p_reg_no;
+   END//
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+DELIMITER //
+
+CREATE PROCEDURE Attendance_By_Subject(IN p_sub_code VARCHAR(10))
+BEGIN
+    SELECT 
+        ab.Reg_no,
+        ab.Total_Course_Hours,
+        ab.Attended_Hours,
+        ab.Attendance_Percentage
+    FROM Attendance_AS_Type ab
+    JOIN Medical_Per mp ON mp.Reg_no = ab.Reg_no
+    WHERE ab.Sub_code = p_sub_code
+    ORDER BY ab.Reg_no;
+END //
+
+DELIMITER ;
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   
