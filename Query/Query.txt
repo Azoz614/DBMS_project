@@ -522,6 +522,8 @@ INSERT INTO Medical (Med_id, Med_name, Status, Date_issued, Reason, Reg_no) VALU
  
 
 
+INSERT INTO Medical (Med_id, Med_name, Status, Date_issued, Reason, Reg_no) VALUES
+('MED006','Covid-19 Test Report','Approved','2025-07-02','Positive for COVID-19','TG/2023/1788');
 
 ################################## Relatives of Academic Staff
 CREATE TABLE Rel_academic(
