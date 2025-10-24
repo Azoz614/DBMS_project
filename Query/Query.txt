@@ -1136,5 +1136,148 @@ ORDER BY s.Reg_no;
 #############################################################################################
 
 
+CREATE OR REPLACE VIEW Attendance_Batch AS
+SELECT 
+    ss.Reg_no,
+    ROUND(SUM(CASE WHEN ss.Sub_code = 'ENG1222' THEN 
+        (CASE 
+            WHEN ss.Status='Present' THEN s.Hour
+            WHEN ss.Status='Absent' AND m.Status='Approved' THEN s.Hour
+            ELSE 0
+        END) / subj.Total_hours * 100 ELSE 0 END), 2) AS ENG1222,
+        
+    ROUND(SUM(CASE WHEN ss.Sub_code = 'ICT1212' THEN 
+        (CASE 
+            WHEN ss.Status='Present' THEN s.Hour
+            WHEN ss.Status='Absent' AND m.Status='Approved' THEN s.Hour
+            ELSE 0
+        END) / subj.Total_hours * 100 ELSE 0 END), 2) AS ICT1212,
+
+    ROUND(SUM(CASE WHEN ss.Sub_code = 'ICT1222' THEN 
+        (CASE 
+            WHEN ss.Status='Present' THEN s.Hour
+            WHEN ss.Status='Absent' AND m.Status='Approved' THEN s.Hour
+            ELSE 0
+        END) / subj.Total_hours * 100 ELSE 0 END), 2) AS ICT1222,
+		
+     ROUND(SUM(CASE WHEN ss.Sub_code = 'ICT1233' THEN 
+        (CASE 
+            WHEN ss.Status='Present' THEN s.Hour
+            WHEN ss.Status='Absent' AND m.Status='Approved' THEN s.Hour
+            ELSE 0
+        END) / subj.Total_hours * 100 ELSE 0 END), 2) AS ICT1233,
+		
+	ROUND(SUM(CASE WHEN ss.Sub_code = 'ICT1242' THEN 
+        (CASE 
+            WHEN ss.Status='Present' THEN s.Hour
+            WHEN ss.Status='Absent' AND m.Status='Approved' THEN s.Hour
+            ELSE 0
+        END) / subj.Total_hours * 100 ELSE 0 END), 2) AS ICT1242,
+		
+	ROUND(SUM(CASE WHEN ss.Sub_code = 'ICT1253' THEN 
+        (CASE 
+            WHEN ss.Status='Present' THEN s.Hour
+            WHEN ss.Status='Absent' AND m.Status='Approved' THEN s.Hour
+            ELSE 0
+        END) / subj.Total_hours * 100 ELSE 0 END), 2) AS ICT1253,
+		
+	
+	ROUND(SUM(CASE WHEN ss.Sub_code = 'TCS1212' THEN 
+        (CASE 
+            WHEN ss.Status='Present' THEN s.Hour
+            WHEN ss.Status='Absent' AND m.Status='Approved' THEN s.Hour
+            ELSE 0
+        END) / subj.Total_hours * 100 ELSE 0 END), 2) AS TCS1212,
+
+	ROUND(SUM(CASE WHEN ss.Sub_code = 'TCS1233' THEN 
+        (CASE 
+            WHEN ss.Status='Present' THEN s.Hour
+            WHEN ss.Status='Absent' AND m.Status='Approved' THEN s.Hour
+            ELSE 0
+        END) / subj.Total_hours * 100 ELSE 0 END), 2) AS TCS1233	
+
+FROM Session_Student ss
+JOIN Session s
+    ON ss.Sub_code = s.Sub_code AND ss.Session_id = s.Session_id
+JOIN Subject subj
+    ON ss.Sub_code = subj.Sub_code
+LEFT JOIN Medical m
+    ON ss.Reg_no = m.Reg_no AND s.Ses_date = m.Date_issued
+GROUP BY ss.Reg_no
+ORDER BY ss.Reg_no;
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+CREATE OR REPLACE VIEW Attendance_AS_Type  AS
+SELECT 
+    ss.Reg_no,
+    ss.Sub_code,
+	subj.Sub_name,
+    s.TYPE AS Session_Type,
+    SUM(CASE 
+            WHEN ss.Status='Present' THEN s.Hour
+            WHEN ss.Status='Absent' AND m.Status='Approved' THEN s.Hour
+            ELSE 0
+        END) AS Attended_Hours,
+    subj.Total_hours AS Total_Course_Hours,
+    ROUND(
+        (SUM(CASE 
+                WHEN ss.Status='Present' THEN s.Hour
+                WHEN ss.Status='Absent' AND m.Status='Approved' THEN s.Hour
+                ELSE 0
+            END) / subj.Total_hours) * 100, 2
+    ) AS Attendance_Percentage,
+    CASE
+        WHEN ROUND(
+            (SUM(CASE 
+                    WHEN ss.Status='Present' THEN s.Hour
+                    WHEN ss.Status='Absent' AND m.Status='Approved' THEN s.Hour
+                    ELSE 0
+                END) / subj.Total_hours) * 100, 2
+        ) >= 80 THEN 'Eligible'
+        ELSE 'Not Eligible'
+    END AS Eligibility
+FROM Session_Student ss
+JOIN Session s
+    ON ss.Sub_code = s.Sub_code AND ss.Session_id = s.Session_id
+JOIN Subject subj
+    ON ss.Sub_code = subj.Sub_code
+LEFT JOIN Medical m
+    ON ss.Reg_no = m.Reg_no AND s.Ses_date = m.Date_issued
+GROUP BY ss.Reg_no, ss.Sub_code, s.TYPE
+ORDER BY ss.Sub_code, ss.Reg_no, s.TYPE;
+
+
+////////////////////////////////////////////////////////////////////////////////////////
+
+
+CREATE PROCEDURE Attendance_By_Type(IN sub_code VARCHAR(10),IN p_type VARCHAR(25))
+BEGIN
+
+    IF p_type = 'Theory' THEN
+        SELECT Reg_no,Attended_Hours,Total_Course_Hours, Attendance_Percentage 
+        FROM Attendance_AS_Type
+        WHERE Session_Type = 'Theory' AND Sub_code=sub_code;
+        
+    ELSEIF p_type = 'Practical' THEN
+        SELECT Reg_no,Attended_Hours,Total_Course_Hours, Attendance_Percentage 
+        FROM Attendance_AS_Type
+        WHERE Session_Type = 'Practical' AND Sub_code=sub_code;
+        
+    ELSE
+        SELECT Reg_no,Attended_Hours,Total_Course_Hours, Attendance_Percentage  
+        FROM Attendance_AS_Type
+		WHERE Sub_code=sub_code;
+    END IF;
+END //
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
 
   
