@@ -1022,9 +1022,4 @@ INSERT INTO Marks (Reg_no, Sub_code, Exam_code, Mark, Type) VALUES
 
 
 
-
-
-
-
-
   
