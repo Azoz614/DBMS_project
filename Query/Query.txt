@@ -75,51 +75,8 @@ INSERT INTO academic_staff(Staff_id,F_name,L_name,NIC_number,Appoint_date,Addres
 
 
 
-CREATE TABLE faculty(Fac_id VARCHAR(5) PRIMARY KEY,
-Fac_name VARCHAR(30) NOT NULL,
-Dean VARCHAR(10));
-
-INSERT INTO faculty(Fac_id,Fac_name,Dean) VALUES('FAC07','Faculty of Technology','EMP0043');
 
 
-CREATE TABLE Department(Dep_id VARCHAR(5) PRIMARY KEY,
-Dep_name VARCHAR(20) NOT NULL,
-HOD VARCHAR(10) NOT NULL,
-Fac_id VARCHAR(5) NOT NULL,
-FOREIGN KEY(Fac_id) REFERENCES faculty(Fac_id) ON DELETE CASCADE);
-
-INSERT INTO department(Dep_id,Dep_name,HOD,Fac_id) VALUES
-('ICT','Information and Communication Technology','EMP0101','FAC07'),
-('BST','Bio System Technology','EMP0110','FAC07'),
-('ET','Engineering Technology','EMP0121','FAC07');  -- FIXED: "Engneering" → "Engineering"
-
-
-CREATE TABLE academic_staff(Staff_id VARCHAR(10) PRIMARY KEY,
-F_name VARCHAR(20) NOT NULL,
-L_name VARCHAR(20) NOT NULL,
-NIC_number VARCHAR(15) NOT NULL,
-Appoint_date DATE NOT NULL,
-Address VARCHAR(40),
-Gender ENUM('Male','Female') NOT NULL,
-Status ENUM('Working','Not_Working') DEFAULT 'Working',
-Fac_id VARCHAR(5) NOT NULL,
-FOREIGN KEY(Fac_id) REFERENCES faculty(Fac_id) ON DELETE CASCADE);
-
-INSERT INTO academic_staff(Staff_id,F_name,L_name,NIC_number,Appoint_date,Address,Gender,Fac_id) VALUES
-('EMP0110', 'Chamari', 'Abeykoon', '742345678V', '2010-03-15', 'No. 12, Lake Road, Kandy', 'Female','FAC07'),
-('EMP0121', 'Dilani', 'Senanayake', '682345678V', '2008-07-22', '45/3, Temple Lane, Galle', 'Female','FAC07'),
-('EMP0101', 'Dinesh', 'Wickramasinghe', '792345678V', '2010-12-03', '19, Riverside Lane, Hambantota', 'Male','FAC07'),
-('EMP0111', 'Malsha', 'Wijesinghe', '752345678V', '2012-01-10', '88, Rose Garden, Matara', 'Female','FAC07'),
-('EMP0112', 'Ruwanthi', 'De Silva', '198412345678', '2015-06-05', '23, Palm Street, Colombo 07', 'Female','FAC07'),
-('EMP0102', 'Ishara', 'Fernando', '812345678V', '2011-09-18', '17, Ocean View, Negombo', 'Female','FAC07'),
-('EMP0043', 'Nuwan', 'Perera', '197845678901', '2009-02-12', '10, Hill Crest, Kurunegala', 'Male','FAC07'),
-('EMP0113', 'Tharindu', 'Jayasinghe', '198212345678', '2013-11-30', '56, Lotus Avenue, Anuradhapura', 'Male','FAC07'),
-('EMP0114', 'Kasun', 'Rathnayake', '198512345678', '2014-08-25', '34, Sunrise Road, Badulla', 'Male','FAC07'),
-('EMP0115', 'Tharindu', 'Jayasinghe', '198212345678', '2013-11-30', '56, Lotus Avenue, Anuradhapura', 'Male','FAC07'),
-('EMP0116', 'Dilani', 'Senanayake', '682345678V', '2008-07-22', '45/3, Temple Lane, Galle', 'Female','FAC07'),
-('EMP0117', 'Sanjeewa', 'Gunawardena', '197912345678', '2007-04-19', '78, Green Park, Nuwara Eliya', 'Male','FAC07'),
-('EMP0118', 'Malsha', 'Wijesinghe', '752345678V', '2009-01-10', '88, Rose Garden, Matara', 'Female','FAC07'),
-('EMP0119', 'Dinesh', 'Wickramasinghe', '792345678V', '2008-12-03', '19, Riverside Lane, Hambantota', 'Male','FAC07');
 CREATE TABLE Ac_staff_contuct(Contuct_id INT PRIMARY KEY AUTO_INCREMENT,
 Staff_id VARCHAR(10),
 Phone_number VARCHAR(13) NOT NULL,
@@ -555,6 +512,7 @@ INSERT INTO Course_Subject (Course_id, Sub_code) VALUES
 
 
 INSERT INTO Student(Reg_no,F_name,L_name,NIC,Batch,Address,Gender,E_mail,DOB,Course_id,Dep_id) VALUES
+('TG/2023/1774','Umeskanth','Ashokan','200323311520','2022/2023','School road,Batticaloa','Male','ovioviumes2003@gmail.com','2003-08-20','BICT','ICT')
 ('TG/2023/1775','Nivethan','Rajkumar','200323311521','2022/2023','Main Street, Jaffna','Male','nivethan.rk@gmail.com','2003-07-15','BICT','ICT'),
 ('TG/2023/1776','Kavindya','Perera','200323311522','2022/2023','Lake View, Kandy','Female','kavindya.perera@gmail.com','2003-09-10','BICT','ICT'),
 ('TG/2023/1777','Tharindu','Senanayake','200323311523','2022/2023','Temple Road, Galle','Male','tharindu.sena@gmail.com','2003-06-25','BICT','ICT'),
@@ -771,8 +729,7 @@ CREATE TABLE Student_Sports (
 			FOREIGN KEY(Reg_no) REFERENCES Student(Reg_no)
 <<<<<<< HEAD
 			);
-=======
-			);
+
 
 
 
