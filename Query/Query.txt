@@ -1190,7 +1190,7 @@ INSERT INTO Course_Value (Sub_code, Component, Weight) VALUES
 ('TCS1233','Best_2_Quiz',10), ('TCS1233','MT',25), ('TCS1233','AS',5);
 
 #####################################################################################
-CREATE OR REPLACE VIEW v_best2_quiz AS
+CREATE OR REPLACE VIEW Best2_quiz AS
 SELECT
   Reg_no,
   Sub_code,
@@ -1211,7 +1211,54 @@ GROUP BY Reg_no, Sub_code;
 
 ###########################################################################################
 
+CREATE OR REPLACE VIEW Components_raw AS
 
+SELECT Reg_no, Sub_code, 'AS' AS Component,
+       MAX(CASE WHEN Exam_code='AS' THEN Mark END) AS Raw
+FROM Marks
+GROUP BY Reg_no, Sub_code
+
+UNION ALL
+
+SELECT Reg_no, Sub_code, 'MT' AS Component,
+       MAX(CASE WHEN Exam_code='MT' THEN Mark END)
+FROM Marks
+GROUP BY Reg_no, Sub_code
+
+UNION ALL
+
+SELECT Reg_no, Sub_code, 'MP' AS Component,
+       MAX(CASE WHEN Exam_code='MP' THEN Mark END)
+FROM Marks
+GROUP BY Reg_no, Sub_code
+
+UNION ALL
+
+SELECT b.Reg_no, b.Sub_code, 'Best_2_Quiz' AS Component, b.Best2Quiz AS Raw
+FROM v_best2_quiz b;
+
+####################################################################################
+CREATE OR REPLACE VIEW Scaled_components AS
+SELECT
+  r.Reg_no,
+  r.Sub_code,
+  r.Component,
+  COALESCE(r.Raw, 0) AS Raw_Mark,
+  cv.Weight,
+  ROUND(
+    CASE
+      WHEN r.Component = 'Best_2_Quiz'
+        THEN (COALESCE(r.Raw,0)/200) * COALESCE(cv.Weight,0)
+      ELSE
+        (COALESCE(r.Raw,0)/100) * COALESCE(cv.Weight,0)
+    END
+  , 2) AS Scaled_Contribution
+FROM v_components_raw r
+LEFT JOIN Course_Value cv
+  ON cv.Sub_code = r.Sub_code
+ AND cv.Component = r.Component;
+
+######################################################################################
 CREATE OR REPLACE VIEW Attendance_batch  AS
     SELECT
     ss.Reg_no,
