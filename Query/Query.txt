@@ -1212,6 +1212,70 @@ GROUP BY Reg_no, Sub_code;
 ###########################################################################################
 
 
+CREATE OR REPLACE VIEW Attendance_batch  AS
+    SELECT
+    ss.Reg_no,
+    ss.Sub_code,
+    subj.Sub_name,
+    SUM(CASE 
+            WHEN ss.Status='Present' THEN s.Hour
+            WHEN ss.Status='Absent' AND m.Status='Approved' s.Hour
+            ELSE 0
+        END) AS Attended_Hours,
+    subj.Total_hours AS Total_Course_Hours,
+    ROUND(
+        (SUM(CASE 
+                WHEN ss.Status='Present' THEN s.Hour
+                WHEN ss.Status='Absent' AND m.Status='Approved' THEN s.Hour
+                ELSE 0
+            END) / subj.Total_hours) * 100, 2
+    ) AS Attendance_Percentage,
+    CASE
+        WHEN ROUND(
+            (SUM(CASE 
+                    WHEN ss.Status='Present' THEN s.Hour
+                    WHEN ss.Status='Absent' AND m.Status='Approved' THEN s.Hour
+                    ELSE 0
+                END) / subj.Total_hours) * 100, 2
+        ) >= 80 THEN 'Eligible'
+        ELSE 'Not Eligible'
+    END AS Eligibility
+FROM Session_Student ss
+JOIN Session s
+    ON ss.Sub_code = s.Sub_code AND ss.Session_id = s.Session_id
+JOIN Subject subj
+    ON ss.Sub_code = subj.Sub_code
+LEFT JOIN Medical m
+    ON ss.Reg_no = m.Reg_no AND s.Ses_date = m.Date_issued
+GROUP BY ss.Reg_no, ss.Sub_code
+ORDER BY ss.Sub_code, ss.Reg_no;
+
+
+
+CREATE PROCEDURE Attendance_indivitual(IN p_reg_no VARCHAR(10))
+BEGIN  
+  SELECT * FROM Attendance_batch
+	WHERE Reg_no=p_reg_no;
+   END//
+ 
+
+
+
+
+ 
+  CREATE PROCEDURE Attendance_By_cource(IN p_sub_code VARCHAR(10))
+BEGIN  
+  SELECT *
+  FROM Attendance_batch
+	WHERE Sub_code=p_sub_code;
+   END//
+   
+   
+   
+   
+   DELIMITER //
+
+
 
 
 
