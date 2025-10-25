@@ -1280,7 +1280,7 @@ END //
 
 
 
-DELIMITER $$
+DELIMITER //
 
 CREATE PROCEDURE final_student_whole_sub(IN p_reg_no VARCHAR(12))
 BEGIN
@@ -1308,7 +1308,7 @@ BEGIN
   SELECT 
   'TCS1233' AS Sub_code, TCS1233 AS CA_total FROM whole_batch_CA WHERE Reg_no = p_reg_no
   ORDER BY Sub_code;
-END $$
+END //
 
 DELIMITER ;
 CALL final_student_whole_sub('TG/2023/1774');
