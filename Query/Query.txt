@@ -3564,7 +3564,50 @@ CREATE VIEW whole_batch_summary AS
 
 #####################################################################################################################
 
+VIEW ATTANDANCE BY COURSE TYPE
 
+
+
+DELIMITER //
+
+CREATE PROCEDURE Attendance_By_Type(IN sub_code VARCHAR(10),IN p_type VARCHAR(25))
+BEGIN
+           IF p_type = 'Theory' THEN
+                 SELECT DISTINCT 
+                       am.Reg_no,am.Sub_code,s.TYPE,
+                       am.Total_Lessons_Hour AS Total_hrs, am.Participate_Hour,
+                       am.Accepted_Medical_Hour AS Medical_hour, am.Medical_Percentage,
+                        am.Total_Attendance_Percentage AS Percentage
+                  FROM View_Attendance_Summary AM
+                  JOIN Session s ON s.Sub_code=am.Sub_code
+                    WHERE s.TYPE = 'Theory' AND s.Sub_code=sub_code;
+                     
+         ELSEIF p_type = 'Practical' THEN
+                 SELECT DISTINCT
+                    am.Reg_no,am.Sub_code,s.TYPE,
+                    am.Total_Lessons_Hour AS Total_hrs, am.Participate_Hour,
+                  am.Accepted_Medical_Hour AS Medical_hour, 
+                    am.Medical_Percentage,am.Total_Attendance_Percentage AS Percentage
+                  FROM View_Attendance_Summary AM
+                  JOIN Session s ON s.Sub_code=am.Sub_code
+                    WHERE s.TYPE = 'Theory' AND s.Sub_code=sub_code;
+                    
+       ELSE
+            SELECT DISTINCT
+                  am.Reg_no,am.Sub_code,s.TYPE,
+                  am.Total_Lessons_Hour AS Total_hrs, am.Participate_Hour,
+                  am.Accepted_Medical_Hour AS Medical_hour, 
+                  am.Medical_Percentage,am.Total_Attendance_Percentage AS Percentage
+                  FROM View_Attendance_Summary AM
+                  JOIN Session s ON s.Sub_code=am.Sub_code
+                    WHERE s.Sub_code=sub_code;
+             END IF;
+END // 
+
+DELIMITER ;
+
+
+###################################################################################################################
 
 
 
