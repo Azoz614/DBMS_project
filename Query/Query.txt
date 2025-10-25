@@ -3608,8 +3608,20 @@ DELIMITER ;
 
 
 ###################################################################################################################
+VIEW ATTANDENTACE INDIVITUAL
 
+DELIMITER //
 
+CREATE PROCEDURE Attendance_indivitualS(IN p_reg_no VARCHAR(20))
+BEGIN  
+ SELECT Sub_code,Total_Lessons_Hour,Participate_Hour,Accepted_Medical_Hour,Medical_Percentage,Total_Attendance_Percentage
+ FROM View_Attendance_Summary
+	WHERE Reg_no=p_reg_no;
+   END//
+
+DELIMITER ;
+
+#####################################################################################################################
 
 
 
