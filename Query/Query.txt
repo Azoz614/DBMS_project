@@ -3552,6 +3552,17 @@ ORDER BY ss.Reg_no, st.Sub_code;
 
 
 ########################################################################################################################
+WHOLE BATCH SUMMARY
+
+
+CREATE VIEW whole_batch_summary AS 
+   SELECT Reg_no,Sub_code,Total_Lessons_Hour AS Total_hrs, Participate_Hour,
+   Accepted_Medical_Hour AS Medical_hour, Medical_Percentage,Total_Attendance_Percentage AS Percentage
+   FROM View_Attendance_Summary;
+
+
+
+#####################################################################################################################
 
 
 
