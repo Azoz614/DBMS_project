@@ -651,7 +651,6 @@ INSERT INTO Marks (Reg_no, Sub_code, Exam_code, Mark, Type) VALUES
 ('TG/2023/1774', 'ICT1233', 'Q3', 60, 'Proper'),
 ('TG/2023/1774', 'ICT1242', 'AS', 80, 'Proper'),
 ('TG/2023/1774', 'ICT1242', 'ET', 85, 'Proper'),
-('TG/2023/1774', 'ICT1242', 'MT', 80, 'Proper'),
 ('TG/2023/1774', 'ICT1242', 'Q1', 60, 'Proper'),
 ('TG/2023/1774', 'ICT1242', 'Q2', 80, 'Proper'),
 ('TG/2023/1774', 'ICT1242', 'Q3', 50, 'Proper'),
