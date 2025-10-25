@@ -359,20 +359,7 @@ INSERT INTO Student(Reg_no,F_name,L_name,NIC,Batch,Address,Gender,E_mail,DOB,Cou
 
 #########################################################################
 
-INSERT INTO Student (Reg_no,F_name,L_name,NIC,Batch,Address,Gender,E_mail,DOB,Course_id,Dep_id)
-VALUES ('TG/2023/1774','<First>','<Last>','200323311520','2022/2023',
-        '<Address>','Male','tg1774@example.com','2003-07-01','BICT','ICT');
 
-
-INSERT INTO Subject (Sub_code, Sub_name, Credit, Total_hours)
-VALUES ('ICT1222','Programming Fundamentals',2,30)
-ON DUPLICATE KEY UPDATE Sub_name = VALUES(Sub_name);
-
-
-INSERT IGNORE INTO Exam (Exam_code, Exam_name) VALUES
-('Q1','Quiz1'),('Q2','Quiz2'),('Q3','Quiz3'),
-('AS','Assessment'),('MT','Mid Theory'),('MP','Mid Practical'),
-('ET','End Theory'),('EP','End Practical');
 
 #######################################################################
 
@@ -396,42 +383,9 @@ INSERT INTO Course_Subject (Course_id, Sub_code) VALUES
 ('BICT', 'TCS1212'),
 ('BICT', 'TCS1233');
 
-INSERT INTO Student (Reg_no,F_name,L_name,NIC,Batch,Address,Gender,E_mail,DOB,Course_id,Dep_id)
-VALUES ('TG/2023/1774','<First>','<Last>','200323311520','2022/2023',
-        '<Address>','Male','tg1774@example.com','2003-07-01','BICT','ICT');
-
-
-INSERT INTO Subject (Sub_code, Sub_name, Credit, Total_hours)
-VALUES ('ICT1222','Programming Fundamentals',2,30)
-ON DUPLICATE KEY UPDATE Sub_name = VALUES(Sub_name);
-
-
-INSERT IGNORE INTO Exam (Exam_code, Exam_name) VALUES
-('Q1','Quiz1'),('Q2','Quiz2'),('Q3','Quiz3'),
-('AS','Assessment'),('MT','Mid Theory'),('MP','Mid Practical'),
-('ET','End Theory'),('EP','End Practical');
+I
 
 ############################################################################################
-CREATE TABLE Course_Value (
-  Sub_code   VARCHAR(20),
-  Component  VARCHAR(50),
-  Weight     DECIMAL(5,2) NOT NULL,
-  PRIMARY KEY (Sub_code, Component),
-  FOREIGN KEY (Sub_code)
-    REFERENCES Subject(Sub_code)
-    ON UPDATE CASCADE
-    ON DELETE CASCADE
-);
-
-INSERT INTO Course_Value (Sub_code, Component, Weight) VALUES
-('ENG1222','AS',20), ('ENG1222','MT',20),
-('ICT1212','Best_2_Quiz',10), ('ICT1212','MT',30),
-('ICT1222','Best_2_Quiz',0),  ('ICT1222','AS',20), ('ICT1222','MP',20),
-('ICT1233','Best_2_Quiz',10), ('ICT1233','MP',10), ('ICT1233','AS',20),
-('ICT1242','Best_2_Quiz',10), ('ICT1242','MT',25), ('ICT1242','AS',5),
-('ICT1253','Best_2_Quiz',10), ('ICT1253','MP',20), ('ICT1253','AS',10),
-('TCS1212','Best_2_Quiz',10), ('TCS1212','AS',10), ('TCS1212','MT',20),
-('TCS1233','Best_2_Quiz',10), ('TCS1233','MT',25), ('TCS1233','AS',5);
 
 
 
@@ -466,19 +420,112 @@ CREATE TABLE Medical (
   )
 );
 ///////////////////////////////////////////////////////////////////////////////////////
-INSERT INTO Medical 
-(Med_id, start_date, end_date, submitted_date, Status, Reason, Reg_no, Approved_by)
-VALUES
-('MED001','2025-03-01','2025-03-05','2025-03-10','Approved','High fever','TG/2023/1775','EMP0110'),
-('MED002','2025-04-10','2025-04-14','2025-04-25','pending','Waiting for doctor confirmation','TG/2023/1776',NULL),
-('MED003','2025-05-01','2025-05-04','2025-05-10','Approved','Sports injury','TG/2023/1780','EMP0121'),
-('MED004','2025-02-15','2025-02-20','2025-02-25','Approved','Positive for COVID-19','TG/2023/1784','EMP0101'),
-('MED005','2025-07-10','2025-07-14','2025-07-20','Approved','Minor operation recovery','TG/2023/1782','EMP0102'),
-('MED006','2025-07-01','2025-07-05','2025-07-25','Not approved','Late submission','TG/2023/1779',NULL),
-('MED007','2025-06-05','2025-06-08','2025-06-20','pending','Under medical review','TG/2023/1778',NULL),
-('MED008','2025-08-01','2025-08-05','2025-08-15','Approved','Severe allergy reaction','TG/2021/1455','EMP0114'),
-('MED009','2025-09-01','2025-09-03','2025-09-30','pending','Awaiting approval','TG/2021/1452',NULL),
-('MED010','2025-03-10','2025-03-14','2025-04-10','Not approved','Missing documents','TG/2023/1781',NULL);
+CREATE OR REPLACE VIEW whole_batch_CA AS
+WITH
+
+Best2_quiz AS (
+  SELECT
+    Reg_no,
+    Sub_code,
+    (
+      COALESCE(MAX(CASE WHEN Exam_code='Q1' THEN Mark END), 0) +
+      COALESCE(MAX(CASE WHEN Exam_code='Q2' THEN Mark END), 0) +
+      COALESCE(MAX(CASE WHEN Exam_code='Q3' THEN Mark END), 0)
+    )
+    -
+    LEAST(
+      COALESCE(MAX(CASE WHEN Exam_code='Q1' THEN Mark END), 0),
+      COALESCE(MAX(CASE WHEN Exam_code='Q2' THEN Mark END), 0),
+      COALESCE(MAX(CASE WHEN Exam_code='Q3' THEN Mark END), 0)
+    ) AS Best2Quiz
+  FROM Marks
+  WHERE Exam_code IN ('Q1','Q2','Q3')
+  GROUP BY Reg_no, Sub_code
+),
+
+
+core AS (
+  SELECT
+    Reg_no,
+    Sub_code,
+    COALESCE(MAX(CASE WHEN Exam_code='AS' THEN Mark END), 0) AS AS_raw,
+    COALESCE(MAX(CASE WHEN Exam_code='MT' THEN Mark END), 0) AS MT_raw,
+    COALESCE(MAX(CASE WHEN Exam_code='MP' THEN Mark END), 0) AS MP_raw
+  FROM Marks
+  GROUP BY Reg_no, Sub_code
+),
+
+
+components AS (
+  SELECT
+    c.Reg_no,
+    c.Sub_code,
+    
+    COALESCE(
+      CASE WHEN c.Sub_code IN ('ENG1222','ICT1222')
+           THEN c.AS_raw * 0.20
+           ELSE c.AS_raw * 0.10
+      END, 0
+    ) AS AS_contrib,
+    COALESCE(c.MT_raw * 0.20, 0) AS MT_contrib,
+    COALESCE(c.MP_raw * 0.20, 0) AS MP_contrib,
+    
+    COALESCE(b.Best2Quiz / 200.0 * 10.0, 0) AS BQ_contrib
+  FROM core c
+  LEFT JOIN Best2_quiz b
+    ON b.Reg_no = c.Reg_no AND b.Sub_code = c.Sub_code
+),
+
+
+subject_ca AS (
+  SELECT
+    Reg_no,
+    Sub_code,
+    CASE Sub_code
+      WHEN 'ENG1222' THEN AS_contrib + MT_contrib
+      WHEN 'ICT1212' THEN BQ_contrib + MT_contrib + AS_contrib
+      WHEN 'ICT1222' THEN AS_contrib + MP_contrib            
+      WHEN 'ICT1233' THEN BQ_contrib + MP_contrib + AS_contrib
+      WHEN 'ICT1242' THEN BQ_contrib + MT_contrib + AS_contrib
+      WHEN 'ICT1253' THEN BQ_contrib + MP_contrib + AS_contrib
+      WHEN 'TCS1212' THEN BQ_contrib + AS_contrib + MT_contrib
+      WHEN 'TCS1233' THEN BQ_contrib + MT_contrib + AS_contrib
+      ELSE NULL
+    END AS ca_raw,
+    40 AS ca_max
+  FROM components
+),
+
+
+scaled AS (
+  SELECT
+    Reg_no,
+    Sub_code,
+    ROUND(
+      CASE
+        WHEN ca_raw IS NULL THEN 0
+        ELSE ca_raw * 40.0 / ca_max   
+      END, 2
+    ) AS ca_40
+  FROM subject_ca
+)
+
+
+SELECT
+  s.Reg_no,
+  COALESCE(MAX(CASE WHEN Sub_code='ENG1222' THEN ca_40 END), 0) AS ENG1222,
+  COALESCE(MAX(CASE WHEN Sub_code='ICT1212' THEN ca_40 END), 0) AS ICT1212,
+  COALESCE(MAX(CASE WHEN Sub_code='ICT1222' THEN ca_40 END), 0) AS ICT1222,
+  COALESCE(MAX(CASE WHEN Sub_code='ICT1233' THEN ca_40 END), 0) AS ICT1233,
+  COALESCE(MAX(CASE WHEN Sub_code='ICT1242' THEN ca_40 END), 0) AS ICT1242,
+  COALESCE(MAX(CASE WHEN Sub_code='ICT1253' THEN ca_40 END), 0) AS ICT1253,
+  COALESCE(MAX(CASE WHEN Sub_code='TCS1212' THEN ca_40 END), 0) AS TCS1212,
+  COALESCE(MAX(CASE WHEN Sub_code='TCS1233' THEN ca_40 END), 0) AS TCS1233
+FROM Student s
+LEFT JOIN scaled x
+  ON x.Reg_no = s.Reg_no WHERE s.Dep_id='ICT' AND s.Batch='2022/2023'
+GROUP BY s.Reg_no
+ORDER BY s.Reg_no;
 
 //////////////////////////////////////////////////////////////////////
 
