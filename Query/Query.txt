@@ -1475,7 +1475,7 @@ Lec_id VARCHAR(10),
 Session_name VARCHAR(20),
 Hour INT,
 Ses_date DATE,
-TYPE ENUM('Theory','Absent'),
+TYPE ENUM('Theory','Absent','Practical'),
 PRIMARY KEY(Sub_code, Session_id),
 FOREIGN KEY(Sub_code) REFERENCES Subject(Sub_code)
 ON DELETE CASCADE ON UPDATE CASCADE,
