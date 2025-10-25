@@ -3221,55 +3221,7 @@ VALUES
 ('ICT1242','S015','TG/2023/1783','Present'),
 ('ICT1242','S015','TG/2023/1774','Present');
 
-<<<<<<< HEAD
 
-
-=======
-#######################################################################################   Medical TABLE 
-
-
-CREATE TABLE Medical (
-  Med_id         VARCHAR(10)  PRIMARY KEY,
-  start_date     DATE         NOT NULL,
-  end_date       DATE         NOT NULL,
-  submitted_date DATE         NOT NULL,
-  Status         ENUM('pending','Approved','Not approved')
-                 NOT NULL DEFAULT 'pending',
-  Reason         VARCHAR(60),
-  Reg_no         VARCHAR(12)  NOT NULL,
-  Approved_by    VARCHAR(10)  NULL,
-
- 
-  FOREIGN KEY (Reg_no) REFERENCES Student(Reg_no)
-      ON DELETE CASCADE
-	  ON UPDATE CASCADE,
-
-  CONSTRAINT check_approvedby CHECK (
-    (Status = 'Approved' AND Approved_by IS NOT NULL)
-    OR (Status IN ('pending','Not approved') AND Approved_by IS NULL)
-  ),
-
-  CONSTRAINT check_submit_within_14days CHECK (
-    (Status = 'Approved' AND submitted_date <= DATE_ADD(end_date, INTERVAL 14 DAY))
-    OR (Status IN ('pending','Not approved'))
-  )
-);
-
-
-INSERT INTO Medical 
-(Med_id, start_date, end_date, submitted_date, Status, Reason, Reg_no, Approved_by)
-VALUES
-('MED001','2025-08-18','2025-08-18','2025-08-22','Approved','High fever','TG/2023/1775','EMP0110'),
-('MED002','2025-08-25','2025-08-25','2025-08-31','Approved','Sports injury','TG/2023/1776','EMP0121'),
-('MED003','2025-10-14','2025-10-14','2025-10-30','pending','Waiting for doctor confirmation','TG/2023/1776',NULL),
-('MED004','2025-10-06','2025-10-06','2025-10-10','Approved','Positive for COVID-19','TG/2023/1784','EMP0101'),
-('MED006','2025-08-11','2025-08-11','2025-08-25','Not approved','Late submission','TG/2023/1777',NULL),
-('MED007','2025-09-22','2025-09-22','2025-10-03','pending','Under medical review','TG/2023/1779',NULL),
-('MED008','2025-08-04','2025-08-05','2025-08-12','Approved','Severe allergy reaction','TG/2023/1780','EMP0114'),
-('MED009','2025-10-22','2025-10-22','2025-10-30','pending','Awaiting approval','TG/2023/1781',NULL),
-('MED010','2025-10-17','2025-10-17','2025-10-20','Approved','Missing documents','TG/2023/1779','EMP0110'),
-('MED011','2025-08-12','2025-08-12','2025-08-20','Approved','headache','TG/2023/1777','EMP0110');
->>>>>>> 4a018ad8487f5fa8913efa522dbdc5553c929a7a
 
 
 
