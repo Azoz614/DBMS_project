@@ -3480,6 +3480,81 @@ GROUP BY s.Reg_no
 ORDER BY s.Reg_no;
 
 ########################################################################################################
+VIEW ATTANDENCE SUMMARY
+
+
+CREATE OR REPLACE VIEW View_Attendance_Summary AS
+WITH Approved_Medical AS (
+    SELECT Reg_no, start_date, end_date
+    FROM Medical
+    WHERE Status = 'Approved'
+),
+Subject_Total_Hours AS (
+    SELECT
+        Sub_code,
+        COALESCE(SUM(Hour),0) AS Total_Lessons_Hour
+    FROM Session
+    GROUP BY Sub_code
+),
+Session_With_Attendance AS (
+    SELECT
+        ss.Reg_no,
+        s.Sub_code,
+        s.Session_id,
+        s.Hour,
+        s.Ses_date,
+        ss.Status,
+        CASE
+            WHEN am.Reg_no IS NOT NULL
+                 AND ss.Status = 'Absent'
+                 AND s.Ses_date BETWEEN am.start_date AND am.end_date
+            THEN 1 ELSE 0
+        END AS Is_Medical
+    FROM Session_Student ss
+    JOIN Session s
+      ON ss.Sub_code = s.Sub_code
+     AND ss.Session_id = s.Session_id
+    LEFT JOIN Approved_Medical am
+      ON ss.Reg_no = am.Reg_no
+     AND s.Ses_date BETWEEN am.start_date AND am.end_date
+),
+Student_Summary AS (
+    SELECT
+        swa.Reg_no,
+        swa.Sub_code,
+        SUM(CASE WHEN swa.Status = 'Present' THEN swa.Hour ELSE 0 END) AS Participate_Hour,
+        SUM(CASE WHEN swa.Is_Medical = 1 AND swa.Status = 'Absent' THEN swa.Hour ELSE 0 END) AS Total_Medical_Submitted_Hour
+    FROM Session_With_Attendance swa
+    GROUP BY swa.Reg_no, swa.Sub_code
+)
+SELECT
+    ss.Reg_no,
+    st.Sub_code,
+    subj.Sub_name,
+    st.Total_Lessons_Hour,
+    COALESCE(ss.Participate_Hour, 0) AS Participate_Hour,
+    COALESCE(ss.Total_Medical_Submitted_Hour, 0) AS Total_Medical_Submitted_Hour,
+    LEAST(COALESCE(ss.Total_Medical_Submitted_Hour,0), ROUND(0.2 * st.Total_Lessons_Hour, 2)) AS Accepted_Medical_Hour,
+    GREATEST(COALESCE(ss.Total_Medical_Submitted_Hour,0) - LEAST(COALESCE(ss.Total_Medical_Submitted_Hour,0), ROUND(0.2 * st.Total_Lessons_Hour, 2)), 0) AS Ignored_Medical_Hour,
+    ROUND(
+      (LEAST(COALESCE(ss.Total_Medical_Submitted_Hour,0), 0.2 * st.Total_Lessons_Hour) / NULLIF(st.Total_Lessons_Hour,0)) * 100
+    , 2) AS Medical_Percentage,
+    ROUND(
+      ( (COALESCE(ss.Participate_Hour,0) + LEAST(COALESCE(ss.Total_Medical_Submitted_Hour,0), 0.2 * st.Total_Lessons_Hour))
+        / NULLIF(st.Total_Lessons_Hour,0)
+      ) * 100
+    , 2) AS Total_Attendance_Percentage
+FROM Subject_Total_Hours st
+JOIN Subject subj ON st.Sub_code = subj.Sub_code
+LEFT JOIN Student_Summary ss ON st.Sub_code = ss.Sub_code
+ORDER BY ss.Reg_no, st.Sub_code;
+
+
+
+########################################################################################################################
+
+
+
 
 
 
