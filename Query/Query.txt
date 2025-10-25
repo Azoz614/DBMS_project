@@ -991,7 +991,7 @@ INSERT INTO Marks (Reg_no, Sub_code, Exam_code, Mark, Type) VALUES
 
 
 
-##############################################################################
+############################################################################## VIEE CA WHOLE BATCH
 
 
    
@@ -1079,7 +1079,7 @@ scaled AS (
     ROUND(
       CASE
         WHEN ca_raw IS NULL THEN 0
-        ELSE ca_raw * 40.0 / ca_max   -- identity
+        ELSE ca_raw * 40.0 / ca_max   
       END, 2
     ) AS ca_40
   FROM subject_ca
@@ -1103,7 +1103,7 @@ GROUP BY s.Reg_no
 ORDER BY s.Reg_no;
 
 
-#############################################################################################
+#############################################################################################   ATTENDANCE VIEW
 
 
 CREATE OR REPLACE VIEW Attendance_Batch AS
@@ -1176,7 +1176,11 @@ LEFT JOIN Medical m
 GROUP BY ss.Reg_no
 ORDER BY ss.Reg_no;
 
-////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+########################################################################################################33
 
 
 CREATE OR REPLACE VIEW Attendance_AS_Type  AS
@@ -1219,7 +1223,7 @@ GROUP BY ss.Reg_no, ss.Sub_code, s.TYPE
 ORDER BY ss.Sub_code, ss.Reg_no, s.TYPE;
 
 
-////////////////////////////////////////////////////////////////////////////////////////
+##########################################################################################################
 
 
 CREATE PROCEDURE Attendance_By_Type(IN sub_code VARCHAR(10),IN p_type VARCHAR(25))
@@ -1375,7 +1379,7 @@ END //
 
 
 CALL Attendance_By_Type('Theory');
->>>>>>> 72586398275c19c502ce4e0d6e96073b553a55eb
+
 
 
 
@@ -1431,7 +1435,8 @@ LEFT JOIN Medical m
     ON ss.Reg_no = m.Reg_no AND ss.Sub_code = s.Sub_code AND s.Ses_date = m.Date_issued AND m.Status='Approved'
 GROUP BY ss.Reg_no;
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+###################################################################################################
 
 CREATE PROCEDURE Attendance_indivitualS(IN p_reg_no VARCHAR(20))
 BEGIN  
@@ -1444,7 +1449,7 @@ BEGIN
    END//
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////
+############################################################################################
 
 
 DELIMITER //
@@ -1465,7 +1470,7 @@ END //
 DELIMITER ;
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////
+##################################################################################
 CREATE TABLE Session(Sub_code VARCHAR(10),
 Session_id VARCHAR(10),
 Lec_id VARCHAR(10),
@@ -1484,7 +1489,7 @@ Session table Data
 
 
 
-/////////////////ENGLISH
+#################ENGLISH
 INSERT INTO Session (Sub_code, Session_id,Lec_id, Session_name, Hour, Ses_date, TYPE) 
 VALUES
 ('ENG1222','S001','EMP0111','simple_present',2,'2025-08-04','Theory'),
@@ -1503,7 +1508,8 @@ VALUES
 ('ENG1222','S014','EMP0111','direct speech',2,'2025-11-03','Theory'),
 ('ENG1222','S015','EMP0111','revision',2,'2025-11-07','Theory');
 
-///////////////// DATABSE MANAGMENT(THEORY)
+
+############################# DATABSE MANAGMENT(THEORY)
 
 INSERT INTO Session (Sub_code, Session_id,Lec_id, Session_name, Hour, Ses_date, TYPE) 
 VALUES
@@ -1524,7 +1530,7 @@ VALUES
 ('ICT1212','S015','EMP0112','revision',2,'2025-11-07','Theory');
 
 
-//////////////////////////DATABSE(PRACTICAL)
+########################################  DATABSE(PRACTICAL)
 
 INSERT INTO Session (Sub_code, Session_id,Lec_id, Session_name, Hour, Ses_date, TYPE) VALUES
 ('ICT1222','P001','EMP0112','labsheet 1',2,'2025-08-05','Practical'),
@@ -1546,7 +1552,7 @@ INSERT INTO Session (Sub_code, Session_id,Lec_id, Session_name, Hour, Ses_date, 
 
 
 
-///////////////////////PHP
+#############################################################################################      PHP
 
 
 INSERT INTO Session (Sub_code, Session_id,Lec_id, Session_name, Hour, Ses_date, TYPE) VALUES
@@ -1585,9 +1591,7 @@ INSERT INTO Session (Sub_code, Session_id,Lec_id, Session_name, Hour, Ses_date, 
 ('ICT1233','P015','EMP0113','labsheet 15',2,'2025-11-11','Practical');
 
 
-
-
-////////////////////////////ARCHITECTURE
+##############################################################################################    ARCHITECTURE
 
 
 INSERT INTO Session (Sub_code, Session_id,Lec_id, Session_name, Hour, Ses_date, TYPE) VALUES
@@ -1609,7 +1613,7 @@ INSERT INTO Session (Sub_code, Session_id,Lec_id, Session_name, Hour, Ses_date, 
 
 
 
-///////////////////////////////////NETWORK
+####################################################################################       NETWORK
 
 
 INSERT INTO Session (Sub_code, Session_id,Lec_id, Session_name, Hour, Ses_date, TYPE) VALUES
@@ -1649,7 +1653,7 @@ INSERT INTO Session (Sub_code, Session_id,Lec_id, Session_name, Hour, Ses_date, 
 
 
 
-////////////////////////////////MANAGMENT
+#################################################################################################   MANAGMENT
 
 INSERT INTO Session (Sub_code, Session_id,Lec_id, Session_name, Hour, Ses_date, TYPE) VALUES
 ('TCS1212','S001','EMP0102','introduction',2,'2025-08-04','Theory'),
@@ -1674,7 +1678,7 @@ INSERT INTO Session (Sub_code, Session_id,Lec_id, Session_name, Hour, Ses_date, 
 
 
 
-////////////////////MATHS
+######################################################################################   MATHS
 
 INSERT INTO Session (Sub_code, Session_id,Lec_id, Session_name, Hour, Ses_date, TYPE) VALUES
 ('TCS1233','S001','EMP0101','Week 1',2,'2025-08-04','Theory'),
@@ -1698,9 +1702,9 @@ INSERT INTO Session (Sub_code, Session_id,Lec_id, Session_name, Hour, Ses_date, 
 
 
 
-////////////////////////////////////////////////////////////////////////////
+############################################################################################ Session_Student table data
 
-Session_Student table data
+
 
 
 INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) 
@@ -3646,7 +3650,7 @@ VALUES
 ('ICT1242','S015','TG/2023/1783','Present'),
 ('ICT1242','S015','TG/2023/1774','Present');
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////Medical TABLE 
+#######################################################################################   Medical TABLE 
 
 
 CREATE TABLE Medical (
@@ -3677,10 +3681,6 @@ CREATE TABLE Medical (
 );
 
 
-////////////////////////////////////////////////////////////////////////////////
-
-
-
 INSERT INTO Medical 
 (Med_id, start_date, end_date, submitted_date, Status, Reason, Reg_no, Approved_by)
 VALUES
@@ -3696,7 +3696,7 @@ VALUES
 ('MED010','2025-03-10','2025-03-14','2025-04-10','Not approved','Missing documents','TG/2023/1781',NULL)
 ('MED011','2025-09-30','2025-09-30','2025-10-03','Approved','headache','TG/2023/1774','EMP0110');
 
-///////////////////////////////////////////////////////////////////////////////
+
 
 
 
