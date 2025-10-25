@@ -3612,7 +3612,7 @@ VIEW ATTANDENTACE INDIVITUAL
 
 DELIMITER //
 
-CREATE PROCEDURE Attendance_indivitualS(IN p_reg_no VARCHAR(20))
+CREATE PROCEDURE Attendance_indivitual_student(IN p_reg_no VARCHAR(20))
 BEGIN  
  SELECT Sub_code,Total_Lessons_Hour,Participate_Hour,Accepted_Medical_Hour,Medical_Percentage,Total_Attendance_Percentage
  FROM View_Attendance_Summary
@@ -3622,9 +3622,18 @@ BEGIN
 DELIMITER ;
 
 #####################################################################################################################
+VIEW ATTANDENTACE course and student
 
+DELIMITER //
 
+CREATE PROCEDURE indivitual_by_student_course(IN p_reg_no VARCHAR(20), IN p_course VARCHAR(10))
+BEGIN  
+ SELECT Sub_code,Total_Lessons_Hour,Participate_Hour,Accepted_Medical_Hour,Medical_Percentage,Total_Attendance_Percentage
+ FROM View_Attendance_Summary
+	WHERE Reg_no=p_reg_no AND Sub_code=p_course;
+   END//
 
+DELIMITER ;
 
 
 
