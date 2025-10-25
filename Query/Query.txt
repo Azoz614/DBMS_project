@@ -597,18 +597,7 @@ CREATE TABLE Student_Sports (
 
 ################################################################ SESSION
 
-CREATE TABLE Session(Sub_code VARCHAR(10),
-Session_id VARCHAR(10),
-Lec_id VARCHAR(10),
-Session_name VARCHAR(20),
-Hour INT,
-Ses_date DATE,
-TYPE ENUM('Theory','Absent'),
-PRIMARY KEY(Sub_code, Session_id),
-FOREIGN KEY(Sub_code) REFERENCES Subject(Sub_code)
-ON DELETE CASCADE ON UPDATE CASCADE,
-FOREIGN KEY(Lec_id) REFERENCES Lecturer(Lec_id) ON DELETE CASCADE ON UPDATE CASCADE
-);
+
 			 
 
 ############################################################# STUDENT SESSION
@@ -1480,7 +1469,18 @@ DELIMITER ;
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+CREATE TABLE Session(Sub_code VARCHAR(10),
+Session_id VARCHAR(10),
+Lec_id VARCHAR(10),
+Session_name VARCHAR(20),
+Hour INT,
+Ses_date DATE,
+TYPE ENUM('Theory','Absent'),
+PRIMARY KEY(Sub_code, Session_id),
+FOREIGN KEY(Sub_code) REFERENCES Subject(Sub_code)
+ON DELETE CASCADE ON UPDATE CASCADE,
+FOREIGN KEY(Lec_id) REFERENCES Lecturer(Lec_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
   
 Session table Data
 
