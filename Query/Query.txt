@@ -522,6 +522,8 @@ INSERT INTO Medical (Med_id, Med_name, Status, Date_issued, Reason, Reg_no) VALU
  
 
 
+INSERT INTO Medical (Med_id, Med_name, Status, Date_issued, Reason, Reg_no) VALUES
+('MED006','Covid-19 Test Report','Approved','2025-07-02','Positive for COVID-19','TG/2023/1788');
 
 ################################## Relatives of Academic Staff
 CREATE TABLE Rel_academic(
@@ -1021,5 +1023,351 @@ INSERT INTO Marks (Reg_no, Sub_code, Exam_code, Mark, Type) VALUES
 
 
 
+##############################################################################
 
+
+   
+CREATE OR REPLACE VIEW whole_batch_CA AS
+WITH
+
+Best2_quiz AS (
+  SELECT
+    Reg_no,
+    Sub_code,
+    (
+      COALESCE(MAX(CASE WHEN Exam_code='Q1' THEN Mark END), 0) +
+      COALESCE(MAX(CASE WHEN Exam_code='Q2' THEN Mark END), 0) +
+      COALESCE(MAX(CASE WHEN Exam_code='Q3' THEN Mark END), 0)
+    )
+    -
+    LEAST(
+      COALESCE(MAX(CASE WHEN Exam_code='Q1' THEN Mark END), 0),
+      COALESCE(MAX(CASE WHEN Exam_code='Q2' THEN Mark END), 0),
+      COALESCE(MAX(CASE WHEN Exam_code='Q3' THEN Mark END), 0)
+    ) AS Best2Quiz
+  FROM Marks
+  WHERE Exam_code IN ('Q1','Q2','Q3')
+  GROUP BY Reg_no, Sub_code
+),
+
+
+core AS (
+  SELECT
+    Reg_no,
+    Sub_code,
+    COALESCE(MAX(CASE WHEN Exam_code='AS' THEN Mark END), 0) AS AS_raw,
+    COALESCE(MAX(CASE WHEN Exam_code='MT' THEN Mark END), 0) AS MT_raw,
+    COALESCE(MAX(CASE WHEN Exam_code='MP' THEN Mark END), 0) AS MP_raw
+  FROM Marks
+  GROUP BY Reg_no, Sub_code
+),
+
+
+components AS (
+  SELECT
+    c.Reg_no,
+    c.Sub_code,
+    
+    COALESCE(
+      CASE WHEN c.Sub_code IN ('ENG1222','ICT1222')
+           THEN c.AS_raw * 0.20
+           ELSE c.AS_raw * 0.10
+      END, 0
+    ) AS AS_contrib,
+    COALESCE(c.MT_raw * 0.20, 0) AS MT_contrib,
+    COALESCE(c.MP_raw * 0.20, 0) AS MP_contrib,
+    
+    COALESCE(b.Best2Quiz / 200.0 * 10.0, 0) AS BQ_contrib
+  FROM core c
+  LEFT JOIN Best2_quiz b
+    ON b.Reg_no = c.Reg_no AND b.Sub_code = c.Sub_code
+),
+
+
+subject_ca AS (
+  SELECT
+    Reg_no,
+    Sub_code,
+    CASE Sub_code
+      WHEN 'ENG1222' THEN AS_contrib + MT_contrib
+      WHEN 'ICT1212' THEN BQ_contrib + MT_contrib + AS_contrib
+      WHEN 'ICT1222' THEN AS_contrib + MP_contrib            
+      WHEN 'ICT1233' THEN BQ_contrib + MP_contrib + AS_contrib
+      WHEN 'ICT1242' THEN BQ_contrib + MT_contrib + AS_contrib
+      WHEN 'ICT1253' THEN BQ_contrib + MP_contrib + AS_contrib
+      WHEN 'TCS1212' THEN BQ_contrib + AS_contrib + MT_contrib
+      WHEN 'TCS1233' THEN BQ_contrib + MT_contrib + AS_contrib
+      ELSE NULL
+    END AS ca_raw,
+    40 AS ca_max
+  FROM components
+),
+
+
+scaled AS (
+  SELECT
+    Reg_no,
+    Sub_code,
+    ROUND(
+      CASE
+        WHEN ca_raw IS NULL THEN 0
+        ELSE ca_raw * 40.0 / ca_max   -- identity
+      END, 2
+    ) AS ca_40
+  FROM subject_ca
+)
+
+
+SELECT
+  s.Reg_no,
+  COALESCE(MAX(CASE WHEN Sub_code='ENG1222' THEN ca_40 END), 0) AS ENG1222,
+  COALESCE(MAX(CASE WHEN Sub_code='ICT1212' THEN ca_40 END), 0) AS ICT1212,
+  COALESCE(MAX(CASE WHEN Sub_code='ICT1222' THEN ca_40 END), 0) AS ICT1222,
+  COALESCE(MAX(CASE WHEN Sub_code='ICT1233' THEN ca_40 END), 0) AS ICT1233,
+  COALESCE(MAX(CASE WHEN Sub_code='ICT1242' THEN ca_40 END), 0) AS ICT1242,
+  COALESCE(MAX(CASE WHEN Sub_code='ICT1253' THEN ca_40 END), 0) AS ICT1253,
+  COALESCE(MAX(CASE WHEN Sub_code='TCS1212' THEN ca_40 END), 0) AS TCS1212,
+  COALESCE(MAX(CASE WHEN Sub_code='TCS1233' THEN ca_40 END), 0) AS TCS1233
+FROM Student s
+LEFT JOIN scaled x
+  ON x.Reg_no = s.Reg_no WHERE s.Dep_id='ICT' AND s.Batch='2022/2023'
+GROUP BY s.Reg_no
+ORDER BY s.Reg_no;
+
+
+#############################################################################################
+
+
+CREATE OR REPLACE VIEW Attendance_Batch AS
+SELECT 
+    ss.Reg_no,
+    ROUND(SUM(CASE WHEN ss.Sub_code = 'ENG1222' THEN 
+        (CASE 
+            WHEN ss.Status='Present' THEN s.Hour
+            WHEN ss.Status='Absent' AND m.Status='Approved' THEN s.Hour
+            ELSE 0
+        END) / subj.Total_hours * 100 ELSE 0 END), 2) AS ENG1222,
+        
+    ROUND(SUM(CASE WHEN ss.Sub_code = 'ICT1212' THEN 
+        (CASE 
+            WHEN ss.Status='Present' THEN s.Hour
+            WHEN ss.Status='Absent' AND m.Status='Approved' THEN s.Hour
+            ELSE 0
+        END) / subj.Total_hours * 100 ELSE 0 END), 2) AS ICT1212,
+
+    ROUND(SUM(CASE WHEN ss.Sub_code = 'ICT1222' THEN 
+        (CASE 
+            WHEN ss.Status='Present' THEN s.Hour
+            WHEN ss.Status='Absent' AND m.Status='Approved' THEN s.Hour
+            ELSE 0
+        END) / subj.Total_hours * 100 ELSE 0 END), 2) AS ICT1222,
+		
+     ROUND(SUM(CASE WHEN ss.Sub_code = 'ICT1233' THEN 
+        (CASE 
+            WHEN ss.Status='Present' THEN s.Hour
+            WHEN ss.Status='Absent' AND m.Status='Approved' THEN s.Hour
+            ELSE 0
+        END) / subj.Total_hours * 100 ELSE 0 END), 2) AS ICT1233,
+		
+	ROUND(SUM(CASE WHEN ss.Sub_code = 'ICT1242' THEN 
+        (CASE 
+            WHEN ss.Status='Present' THEN s.Hour
+            WHEN ss.Status='Absent' AND m.Status='Approved' THEN s.Hour
+            ELSE 0
+        END) / subj.Total_hours * 100 ELSE 0 END), 2) AS ICT1242,
+		
+	ROUND(SUM(CASE WHEN ss.Sub_code = 'ICT1253' THEN 
+        (CASE 
+            WHEN ss.Status='Present' THEN s.Hour
+            WHEN ss.Status='Absent' AND m.Status='Approved' THEN s.Hour
+            ELSE 0
+        END) / subj.Total_hours * 100 ELSE 0 END), 2) AS ICT1253,
+		
+	
+	ROUND(SUM(CASE WHEN ss.Sub_code = 'TCS1212' THEN 
+        (CASE 
+            WHEN ss.Status='Present' THEN s.Hour
+            WHEN ss.Status='Absent' AND m.Status='Approved' THEN s.Hour
+            ELSE 0
+        END) / subj.Total_hours * 100 ELSE 0 END), 2) AS TCS1212,
+
+	ROUND(SUM(CASE WHEN ss.Sub_code = 'TCS1233' THEN 
+        (CASE 
+            WHEN ss.Status='Present' THEN s.Hour
+            WHEN ss.Status='Absent' AND m.Status='Approved' THEN s.Hour
+            ELSE 0
+        END) / subj.Total_hours * 100 ELSE 0 END), 2) AS TCS1233	
+
+FROM Session_Student ss
+JOIN Session s
+    ON ss.Sub_code = s.Sub_code AND ss.Session_id = s.Session_id
+JOIN Subject subj
+    ON ss.Sub_code = subj.Sub_code
+LEFT JOIN Medical m
+    ON ss.Reg_no = m.Reg_no AND s.Ses_date = m.Date_issued
+GROUP BY ss.Reg_no
+ORDER BY ss.Reg_no;
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+CREATE OR REPLACE VIEW Attendance_AS_Type  AS
+SELECT 
+    ss.Reg_no,
+    ss.Sub_code,
+	subj.Sub_name,
+    s.TYPE AS Session_Type,
+    SUM(CASE 
+            WHEN ss.Status='Present' THEN s.Hour
+            WHEN ss.Status='Absent' AND m.Status='Approved' THEN s.Hour
+            ELSE 0
+        END) AS Attended_Hours,
+    subj.Total_hours AS Total_Course_Hours,
+    ROUND(
+        (SUM(CASE 
+                WHEN ss.Status='Present' THEN s.Hour
+                WHEN ss.Status='Absent' AND m.Status='Approved' THEN s.Hour
+                ELSE 0
+            END) / subj.Total_hours) * 100, 2
+    ) AS Attendance_Percentage,
+    CASE
+        WHEN ROUND(
+            (SUM(CASE 
+                    WHEN ss.Status='Present' THEN s.Hour
+                    WHEN ss.Status='Absent' AND m.Status='Approved' THEN s.Hour
+                    ELSE 0
+                END) / subj.Total_hours) * 100, 2
+        ) >= 80 THEN 'Eligible'
+        ELSE 'Not Eligible'
+    END AS Eligibility
+FROM Session_Student ss
+JOIN Session s
+    ON ss.Sub_code = s.Sub_code AND ss.Session_id = s.Session_id
+JOIN Subject subj
+    ON ss.Sub_code = subj.Sub_code
+LEFT JOIN Medical m
+    ON ss.Reg_no = m.Reg_no AND s.Ses_date = m.Date_issued
+GROUP BY ss.Reg_no, ss.Sub_code, s.TYPE
+ORDER BY ss.Sub_code, ss.Reg_no, s.TYPE;
+
+
+////////////////////////////////////////////////////////////////////////////////////////
+
+
+CREATE PROCEDURE Attendance_By_Type(IN sub_code VARCHAR(10),IN p_type VARCHAR(25))
+BEGIN
+
+    IF p_type = 'Theory' THEN
+        SELECT Reg_no,Attended_Hours,Total_Course_Hours, Attendance_Percentage 
+        FROM Attendance_AS_Type
+        WHERE Session_Type = 'Theory' AND Sub_code=sub_code;
+        
+    ELSEIF p_type = 'Practical' THEN
+        SELECT Reg_no,Attended_Hours,Total_Course_Hours, Attendance_Percentage 
+        FROM Attendance_AS_Type
+        WHERE Session_Type = 'Practical' AND Sub_code=sub_code;
+        
+    ELSE
+        SELECT Reg_no,Attended_Hours,Total_Course_Hours, Attendance_Percentage  
+        FROM Attendance_AS_Type
+		WHERE Sub_code=sub_code;
+    END IF;
+END //
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+DELIMITER $$
+
+CREATE PROCEDURE final_student_whole_sub(IN p_reg_no VARCHAR(12))
+BEGIN
+  SELECT
+    'ENG1222' AS Sub_code, ENG1222 AS CA_total FROM whole_batch_CA WHERE Reg_no = p_reg_no
+    UNION ALL
+  SELECT 
+  'ICT1212' AS Sub_code, ICT1212 AS CA_total FROM whole_batch_CA WHERE Reg_no = p_reg_no
+    UNION ALL
+  SELECT 
+  'ICT1222' AS Sub_code, ICT1222 AS CA_total FROM whole_batch_CA WHERE Reg_no = p_reg_no
+    UNION ALL
+  SELECT 
+  'ICT1233' AS Sub_code, ICT1233 AS CA_total FROM whole_batch_CA WHERE Reg_no = p_reg_no
+    UNION ALL
+  SELECT
+  'ICT1242' AS Sub_code, ICT1242 AS CA_total FROM whole_batch_CA WHERE Reg_no = p_reg_no
+    UNION ALL
+  SELECT
+  'ICT1253' AS Sub_code, ICT1253 AS CA_total FROM whole_batch_CA WHERE Reg_no = p_reg_no
+    UNION ALL
+  SELECT 
+  'TCS1212' AS Sub_code, TCS1212 AS CA_total FROM whole_batch_CA WHERE Reg_no = p_reg_no
+    UNION ALL
+  SELECT 
+  'TCS1233' AS Sub_code, TCS1233 AS CA_total FROM whole_batch_CA WHERE Reg_no = p_reg_no
+  ORDER BY Sub_code;
+END $$
+
+DELIMITER ;
+CALL final_student_whole_sub('TG/2023/1774');
+
+#############################################################################################################
+
+
+CREATE VIEW Medical_Per AS 
+SELECT
+    ss.Reg_no,
+    ROUND(
+        SUM(CASE 
+            WHEN ss.Status='Absent' AND m.Status='Approved' THEN s.Hour 
+            ELSE 0 
+        END) / SUM(s.Hour) * 100, 2
+    ) AS Medical_Per
+FROM Session_Student ss
+JOIN Session s
+    ON ss.Sub_code = s.Sub_code AND ss.Session_id = s.Session_id
+LEFT JOIN Medical m
+    ON ss.Reg_no = m.Reg_no AND ss.Sub_code = s.Sub_code AND s.Ses_date = m.Date_issued AND m.Status='Approved'
+GROUP BY ss.Reg_no;
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+CREATE PROCEDURE Attendance_indivitualS(IN p_reg_no VARCHAR(20))
+BEGIN  
+ 
+  SELECT ab.Sub_code,ab.Sub_name,ab.Total_Course_Hours,
+  ab.Attended_Hours,ab.Attendance_Percentage,mp.Medical_Per
+  FROM Attendance_AS_Type ab
+  JOIN Medical_Per mp ON mp.Reg_no=ab.Reg_no
+	WHERE ab.Reg_no=p_reg_no;
+   END//
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+DELIMITER //
+
+CREATE PROCEDURE Attendance_By_Subject(IN p_sub_code VARCHAR(10))
+BEGIN
+    SELECT 
+        ab.Reg_no,
+        ab.Total_Course_Hours,
+        ab.Attended_Hours,
+        ab.Attendance_Percentage
+    FROM Attendance_AS_Type ab
+    JOIN Medical_Per mp ON mp.Reg_no = ab.Reg_no
+    WHERE ab.Sub_code = p_sub_code
+    ORDER BY ab.Reg_no;
+END //
+
+DELIMITER ;
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+>>>>>>> main
   

@@ -210,7 +210,7 @@ INSERT INTO Session (Sub_code, Session_id, Session_name, Hour, Ses_date, TYPE) V
 ('TCS1233','S015','Week 15',2,'2025-11-07','Theory');
 
 
-
+/////////////////////////////////////////////////////////////////////////////////////
 
 
 Session_Student TABLE
@@ -232,11 +232,8 @@ VALUES
 ('ENG1222','S001','TG/2023/1781','Present'),
 ('ENG1222','S001','TG/2023/1782','Present'),
 ('ENG1222','S001','TG/2023/1783','Present'),
-('ENG1222','S001','TG/2023/1784','Present'),
-('ENG1222','S001','TG/2023/1785','Present'),
-('ENG1222','S001','TG/2023/1786','Absent'),
-('ENG1222','S001','TG/2023/1787','Present'),
-('ENG1222','S001','TG/2023/1788','Present'),
+('ENG1222','S001','TG/2023/1774','Absent'),
+
 
 
 ('ENG1222','S002','TG/2023/1775','Present'),
@@ -248,16 +245,8 @@ VALUES
 ('ENG1222','S002','TG/2023/1781','Absent'),
 ('ENG1222','S002','TG/2023/1782','Present'),
 ('ENG1222','S002','TG/2023/1783','Present'),
-('ENG1222','S002','TG/2021/1452','Present'),
-('ENG1222','S002','TG/2021/1453','Absent'),
-('ENG1222','S002','TG/2021/1454','Present'),
-('ENG1222','S002','TG/2021/1455','Present'),
-('ENG1222','S002','TG/2021/1456','Present'),
-('ENG1222','S002','TG/2023/1784','Present'),
-('ENG1222','S002','TG/2023/1785','Absent'),
-('ENG1222','S002','TG/2023/1786','Present'),
-('ENG1222','S002','TG/2023/1787','Present'),
-('ENG1222','S002','TG/2023/1788','Present'),
+('ENG1222','S002','TG/2023/1774','Present'),
+
 
 
 ('ENG1222','S003','TG/2023/1775','Absent'),
@@ -269,11 +258,8 @@ VALUES
 ('ENG1222','S003','TG/2023/1781','Present'),
 ('ENG1222','S003','TG/2023/1782','Absent'),
 ('ENG1222','S003','TG/2023/1783','Present'),
-('ENG1222','S003','TG/2023/1784','Present'),
-('ENG1222','S003','TG/2023/1785','Present'),
-('ENG1222','S003','TG/2023/1786','Present'),
-('ENG1222','S003','TG/2023/1787','Absent'),
-('ENG1222','S003','TG/2023/1788','Present'),
+('ENG1222','S003','TG/2023/1774','Present'),
+
 
 
 ('ENG1222','S004','TG/2023/1775','Present'),
@@ -285,11 +271,8 @@ VALUES
 ('ENG1222','S004','TG/2023/1781','Present'),
 ('ENG1222','S004','TG/2023/1782','Absent'),
 ('ENG1222','S004','TG/2023/1783','Present'),
-('ENG1222','S004','TG/2023/1784','Present'),
-('ENG1222','S004','TG/2023/1785','Present'),
-('ENG1222','S004','TG/2023/1786','Present'),
-('ENG1222','S004','TG/2023/1787','Present'),
-('ENG1222','S004','TG/2023/1788','Absent'),
+('ENG1222','S004','TG/2023/1774','Present'),
+
 
 
 ('ENG1222','S005','TG/2023/1775','Present'),
@@ -301,11 +284,8 @@ VALUES
 ('ENG1222','S005','TG/2023/1781','Absent'),
 ('ENG1222','S005','TG/2023/1782','Present'),
 ('ENG1222','S005','TG/2023/1783','Present'),
-('ENG1222','S005','TG/2023/1784','Present'),
-('ENG1222','S005','TG/2023/1785','Present'),
-('ENG1222','S005','TG/2023/1786','Present'),
-('ENG1222','S005','TG/2023/1787','Absent'),
-('ENG1222','S005','TG/2023/1788','Present'),
+('ENG1222','S005','TG/2023/1774','Present'),
+
 
 
 ('ENG1222','S006','TG/2023/1775','Present'),
@@ -317,11 +297,8 @@ VALUES
 ('ENG1222','S006','TG/2023/1781','Present'),
 ('ENG1222','S006','TG/2023/1782','Absent'),
 ('ENG1222','S006','TG/2023/1783','Present'),
-('ENG1222','S006','TG/2023/1784','Present'),
-('ENG1222','S006','TG/2023/1785','Present'),
-('ENG1222','S006','TG/2023/1786','Present'),
-('ENG1222','S006','TG/2023/1787','Present'),
-('ENG1222','S006','TG/2023/1788','Present'),
+('ENG1222','S006','TG/2023/1774','Present'),
+
 
 
 ('ENG1222','S007','TG/2023/1775','Present'),
@@ -332,12 +309,9 @@ VALUES
 ('ENG1222','S007','TG/2023/1780','Present'),
 ('ENG1222','S007','TG/2023/1781','Present'),
 ('ENG1222','S007','TG/2023/1782','Present'),
-('ENG1222','S007','TG/2023/1783','Absent'),
-('ENG1222','S007','TG/2023/1784','Absent'),
-('ENG1222','S007','TG/2023/1785','Present'),
-('ENG1222','S007','TG/2023/1786','Present'),
-('ENG1222','S007','TG/2023/1787','Present'),
-('ENG1222','S007','TG/2023/1788','Present'),
+('ENG1222','S007','TG/2023/1783','Present'),
+('ENG1222','S007','TG/2023/1774','Absent'),
+
 
 
 ('ENG1222','S008','TG/2023/1775','Absent'),
@@ -349,11 +323,8 @@ VALUES
 ('ENG1222','S008','TG/2023/1781','Present'),
 ('ENG1222','S008','TG/2023/1782','Present'),
 ('ENG1222','S008','TG/2023/1783','Present'),
-('ENG1222','S008','TG/2023/1784','Present'),
-('ENG1222','S008','TG/2023/1785','Present'),
-('ENG1222','S008','TG/2023/1786','Present'),
-('ENG1222','S008','TG/2023/1787','Absent'),
-('ENG1222','S008','TG/2023/1788','Present'),
+('ENG1222','S008','TG/2023/1774','Present'),
+
 
 
 ('ENG1222','S009','TG/2023/1775','Present'),
@@ -365,11 +336,8 @@ VALUES
 ('ENG1222','S009','TG/2023/1781','Present'),
 ('ENG1222','S009','TG/2023/1782','Present'),
 ('ENG1222','S009','TG/2023/1783','Present'),
-('ENG1222','S009','TG/2023/1784','Present'),
-('ENG1222','S009','TG/2023/1785','Present'),
-('ENG1222','S009','TG/2023/1786','Absent'),
-('ENG1222','S009','TG/2023/1787','Present'),
-('ENG1222','S009','TG/2023/1788','Present'),
+('ENG1222','S009','TG/2023/1774','Present'),
+
 
 
 ('ENG1222','S010','TG/2023/1775','Present'),
@@ -381,11 +349,8 @@ VALUES
 ('ENG1222','S010','TG/2023/1781','Present'),
 ('ENG1222','S010','TG/2023/1782','Present'),
 ('ENG1222','S010','TG/2023/1783','Present'),
-('ENG1222','S010','TG/2023/1784','Present'),
-('ENG1222','S010','TG/2023/1785','Present'),
-('ENG1222','S010','TG/2023/1786','Present'),
-('ENG1222','S010','TG/2023/1787','Present'),
-('ENG1222','S010','TG/2023/1788','Absent'),
+('ENG1222','S010','TG/2023/1774','Absent'),
+
 
 
 ('ENG1222','S011','TG/2023/1775','Present'),
@@ -397,11 +362,8 @@ VALUES
 ('ENG1222','S011','TG/2023/1781','Present'),
 ('ENG1222','S011','TG/2023/1782','Present'),
 ('ENG1222','S011','TG/2023/1783','Absent'),
-('ENG1222','S011','TG/2023/1784','Present'),
-('ENG1222','S011','TG/2023/1785','Present'),
-('ENG1222','S011','TG/2023/1786','Present'),
-('ENG1222','S011','TG/2023/1787','Present'),
-('ENG1222','S011','TG/2023/1788','Present'),
+('ENG1222','S011','TG/2023/1774','Absent'),
+
 
 
 ('ENG1222','S012','TG/2023/1775','Absent'),
@@ -413,11 +375,7 @@ VALUES
 ('ENG1222','S012','TG/2023/1781','Present'),
 ('ENG1222','S012','TG/2023/1782','Present'),
 ('ENG1222','S012','TG/2023/1783','Present'),
-('ENG1222','S012','TG/2023/1784','Present'),
-('ENG1222','S012','TG/2023/1785','Present'),
-('ENG1222','S012','TG/2023/1786','Present'),
-('ENG1222','S012','TG/2023/1787','Present'),
-('ENG1222','S012','TG/2023/1788','Present'),
+('ENG1222','S012','TG/2023/1774','Present'),
 
 
 ('ENG1222','S013','TG/2023/1775','Present'),
@@ -429,11 +387,8 @@ VALUES
 ('ENG1222','S013','TG/2023/1781','Present'),
 ('ENG1222','S013','TG/2023/1782','Present'),
 ('ENG1222','S013','TG/2023/1783','Present'),
-('ENG1222','S013','TG/2023/1784','Present'),
-('ENG1222','S013','TG/2023/1785','Present'),
-('ENG1222','S013','TG/2023/1786','Present'),
-('ENG1222','S013','TG/2023/1787','Present'),
-('ENG1222','S013','TG/2023/1788','Present'),
+('ENG1222','S013','TG/2023/1774','Present'),
+
 
 
 ('ENG1222','S014','TG/2023/1775','Present'),
@@ -445,11 +400,8 @@ VALUES
 ('ENG1222','S014','TG/2023/1781','Present'),
 ('ENG1222','S014','TG/2023/1782','Present'),
 ('ENG1222','S014','TG/2023/1783','Present'),
-('ENG1222','S014','TG/2023/1784','Present'),
-('ENG1222','S014','TG/2023/1785','Present'),
-('ENG1222','S014','TG/2023/1786','Present'),
-('ENG1222','S014','TG/2023/1787','Absent'),
-('ENG1222','S014','TG/2023/1788','Present'),
+('ENG1222','S014','TG/2023/1774','Present'),
+
 
 
 ('ENG1222','S015','TG/2023/1775','Present'),
@@ -462,11 +414,8 @@ VALUES
 ('ENG1222','S015','TG/2023/1782','Present'),
 ('ENG1222','S015','TG/2023/1783','Present'),
 ('ENG1222','S015','TG/2021/1456','Present'),
-('ENG1222','S015','TG/2023/1784','Present'),
-('ENG1222','S015','TG/2023/1785','Present'),
-('ENG1222','S015','TG/2023/1786','Present'),
-('ENG1222','S015','TG/2023/1787','Present'),
-('ENG1222','S015','TG/2023/1788','Present');
+('ENG1222','S015','TG/2023/1774','Absent');
+
 
 
 
@@ -482,11 +431,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1212','S001','TG/2023/1781','Present'),
 ('ICT1212','S001','TG/2023/1782','Absent'),
 ('ICT1212','S001','TG/2023/1783','Present'),
-('ICT1212','S001','TG/2023/1784','Present'),
-('ICT1212','S001','TG/2023/1785','Present'),
-('ICT1212','S001','TG/2023/1786','Present'),
-('ICT1212','S001','TG/2023/1787','Present'),
-('ICT1212','S001','TG/2023/1788','Absent'),
+('ICT1212','S001','TG/2023/1774','Present'),
+
 
 
 ('ICT1212','S002','TG/2023/1775','Present'),
@@ -498,11 +444,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1212','S002','TG/2023/1781','Present'),
 ('ICT1212','S002','TG/2023/1782','Present'),
 ('ICT1212','S002','TG/2023/1783','Absent'),
-('ICT1212','S002','TG/2023/1784','Present'),
-('ICT1212','S002','TG/2023/1785','Present'),
-('ICT1212','S002','TG/2023/1786','Present'),
-('ICT1212','S002','TG/2023/1787','Present'),
-('ICT1212','S002','TG/2023/1788','Present'),
+('ICT1212','S002','TG/2023/1774','Present'),
+
 
 
 ('ICT1212','S003','TG/2023/1775','Present'),
@@ -514,11 +457,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1212','S003','TG/2023/1781','Present'),
 ('ICT1212','S003','TG/2023/1782','Present'),
 ('ICT1212','S003','TG/2023/1783','Absent'),
-('ICT1212','S003','TG/2023/1784','Present'),
-('ICT1212','S003','TG/2023/1785','Present'),
-('ICT1212','S003','TG/2023/1786','Present'),
-('ICT1212','S003','TG/2023/1787','Present'),
-('ICT1212','S003','TG/2023/1788','Present'),
+('ICT1212','S003','TG/2023/1774','Present'),
+
 
 
 ('ICT1212','S004','TG/2023/1775','Present'),
@@ -530,11 +470,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1212','S004','TG/2023/1781','Present'),
 ('ICT1212','S004','TG/2023/1782','Present'),
 ('ICT1212','S004','TG/2023/1783','Present'),
-('ICT1212','S004','TG/2023/1784','Present'),
-('ICT1212','S004','TG/2023/1785','Present'),
-('ICT1212','S004','TG/2023/1786','Present'),
-('ICT1212','S004','TG/2023/1787','Present'),
-('ICT1212','S004','TG/2023/1788','Present'),
+('ICT1212','S004','TG/2023/1774','Present'),
+
 
 
 ('ICT1212','S005','TG/2023/1775','Present'),
@@ -546,11 +483,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1212','S005','TG/2023/1781','Present'),
 ('ICT1212','S005','TG/2023/1782','Present'),
 ('ICT1212','S005','TG/2023/1783','Present'),
-('ICT1212','S005','TG/2023/1784','Present'),
-('ICT1212','S005','TG/2023/1785','Present'),
-('ICT1212','S005','TG/2023/1786','Present'),
-('ICT1212','S005','TG/2023/1787','Present'),
-('ICT1212','S005','TG/2023/1788','Absent'),
+('ICT1212','S005','TG/2023/1774','Present'),
+
 
 
 ('ICT1212','S006','TG/2023/1775','Present'),
@@ -562,11 +496,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1212','S006','TG/2023/1781','Present'),
 ('ICT1212','S006','TG/2023/1782','Present'),
 ('ICT1212','S006','TG/2023/1783','Present'),
-('ICT1212','S006','TG/2023/1784','Present'),
-('ICT1212','S006','TG/2023/1785','Present'),
-('ICT1212','S006','TG/2023/1786','Present'),
-('ICT1212','S006','TG/2023/1787','Present'),
-('ICT1212','S006','TG/2023/1788','Present'),
+('ICT1212','S006','TG/2023/1774','Present'),
+
 
 
 ('ICT1212','S007','TG/2023/1775','Present'),
@@ -578,11 +509,7 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1212','S007','TG/2023/1781','Present'),
 ('ICT1212','S007','TG/2023/1782','Present'),
 ('ICT1212','S007','TG/2023/1783','Present'),
-('ICT1212','S007','TG/2023/1784','Present'),
-('ICT1212','S007','TG/2023/1785','Present'),
-('ICT1212','S007','TG/2023/1786','Present'),
-('ICT1212','S007','TG/2023/1787','Present'),
-('ICT1212','S007','TG/2023/1788','Present'),
+('ICT1212','S007','TG/2023/1774','Present'),
 
 
 ('ICT1212','S008','TG/2023/1775','Present'),
@@ -594,11 +521,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1212','S008','TG/2023/1781','Present'),
 ('ICT1212','S008','TG/2023/1782','Present'),
 ('ICT1212','S008','TG/2023/1783','Present'),
-('ICT1212','S008','TG/2023/1784','Present'),
-('ICT1212','S008','TG/2023/1785','Present'),
-('ICT1212','S008','TG/2023/1786','Present'),
-('ICT1212','S008','TG/2023/1787','Present'),
-('ICT1212','S008','TG/2023/1788','Present'),
+('ICT1212','S008','TG/2023/1774','Present'),
+
 
 
 ('ICT1212','S009','TG/2023/1775','Present'),
@@ -610,11 +534,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1212','S009','TG/2023/1781','Present'),
 ('ICT1212','S009','TG/2023/1782','Present'),
 ('ICT1212','S009','TG/2023/1783','Present'),
-('ICT1212','S009','TG/2023/1784','Present'),
-('ICT1212','S009','TG/2023/1785','Present'),
-('ICT1212','S009','TG/2023/1786','Present'),
-('ICT12112','S009','TG/2023/1787','Present'),
-('ICT1212','S009','TG/2023/1788','Present'),
+('ICT1212','S009','TG/2023/1774','Present'),
+
 
 
 ('ICT1212','S010','TG/2023/1775','Present'),
@@ -626,11 +547,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1212','S010','TG/2023/1781','Present'),
 ('ICT1212','S010','TG/2023/1782','Present'),
 ('ICT1212','S010','TG/2023/1783','Present'),
-('ICT1212','S010','TG/2023/1784','Present'),
-('ICT1212','S010','TG/2023/1785','Present'),
-('ICT1212','S010','TG/2023/1786','Present'),
-('ICT1212','S010','TG/2023/1787','Present'),
-('ICT1212','S010','TG/2023/1788','Present'),
+('ICT1212','S010','TG/2023/1774','Present'),
+
 
 
 ('ICT1212','S011','TG/2023/1775','Present'),
@@ -642,11 +560,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1212','S011','TG/2023/1781','Present'),
 ('ICT1212','S011','TG/2023/1782','Present'),
 ('ICT1212','S011','TG/2023/1783','Present'),
-('ICT1212','S011','TG/2023/1784','Present'),
-('ICT1212','S011','TG/2023/1785','Present'),
-('ICT1212','S011','TG/2023/1786','Present'),
-('ICT1212','S011','TG/2023/1787','Present'),
-('ICT1212','S011','TG/2023/1788','Present'),
+('ICT1212','S011','TG/2023/1774','Present'),
+
 
 
 ('ICT1212','S012','TG/2023/1775','Present'),
@@ -658,11 +573,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1212','S012','TG/2023/1781','Present'),
 ('ICT1212','S012','TG/2023/1782','Present'),
 ('ICT1212','S012','TG/2023/1783','Present'),
-('ICT1212','S012','TG/2023/1784','Present'),
-('ICT1212','S012','TG/2023/1785','Present'),
-('ICT1212','S012','TG/2023/1786','Present'),
-('ICT1212','S012','TG/2023/1787','Present'),
-('ICT1212','S012','TG/2023/1788','Present'),
+('ICT1212','S012','TG/2023/1774','Present'),
+
 
 
 ('ICT1212','S013','TG/2023/1775','Present'),
@@ -674,11 +586,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1212','S013','TG/2023/1781','Present'),
 ('ICT1212','S013','TG/2023/1782','Present'),
 ('ICT1212','S013','TG/2023/1783','Present'),
-('ICT1212','S013','TG/2023/1784','Present'),
-('ICT1212','S013','TG/2023/1785','Present'),
-('ICT1212','S013','TG/2023/1786','Present'),
-('ICT1212','S013','TG/2023/1787','Present'),
-('ICT1212','S013','TG/2023/1788','Present'),
+('ICT1212','S013','TG/2023/1774','Present'),
+
 
 
 ('ICT1212','S014','TG/2023/1775','Present'),
@@ -690,11 +599,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1212','S014','TG/2023/1781','Present'),
 ('ICT1212','S014','TG/2023/1782','Present'),
 ('ICT1212','S014','TG/2023/1783','Present'),
-('ICT1212','S014','TG/2023/1784','Present'),
-('ICT1212','S014','TG/2023/1785','Present'),
-('ICT1212','S014','TG/2023/1786','Present'),
-('ICT1212','S014','TG/2023/1787','Absent'),
-('ICT1212','S014','TG/2023/1788','Present'),
+('ICT1212','S014','TG/2023/1774','Present'),
+
 
 
 ('ICT1212','S015','TG/2023/1775','Present'),
@@ -706,11 +612,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1212','S015','TG/2023/1781','Present'),
 ('ICT1212','S015','TG/2023/1782','Present'),
 ('ICT1212','S015','TG/2023/1783','Present'),
-('ICT1212','S015','TG/2023/1784','Present'),
-('ICT1212','S015','TG/2023/1785','Present'),
-('ICT1212','S015','TG/2023/1786','Present'),
-('ICT1212','S015','TG/2023/1787','Present'),
-('ICT1212','S015','TG/2023/1788','Present');
+('ICT1212','S015','TG/2023/1774','Present');
+
 
 
 
@@ -728,11 +631,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1222','S001','TG/2023/1781','Present'),
 ('ICT1222','S001','TG/2023/1782','Present'),
 ('ICT1222','S001','TG/2023/1783','Present'),
-('ICT1222','S001','TG/2023/1784','Present'),
-('ICT1222','S001','TG/2023/1785','Present'),
-('ICT1222','S001','TG/2023/1786','Present'),
-('ICT1222','S001','TG/2023/1787','Present'),
-('ICT1222','S001','TG/2023/1788','Present'),
+('ICT1222','S001','TG/2023/1774','Present'),
+
 
 
 ('ICT1222','S002','TG/2023/1775','Present'),
@@ -744,11 +644,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1222','S002','TG/2023/1781','Present'),
 ('ICT1222','S002','TG/2023/1782','Present'),
 ('ICT1222','S002','TG/2023/1783','Present'),
-('ICT1222','S002','TG/2023/1784','Present'),
-('ICT1222','S002','TG/2023/1785','Present'),
-('ICT1222','S002','TG/2023/1786','Present'),
-('ICT1222','S002','TG/2023/1787','Present'),
-('ICT1222','S002','TG/2023/1788','Present'),
+('ICT1222','S002','TG/2023/1774','Present'),
+
 
 
 ('ICT1222','S003','TG/2023/1775','Present'),
@@ -760,11 +657,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1222','S003','TG/2023/1781','Present'),
 ('ICT1222','S003','TG/2023/1782','Present'),
 ('ICT1222','S003','TG/2023/1783','Present'),
-('ICT1222','S003','TG/2023/1784','Present'),
-('ICT1222','S003','TG/2023/1785','Present'),
-('ICT1222','S003','TG/2023/1786','Present'),
-('ICT1222','S003','TG/2023/1787','Present'),
-('ICT1222','S003','TG/2023/1788','Present'),
+('ICT1222','S003','TG/2023/1774','Present'),
+
 
 
 ('ICT1222','S004','TG/2023/1775','Present'),
@@ -776,11 +670,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1222','S004','TG/2023/1781','Present'),
 ('ICT1222','S004','TG/2023/1782','Present'),
 ('ICT1222','S004','TG/2023/1783','Present'),
-('ICT1222','S004','TG/2023/1784','Present'),
-('ICT1222','S004','TG/2023/1785','Present'),
-('ICT1222','S004','TG/2023/1786','Present'),
-('ICT1222','S004','TG/2023/1787','Present'),
-('ICT1222','S004','TG/2023/1788','Present'),
+('ICT1222','S004','TG/2023/1774','Present'),
+
 
 
 ('ICT1222','S005','TG/2023/1775','Absent'),
@@ -792,27 +683,21 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1222','S005','TG/2023/1781','Present'),
 ('ICT1222','S005','TG/2023/1782','Present'),
 ('ICT1222','S005','TG/2023/1783','Present'),
-('ICT1222','S005','TG/2023/1784','Present'),
-('ICT1222','S005','TG/2023/1785','Present'),
-('ICT1222','S005','TG/2023/1786','Present'),
-('ICT1222','S005','TG/2023/1787','Present'),
-('ICT1222','S005','TG/2023/1788','Present'),
+('ICT1222','S005','TG/2023/1774','Present'),
+
 
 
 ('ICT1222','S006','TG/2023/1775','Present'),
 ('ICT1222','S006','TG/2023/1776','Present'),
 ('ICT1222','S006','TG/2023/1777','Present'),
 ('ICT1222','S006','TG/2023/1778','Present'),
-('ICT1222','S006','TG/2023/1779','Present'),
+('ICT1222','S006','TG/2023/1779','Absent'),
 ('ICT1222','S006','TG/2023/1780','Absent'),
 ('ICT1222','S006','TG/2023/1781','Present'),
 ('ICT1222','S006','TG/2023/1782','Present'),
 ('ICT1222','S006','TG/2023/1783','Present'),
-('ICT1222','S006','TG/2023/1784','Present'),
-('ICT1222','S006','TG/2023/1785','Present'),
-('ICT1222','S006','TG/2023/1786','Present'),
-('ICT1222','S006','TG/2023/1787','Present'),
-('ICT1222','S006','TG/2023/1788','Present'),
+('ICT1222','S006','TG/2023/1774','Present'),
+
 
 
 ('ICT1222','S007','TG/2023/1775','Present'),
@@ -824,11 +709,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1222','S007','TG/2023/1781','Present'),
 ('ICT1222','S007','TG/2023/1782','Present'),
 ('ICT1222','S007','TG/2023/1783','Present'),
-('ICT1222','S007','TG/2023/1784','Present'),
-('ICT1222','S007','TG/2023/1785','Present'),
-('ICT1222','S007','TG/2023/1786','Present'),
-('ICT1222','S007','TG/2023/1787','Present'),
-('ICT1222','S007','TG/2023/1788','Present'),
+('ICT1222','S007','TG/2023/1774','Present'),
+
 
 
 ('ICT1222','S008','TG/2023/1775','Present'),
@@ -840,11 +722,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1222','S008','TG/2023/1781','Present'),
 ('ICT1222','S008','TG/2023/1782','Present'),
 ('ICT1222','S008','TG/2023/1783','Present'),
-('ICT1222','S008','TG/2023/1784','Present'),
-('ICT1222','S008','TG/2023/1785','Present'),
-('ICT1222','S008','TG/2023/1786','Present'),
-('ICT1222','S008','TG/2023/1787','Present'),
-('ICT1222','S008','TG/2023/1788','Present'),
+('ICT1222','S008','TG/2023/1774','Present'),
+
 
 
 ('ICT1222','S009','TG/2023/1775','Present'),
@@ -856,11 +735,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1222','S009','TG/2023/1781','Present'),
 ('ICT1222','S009','TG/2023/1782','Present'),
 ('ICT1222','S009','TG/2023/1783','Present'),
-('ICT1222','S009','TG/2023/1784','Present'),
-('ICT1222','S009','TG/2023/1785','Present'),
-('ICT1222','S009','TG/2023/1786','Present'),
-('ICT1222','S009','TG/2023/1787','Present'),
-('ICT1222','S009','TG/2023/1788','Present'),
+('ICT1222','S009','TG/2023/1774','Present'),
+
 
 
 ('ICT1222','S010','TG/2023/1775','Present'),
@@ -872,28 +748,22 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1222','S010','TG/2023/1781','Present'),
 ('ICT1222','S010','TG/2023/1782','Present'),
 ('ICT1222','S010','TG/2023/1783','Present'),
-('ICT1222','S010','TG/2023/1784','Present'),
-('ICT1222','S010','TG/2023/1785','Present'),
-('ICT1222','S010','TG/2023/1786','Absent'),
-('ICT1222','S010','TG/2023/1787','Absent'),
-('ICT1222','S010','TG/2023/1788','Absent'),
+('ICT1222','S010','TG/2023/1774','Present'),
+
 
 
 
 ('ICT1222','S011','TG/2023/1775','Present'),
 ('ICT1222','S011','TG/2023/1776','Absent'),
-('ICT1222','S011','TG/2023/1777','Absent'),
+('ICT1222','S011','TG/2023/1777','Present'),
 ('ICT1222','S011','TG/2023/1778','Absent'),
 ('ICT1222','S011','TG/2023/1779','Present'),
 ('ICT1222','S011','TG/2023/1780','Present'),
 ('ICT1222','S011','TG/2023/1781','Absent'),
 ('ICT1222','S011','TG/2023/1782','Present'),
 ('ICT1222','S011','TG/2023/1783','Present'),
-('ICT1222','S011','TG/2023/1784','Present'),
-('ICT1222','S011','TG/2023/1785','Present'),
-('ICT1222','S011','TG/2023/1786','Present'),
-('ICT1222','S011','TG/2023/1787','Present'),
-('ICT1222','S011','TG/2023/1788','Absent'),
+('ICT1222','S011','TG/2023/1774','Present'),
+
 
 
 ('ICT1222','S012','TG/2023/1775','Present'),
@@ -905,27 +775,21 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1222','S012','TG/2023/1781','Present'),
 ('ICT1222','S012','TG/2023/1782','Absent'),
 ('ICT1222','S012','TG/2023/1783','Absent'),
-('ICT1222','S012','TG/2023/1784','Absent'),
-('ICT1222','S012','TG/2023/1785','Present'),
-('ICT1222','S012','TG/2023/1786','Present'),
-('ICT1222','S012','TG/2023/1787','Present'),
-('ICT1222','S012','TG/2023/1788','Present'),
+('ICT1222','S012','TG/2023/1774','Absent'),
+
 
 
 ('ICT1222','S013','TG/2023/1775','Present'),
 ('ICT1222','S013','TG/2023/1776','Present'),
-('ICT1222','S013','TG/2023/1777','Absent'),
+('ICT1222','S013','TG/2023/1777','Present'),
 ('ICT1222','S013','TG/2023/1778','Absent'),
 ('ICT1222','S013','TG/2023/1779','Present'),
 ('ICT1222','S013','TG/2023/1780','Present'),
 ('ICT1222','S013','TG/2023/1781','Absent'),
 ('ICT1222','S013','TG/2023/1782','Present'),
 ('ICT1222','S013','TG/2023/1783','Present'),
-('ICT1222','S013','TG/2023/1784','Present'),
-('ICT1222','S013','TG/2023/1785','Present'),
-('ICT1222','S013','TG/2023/1786','Present'),
-('ICT1222','S013','TG/2023/1787','Absent'),
-('ICT1222','S013','TG/2023/1788','Present'),
+('ICT1222','S013','TG/2023/1774','Present'),
+
 
 
 ('ICT1222','S014','TG/2023/1775','Present'),
@@ -937,27 +801,21 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1222','S014','TG/2023/1781','Present'),
 ('ICT1222','S014','TG/2023/1782','Absent'),
 ('ICT1222','S014','TG/2023/1783','Present'),
-('ICT1222','S014','TG/2023/1784','Present'),
-('ICT1222','S014','TG/2023/1785','Absent'),
-('ICT1222','S014','TG/2023/1786','Present'),
-('ICT1222','S014','TG/2023/1787','Absent'),
-('ICT1222','S014','TG/2023/1788','Present'),
+('ICT1222','S014','TG/2023/1774','Present'),
 
 
-('ICT1222','S015','TG/2023/1775','Absent'),
+
+('ICT1222','S015','TG/2023/1775','Present'),
 ('ICT1222','S015','TG/2023/1776','Present'),
 ('ICT1222','S015','TG/2023/1777','Present'),
 ('ICT1222','S015','TG/2023/1778','Present'),
-('ICT1222','S015','TG/2023/1779','Absent'),
+('ICT1222','S015','TG/2023/1779','Present'),
 ('ICT1222','S015','TG/2023/1780','Present'),
-('ICT1222','S015','TG/2023/1781','Absent'),
+('ICT1222','S015','TG/2023/1781','Present'),
 ('ICT1222','S015','TG/2023/1782','Present'),
 ('ICT1222','S015','TG/2023/1783','Present'),
-('ICT1222','S015','TG/2023/1784','Absent
-('ICT1222','S015','TG/2023/1785','Present'),
-('ICT1222','S015','TG/2023/1786','Present'),
-('ICT1222','S015','TG/2023/1787','Absent'),
-('ICT1222','S015','TG/2023/1788','Present');
+('ICT1222','S015','TG/2023/1774','Present');
+
 
 
 
@@ -971,15 +829,12 @@ VALUES
 ('ICT1233','S001','TG/2023/1777','Present'),
 ('ICT1233','S001','TG/2023/1778','Absent'),
 ('ICT1233','S001','TG/2023/1779','Present'),
-('ICT1233','S001','TG/2023/1780','Absent'),
+('ICT1233','S001','TG/2023/1780','Present'),
 ('ICT1233','S001','TG/2023/1781','Present'),
 ('ICT1233','S001','TG/2023/1782','Present'),
 ('ICT1233','S001','TG/2023/1783','Present'),
-('ICT1233','S001','TG/2023/1784','Present'),
-('ICT1233','S001','TG/2023/1785','Absent'),
-('ICT1233','S001','TG/2023/1786','Present'),
-('ICT1233','S001','TG/2023/1787','Present'),
-('ICT1233','S001','TG/2023/1788','Absent'),
+('ICT1233','S001','TG/2023/1774','Present'),
+
 
 
 ('ICT1233','S002','TG/2023/1775','Present'),
@@ -991,27 +846,21 @@ VALUES
 ('ICT1233','S002','TG/2023/1781','Present'),
 ('ICT1233','S002','TG/2023/1782','Present'),
 ('ICT1233','S002','TG/2023/1783','Present'),
-('ICT1233','S002','TG/2023/1784','Present'),
-('ICT1233','S002','TG/2023/1785','Present'),
-('ICT1233','S002','TG/2023/1786','Present'),
-('ICT1233','S002','TG/2023/1787','Present'),
-('ICT1233','S002','TG/2023/1788','Present'),
+('ICT1233','S002','TG/2023/1774','Present'),
 
--- S003 Theory
+
+
 ('ICT1233','S003','TG/2023/1775','Absent'),
 ('ICT1233','S003','TG/2023/1776','Present'),
 ('ICT1233','S003','TG/2023/1777','Present'),
-('ICT1233','S003','TG/2023/1778','Absent'),
+('ICT1233','S003','TG/2023/1778','Present'),
 ('ICT1233','S003','TG/2023/1779','Present'),
 ('ICT1233','S003','TG/2023/1780','Present'),
 ('ICT1233','S003','TG/2023/1781','Present'),
 ('ICT1233','S003','TG/2023/1782','Present'),
 ('ICT1233','S003','TG/2023/1783','Absent'),
-('ICT1233','S003','TG/2023/1784','Absent'),
-('ICT1233','S003','TG/2023/1785','Absent'),
-('ICT1233','S003','TG/2023/1786','Present'),
-('ICT1233','S003','TG/2023/1787','Present'),
-('ICT1233','S003','TG/2023/1788','Absent'),
+('ICT1233','S003','TG/2023/1774','Absent'),
+
 
 
 
@@ -1024,11 +873,8 @@ VALUES
 ('ICT1233','S004','TG/2023/1781','Present'),
 ('ICT1233','S004','TG/2023/1782','Absent'),
 ('ICT1233','S004','TG/2023/1783','Absent'),
-('ICT1233','S004','TG/2023/1784','Present'),
-('ICT1233','S004','TG/2023/1785','Present'),
-('ICT1233','S004','TG/2023/1786','Present'),
-('ICT1233','S004','TG/2023/1787','Absent'),
-('ICT1233','S004','TG/2023/1788','Present'),
+('ICT1233','S004','TG/2023/1774','Present'),
+
 
 
 ('ICT1233','S005','TG/2023/1775','Absent'),
@@ -1040,29 +886,23 @@ VALUES
 ('ICT1233','S005','TG/2023/1781','Absent'),
 ('ICT1233','S005','TG/2023/1782','Present'),
 ('ICT1233','S005','TG/2023/1783','Present'),
-('ICT1233','S005','TG/2023/1784','Absent'),
-('ICT1233','S005','TG/2023/1785','Absent'),
-('ICT1233','S005','TG/2023/1786','Present'),
-('ICT1233','S005','TG/2023/1787','Present'),
-('ICT1233','S005','TG/2023/1788','Present'),
+('ICT1233','S005','TG/2023/1774','Absent'),
+
 
 
 ('ICT1233','S006','TG/2023/1775','Present'),
 ('ICT1233','S006','TG/2023/1776','Present'),
-('ICT1233','S006','TG/2023/1777','Absent'),
+('ICT1233','S006','TG/2023/1777','Present'),
 ('ICT1233','S006','TG/2023/1778','Present'),
 ('ICT1233','S006','TG/2023/1779','Present'),
 ('ICT1233','S006','TG/2023/1780','Present'),
 ('ICT1233','S006','TG/2023/1781','Present'),
-('ICT1233','S006','TG/2023/1782','Absent'),
-('ICT1233','S006','TG/2023/1783','Absent'),
-('ICT1233','S006','TG/2023/1784','Absent'),
-('ICT1233','S006','TG/2023/1785','Present'),
-('ICT1233','S006','TG/2023/1786','Present'),
-('ICT1233','S006','TG/2023/1787','Present'),
-('ICT1233','S006','TG/2023/1788','Absent'),
+('ICT1233','S006','TG/2023/1782','Present'),
+('ICT1233','S006','TG/2023/1783','Present'),
+('ICT1233','S006','TG/2023/1774','Present'),
 
--- S007
+
+
 ('ICT1233','S007','TG/2023/1775','Absent'),
 ('ICT1233','S007','TG/2023/1776','Absent'),
 ('ICT1233','S007','TG/2023/1777','Present'),
@@ -1072,46 +912,37 @@ VALUES
 ('ICT1233','S007','TG/2023/1781','Present'),
 ('ICT1233','S007','TG/2023/1782','Present'),
 ('ICT1233','S007','TG/2023/1783','Present'),
-('ICT1233','S007','TG/2023/1784','Present'),
-('ICT1233','S007','TG/2023/1785','Present'),
-('ICT1233','S007','TG/2023/1786','Absent'),
-('ICT1233','S007','TG/2023/1787','Present'),
-('ICT1233','S007','TG/2023/1788','Present'),
+('ICT1233','S007','TG/2023/1774','Present'),
+
 
 
 
 ('ICT1233','S008','TG/2023/1775','Present'),
-('ICT1233','S008','TG/2023/1776','Absent'),
+('ICT1233','S008','TG/2023/1776','Present'),
 ('ICT1233','S008','TG/2023/1777','Present'),
 ('ICT1233','S008','TG/2023/1778','Present'),
 ('ICT1233','S008','TG/2023/1779','Present'),
 ('ICT1233','S008','TG/2023/1780','Present'),
 ('ICT1233','S008','TG/2023/1781','Present'),
 ('ICT1233','S008','TG/2023/1782','Present'),
-('ICT1233','S008','TG/2023/1783','Absent'),
-('ICT1233','S008','TG/2023/1784','Present'),
-('ICT1233','S008','TG/2023/1785','Present'),
-('ICT1233','S008','TG/2023/1786','Present'),
-('ICT1233','S008','TG/2023/1787','Present'),
-('ICT1233','S008','TG/2023/1788','Present'),
+('ICT1233','S008','TG/2023/1783','Present'),
+('ICT1233','S008','TG/2023/1774','Present'),
 
--- S009
+
+
 ('ICT1233','S009','TG/2023/1775','Present'),
 ('ICT1233','S009','TG/2023/1776','Present'),
-('ICT1233','S009','TG/2023/1777','Absent'),
+('ICT1233','S009','TG/2023/1777','Present'),
 ('ICT1233','S009','TG/2023/1778','Present'),
 ('ICT1233','S009','TG/2023/1779','Present'),
 ('ICT1233','S009','TG/2023/1780','Present'),
 ('ICT1233','S009','TG/2023/1781','Present'),
 ('ICT1233','S009','TG/2023/1782','Present'),
 ('ICT1233','S009','TG/2023/1783','Present'),
-('ICT1233','S009','TG/2023/1784','Present'),
-('ICT1233','S009','TG/2023/1785','Present'),
-('ICT1233','S009','TG/2023/1786','Present'),
-('ICT1233','S009','TG/2023/1787','Absent'),
-('ICT1233','S009','TG/2023/1788','Present'),
+('ICT1233','S009','TG/2023/1774','Present'),
 
--- S010
+
+
 ('ICT1233','S010','TG/2023/1775','Absent'),
 ('ICT1233','S010','TG/2023/1776','Present'),
 ('ICT1233','S010','TG/2023/1777','Present'),
@@ -1121,13 +952,10 @@ VALUES
 ('ICT1233','S010','TG/2023/1781','Present'),
 ('ICT1233','S010','TG/2023/1782','Present'),
 ('ICT1233','S010','TG/2023/1783','Present'),
-('ICT1233','S010','TG/2023/1784','Present'),
-('ICT1233','S010','TG/2023/1785','Present'),
-('ICT1233','S010','TG/2023/1786','Present'),
-('ICT1233','S010','TG/2023/1787','Present'),
-('ICT1233','S010','TG/2023/1788','Present'),
+('ICT1233','S010','TG/2023/1774','Present'),
 
--- S011
+
+
 ('ICT1233','S011','TG/2023/1775','Present'),
 ('ICT1233','S011','TG/2023/1776','Present'),
 ('ICT1233','S011','TG/2023/1777','Present'),
@@ -1137,13 +965,10 @@ VALUES
 ('ICT1233','S011','TG/2023/1781','Present'),
 ('ICT1233','S011','TG/2023/1782','Present'),
 ('ICT1233','S011','TG/2023/1783','Present'),
-('ICT1233','S011','TG/2023/1784','Present'),
-('ICT1233','S011','TG/2023/1785','Present'),
-('ICT1233','S011','TG/2023/1786','Present'),
-('ICT1233','S011','TG/2023/1787','Present'),
-('ICT1233','S011','TG/2023/1788','Present'),
+('ICT1233','S011','TG/2023/1774','Present'),
 
--- S012
+
+
 ('ICT1233','S012','TG/2023/1775','Present'),
 ('ICT1233','S012','TG/2023/1776','Present'),
 ('ICT1233','S012','TG/2023/1777','Present'),
@@ -1153,11 +978,8 @@ VALUES
 ('ICT1233','S012','TG/2023/1781','Present'),
 ('ICT1233','S012','TG/2023/1782','Present'),
 ('ICT1233','S012','TG/2023/1783','Present'),
-('ICT1233','S012','TG/2023/1784','Present'),
-('ICT1233','S012','TG/2023/1785','Present'),
-('ICT1233','S012','TG/2023/1786','Present'),
-('ICT1233','S012','TG/2023/1787','Present'),
-('ICT1233','S012','TG/2023/1788','Present'),
+('ICT1233','S012','TG/2023/1774','Present'),
+
 
 
 ('ICT1233','S013','TG/2023/1775','Present'),
@@ -1169,11 +991,8 @@ VALUES
 ('ICT1233','S013','TG/2023/1781','Present'),
 ('ICT1233','S013','TG/2023/1782','Absent'),
 ('ICT1233','S013','TG/2023/1783','Present'),
-('ICT1233','S013','TG/2023/1784','Present'),
-('ICT1233','S013','TG/2023/1785','Absent'),
-('ICT1233','S013','TG/2023/1786','Present'),
-('ICT1233','S013','TG/2023/1787','Present'),
-('ICT1233','S013','TG/2023/1788','Absent'),
+('ICT1233','S013','TG/2023/1774','Present'),
+
 
 
 ('ICT1233','S014','TG/2023/1775','Present'),
@@ -1185,11 +1004,8 @@ VALUES
 ('ICT1233','S014','TG/2023/1781','Present'),
 ('ICT1233','S014','TG/2023/1782','Absent'),
 ('ICT1233','S014','TG/2023/1783','Present'),
-('ICT1233','S014','TG/2023/1784','Present'),
-('ICT1233','S014','TG/2023/1785','Present'),
-('ICT1233','S014','TG/2023/1786','Present'),
-('ICT1233','S014','TG/2023/1787','Present'),
-('ICT1233','S014','TG/2023/1788','Present'),
+('ICT1233','S014','TG/2023/1774','Present'),
+
 
 
 ('ICT1233','S015','TG/2023/1775','Present'),
@@ -1201,32 +1017,27 @@ VALUES
 ('ICT1233','S015','TG/2023/1781','Present'),
 ('ICT1233','S015','TG/2023/1782','Present'),
 ('ICT1233','S015','TG/2023/1783','Present'),
-('ICT1233','S015','TG/2023/1784','Present'),
-('ICT1233','S015','TG/2023/1785','Present'),
-('ICT1233','S015','TG/2023/1786','Present'),
-('ICT1233','S015','TG/2023/1787','Absent'),
-('ICT1233','S015','TG/2023/1788','Present');
+('ICT1233','S015','TG/2023/1774','Present');
 
 
 
 
-INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
--- ICT1233 - Server-Side Web Development Practical
+
+INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) 
+VALUES
+
 
 ('ICT1233','P001','TG/2023/1775','Present'),
 ('ICT1233','P001','TG/2023/1776','Present'),
 ('ICT1233','P001','TG/2023/1777','Present'),
-('ICT1233','P001','TG/2023/1778','Absent'),
+('ICT1233','P001','TG/2023/1778','Present'),
 ('ICT1233','P001','TG/2023/1779','Present'),
 ('ICT1233','P001','TG/2023/1780','Present'),
 ('ICT1233','P001','TG/2023/1781','Present'),
 ('ICT1233','P001','TG/2023/1782','Present'),
-('ICT1233','P001','TG/2023/1783','Absent'),
-('ICT1233','P001','TG/2023/1784','Present'),
-('ICT1233','P001','TG/2023/1785','Present'),
-('ICT1233','P001','TG/2023/1786','Present'),
-('ICT1233','P001','TG/2023/1787','Present'),
-('ICT1233','P001','TG/2023/1788','Present'),
+('ICT1233','P001','TG/2023/1783','Present'),
+('ICT1233','P001','TG/2023/1774','Present'),
+
 
 ('ICT1233','P002','TG/2023/1775','Present'),
 ('ICT1233','P002','TG/2023/1776','Present'),
@@ -1237,11 +1048,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1233','P002','TG/2023/1781','Absent'),
 ('ICT1233','P002','TG/2023/1782','Present'),
 ('ICT1233','P002','TG/2023/1783','Present'),
-('ICT1233','P002','TG/2023/1784','Present'),
-('ICT1233','P002','TG/2023/1785','Present'),
-('ICT1233','P002','TG/2023/1786','Present'),
-('ICT1233','P002','TG/2023/1787','Present'),
-('ICT1233','P002','TG/2023/1788','Present'),
+('ICT1233','P002','TG/2023/1774','Present'),
+
 
 ('ICT1233','P003','TG/2023/1775','Present'),
 ('ICT1233','P003','TG/2023/1776','Present'),
@@ -1252,11 +1060,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1233','P003','TG/2023/1781','Present'),
 ('ICT1233','P003','TG/2023/1782','Present'),
 ('ICT1233','P003','TG/2023/1783','Present'),
-('ICT1233','P003','TG/2023/1784','Absent'),
-('ICT1233','P003','TG/2023/1785','Present'),
-('ICT1233','P003','TG/2023/1786','Present'),
-('ICT1233','P003','TG/2023/1787','Present'),
-('ICT1233','P003','TG/2023/1788','Present'),
+('ICT1233','P003','TG/2023/1774','Absent'),
+
 
 ('ICT1233','P004','TG/2023/1775','Absent'),
 ('ICT1233','P004','TG/2023/1776','Present'),
@@ -1267,11 +1072,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1233','P004','TG/2023/1781','Present'),
 ('ICT1233','P004','TG/2023/1782','Present'),
 ('ICT1233','P004','TG/2023/1783','Present'),
-('ICT1233','P004','TG/2023/1784','Present'),
-('ICT1233','P004','TG/2023/1785','Present'),
-('ICT1233','P004','TG/2023/1786','Present'),
-('ICT1233','P004','TG/2023/1787','Absent'),
-('ICT1233','P004','TG/2023/1788','Present'),
+('ICT1233','P004','TG/2023/1774','Present'),
+
 
 ('ICT1233','P005','TG/2023/1775','Present'),
 ('ICT1233','P005','TG/2023/1776','Present'),
@@ -1282,29 +1084,21 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1233','P005','TG/2023/1781','Present'),
 ('ICT1233','P005','TG/2023/1782','Present'),
 ('ICT1233','P005','TG/2023/1783','Present'),
-('ICT1233','P005','TG/2023/1784','Present'),
-('ICT1233','P005','TG/2023/1785','Present'),
-('ICT1233','P005','TG/2023/1786','Present'),
-('ICT1233','P005','TG/2023/1787','Present'),
-('ICT1233','P005','TG/2023/1788','Present'),
+('ICT1233','P005','TG/2023/1774','Present'),
 
 
--- Continuation: ICT1233 - Server-Side Web Development Practical
 
 ('ICT1233','P006','TG/2023/1775','Present'),
 ('ICT1233','P006','TG/2023/1776','Present'),
 ('ICT1233','P006','TG/2023/1777','Present'),
 ('ICT1233','P006','TG/2023/1778','Absent'),
-('ICT1233','P006','TG/2023/1779','Present'),
+('ICT1233','P006','TG/2023/1779','Absent'),
 ('ICT1233','P006','TG/2023/1780','Present'),
 ('ICT1233','P006','TG/2023/1781','Present'),
 ('ICT1233','P006','TG/2023/1782','Present'),
 ('ICT1233','P006','TG/2023/1783','Present'),
-('ICT1233','P006','TG/2023/1784','Present'),
-('ICT1233','P006','TG/2023/1785','Present'),
-('ICT1233','P006','TG/2023/1786','Absent'),
-('ICT1233','P006','TG/2023/1787','Present'),
-('ICT1233','P006','TG/2023/1788','Present'),
+('ICT1233','P006','TG/2023/1774','Present'),
+
 
 ('ICT1233','P007','TG/2023/1775','Present'),
 ('ICT1233','P007','TG/2023/1776','Present'),
@@ -1315,11 +1109,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1233','P007','TG/2023/1781','Present'),
 ('ICT1233','P007','TG/2023/1782','Present'),
 ('ICT1233','P007','TG/2023/1783','Absent'),
-('ICT1233','P007','TG/2023/1784','Present'),
-('ICT1233','P007','TG/2023/1785','Present'),
-('ICT1233','P007','TG/2023/1786','Present'),
-('ICT1233','P007','TG/2023/1787','Present'),
-('ICT1233','P007','TG/2023/1788','Present'),
+('ICT1233','P007','TG/2023/1774','Present'),
+
 
 ('ICT1233','P008','TG/2023/1775','Present'),
 ('ICT1233','P008','TG/2023/1776','Present'),
@@ -1330,11 +1121,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1233','P008','TG/2023/1781','Present'),
 ('ICT1233','P008','TG/2023/1782','Present'),
 ('ICT1233','P008','TG/2023/1783','Present'),
-('ICT1233','P008','TG/2023/1784','Present'),
-('ICT1233','P008','TG/2023/1785','Present'),
-('ICT1233','P008','TG/2023/1786','Present'),
-('ICT1233','P008','TG/2023/1787','Absent'),
-('ICT1233','P008','TG/2023/1788','Present'),
+('ICT1233','P008','TG/2023/1774','Present'),
+
 
 ('ICT1233','P009','TG/2023/1775','Absent'),
 ('ICT1233','P009','TG/2023/1776','Present'),
@@ -1345,11 +1133,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1233','P009','TG/2023/1781','Present'),
 ('ICT1233','P009','TG/2023/1782','Present'),
 ('ICT1233','P009','TG/2023/1783','Present'),
-('ICT1233','P009','TG/2023/1784','Present'),
-('ICT1233','P009','TG/2023/1785','Absent'),
-('ICT1233','P009','TG/2023/1786','Present'),
-('ICT1233','P009','TG/2023/1787','Present'),
-('ICT1233','P009','TG/2023/1788','Present'),
+('ICT1233','P009','TG/2023/1774','Present'),
+
 
 ('ICT1233','P010','TG/2023/1775','Present'),
 ('ICT1233','P010','TG/2023/1776','Present'),
@@ -1360,11 +1145,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1233','P010','TG/2023/1781','Present'),
 ('ICT1233','P010','TG/2023/1782','Present'),
 ('ICT1233','P010','TG/2023/1783','Present'),
-('ICT1233','P010','TG/2023/1784','Present'),
-('ICT1233','P010','TG/2023/1785','Present'),
-('ICT1233','P010','TG/2023/1786','Absent'),
-('ICT1233','P010','TG/2023/1787','Present'),
-('ICT1233','P010','TG/2023/1788','Present'),
+('ICT1233','P010','TG/2023/1774','Present'),
+
 
 ('ICT1233','P011','TG/2023/1775','Present'),
 ('ICT1233','P011','TG/2023/1776','Present'),
@@ -1375,11 +1157,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1233','P011','TG/2023/1781','Absent'),
 ('ICT1233','P011','TG/2023/1782','Present'),
 ('ICT1233','P011','TG/2023/1783','Present'),
-('ICT1233','P011','TG/2023/1784','Present'),
-('ICT1233','P011','TG/2023/1785','Present'),
-('ICT1233','P011','TG/2023/1786','Present'),
-('ICT1233','P011','TG/2023/1787','Present'),
-('ICT1233','P011','TG/2023/1788','Present'),
+('ICT1233','P011','TG/2023/1774','Present'),
+
 
 ('ICT1233','P012','TG/2023/1775','Present'),
 ('ICT1233','P012','TG/2023/1776','Absent'),
@@ -1390,26 +1169,20 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1233','P012','TG/2023/1781','Present'),
 ('ICT1233','P012','TG/2023/1782','Present'),
 ('ICT1233','P012','TG/2023/1783','Absent'),
-('ICT1233','P012','TG/2023/1784','Present'),
-('ICT1233','P012','TG/2023/1785','Present'),
-('ICT1233','P012','TG/2023/1786','Present'),
-('ICT1233','P012','TG/2023/1787','Present'),
-('ICT1233','P012','TG/2023/1788','Present'),
+('ICT1233','P012','TG/2023/1774','Present'),
+
 
 ('ICT1233','P013','TG/2023/1775','Present'),
 ('ICT1233','P013','TG/2023/1776','Present'),
 ('ICT1233','P013','TG/2023/1777','Present'),
-('ICT1233','P013','TG/2023/1778','Absent'),
+('ICT1233','P013','TG/2023/1778','Present'),
 ('ICT1233','P013','TG/2023/1779','Present'),
 ('ICT1233','P013','TG/2023/1780','Present'),
 ('ICT1233','P013','TG/2023/1781','Present'),
 ('ICT1233','P013','TG/2023/1782','Present'),
 ('ICT1233','P013','TG/2023/1783','Present'),
-('ICT1233','P013','TG/2023/1784','Present'),
-('ICT1233','P013','TG/2023/1785','Present'),
-('ICT1233','P013','TG/2023/1786','Present'),
-('ICT1233','P013','TG/2023/1787','Absent'),
-('ICT1233','P013','TG/2023/1788','Present'),
+('ICT1233','P013','TG/2023/1774','Present'),
+
 
 ('ICT1233','P014','TG/2023/1775','Present'),
 ('ICT1233','P014','TG/2023/1776','Present'),
@@ -1420,11 +1193,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1233','P014','TG/2023/1781','Present'),
 ('ICT1233','P014','TG/2023/1782','Present'),
 ('ICT1233','P014','TG/2023/1783','Present'),
-('ICT1233','P014','TG/2023/1784','Present'),
-('ICT1233','P014','TG/2023/1785','Present'),
-('ICT1233','P014','TG/2023/1786','Present'),
-('ICT1233','P014','TG/2023/1787','Present'),
-('ICT1233','P014','TG/2023/1788','Present'),
+('ICT1233','P014','TG/2023/1774','Present'),
+
 
 ('ICT1233','P015','TG/2023/1775','Present'),
 ('ICT1233','P015','TG/2023/1776','Present'),
@@ -1435,17 +1205,15 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1233','P015','TG/2023/1781','Present'),
 ('ICT1233','P015','TG/2023/1782','Present'),
 ('ICT1233','P015','TG/2023/1783','Present'),
-('ICT1233','P015','TG/2023/1784','Present'),
-('ICT1233','P015','TG/2023/1785','Absent'),
-('ICT1233','P015','TG/2023/1786','Present'),
-('ICT1233','P015','TG/2023/1787','Present'),
-('ICT1233','P015','TG/2023/1788','Absent');
+('ICT1233','P015','TG/2023/1774','Present');
 
 
 
 
 
-INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
+
+INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) 
+VALUES
 
 ('ICT1253','S001','TG/2023/1775','Present'),
 ('ICT1253','S001','TG/2023/1776','Present'),
@@ -1456,11 +1224,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1253','S001','TG/2023/1781','Present'),
 ('ICT1253','S001','TG/2023/1782','Present'),
 ('ICT1253','S001','TG/2023/1783','Present'),
-('ICT1253','S001','TG/2023/1784','Absent'),
-('ICT1253','S001','TG/2023/1785','Present'),
-('ICT1253','S001','TG/2023/1786','Present'),
-('ICT1253','S001','TG/2023/1787','Present'),
-('ICT1253','S001','TG/2023/1788','Present'),
+('ICT1253','S001','TG/2023/1774','Absent'),
+
 
 
 ('ICT1253','S002','TG/2023/1775','Present'),
@@ -1472,11 +1237,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1253','S002','TG/2023/1781','Present'),
 ('ICT1253','S002','TG/2023/1782','Present'),
 ('ICT1253','S002','TG/2023/1783','Present'),
-('ICT1253','S002','TG/2023/1784','Present'),
-('ICT1253','S002','TG/2023/1785','Present'),
-('ICT1253','S002','TG/2023/1786','Absent'),
-('ICT1253','S002','TG/2023/1787','Present'),
-('ICT1253','S002','TG/2023/1788','Present'),
+('ICT1253','S002','TG/2023/1774','Present'),
+
 
 
 ('ICT1253','S003','TG/2023/1775','Present'),
@@ -1488,11 +1250,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1253','S003','TG/2023/1781','Present'),
 ('ICT1253','S003','TG/2023/1782','Present'),
 ('ICT1253','S003','TG/2023/1783','Present'),
-('ICT1253','S003','TG/2023/1784','Present'),
-('ICT1253','S003','TG/2023/1785','Present'),
-('ICT1253','S003','TG/2023/1786','Present'),
-('ICT1253','S003','TG/2023/1787','Present'),
-('ICT1253','S003','TG/2023/1788','Present'),
+('ICT1253','S003','TG/2023/1774','Present'),
+
 
 
 ('ICT1253','S004','TG/2023/1775','Absent'),
@@ -1504,11 +1263,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1253','S004','TG/2023/1781','Present'),
 ('ICT1253','S004','TG/2023/1782','Present'),
 ('ICT1253','S004','TG/2023/1783','Present'),
-('ICT1253','S004','TG/2023/1784','Present'),
-('ICT1253','S004','TG/2023/1785','Present'),
-('ICT1253','S004','TG/2023/1786','Present'),
-('ICT1253','S004','TG/2023/1787','Present'),
-('ICT1253','S004','TG/2023/1788','Present'),
+('ICT1253','S004','TG/2023/1774','Present'),
+
 
 
 ('ICT1253','S005','TG/2023/1775','Present'),
@@ -1520,11 +1276,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1253','S005','TG/2023/1781','Present'),
 ('ICT1253','S005','TG/2023/1782','Present'),
 ('ICT1253','S005','TG/2023/1783','Present'),
-('ICT1253','S005','TG/2023/1784','Present'),
-('ICT1253','S005','TG/2023/1785','Present'),
-('ICT1253','S005','TG/2023/1786','Present'),
-('ICT1253','S005','TG/2023/1787','Present'),
-('ICT1253','S005','TG/2023/1788','Present'),
+('ICT1253','S005','TG/2023/1774','Present'),
+
 
 
 ('ICT1253','S006','TG/2023/1775','Present'),
@@ -1536,11 +1289,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1253','S006','TG/2023/1781','Present'),
 ('ICT1253','S006','TG/2023/1782','Present'),
 ('ICT1253','S006','TG/2023/1783','Present'),
-('ICT1253','S006','TG/2023/1784','Present'),
-('ICT1253','S006','TG/2023/1785','Present'),
-('ICT1253','S006','TG/2023/1786','Present'),
-('ICT1253','S006','TG/2023/1787','Present'),
-('ICT1253','S006','TG/2023/1788','Present'),
+('ICT1253','S006','TG/2023/1774','Present'),
+
 
 
 ('ICT1253','S007','TG/2023/1775','Present'),
@@ -1552,11 +1302,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1253','S007','TG/2023/1781','Present'),
 ('ICT1253','S007','TG/2023/1782','Present'),
 ('ICT1253','S007','TG/2023/1783','Present'),
-('ICT1253','S007','TG/2023/1784','Present'),
-('ICT1253','S007','TG/2023/1785','Absent'),
-('ICT1253','S007','TG/2023/1786','Present'),
-('ICT1253','S007','TG/2023/1787','Present'),
-('ICT1253','S007','TG/2023/1788','Present'),
+('ICT1253','S007','TG/2023/1774','Present'),
+
 
 
 ('ICT1253','S008','TG/2023/1775','Present'),
@@ -1568,11 +1315,7 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1253','S008','TG/2023/1781','Present'),
 ('ICT1253','S008','TG/2023/1782','Present'),
 ('ICT1253','S008','TG/2023/1783','Present'),
-('ICT1253','S008','TG/2023/1784','Present'),
-('ICT1253','S008','TG/2023/1785','Present'),
-('ICT1253','S008','TG/2023/1786','Present'),
-('ICT1253','S008','TG/2023/1787','Present'),
-('ICT1253','S008','TG/2023/1788','Present'),
+('ICT1253','S008','TG/2023/1774','Present'),
 
 
 ('ICT1253','S009','TG/2023/1775','Present'),
@@ -1584,11 +1327,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1253','S009','TG/2023/1781','Present'),
 ('ICT1253','S009','TG/2023/1782','Present'),
 ('ICT1253','S009','TG/2023/1783','Present'),
-('ICT1253','S009','TG/2023/1784','Present'),
-('ICT1253','S009','TG/2023/1785','Present'),
-('ICT1253','S009','TG/2023/1786','Present'),
-('ICT1253','S009','TG/2023/1787','Present'),
-('ICT1253','S009','TG/2023/1788','Present'),
+('ICT1253','S009','TG/2023/1774','Present'),
+
 
 
 ('ICT1253','S010','TG/2023/1775','Present'),
@@ -1600,11 +1340,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1253','S010','TG/2023/1781','Present'),
 ('ICT1253','S010','TG/2023/1782','Present'),
 ('ICT1253','S010','TG/2023/1783','Present'),
-('ICT1253','S010','TG/2023/1784','Present'),
-('ICT1253','S010','TG/2023/1785','Present'),
-('ICT1253','S010','TG/2023/1786','Present'),
-('ICT1253','S010','TG/2023/1787','Present'),
-('ICT1253','S010','TG/2023/1788','Present'),
+('ICT1253','S010','TG/2023/1774','Present'),
+
 
 
 
@@ -1618,11 +1355,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1253','S011','TG/2023/1781','Present'),
 ('ICT1253','S011','TG/2023/1782','Present'),
 ('ICT1253','S011','TG/2023/1783','Present'),
-('ICT1253','S011','TG/2023/1784','Present'),
-('ICT1253','S011','TG/2023/1785','Present'),
-('ICT1253','S011','TG/2023/1786','Present'),
-('ICT1253','S011','TG/2023/1787','Present'),
-('ICT1253','S011','TG/2023/1788','Present'),
+('ICT1253','S011','TG/2023/1774','Present'),
+
 
 
 ('ICT1253','S012','TG/2023/1775','Present'),
@@ -1634,11 +1368,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1253','S012','TG/2023/1781','Present'),
 ('ICT1253','S012','TG/2023/1782','Present'),
 ('ICT1253','S012','TG/2023/1783','Absent'),
-('ICT1253','S012','TG/2023/1784','Present'),
-('ICT1253','S012','TG/2023/1785','Present'),
-('ICT1253','S012','TG/2023/1786','Present'),
-('ICT1253','S012','TG/2023/1787','Present'),
-('ICT1253','S012','TG/2023/1788','Present'),
+('ICT1253','S012','TG/2023/1774','Present'),
+
 
 
 ('ICT1253','S013','TG/2023/1775','Present'),
@@ -1650,11 +1381,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1253','S013','TG/2023/1781','Present'),
 ('ICT1253','S013','TG/2023/1782','Present'),
 ('ICT1253','S013','TG/2023/1783','Present'),
-('ICT1253','S013','TG/2023/1784','Present'),
-('ICT1253','S013','TG/2023/1785','Present'),
-('ICT1253','S013','TG/2023/1786','Present'),
-('ICT1253','S013','TG/2023/1787','Present'),
-('ICT1253','S013','TG/2023/1788','Present'),
+('ICT1253','S013','TG/2023/1774','Present'),
+
 
 
 ('ICT1253','S014','TG/2023/1775','Present'),
@@ -1666,11 +1394,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1253','S014','TG/2023/1781','Present'),
 ('ICT1253','S014','TG/2023/1782','Present'),
 ('ICT1253','S014','TG/2023/1783','Present'),
-('ICT1253','S014','TG/2023/1784','Present'),
-('ICT1253','S014','TG/2023/1785','Present'),
-('ICT1253','S014','TG/2023/1786','Present'),
-('ICT1253','S014','TG/2023/1787','Present'),
-('ICT1253','S014','TG/2023/1788','Present'),
+('ICT1253','S014','TG/2023/1774','Present'),
+
 
 
 ('ICT1253','S015','TG/2023/1775','Present'),
@@ -1682,17 +1407,15 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1253','S015','TG/2023/1781','Present'),
 ('ICT1253','S015','TG/2023/1782','Present'),
 ('ICT1253','S015','TG/2023/1783','Present'),
-('ICT1253','S015','TG/2023/1784','Present'),
-('ICT1253','S015','TG/2023/1785','Present'),
-('ICT1253','S015','TG/2023/1786','Absent'),
-('ICT1253','S015','TG/2023/1787','Present'),
-('ICT1253','S015','TG/2023/1788','Present');
+('ICT1253','S015','TG/2023/1774','Present');
 
 
 
 
--- Computer Networks Practical Sessions (ICT1253)
-INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
+
+
+INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) 
+VALUES
 ('ICT1253','P001','TG/2023/1775','Present'),
 ('ICT1253','P001','TG/2023/1776','Present'),
 ('ICT1253','P001','TG/2023/1777','Absent'),
@@ -1702,26 +1425,20 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1253','P001','TG/2023/1781','Present'),
 ('ICT1253','P001','TG/2023/1782','Present'),
 ('ICT1253','P001','TG/2023/1783','Present'),
-('ICT1253','P001','TG/2023/1784','Absent'),
-('ICT1253','P001','TG/2023/1785','Present'),
-('ICT1253','P001','TG/2023/1786','Present'),
-('ICT1253','P001','TG/2023/1787','Absent'),
-('ICT1253','P001','TG/2023/1788','Present'),
+('ICT1253','P001','TG/2023/1774','Absent'),
 
-('ICT1253','P002','TG/2023/1775','Absent'),
+
+('ICT1253','P002','TG/2023/1775','Present'),
 ('ICT1253','P002','TG/2023/1776','Present'),
 ('ICT1253','P002','TG/2023/1777','Present'),
 ('ICT1253','P002','TG/2023/1778','Present'),
-('ICT1253','P002','TG/2023/1779','Absent'),
+('ICT1253','P002','TG/2023/1779','Present'),
 ('ICT1253','P002','TG/2023/1780','Present'),
 ('ICT1253','P002','TG/2023/1781','Present'),
-('ICT1253','P002','TG/2023/1782','Absent'),
+('ICT1253','P002','TG/2023/1782','Present'),
 ('ICT1253','P002','TG/2023/1783','Present'),
-('ICT1253','P002','TG/2023/1784','Present'),
-('ICT1253','P002','TG/2023/1785','Absent'),
-('ICT1253','P002','TG/2023/1786','Present'),
-('ICT1253','P002','TG/2023/1787','Present'),
-('ICT1253','P002','TG/2023/1788','Present'),
+('ICT1253','P002','TG/2023/1774','Present'),
+
 
 ('ICT1253','P003','TG/2023/1775','Present'),
 ('ICT1253','P003','TG/2023/1776','Absent'),
@@ -1732,11 +1449,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1253','P003','TG/2023/1781','Present'),
 ('ICT1253','P003','TG/2023/1782','Present'),
 ('ICT1253','P003','TG/2023/1783','Absent'),
-('ICT1253','P003','TG/2023/1784','Present'),
-('ICT1253','P003','TG/2023/1785','Present'),
-('ICT1253','P003','TG/2023/1786','Present'),
-('ICT1253','P003','TG/2023/1787','Present'),
-('ICT1253','P003','TG/2023/1788','Present'),
+('ICT1253','P003','TG/2023/1774','Present'),
+
 
 ('ICT1253','P004','TG/2023/1775','Present'),
 ('ICT1253','P004','TG/2023/1776','Present'),
@@ -1747,11 +1461,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1253','P004','TG/2023/1781','Present'),
 ('ICT1253','P004','TG/2023/1782','Absent'),
 ('ICT1253','P004','TG/2023/1783','Present'),
-('ICT1253','P004','TG/2023/1784','Present'),
-('ICT1253','P004','TG/2023/1785','Present'),
-('ICT1253','P004','TG/2023/1786','Absent'),
-('ICT1253','P004','TG/2023/1787','Present'),
-('ICT1253','P004','TG/2023/1788','Present'),
+('ICT1253','P004','TG/2023/1774','Present'),
+
 
 ('ICT1253','P005','TG/2023/1775','Present'),
 ('ICT1253','P005','TG/2023/1776','Present'),
@@ -1762,29 +1473,21 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1253','P005','TG/2023/1781','Present'),
 ('ICT1253','P005','TG/2023/1782','Present'),
 ('ICT1253','P005','TG/2023/1783','Absent'),
-('ICT1253','P005','TG/2023/1784','Present'),
-('ICT1253','P005','TG/2023/1785','Present'),
-('ICT1253','P005','TG/2023/1786','Absent'),
-('ICT1253','P005','TG/2023/1787','Present'),
-('ICT1253','P005','TG/2023/1788','Present'),
+('ICT1253','P005','TG/2023/1774','Present'),
 
 
--- Computer Networks Practical (ICT1253) Continued
 
-('ICT1253','P006','TG/2023/1775','Absent'),
+('ICT1253','P006','TG/2023/1775','Present'),
 ('ICT1253','P006','TG/2023/1776','Present'),
 ('ICT1253','P006','TG/2023/1777','Present'),
 ('ICT1253','P006','TG/2023/1778','Present'),
 ('ICT1253','P006','TG/2023/1779','Present'),
 ('ICT1253','P006','TG/2023/1780','Present'),
 ('ICT1253','P006','TG/2023/1781','Present'),
-('ICT1253','P006','TG/2023/1782','Absent'),
+('ICT1253','P006','TG/2023/1782','Present'),
 ('ICT1253','P006','TG/2023/1783','Present'),
-('ICT1253','P006','TG/2023/1784','Present'),
-('ICT1253','P006','TG/2023/1785','Absent'),
-('ICT1253','P006','TG/2023/1786','Present'),
-('ICT1253','P006','TG/2023/1787','Present'),
-('ICT1253','P006','TG/2023/1788','Present'),
+('ICT1253','P006','TG/2023/1774','Present'),
+
 
 ('ICT1253','P007','TG/2023/1775','Present'),
 ('ICT1253','P007','TG/2023/1776','Absent'),
@@ -1795,11 +1498,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1253','P007','TG/2023/1781','Present'),
 ('ICT1253','P007','TG/2023/1782','Present'),
 ('ICT1253','P007','TG/2023/1783','Present'),
-('ICT1253','P007','TG/2023/1784','Absent'),
-('ICT1253','P007','TG/2023/1785','Present'),
-('ICT1253','P007','TG/2023/1786','Present'),
-('ICT1253','P007','TG/2023/1787','Present'),
-('ICT1253','P007','TG/2023/1788','Present'),
+('ICT1253','P007','TG/2023/1774','Absent'),
+
 
 ('ICT1253','P008','TG/2023/1775','Present'),
 ('ICT1253','P008','TG/2023/1776','Present'),
@@ -1810,11 +1510,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1253','P008','TG/2023/1781','Absent'),
 ('ICT1253','P008','TG/2023/1782','Present'),
 ('ICT1253','P008','TG/2023/1783','Present'),
-('ICT1253','P008','TG/2023/1784','Present'),
-('ICT1253','P008','TG/2023/1785','Present'),
-('ICT1253','P008','TG/2023/1786','Absent'),
-('ICT1253','P008','TG/2023/1787','Present'),
-('ICT1253','P008','TG/2023/1788','Present'),
+('ICT1253','P008','TG/2023/1774','Present'),
+
 
 ('ICT1253','P009','TG/2023/1775','Present'),
 ('ICT1253','P009','TG/2023/1776','Present'),
@@ -1825,11 +1522,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1253','P009','TG/2023/1781','Present'),
 ('ICT1253','P009','TG/2023/1782','Absent'),
 ('ICT1253','P009','TG/2023/1783','Present'),
-('ICT1253','P009','TG/2023/1784','Present'),
-('ICT1253','P009','TG/2023/1785','Present'),
-('ICT1253','P009','TG/2023/1786','Present'),
-('ICT1253','P009','TG/2023/1787','Absent'),
-('ICT1253','P009','TG/2023/1788','Present'),
+('ICT1253','P009','TG/2023/1774','Present'),
+
 
 ('ICT1253','P010','TG/2023/1775','Absent'),
 ('ICT1253','P010','TG/2023/1776','Present'),
@@ -1840,14 +1534,9 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1253','P010','TG/2023/1781','Absent'),
 ('ICT1253','P010','TG/2023/1782','Present'),
 ('ICT1253','P010','TG/2023/1783','Present'),
-('ICT1253','P010','TG/2023/1784','Present'),
-('ICT1253','P010','TG/2023/1785','Present'),
-('ICT1253','P010','TG/2023/1786','Present'),
-('ICT1253','P010','TG/2023/1787','Present'),
-('ICT1253','P010','TG/2023/1788','Absent'),
+('ICT1253','P010','TG/2023/1774','Present'),
 
 
--- Computer Networks Practical (ICT1253) Final Sessions
 
 ('ICT1253','P011','TG/2023/1775','Present'),
 ('ICT1253','P011','TG/2023/1776','Present'),
@@ -1858,13 +1547,10 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1253','P011','TG/2023/1781','Present'),
 ('ICT1253','P011','TG/2023/1782','Present'),
 ('ICT1253','P011','TG/2023/1783','Present'),
-('ICT1253','P011','TG/2023/1784','Absent'),
-('ICT1253','P011','TG/2023/1785','Present'),
-('ICT1253','P011','TG/2023/1786','Present'),
-('ICT1253','P011','TG/2023/1787','Present'),
-('ICT1253','P011','TG/2023/1788','Present'),
+('ICT1253','P011','TG/2023/1774','Absent'),
 
-('ICT1253','P012','TG/2023/1775','Absent'),
+
+('ICT1253','P012','TG/2023/1775','Present'),
 ('ICT1253','P012','TG/2023/1776','Present'),
 ('ICT1253','P012','TG/2023/1777','Present'),
 ('ICT1253','P012','TG/2023/1778','Present'),
@@ -1874,10 +1560,7 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1253','P012','TG/2023/1782','Present'),
 ('ICT1253','P012','TG/2023/1783','Absent'),
 ('ICT1253','P012','TG/2023/1784','Present'),
-('ICT1253','P012','TG/2023/1785','Present'),
-('ICT1253','P012','TG/2023/1786','Present'),
-('ICT1253','P012','TG/2023/1787','Present'),
-('ICT1253','P012','TG/2023/1788','Present'),
+
 
 ('ICT1253','P013','TG/2023/1775','Present'),
 ('ICT1253','P013','TG/2023/1776','Present'),
@@ -1888,11 +1571,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1253','P013','TG/2023/1781','Present'),
 ('ICT1253','P013','TG/2023/1782','Absent'),
 ('ICT1253','P013','TG/2023/1783','Present'),
-('ICT1253','P013','TG/2023/1784','Present'),
-('ICT1253','P013','TG/2023/1785','Present'),
-('ICT1253','P013','TG/2023/1786','Present'),
-('ICT1253','P013','TG/2023/1787','Present'),
-('ICT1253','P013','TG/2023/1788','Absent'),
+('ICT1253','P013','TG/2023/1774','Present'),
+
 
 ('ICT1253','P014','TG/2023/1775','Present'),
 ('ICT1253','P014','TG/2023/1776','Present'),
@@ -1903,11 +1583,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1253','P014','TG/2023/1781','Present'),
 ('ICT1253','P014','TG/2023/1782','Present'),
 ('ICT1253','P014','TG/2023/1783','Present'),
-('ICT1253','P014','TG/2023/1784','Present'),
-('ICT1253','P014','TG/2023/1785','Absent'),
-('ICT1253','P014','TG/2023/1786','Present'),
-('ICT1253','P014','TG/2023/1787','Present'),
-('ICT1253','P014','TG/2023/1788','Present'),
+('ICT1253','P014','TG/2023/1774','Present'),
+
 
 ('ICT1253','P015','TG/2023/1775','Present'),
 ('ICT1253','P015','TG/2023/1776','Absent'),
@@ -1918,19 +1595,15 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1253','P015','TG/2023/1781','Present'),
 ('ICT1253','P015','TG/2023/1782','Present'),
 ('ICT1253','P015','TG/2023/1783','Absent'),
-('ICT1253','P015','TG/2023/1784','Present'),
-('ICT1253','P015','TG/2023/1785','Present'),
-('ICT1253','P015','TG/2023/1786','Present'),
-('ICT1253','P015','TG/2023/1787','Present'),
-('ICT1253','P015','TG/2023/1788','Present');
+('ICT1253','P015','TG/2023/1774','Present');
 
 
 
 
+INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) 
+VALUES
 
-INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
--- S001
-('TCS1212','S001','TG/2023/1775','Present'),
+('TCS1212','S001','TG/2023/1775','Absent'),
 ('TCS1212','S001','TG/2023/1776','Present'),
 ('TCS1212','S001','TG/2023/1777','Absent'),
 ('TCS1212','S001','TG/2023/1778','Present'),
@@ -1939,13 +1612,10 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('TCS1212','S001','TG/2023/1781','Present'),
 ('TCS1212','S001','TG/2023/1782','Absent'),
 ('TCS1212','S001','TG/2023/1783','Present'),
-('TCS1212','S001','TG/2023/1784','Present'),
-('TCS1212','S001','TG/2023/1785','Present'),
-('TCS1212','S001','TG/2023/1786','Present'),
-('TCS1212','S001','TG/2023/1787','Present'),
-('TCS1212','S001','TG/2023/1788','Present'),
+('TCS1212','S001','TG/2023/1774','Absent'),
 
--- S002
+
+
 ('TCS1212','S002','TG/2023/1775','Present'),
 ('TCS1212','S002','TG/2023/1776','Absent'),
 ('TCS1212','S002','TG/2023/1777','Present'),
@@ -1955,11 +1625,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('TCS1212','S002','TG/2023/1781','Present'),
 ('TCS1212','S002','TG/2023/1782','Present'),
 ('TCS1212','S002','TG/2023/1783','Present'),
-('TCS1212','S002','TG/2023/1784','Present'),
-('TCS1212','S002','TG/2023/1785','Absent'),
-('TCS1212','S002','TG/2023/1786','Present'),
-('TCS1212','S002','TG/2023/1787','Present'),
-('TCS1212','S002','TG/2023/1788','Present'),
+('TCS1212','S002','TG/2023/1774','Present'),
+
 
 
 ('TCS1212','S003','TG/2023/1775','Present'),
@@ -1971,11 +1638,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('TCS1212','S003','TG/2023/1781','Present'),
 ('TCS1212','S003','TG/2023/1782','Present'),
 ('TCS1212','S003','TG/2023/1783','Present'),
-('TCS1212','S003','TG/2023/1784','Present'),
-('TCS1212','S003','TG/2023/1785','Present'),
-('TCS1212','S003','TG/2023/1786','Present'),
-('TCS1212','S003','TG/2023/1787','Absent'),
-('TCS1212','S003','TG/2023/1788','Present'),
+('TCS1212','S003','TG/2023/1774','Present'),
+
 
 
 ('TCS1212','S004','TG/2023/1775','Present'),
@@ -1987,11 +1651,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('TCS1212','S004','TG/2023/1781','Present'),
 ('TCS1212','S004','TG/2023/1782','Present'),
 ('TCS1212','S004','TG/2023/1783','Absent'),
-('TCS1212','S004','TG/2023/1784','Present'),
-('TCS1212','S004','TG/2023/1785','Present'),
-('TCS1212','S004','TG/2023/1786','Present'),
-('TCS1212','S004','TG/2023/1787','Present'),
-('TCS1212','S004','TG/2023/1788','Present'),
+('TCS1212','S004','TG/2023/1774','Present'),
+
 
 
 ('TCS1212','S005','TG/2023/1775','Present'),
@@ -2003,14 +1664,10 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('TCS1212','S005','TG/2023/1781','Present'),
 ('TCS1212','S005','TG/2023/1782','Present'),
 ('TCS1212','S005','TG/2023/1783','Present'),
-('TCS1212','S005','TG/2023/1784','Present'),
-('TCS1212','S005','TG/2023/1785','Present'),
-('TCS1212','S005','TG/2023/1786','Present'),
-('TCS1212','S005','TG/2023/1787','Present'),
-('TCS1212','S005','TG/2023/1788','Present'),
+('TCS1212','S005','TG/2023/1774','Present'),
 
 
--- S006
+
 ('TCS1212','S006','TG/2023/1775','Present'),
 ('TCS1212','S006','TG/2023/1776','Absent'),
 ('TCS1212','S006','TG/2023/1777','Present'),
@@ -2020,13 +1677,10 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('TCS1212','S006','TG/2023/1781','Present'),
 ('TCS1212','S006','TG/2023/1782','Present'),
 ('TCS1212','S006','TG/2023/1783','Present'),
-('TCS1212','S006','TG/2023/1784','Present'),
-('TCS1212','S006','TG/2023/1785','Present'),
-('TCS1212','S006','TG/2023/1786','Present'),
-('TCS1212','S006','TG/2023/1787','Absent'),
-('TCS1212','S006','TG/2023/1788','Present'),
+('TCS1212','S006','TG/2023/1774','Present'),
 
--- S007
+
+
 ('TCS1212','S007','TG/2023/1775','Present'),
 ('TCS1212','S007','TG/2023/1776','Present'),
 ('TCS1212','S007','TG/2023/1777','Present'),
@@ -2036,29 +1690,22 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('TCS1212','S007','TG/2023/1781','Present'),
 ('TCS1212','S007','TG/2023/1782','Present'),
 ('TCS1212','S007','TG/2023/1783','Present'),
-('TCS1212','S007','TG/2023/1784','Present'),
-('TCS1212','S007','TG/2023/1785','Present'),
-('TCS1212','S007','TG/2023/1786','Absent'),
-('TCS1212','S007','TG/2023/1787','Present'),
-('TCS1212','S007','TG/2023/1788','Present'),
+('TCS1212','S007','TG/2023/1774','Present'),
 
--- S008
-('TCS1212','S008','TG/2023/1775','Absent'),
+
+('TCS1212','S008','TG/2023/1775','Present'),
 ('TCS1212','S008','TG/2023/1776','Present'),
 ('TCS1212','S008','TG/2023/1777','Present'),
 ('TCS1212','S008','TG/2023/1778','Present'),
 ('TCS1212','S008','TG/2023/1779','Present'),
 ('TCS1212','S008','TG/2023/1780','Present'),
 ('TCS1212','S008','TG/2023/1781','Present'),
-('TCS1212','S008','TG/2023/1782','Absent'),
+('TCS1212','S008','TG/2023/1782','Present'),
 ('TCS1212','S008','TG/2023/1783','Present'),
-('TCS1212','S008','TG/2023/1784','Present'),
-('TCS1212','S008','TG/2023/1785','Present'),
-('TCS1212','S008','TG/2023/1786','Present'),
-('TCS1212','S008','TG/2023/1787','Present'),
-('TCS1212','S008','TG/2023/1788','Present'),
+('TCS1212','S008','TG/2023/1774','Present'),
 
--- S009
+
+
 ('TCS1212','S009','TG/2023/1775','Present'),
 ('TCS1212','S009','TG/2023/1776','Present'),
 ('TCS1212','S009','TG/2023/1777','Present'),
@@ -2068,13 +1715,9 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('TCS1212','S009','TG/2023/1781','Absent'),
 ('TCS1212','S009','TG/2023/1782','Present'),
 ('TCS1212','S009','TG/2023/1783','Present'),
-('TCS1212','S009','TG/2023/1784','Present'),
-('TCS1212','S009','TG/2023/1785','Present'),
-('TCS1212','S009','TG/2023/1786','Present'),
-('TCS1212','S009','TG/2023/1787','Present'),
-('TCS1212','S009','TG/2023/1788','Present'),
+('TCS1212','S009','TG/2023/1774','Present'),
 
--- S010
+
 ('TCS1212','S010','TG/2023/1775','Present'),
 ('TCS1212','S010','TG/2023/1776','Present'),
 ('TCS1212','S010','TG/2023/1777','Absent'),
@@ -2084,29 +1727,23 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('TCS1212','S010','TG/2023/1781','Present'),
 ('TCS1212','S010','TG/2023/1782','Present'),
 ('TCS1212','S010','TG/2023/1783','Present'),
-('TCS1212','S010','TG/2023/1784','Absent'),
-('TCS1212','S010','TG/2023/1785','Present'),
-('TCS1212','S010','TG/2023/1786','Present'),
-('TCS1212','S010','TG/2023/1787','Present'),
-('TCS1212','S010','TG/2023/1788','Present'),
+('TCS1212','S010','TG/2023/1774','Absent'),
 
--- S011
+
+
 ('TCS1212','S011','TG/2023/1775','Present'),
 ('TCS1212','S011','TG/2023/1776','Present'),
 ('TCS1212','S011','TG/2023/1777','Present'),
 ('TCS1212','S011','TG/2023/1778','Present'),
 ('TCS1212','S011','TG/2023/1779','Present'),
-('TCS1212','S011','TG/2023/1780','Absent'),
+('TCS1212','S011','TG/2023/1780','Present'),
 ('TCS1212','S011','TG/2023/1781','Present'),
 ('TCS1212','S011','TG/2023/1782','Present'),
 ('TCS1212','S011','TG/2023/1783','Present'),
-('TCS1212','S011','TG/2023/1784','Present'),
-('TCS1212','S011','TG/2023/1785','Present'),
-('TCS1212','S011','TG/2023/1786','Present'),
-('TCS1212','S011','TG/2023/1787','Absent'),
-('TCS1212','S011','TG/2023/1788','Present'),
+('TCS1212','S011','TG/2023/1774','Present'),
 
--- S012
+
+
 ('TCS1212','S012','TG/2023/1775','Present'),
 ('TCS1212','S012','TG/2023/1776','Present'),
 ('TCS1212','S012','TG/2023/1777','Present'),
@@ -2116,13 +1753,10 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('TCS1212','S012','TG/2023/1781','Present'),
 ('TCS1212','S012','TG/2023/1782','Present'),
 ('TCS1212','S012','TG/2023/1783','Absent'),
-('TCS1212','S012','TG/2023/1784','Present'),
-('TCS1212','S012','TG/2023/1785','Present'),
-('TCS1212','S012','TG/2023/1786','Present'),
-('TCS1212','S012','TG/2023/1787','Present'),
-('TCS1212','S012','TG/2023/1788','Present'),
+('TCS1212','S012','TG/2023/1774','Present'),
 
--- S013
+
+
 ('TCS1212','S013','TG/2023/1775','Absent'),
 ('TCS1212','S013','TG/2023/1776','Present'),
 ('TCS1212','S013','TG/2023/1777','Present'),
@@ -2132,13 +1766,10 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('TCS1212','S013','TG/2023/1781','Present'),
 ('TCS1212','S013','TG/2023/1782','Present'),
 ('TCS1212','S013','TG/2023/1783','Present'),
-('TCS1212','S013','TG/2023/1784','Present'),
-('TCS1212','S013','TG/2023/1785','Absent'),
-('TCS1212','S013','TG/2023/1786','Present'),
-('TCS1212','S013','TG/2023/1787','Present'),
-('TCS1212','S013','TG/2023/1788','Present'),
+('TCS1212','S013','TG/2023/1774','Present'),
 
--- S014
+
+
 ('TCS1212','S014','TG/2023/1775','Present'),
 ('TCS1212','S014','TG/2023/1776','Present'),
 ('TCS1212','S014','TG/2023/1777','Present'),
@@ -2148,11 +1779,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('TCS1212','S014','TG/2023/1781','Present'),
 ('TCS1212','S014','TG/2023/1782','Present'),
 ('TCS1212','S014','TG/2023/1783','Present'),
-('TCS1212','S014','TG/2023/1784','Present'),
-('TCS1212','S014','TG/2023/1785','Present'),
-('TCS1212','S014','TG/2023/1786','Present'),
-('TCS1212','S014','TG/2023/1787','Present'),
-('TCS1212','S014','TG/2023/1788','Present'),
+('TCS1212','S014','TG/2023/1774','Present'),
+
 
 
 ('TCS1212','S015','TG/2023/1775','Present'),
@@ -2164,17 +1792,15 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('TCS1212','S015','TG/2023/1781','Present'),
 ('TCS1212','S015','TG/2023/1782','Present'),
 ('TCS1212','S015','TG/2023/1783','Present'),
-('TCS1212','S015','TG/2023/1784','Present'),
-('TCS1212','S015','TG/2023/1785','Present'),
-('TCS1212','S015','TG/2023/1786','Present'),
-('TCS1212','S015','TG/2023/1787','Present'),
-('TCS1212','S015','TG/2023/1788','Present');
+('TCS1212','S015','TG/2023/1774','Present');
 
 
 
 
-INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
--- S001
+
+INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) 
+VALUES
+
 ('TCS1233','S001','TG/2023/1775','Present'),
 ('TCS1233','S001','TG/2023/1776','Present'),
 ('TCS1233','S001','TG/2023/1777','Absent'),
@@ -2184,13 +1810,10 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('TCS1233','S001','TG/2023/1781','Present'),
 ('TCS1233','S001','TG/2023/1782','Present'),
 ('TCS1233','S001','TG/2023/1783','Present'),
-('TCS1233','S001','TG/2023/1784','Absent'),
-('TCS1233','S001','TG/2023/1785','Present'),
-('TCS1233','S001','TG/2023/1786','Present'),
-('TCS1233','S001','TG/2023/1787','Present'),
-('TCS1233','S001','TG/2023/1788','Present'),
+('TCS1233','S001','TG/2023/1774','Absent'),
 
--- S002
+
+
 ('TCS1233','S002','TG/2023/1775','Present'),
 ('TCS1233','S002','TG/2023/1776','Present'),
 ('TCS1233','S002','TG/2023/1777','Present'),
@@ -2200,13 +1823,10 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('TCS1233','S002','TG/2023/1781','Present'),
 ('TCS1233','S002','TG/2023/1782','Present'),
 ('TCS1233','S002','TG/2023/1783','Present'),
-('TCS1233','S002','TG/2023/1784','Present'),
-('TCS1233','S002','TG/2023/1785','Present'),
-('TCS1233','S002','TG/2023/1786','Present'),
-('TCS1233','S002','TG/2023/1787','Absent'),
-('TCS1233','S002','TG/2023/1788','Present'),
+('TCS1233','S002','TG/2023/1774','Present'),
 
--- S003
+
+
 ('TCS1233','S003','TG/2023/1775','Present'),
 ('TCS1233','S003','TG/2023/1776','Present'),
 ('TCS1233','S003','TG/2023/1777','Present'),
@@ -2216,13 +1836,10 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('TCS1233','S003','TG/2023/1781','Present'),
 ('TCS1233','S003','TG/2023/1782','Present'),
 ('TCS1233','S003','TG/2023/1783','Present'),
-('TCS1233','S003','TG/2023/1784','Present'),
-('TCS1233','S003','TG/2023/1785','Present'),
-('TCS1233','S003','TG/2023/1786','Present'),
-('TCS1233','S003','TG/2023/1787','Present'),
-('TCS1233','S003','TG/2023/1788','Present'),
+('TCS1233','S003','TG/2023/1774','Present'),
 
--- S004
+
+
 ('TCS1233','S004','TG/2023/1775','Absent'),
 ('TCS1233','S004','TG/2023/1776','Present'),
 ('TCS1233','S004','TG/2023/1777','Present'),
@@ -2232,14 +1849,10 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('TCS1233','S004','TG/2023/1781','Present'),
 ('TCS1233','S004','TG/2023/1782','Present'),
 ('TCS1233','S004','TG/2023/1783','Present'),
-('TCS1233','S004','TG/2023/1784','Present'),
-('TCS1233','S004','TG/2023/1785','Present'),
-('TCS1233','S004','TG/2023/1786','Present'),
-('TCS1233','S004','TG/2023/1787','Present'),
-('TCS1233','S004','TG/2023/1788','Present'),
+('TCS1233','S004','TG/2023/1774','Present'),
 
 
--- S005
+
 ('TCS1233','S005','TG/2023/1775','Present'),
 ('TCS1233','S005','TG/2023/1776','Present'),
 ('TCS1233','S005','TG/2023/1777','Present'),
@@ -2249,11 +1862,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('TCS1233','S005','TG/2023/1781','Present'),
 ('TCS1233','S005','TG/2023/1782','Present'),
 ('TCS1233','S005','TG/2023/1783','Present'),
-('TCS1233','S005','TG/2023/1784','Present'),
-('TCS1233','S005','TG/2023/1785','Present'),
-('TCS1233','S005','TG/2023/1786','Present'),
-('TCS1233','S005','TG/2023/1787','Present'),
-('TCS1233','S005','TG/2023/1788','Present'),
+('TCS1233','S005','TG/2023/1774','Present'),
+
 
 
 ('TCS1233','S006','TG/2023/1775','Present'),
@@ -2265,11 +1875,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('TCS1233','S006','TG/2023/1781','Present'),
 ('TCS1233','S006','TG/2023/1782','Present'),
 ('TCS1233','S006','TG/2023/1783','Present'),
-('TCS1233','S006','TG/2023/1784','Present'),
-('TCS1233','S006','TG/2023/1785','Present'),
-('TCS1233','S006','TG/2023/1786','Present'),
-('TCS1233','S006','TG/2023/1787','Absent'),
-('TCS1233','S006','TG/2023/1788','Present'),
+('TCS1233','S006','TG/2023/1774','Present'),
+
 
 
 ('TCS1233','S007','TG/2023/1775','Present'),
@@ -2281,11 +1888,7 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('TCS1233','S007','TG/2023/1781','Present'),
 ('TCS1233','S007','TG/2023/1782','Present'),
 ('TCS1233','S007','TG/2023/1783','Present'),
-('TCS1233','S007','TG/2023/1784','Present'),
-('TCS1233','S007','TG/2023/1785','Present'),
-('TCS1233','S007','TG/2023/1786','Absent'),
-('TCS1233','S007','TG/2023/1787','Present'),
-('TCS1233','S007','TG/2023/1788','Present'),
+('TCS1233','S007','TG/2023/1774','Present'),
 
 
 ('TCS1233','S008','TG/2023/1775','Absent'),
@@ -2297,11 +1900,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('TCS1233','S008','TG/2023/1781','Present'),
 ('TCS1233','S008','TG/2023/1782','Absent'),
 ('TCS1233','S008','TG/2023/1783','Present'),
-('TCS1233','S008','TG/2023/1784','Present'),
-('TCS1233','S008','TG/2023/1785','Present'),
-('TCS1233','S008','TG/2023/1786','Present'),
-('TCS1233','S008','TG/2023/1787','Present'),
-('TCS1233','S008','TG/2023/1788','Present'),
+('TCS1233','S008','TG/2023/1774','Present'),
+
 
 
 ('TCS1233','S009','TG/2023/1775','Present'),
@@ -2313,11 +1913,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('TCS1233','S009','TG/2023/1781','Absent'),
 ('TCS1233','S009','TG/2023/1782','Present'),
 ('TCS1233','S009','TG/2023/1783','Present'),
-('TCS1233','S009','TG/2023/1784','Present'),
-('TCS1233','S009','TG/2023/1785','Present'),
-('TCS1233','S009','TG/2023/1786','Present'),
-('TCS1233','S009','TG/2023/1787','Present'),
-('TCS1233','S009','TG/2023/1788','Present'),
+('TCS1233','S009','TG/2023/1774','Present'),
+
 
 
 ('TCS1233','S010','TG/2023/1775','Present'),
@@ -2329,11 +1926,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('TCS1233','S010','TG/2023/1781','Present'),
 ('TCS1233','S010','TG/2023/1782','Present'),
 ('TCS1233','S010','TG/2023/1783','Present'),
-('TCS1233','S010','TG/2023/1784','Absent'),
-('TCS1233','S010','TG/2023/1785','Present'),
-('TCS1233','S010','TG/2023/1786','Present'),
-('TCS1233','S010','TG/2023/1787','Present'),
-('TCS1233','S010','TG/2023/1788','Present'),
+('TCS1233','S010','TG/2023/1774','Absent'),
+
 
 
 ('TCS1233','S011','TG/2023/1775','Present'),
@@ -2345,11 +1939,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('TCS1233','S011','TG/2023/1781','Present'),
 ('TCS1233','S011','TG/2023/1782','Present'),
 ('TCS1233','S011','TG/2023/1783','Present'),
-('TCS1233','S011','TG/2023/1784','Present'),
-('TCS1233','S011','TG/2023/1785','Present'),
-('TCS1233','S011','TG/2023/1786','Present'),
-('TCS1233','S011','TG/2023/1787','Absent'),
-('TCS1233','S011','TG/2023/1788','Present'),
+('TCS1233','S011','TG/2023/1774','Present'),
+
 
 
 ('TCS1233','S012','TG/2023/1775','Present'),
@@ -2361,11 +1952,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('TCS1233','S012','TG/2023/1781','Present'),
 ('TCS1233','S012','TG/2023/1782','Present'),
 ('TCS1233','S012','TG/2023/1783','Absent'),
-('TCS1233','S012','TG/2023/1784','Present'),
-('TCS1233','S012','TG/2023/1785','Present'),
-('TCS1233','S012','TG/2023/1786','Present'),
-('TCS1233','S012','TG/2023/1787','Present'),
-('TCS1233','S012','TG/2023/1788','Present'),
+('TCS1233','S012','TG/2023/1774','Present'),
+
 
 
 ('TCS1233','S013','TG/2023/1775','Absent'),
@@ -2377,11 +1965,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('TCS1233','S013','TG/2023/1781','Present'),
 ('TCS1233','S013','TG/2023/1782','Present'),
 ('TCS1233','S013','TG/2023/1783','Present'),
-('TCS1233','S013','TG/2023/1784','Present'),
-('TCS1233','S013','TG/2023/1785','Absent'),
-('TCS1233','S013','TG/2023/1786','Present'),
-('TCS1233','S013','TG/2023/1787','Present'),
-('TCS1233','S013','TG/2023/1788','Present'),
+('TCS1233','S013','TG/2023/1774','Present'),
+
 
 
 ('TCS1233','S014','TG/2023/1775','Present'),
@@ -2393,11 +1978,8 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('TCS1233','S014','TG/2023/1781','Present'),
 ('TCS1233','S014','TG/2023/1782','Present'),
 ('TCS1233','S014','TG/2023/1783','Present'),
-('TCS1233','S014','TG/2023/1784','Present'),
-('TCS1233','S014','TG/2023/1785','Present'),
-('TCS1233','S014','TG/2023/1786','Present'),
-('TCS1233','S014','TG/2023/1787','Present'),
-('TCS1233','S014','TG/2023/1788','Present'),
+('TCS1233','S014','TG/2023/1774','Present'),
+
 
 
 ('TCS1233','S015','TG/2023/1775','Present'),
@@ -2409,11 +1991,179 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('TCS1233','S015','TG/2023/1781','Present'),
 ('TCS1233','S015','TG/2023/1782','Present'),
 ('TCS1233','S015','TG/2023/1783','Present'),
-('TCS1233','S015','TG/2023/1784','Present'),
-('TCS1233','S015','TG/2023/1785','Present'),
-('TCS1233','S015','TG/2023/1786','Present'),
-('TCS1233','S015','TG/2023/1787','Present'),
-('TCS1233','S015','TG/2023/1788','Present');
+('TCS1233','S015','TG/2023/1774','Present');
+
+
+
+INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) 
+VALUES
+
+('ICT1242','S001','TG/2023/1775','Present'),
+('ICT1242','S001','TG/2023/1776','Present'),
+('ICT1242','S001','TG/2023/1777','Absent'),
+('ICT1242','S001','TG/2023/1778','Present'),
+('ICT1242','S001','TG/2023/1779','Present'),
+('ICT1242','S001','TG/2023/1780','Absent'),
+('ICT1242','S001','TG/2023/1781','Present'),
+('ICT1242','S001','TG/2023/1782','Present'),
+('ICT1242','S001','TG/2023/1783','Present'),
+('ICT1242','S001','TG/2023/1774','Absent'),
+
+('ICT1242','S002','TG/2023/1775','Present'),
+('ICT1242','S002','TG/2023/1776','Present'),
+('ICT1242','S002','TG/2023/1777','Present'),
+('ICT1242','S002','TG/2023/1778','Absent'),
+('ICT1242','S002','TG/2023/1779','Present'),
+('ICT1242','S002','TG/2023/1780','Present'),
+('ICT1242','S002','TG/2023/1781','Present'),
+('ICT1242','S002','TG/2023/1782','Present'),
+('ICT1242','S002','TG/2023/1783','Present'),
+('ICT1242','S002','TG/2023/1774','Present'),
+
+('ICT1242','S003','TG/2023/1775','Present'),
+('ICT1242','S003','TG/2023/1776','Present'),
+('ICT1242','S003','TG/2023/1777','Present'),
+('ICT1242','S003','TG/2023/1778','Present'),
+('ICT1242','S003','TG/2023/1779','Present'),
+('ICT1242','S003','TG/2023/1780','Absent'),
+('ICT1242','S003','TG/2023/1781','Present'),
+('ICT1242','S003','TG/2023/1782','Present'),
+('ICT1242','S003','TG/2023/1783','Present'),
+('ICT1242','S003','TG/2023/1774','Present'),
+
+('ICT1242','S004','TG/2023/1775','Absent'),
+('ICT1242','S004','TG/2023/1776','Present'),
+('ICT1242','S004','TG/2023/1777','Present'),
+('ICT1242','S004','TG/2023/1778','Present'),
+('ICT1242','S004','TG/2023/1779','Present'),
+('ICT1242','S004','TG/2023/1780','Present'),
+('ICT1242','S004','TG/2023/1781','Present'),
+('ICT1242','S004','TG/2023/1782','Present'),
+('ICT1242','S004','TG/2023/1783','Present'),
+('ICT1242','S004','TG/2023/1774','Present'),
+
+('ICT1242','S005','TG/2023/1775','Present'),
+('ICT1242','S005','TG/2023/1776','Present'),
+('ICT1242','S005','TG/2023/1777','Present'),
+('ICT1242','S005','TG/2023/1778','Present'),
+('ICT1242','S005','TG/2023/1779','Absent'),
+('ICT1242','S005','TG/2023/1780','Present'),
+('ICT1242','S005','TG/2023/1781','Present'),
+('ICT1242','S005','TG/2023/1782','Present'),
+('ICT1242','S005','TG/2023/1783','Present'),
+('ICT1242','S005','TG/2023/1774','Present'),
+
+('ICT1242','S006','TG/2023/1775','Present'),
+('ICT1242','S006','TG/2023/1776','Absent'),
+('ICT1242','S006','TG/2023/1777','Present'),
+('ICT1242','S006','TG/2023/1778','Present'),
+('ICT1242','S006','TG/2023/1779','Present'),
+('ICT1242','S006','TG/2023/1780','Present'),
+('ICT1242','S006','TG/2023/1781','Present'),
+('ICT1242','S006','TG/2023/1782','Present'),
+('ICT1242','S006','TG/2023/1783','Present'),
+('ICT1242','S006','TG/2023/1774','Present'),
+
+('ICT1242','S007','TG/2023/1775','Present'),
+('ICT1242','S007','TG/2023/1776','Present'),
+('ICT1242','S007','TG/2023/1777','Present'),
+('ICT1242','S007','TG/2023/1778','Absent'),
+('ICT1242','S007','TG/2023/1779','Present'),
+('ICT1242','S007','TG/2023/1780','Absent'),
+('ICT1242','S007','TG/2023/1781','Present'),
+('ICT1242','S007','TG/2023/1782','Present'),
+('ICT1242','S007','TG/2023/1783','Present'),
+('ICT1242','S007','TG/2023/1774','Present'),
+
+('ICT1242','S008','TG/2023/1775','Absent'),
+('ICT1242','S008','TG/2023/1776','Present'),
+('ICT1242','S008','TG/2023/1777','Present'),
+('ICT1242','S008','TG/2023/1778','Present'),
+('ICT1242','S008','TG/2023/1779','Present'),
+('ICT1242','S008','TG/2023/1780','Present'),
+('ICT1242','S008','TG/2023/1781','Present'),
+('ICT1242','S008','TG/2023/1782','Absent'),
+('ICT1242','S008','TG/2023/1783','Present'),
+('ICT1242','S008','TG/2023/1774','Present'),
+
+('ICT1242','S009','TG/2023/1775','Present'),
+('ICT1242','S009','TG/2023/1776','Present'),
+('ICT1242','S009','TG/2023/1777','Present'),
+('ICT1242','S009','TG/2023/1778','Present'),
+('ICT1242','S009','TG/2023/1779','Present'),
+('ICT1242','S009','TG/2023/1780','Absent'),
+('ICT1242','S009','TG/2023/1781','Absent'),
+('ICT1242','S009','TG/2023/1782','Present'),
+('ICT1242','S009','TG/2023/1783','Present'),
+('ICT1242','S009','TG/2023/1774','Present'),
+
+('ICT1242','S010','TG/2023/1775','Present'),
+('ICT1242','S010','TG/2023/1776','Present'),
+('ICT1242','S010','TG/2023/1777','Absent'),
+('ICT1242','S010','TG/2023/1778','Present'),
+('ICT1242','S010','TG/2023/1779','Present'),
+('ICT1242','S010','TG/2023/1780','Present'),
+('ICT1242','S010','TG/2023/1781','Present'),
+('ICT1242','S010','TG/2023/1782','Present'),
+('ICT1242','S010','TG/2023/1783','Present'),
+('ICT1242','S010','TG/2023/1774','Absent'),
+
+('ICT1242','S011','TG/2023/1775','Present'),
+('ICT1242','S011','TG/2023/1776','Present'),
+('ICT1242','S011','TG/2023/1777','Present'),
+('ICT1242','S011','TG/2023/1778','Present'),
+('ICT1242','S011','TG/2023/1779','Present'),
+('ICT1242','S011','TG/2023/1780','Absent'),
+('ICT1242','S011','TG/2023/1781','Present'),
+('ICT1242','S011','TG/2023/1782','Present'),
+('ICT1242','S011','TG/2023/1783','Present'),
+('ICT1242','S011','TG/2023/1774','Present'),
+
+('ICT1242','S012','TG/2023/1775','Present'),
+('ICT1242','S012','TG/2023/1776','Present'),
+('ICT1242','S012','TG/2023/1777','Present'),
+('ICT1242','S012','TG/2023/1778','Present'),
+('ICT1242','S012','TG/2023/1779','Present'),
+('ICT1242','S012','TG/2023/1780','Present'),
+('ICT1242','S012','TG/2023/1781','Present'),
+('ICT1242','S012','TG/2023/1782','Present'),
+('ICT1242','S012','TG/2023/1783','Absent'),
+('ICT1242','S012','TG/2023/1774','Present'),
+
+('ICT1242','S013','TG/2023/1775','Absent'),
+('ICT1242','S013','TG/2023/1776','Present'),
+('ICT1242','S013','TG/2023/1777','Present'),
+('ICT1242','S013','TG/2023/1778','Present'),
+('ICT1242','S013','TG/2023/1779','Present'),
+('ICT1242','S013','TG/2023/1780','Present'),
+('ICT1242','S013','TG/2023/1781','Present'),
+('ICT1242','S013','TG/2023/1782','Present'),
+('ICT1242','S013','TG/2023/1783','Present'),
+('ICT1242','S013','TG/2023/1774','Present'),
+
+('ICT1242','S014','TG/2023/1775','Present'),
+('ICT1242','S014','TG/2023/1776','Present'),
+('ICT1242','S014','TG/2023/1777','Present'),
+('ICT1242','S014','TG/2023/1778','Present'),
+('ICT1242','S014','TG/2023/1779','Absent'),
+('ICT1242','S014','TG/2023/1780','Absent'),
+('ICT1242','S014','TG/2023/1781','Present'),
+('ICT1242','S014','TG/2023/1782','Present'),
+('ICT1242','S014','TG/2023/1783','Present'),
+('ICT1242','S014','TG/2023/1774','Present'),
+
+('ICT1242','S015','TG/2023/1775','Present'),
+('ICT1242','S015','TG/2023/1776','Present'),
+('ICT1242','S015','TG/2023/1777','Present'),
+('ICT1242','S015','TG/2023/1778','Present'),
+('ICT1242','S015','TG/2023/1779','Present'),
+('ICT1242','S015','TG/2023/1780','Absent'),
+('ICT1242','S015','TG/2023/1781','Present'),
+('ICT1242','S015','TG/2023/1782','Present'),
+('ICT1242','S015','TG/2023/1783','Present'),
+('ICT1242','S015','TG/2023/1774','Present');
+
+
 
 
 
