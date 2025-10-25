@@ -3637,6 +3637,30 @@ DELIMITER ;
 
 
 
+######################################################################################################################
+
+VIEW ATTANDENTACE course
+
+
+
+DELIMITER //
+
+CREATE PROCEDURE indivitual_by_cource(IN p_course VARCHAR(10))
+BEGIN  
+ SELECT Reg_no,Total_Lessons_Hour,Participate_Hour,Accepted_Medical_Hour,Medical_Percentage,Total_Attendance_Percentage
+ FROM View_Attendance_Summary
+	WHERE Sub_code=p_course;
+   END//
+
+DELIMITER ;
+
+
+
+########################################################################################################################
+
+
+
+
 
 
 
