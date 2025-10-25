@@ -499,7 +499,6 @@ INSERT INTO Exam_Subject (Exam_code, Sub_code, Date, Duration) VALUES
 
 
 
-##################################################     MEDICAL
 
 
 
@@ -595,23 +594,6 @@ CREATE TABLE Student_Sports (
 );
 
 
-################################################################ SESSION
-
-
-			 
-
-############################################################# STUDENT SESSION
-
-
-CREATE TABLE Session_Student(
-Sub_code VARCHAR(10),
-Session_id VARCHAR(10),
-Reg_no VARCHAR(12),
-Status ENUM('Present','Absent') DEFAULT 'Absent',
-PRIMARY KEY(Sub_code,Session_id,Reg_no),
-FOREIGN KEY(Sub_code, Session_id) REFERENCES Session(Sub_code, Session_id),
-FOREIGN KEY(Reg_no) REFERENCES Student(Reg_no)
-);
 
 
 
@@ -1000,11 +982,11 @@ INSERT INTO Marks (Reg_no, Sub_code, Exam_code, Mark, Type) VALUES
 
 
 
-##################################################################################
+################################################################################## SESION TABLE
 CREATE TABLE Session(Sub_code VARCHAR(10),
 Session_id VARCHAR(10),
 Lec_id VARCHAR(10),
-Session_name VARCHAR(20),
+Session_name VARCHAR(50),
 Hour INT,
 Ses_date DATE,
 TYPE ENUM('Theory','Absent','Practical'),
@@ -1014,7 +996,6 @@ ON DELETE CASCADE ON UPDATE CASCADE,
 FOREIGN KEY(Lec_id) REFERENCES Lecturer(Lec_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
   
-Session table Data
 
 
 
@@ -1231,10 +1212,70 @@ INSERT INTO Session (Sub_code, Session_id,Lec_id, Session_name, Hour, Ses_date, 
 
 
 
+#######################################################################################   Medical TABLE 
+
+
+CREATE TABLE Medical (
+  Med_id         VARCHAR(10)  PRIMARY KEY,
+  start_date     DATE         NOT NULL,
+  end_date       DATE         NOT NULL,
+  submitted_date DATE         NOT NULL,
+  Status         ENUM('pending','Approved','Not approved')
+                 NOT NULL DEFAULT 'pending',
+  Reason         VARCHAR(60),
+  Reg_no         VARCHAR(12)  NOT NULL,
+  Approved_by    VARCHAR(10)  NULL,
+
+ 
+  FOREIGN KEY (Reg_no) REFERENCES Student(Reg_no)
+      ON DELETE CASCADE
+	  ON UPDATE CASCADE,
+
+  CONSTRAINT check_approvedby CHECK (
+    (Status = 'Approved' AND Approved_by IS NOT NULL)
+    OR (Status IN ('pending','Not approved') AND Approved_by IS NULL)
+  ),
+
+  CONSTRAINT check_submit_within_14days CHECK (
+    (Status = 'Approved' AND submitted_date <= DATE_ADD(end_date, INTERVAL 14 DAY))
+    OR (Status IN ('pending','Not approved'))
+  )
+);
+
+
+INSERT INTO Medical 
+(Med_id, start_date, end_date, submitted_date, Status, Reason, Reg_no, Approved_by)
+VALUES
+('MED001','2025-03-01','2025-03-05','2025-03-10','Approved','High fever','TG/2023/1775','EMP0110'),
+('MED002','2025-04-10','2025-04-14','2025-04-25','pending','Waiting for doctor confirmation','TG/2023/1776',NULL),
+('MED003','2025-05-01','2025-05-04','2025-05-10','Approved','Sports injury','TG/2023/1780','EMP0121'),
+('MED004','2025-02-15','2025-02-20','2025-02-25','Approved','Positive for COVID-19','TG/2023/1784','EMP0101'),
+('MED005','2025-07-10','2025-07-14','2025-07-20','Approved','Minor operation recovery','TG/2023/1782','EMP0102'),
+('MED006','2025-07-01','2025-07-05','2025-07-25','Not approved','Late submission','TG/2023/1779',NULL),
+('MED007','2025-06-05','2025-06-08','2025-06-20','pending','Under medical review','TG/2023/1778',NULL),
+('MED008','2025-08-01','2025-08-05','2025-08-15','Approved','Severe allergy reaction','TG/2021/1455','EMP0114'),
+('MED009','2025-09-01','2025-09-03','2025-09-30','pending','Awaiting approval','TG/2021/1452',NULL),
+('MED010','2025-03-10','2025-03-14','2025-04-10','Not approved','Missing documents','TG/2023/1781',NULL),
+('MED011','2025-09-30','2025-09-30','2025-10-03','Approved','headache','TG/2023/1774','EMP0110');
+
+
+
+
 
 ############################################################################################ Session_Student table data
 
+############################################################# STUDENT SESSION
 
+
+CREATE TABLE Session_Student(
+Sub_code VARCHAR(10),
+Session_id VARCHAR(10),
+Reg_no VARCHAR(12),
+Status ENUM('Present','Absent') DEFAULT 'Absent',
+PRIMARY KEY(Sub_code,Session_id,Reg_no),
+FOREIGN KEY(Sub_code, Session_id) REFERENCES Session(Sub_code, Session_id),
+FOREIGN KEY(Reg_no) REFERENCES Student(Reg_no)
+);
 
 
 INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) 
@@ -1507,7 +1548,7 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 ('ICT1212','S006','TG/2023/1775','Present'),
 ('ICT1212','S006','TG/2023/1776','Present'),
 ('ICT1212','S006','TG/2023/1777','Absent'),
-('ICT12112','S006','TG/2023/1778','Present'),
+('ICT1212','S006','TG/2023/1778','Present'),
 ('ICT1212','S006','TG/2023/1779','Present'),
 ('ICT1212','S006','TG/2023/1780','Present'),
 ('ICT1212','S006','TG/2023/1781','Present'),
@@ -1639,199 +1680,199 @@ INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 
 INSERT INTO Session_Student (Sub_code, Session_id, Reg_no, Status) VALUES
 
-('ICT1222','S001','TG/2023/1775','Present'),
-('ICT1222','S001','TG/2023/1776','Present'),
-('ICT1222','S001','TG/2023/1777','Present'),
-('ICT1222','S001','TG/2023/1778','Present'),
-('ICT1222','S001','TG/2023/1779','Present'),
-('ICT1222','S001','TG/2023/1780','Absent'),
-('ICT1222','S001','TG/2023/1781','Present'),
-('ICT1222','S001','TG/2023/1782','Present'),
-('ICT1222','S001','TG/2023/1783','Present'),
-('ICT1222','S001','TG/2023/1774','Present'),
+('ICT1222','P001','TG/2023/1775','Present'),
+('ICT1222','P001','TG/2023/1776','Present'),
+('ICT1222','P001','TG/2023/1777','Present'),
+('ICT1222','P001','TG/2023/1778','Present'),
+('ICT1222','P001','TG/2023/1779','Present'),
+('ICT1222','P001','TG/2023/1780','Absent'),
+('ICT1222','P001','TG/2023/1781','Present'),
+('ICT1222','P001','TG/2023/1782','Present'),
+('ICT1222','P001','TG/2023/1783','Present'),
+('ICT1222','P001','TG/2023/1774','Present'),
 
 
 
-('ICT1222','S002','TG/2023/1775','Present'),
-('ICT1222','S002','TG/2023/1776','Present'),
-('ICT1222','S002','TG/2023/1777','Absent'),
-('ICT1222','S002','TG/2023/1778','Present'),
-('ICT1222','S002','TG/2023/1779','Present'),
-('ICT1222','S002','TG/2023/1780','Present'),
-('ICT1222','S002','TG/2023/1781','Present'),
-('ICT1222','S002','TG/2023/1782','Present'),
-('ICT1222','S002','TG/2023/1783','Present'),
-('ICT1222','S002','TG/2023/1774','Present'),
+('ICT1222','P002','TG/2023/1775','Present'),
+('ICT1222','P002','TG/2023/1776','Present'),
+('ICT1222','P002','TG/2023/1777','Absent'),
+('ICT1222','P002','TG/2023/1778','Present'),
+('ICT1222','P002','TG/2023/1779','Present'),
+('ICT1222','P002','TG/2023/1780','Present'),
+('ICT1222','P002','TG/2023/1781','Present'),
+('ICT1222','P002','TG/2023/1782','Present'),
+('ICT1222','P002','TG/2023/1783','Present'),
+('ICT1222','P002','TG/2023/1774','Present'),
 
 
 
-('ICT1222','S003','TG/2023/1775','Present'),
-('ICT1222','S003','TG/2023/1776','Absent'),
-('ICT1222','S003','TG/2023/1777','Present'),
-('ICT1222','S003','TG/2023/1778','Present'),
-('ICT1222','S003','TG/2023/1779','Present'),
-('ICT1222','S003','TG/2023/1780','Present'),
-('ICT1222','S003','TG/2023/1781','Present'),
-('ICT1222','S003','TG/2023/1782','Present'),
-('ICT1222','S003','TG/2023/1783','Present'),
-('ICT1222','S003','TG/2023/1774','Present'),
+('ICT1222','P003','TG/2023/1775','Present'),
+('ICT1222','P003','TG/2023/1776','Absent'),
+('ICT1222','P003','TG/2023/1777','Present'),
+('ICT1222','P003','TG/2023/1778','Present'),
+('ICT1222','P003','TG/2023/1779','Present'),
+('ICT1222','P003','TG/2023/1780','Present'),
+('ICT1222','P003','TG/2023/1781','Present'),
+('ICT1222','P003','TG/2023/1782','Present'),
+('ICT1222','P003','TG/2023/1783','Present'),
+('ICT1222','P003','TG/2023/1774','Present'),
 
 
 
-('ICT1222','S004','TG/2023/1775','Present'),
-('ICT1222','S004','TG/2023/1776','Present'),
-('ICT1222','S004','TG/2023/1777','Present'),
-('ICT1222','S004','TG/2023/1778','Absent'),
-('ICT1222','S004','TG/2023/1779','Present'),
-('ICT1222','S004','TG/2023/1780','Present'),
-('ICT1222','S004','TG/2023/1781','Present'),
-('ICT1222','S004','TG/2023/1782','Present'),
-('ICT1222','S004','TG/2023/1783','Present'),
-('ICT1222','S004','TG/2023/1774','Present'),
+('ICT1222','P004','TG/2023/1775','Present'),
+('ICT1222','P004','TG/2023/1776','Present'),
+('ICT1222','P004','TG/2023/1777','Present'),
+('ICT1222','P004','TG/2023/1778','Absent'),
+('ICT1222','P004','TG/2023/1779','Present'),
+('ICT1222','P004','TG/2023/1780','Present'),
+('ICT1222','P004','TG/2023/1781','Present'),
+('ICT1222','P004','TG/2023/1782','Present'),
+('ICT1222','P004','TG/2023/1783','Present'),
+('ICT1222','P004','TG/2023/1774','Present'),
 
 
 
-('ICT1222','S005','TG/2023/1775','Absent'),
-('ICT1222','S005','TG/2023/1776','Present'),
-('ICT1222','S005','TG/2023/1777','Present'),
-('ICT1222','S005','TG/2023/1778','Present'),
-('ICT1222','S005','TG/2023/1779','Present'),
-('ICT1222','S005','TG/2023/1780','Present'),
-('ICT1222','S005','TG/2023/1781','Present'),
-('ICT1222','S005','TG/2023/1782','Present'),
-('ICT1222','S005','TG/2023/1783','Present'),
-('ICT1222','S005','TG/2023/1774','Present'),
+('ICT1222','P005','TG/2023/1775','Absent'),
+('ICT1222','P005','TG/2023/1776','Present'),
+('ICT1222','P005','TG/2023/1777','Present'),
+('ICT1222','P005','TG/2023/1778','Present'),
+('ICT1222','P005','TG/2023/1779','Present'),
+('ICT1222','P005','TG/2023/1780','Present'),
+('ICT1222','P005','TG/2023/1781','Present'),
+('ICT1222','P005','TG/2023/1782','Present'),
+('ICT1222','P005','TG/2023/1783','Present'),
+('ICT1222','P005','TG/2023/1774','Present'),
 
 
 
-('ICT1222','S006','TG/2023/1775','Present'),
-('ICT1222','S006','TG/2023/1776','Present'),
-('ICT1222','S006','TG/2023/1777','Present'),
-('ICT1222','S006','TG/2023/1778','Present'),
-('ICT1222','S006','TG/2023/1779','Absent'),
-('ICT1222','S006','TG/2023/1780','Absent'),
-('ICT1222','S006','TG/2023/1781','Present'),
-('ICT1222','S006','TG/2023/1782','Present'),
-('ICT1222','S006','TG/2023/1783','Present'),
-('ICT1222','S006','TG/2023/1774','Present'),
+('ICT1222','P006','TG/2023/1775','Present'),
+('ICT1222','P006','TG/2023/1776','Present'),
+('ICT1222','P006','TG/2023/1777','Present'),
+('ICT1222','P006','TG/2023/1778','Present'),
+('ICT1222','P006','TG/2023/1779','Absent'),
+('ICT1222','P006','TG/2023/1780','Absent'),
+('ICT1222','P006','TG/2023/1781','Present'),
+('ICT1222','P006','TG/2023/1782','Present'),
+('ICT1222','P006','TG/2023/1783','Present'),
+('ICT1222','P006','TG/2023/1774','Present'),
 
 
 
-('ICT1222','S007','TG/2023/1775','Present'),
-('ICT1222','S007','TG/2023/1776','Present'),
-('ICT1222','S007','TG/2023/1777','Present'),
-('ICT1222','S007','TG/2023/1778','Present'),
-('ICT1222','S007','TG/2023/1779','Present'),
-('ICT1222','S007','TG/2023/1780','Present'),
-('ICT1222','S007','TG/2023/1781','Present'),
-('ICT1222','S007','TG/2023/1782','Present'),
-('ICT1222','S007','TG/2023/1783','Present'),
-('ICT1222','S007','TG/2023/1774','Present'),
+('ICT1222','P007','TG/2023/1775','Present'),
+('ICT1222','P007','TG/2023/1776','Present'),
+('ICT1222','P007','TG/2023/1777','Present'),
+('ICT1222','P007','TG/2023/1778','Present'),
+('ICT1222','P007','TG/2023/1779','Present'),
+('ICT1222','P007','TG/2023/1780','Present'),
+('ICT1222','P007','TG/2023/1781','Present'),
+('ICT1222','P007','TG/2023/1782','Present'),
+('ICT1222','P007','TG/2023/1783','Present'),
+('ICT1222','P007','TG/2023/1774','Present'),
 
 
 
-('ICT1222','S008','TG/2023/1775','Present'),
-('ICT1222','S008','TG/2023/1776','Present'),
-('ICT1222','S008','TG/2023/1777','Present'),
-('ICT1222','S008','TG/2023/1778','Present'),
-('ICT1222','S008','TG/2023/1779','Absent'),
-('ICT1222','S008','TG/2023/1780','Present'),
-('ICT1222','S008','TG/2023/1781','Present'),
-('ICT1222','S008','TG/2023/1782','Present'),
-('ICT1222','S008','TG/2023/1783','Present'),
-('ICT1222','S008','TG/2023/1774','Present'),
+('ICT1222','P008','TG/2023/1775','Present'),
+('ICT1222','P008','TG/2023/1776','Present'),
+('ICT1222','P008','TG/2023/1777','Present'),
+('ICT1222','P008','TG/2023/1778','Present'),
+('ICT1222','P008','TG/2023/1779','Absent'),
+('ICT1222','P008','TG/2023/1780','Present'),
+('ICT1222','P008','TG/2023/1781','Present'),
+('ICT1222','P008','TG/2023/1782','Present'),
+('ICT1222','P008','TG/2023/1783','Present'),
+('ICT1222','P008','TG/2023/1774','Present'),
 
 
 
-('ICT1222','S009','TG/2023/1775','Present'),
-('ICT1222','S009','TG/2023/1776','Present'),
-('ICT1222','S009','TG/2023/1777','Present'),
-('ICT1222','S009','TG/2023/1778','Present'),
-('ICT1222','S009','TG/2023/1779','Present'),
-('ICT1222','S009','TG/2023/1780','Present'),
-('ICT1222','S009','TG/2023/1781','Present'),
-('ICT1222','S009','TG/2023/1782','Present'),
-('ICT1222','S009','TG/2023/1783','Present'),
-('ICT1222','S009','TG/2023/1774','Present'),
+('ICT1222','P009','TG/2023/1775','Present'),
+('ICT1222','P009','TG/2023/1776','Present'),
+('ICT1222','P009','TG/2023/1777','Present'),
+('ICT1222','P009','TG/2023/1778','Present'),
+('ICT1222','P009','TG/2023/1779','Present'),
+('ICT1222','P009','TG/2023/1780','Present'),
+('ICT1222','P009','TG/2023/1781','Present'),
+('ICT1222','P009','TG/2023/1782','Present'),
+('ICT1222','P009','TG/2023/1783','Present'),
+('ICT1222','P009','TG/2023/1774','Present'),
 
 
 
-('ICT1222','S010','TG/2023/1775','Present'),
-('ICT1222','S010','TG/2023/1776','Absent'),
-('ICT1222','S010','TG/2023/1777','Present'),
-('ICT1222','S010','TG/2023/1778','Present'),
-('ICT1222','S010','TG/2023/1779','Present'),
-('ICT1222','S010','TG/2023/1780','Present'),
-('ICT1222','S010','TG/2023/1781','Present'),
-('ICT1222','S010','TG/2023/1782','Present'),
-('ICT1222','S010','TG/2023/1783','Present'),
-('ICT1222','S010','TG/2023/1774','Present'),
+('ICT1222','P010','TG/2023/1775','Present'),
+('ICT1222','P010','TG/2023/1776','Absent'),
+('ICT1222','P010','TG/2023/1777','Present'),
+('ICT1222','P010','TG/2023/1778','Present'),
+('ICT1222','P010','TG/2023/1779','Present'),
+('ICT1222','P010','TG/2023/1780','Present'),
+('ICT1222','P010','TG/2023/1781','Present'),
+('ICT1222','P010','TG/2023/1782','Present'),
+('ICT1222','P010','TG/2023/1783','Present'),
+('ICT1222','P010','TG/2023/1774','Present'),
 
 
 
 
-('ICT1222','S011','TG/2023/1775','Present'),
-('ICT1222','S011','TG/2023/1776','Absent'),
-('ICT1222','S011','TG/2023/1777','Present'),
-('ICT1222','S011','TG/2023/1778','Absent'),
-('ICT1222','S011','TG/2023/1779','Present'),
-('ICT1222','S011','TG/2023/1780','Present'),
-('ICT1222','S011','TG/2023/1781','Absent'),
-('ICT1222','S011','TG/2023/1782','Present'),
-('ICT1222','S011','TG/2023/1783','Present'),
-('ICT1222','S011','TG/2023/1774','Present'),
+('ICT1222','P011','TG/2023/1775','Present'),
+('ICT1222','P011','TG/2023/1776','Absent'),
+('ICT1222','P011','TG/2023/1777','Present'),
+('ICT1222','P011','TG/2023/1778','Absent'),
+('ICT1222','P011','TG/2023/1779','Present'),
+('ICT1222','P011','TG/2023/1780','Present'),
+('ICT1222','P011','TG/2023/1781','Absent'),
+('ICT1222','P011','TG/2023/1782','Present'),
+('ICT1222','P011','TG/2023/1783','Present'),
+('ICT1222','P011','TG/2023/1774','Present'),
 
 
 
-('ICT1222','S012','TG/2023/1775','Present'),
-('ICT1222','S012','TG/2023/1776','Present'),
-('ICT1222','S012','TG/2023/1777','Absent'),
-('ICT1222','S012','TG/2023/1778','Present'),
-('ICT1222','S012','TG/2023/1779','Present'),
-('ICT1222','S012','TG/2023/1780','Present'),
-('ICT1222','S012','TG/2023/1781','Present'),
-('ICT1222','S012','TG/2023/1782','Absent'),
-('ICT1222','S012','TG/2023/1783','Absent'),
-('ICT1222','S012','TG/2023/1774','Absent'),
+('ICT1222','P012','TG/2023/1775','Present'),
+('ICT1222','P012','TG/2023/1776','Present'),
+('ICT1222','P012','TG/2023/1777','Absent'),
+('ICT1222','P012','TG/2023/1778','Present'),
+('ICT1222','P012','TG/2023/1779','Present'),
+('ICT1222','P012','TG/2023/1780','Present'),
+('ICT1222','P012','TG/2023/1781','Present'),
+('ICT1222','P012','TG/2023/1782','Absent'),
+('ICT1222','P012','TG/2023/1783','Absent'),
+('ICT1222','P012','TG/2023/1774','Absent'),
 
 
 
-('ICT1222','S013','TG/2023/1775','Present'),
-('ICT1222','S013','TG/2023/1776','Present'),
-('ICT1222','S013','TG/2023/1777','Present'),
-('ICT1222','S013','TG/2023/1778','Absent'),
-('ICT1222','S013','TG/2023/1779','Present'),
-('ICT1222','S013','TG/2023/1780','Present'),
-('ICT1222','S013','TG/2023/1781','Absent'),
-('ICT1222','S013','TG/2023/1782','Present'),
-('ICT1222','S013','TG/2023/1783','Present'),
-('ICT1222','S013','TG/2023/1774','Present'),
+('ICT1222','P013','TG/2023/1775','Present'),
+('ICT1222','P013','TG/2023/1776','Present'),
+('ICT1222','P013','TG/2023/1777','Present'),
+('ICT1222','P013','TG/2023/1778','Absent'),
+('ICT1222','P013','TG/2023/1779','Present'),
+('ICT1222','P013','TG/2023/1780','Present'),
+('ICT1222','P013','TG/2023/1781','Absent'),
+('ICT1222','P013','TG/2023/1782','Present'),
+('ICT1222','P013','TG/2023/1783','Present'),
+('ICT1222','P013','TG/2023/1774','Present'),
 
 
 
-('ICT1222','S014','TG/2023/1775','Present'),
-('ICT1222','S014','TG/2023/1776','Absent'),
-('ICT1222','S014','TG/2023/1777','Present'),
-('ICT1222','S014','TG/2023/1778','Present'),
-('ICT1222','S014','TG/2023/1779','Absent'),
-('ICT1222','S014','TG/2023/1780','Present'),
-('ICT1222','S014','TG/2023/1781','Present'),
-('ICT1222','S014','TG/2023/1782','Absent'),
-('ICT1222','S014','TG/2023/1783','Present'),
-('ICT1222','S014','TG/2023/1774','Present'),
+('ICT1222','P014','TG/2023/1775','Present'),
+('ICT1222','P014','TG/2023/1776','Absent'),
+('ICT1222','P014','TG/2023/1777','Present'),
+('ICT1222','P014','TG/2023/1778','Present'),
+('ICT1222','P014','TG/2023/1779','Absent'),
+('ICT1222','P014','TG/2023/1780','Present'),
+('ICT1222','P014','TG/2023/1781','Present'),
+('ICT1222','P014','TG/2023/1782','Absent'),
+('ICT1222','P014','TG/2023/1783','Present'),
+('ICT1222','P014','TG/2023/1774','Present'),
 
 
 
-('ICT1222','S015','TG/2023/1775','Present'),
-('ICT1222','S015','TG/2023/1776','Present'),
-('ICT1222','S015','TG/2023/1777','Present'),
-('ICT1222','S015','TG/2023/1778','Present'),
-('ICT1222','S015','TG/2023/1779','Present'),
-('ICT1222','S015','TG/2023/1780','Present'),
-('ICT1222','S015','TG/2023/1781','Present'),
-('ICT1222','S015','TG/2023/1782','Present'),
-('ICT1222','S015','TG/2023/1783','Present'),
-('ICT1222','S015','TG/2023/1774','Present');
+('ICT1222','P015','TG/2023/1775','Present'),
+('ICT1222','P015','TG/2023/1776','Present'),
+('ICT1222','P015','TG/2023/1777','Present'),
+('ICT1222','P015','TG/2023/1778','Present'),
+('ICT1222','P015','TG/2023/1779','Present'),
+('ICT1222','P015','TG/2023/1780','Present'),
+('ICT1222','P015','TG/2023/1781','Present'),
+('ICT1222','P015','TG/2023/1782','Present'),
+('ICT1222','P015','TG/2023/1783','Present'),
+('ICT1222','P015','TG/2023/1774','Present');
 
 
 
@@ -3180,51 +3221,7 @@ VALUES
 ('ICT1242','S015','TG/2023/1783','Present'),
 ('ICT1242','S015','TG/2023/1774','Present');
 
-#######################################################################################   Medical TABLE 
 
-
-CREATE TABLE Medical (
-  Med_id         VARCHAR(10)  PRIMARY KEY,
-  start_date     DATE         NOT NULL,
-  end_date       DATE         NOT NULL,
-  submitted_date DATE         NOT NULL,
-  Status         ENUM('pending','Approved','Not approved')
-                 NOT NULL DEFAULT 'pending',
-  Reason         VARCHAR(60),
-  Reg_no         VARCHAR(12)  NOT NULL,
-  Approved_by    VARCHAR(10)  NULL,
-
- 
-  FOREIGN KEY (Reg_no) REFERENCES Student(Reg_no)
-      ON DELETE CASCADE
-	  ON UPDATE CASCADE,
-
-  CONSTRAINT check_approvedby CHECK (
-    (Status = 'Approved' AND Approved_by IS NOT NULL)
-    OR (Status IN ('pending','Not approved') AND Approved_by IS NULL)
-  ),
-
-  CONSTRAINT check_submit_within_14days CHECK (
-    (Status = 'Approved' AND submitted_date <= DATE_ADD(end_date, INTERVAL 14 DAY))
-    OR (Status IN ('pending','Not approved'))
-  )
-);
-
-
-INSERT INTO Medical 
-(Med_id, start_date, end_date, submitted_date, Status, Reason, Reg_no, Approved_by)
-VALUES
-('MED001','2025-03-01','2025-03-05','2025-03-10','Approved','High fever','TG/2023/1775','EMP0110'),
-('MED002','2025-04-10','2025-04-14','2025-04-25','pending','Waiting for doctor confirmation','TG/2023/1776',NULL),
-('MED003','2025-05-01','2025-05-04','2025-05-10','Approved','Sports injury','TG/2023/1780','EMP0121'),
-('MED004','2025-02-15','2025-02-20','2025-02-25','Approved','Positive for COVID-19','TG/2023/1784','EMP0101'),
-('MED005','2025-07-10','2025-07-14','2025-07-20','Approved','Minor operation recovery','TG/2023/1782','EMP0102'),
-('MED006','2025-07-01','2025-07-05','2025-07-25','Not approved','Late submission','TG/2023/1779',NULL),
-('MED007','2025-06-05','2025-06-08','2025-06-20','pending','Under medical review','TG/2023/1778',NULL),
-('MED008','2025-08-01','2025-08-05','2025-08-15','Approved','Severe allergy reaction','TG/2021/1455','EMP0114'),
-('MED009','2025-09-01','2025-09-03','2025-09-30','pending','Awaiting approval','TG/2021/1452',NULL),
-('MED010','2025-03-10','2025-03-14','2025-04-10','Not approved','Missing documents','TG/2023/1781',NULL)
-('MED011','2025-09-30','2025-09-30','2025-10-03','Approved','headache','TG/2023/1774','EMP0110');
 
 
 
