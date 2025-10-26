@@ -3670,10 +3670,77 @@ INSERT INTO Sports (Sport_id, Sport_name)
 
 
 
+##############################################################################################
+
+DELIMITER $$
+
+CREATE PROCEDURE Student_subject_breakdown(
+  IN p_reg_no   VARCHAR(12),
+  IN p_sub_code VARCHAR(10)
+)
+BEGIN
+  SELECT
+    c.Exam_code AS Exam_type,
+    CASE
+      -- Show "MC" if student was absent but has approved medical
+      WHEN m.raw_mark IS NULL AND EXISTS (
+        SELECT 1 FROM Medical
+        WHERE Reg_no = p_reg_no AND Status = 'Approved'
+      ) THEN 'MC'
+
+      -- Otherwise show the weighted mark (same logic as whole_batch_CA)
+      ELSE CAST(ROUND(
+        CASE c.Exam_code
+          WHEN 'AS' THEN 
+            COALESCE(m.raw_mark,0) *
+            (CASE WHEN p_sub_code IN ('ENG1222','ICT1222') THEN 0.20 ELSE 0.10 END)
+          WHEN 'MT' THEN COALESCE(m.raw_mark,0) * 0.20
+          WHEN 'MP' THEN COALESCE(m.raw_mark,0) * 0.20
+          WHEN 'Q1' THEN COALESCE(m.raw_mark,0) / 100.0 * 5.0
+          WHEN 'Q2' THEN COALESCE(m.raw_mark,0) / 100.0 * 5.0
+          WHEN 'Q3' THEN COALESCE(m.raw_mark,0) / 100.0 * 5.0
+          ELSE 0
+        END, 2) AS CHAR)
+    END AS mark
+  FROM (
+    SELECT 'Q1' AS Exam_code, 1 AS ord UNION ALL
+    SELECT 'Q2', 2 UNION ALL
+    SELECT 'Q3', 3 UNION ALL
+    SELECT 'AS', 4 UNION ALL
+    SELECT 'MT', 5 UNION ALL
+    SELECT 'MP', 6
+  ) AS c
+
+  LEFT JOIN (
+    SELECT Exam_code, MAX(Mark) AS raw_mark
+    FROM Marks
+    WHERE Reg_no = p_reg_no
+      AND Sub_code = p_sub_code
+      AND Exam_code IN ('Q1','Q2','Q3','AS','MT','MP')
+    GROUP BY Exam_code
+  ) AS m
+    ON c.Exam_code = m.Exam_code
+
+  -- Filter only valid components for each subject
+  WHERE
+    (p_sub_code='ENG1222'  AND c.Exam_code IN ('AS','MT')) OR
+    (p_sub_code='ICT1212'  AND c.Exam_code IN ('Q1','Q2','Q3','AS','MT','MP')) OR
+    (p_sub_code='ICT1222'  AND c.Exam_code IN ('AS','MP')) OR
+    (p_sub_code='ICT1233'  AND c.Exam_code IN ('Q1','Q2','Q3','AS','MP')) OR
+    (p_sub_code='ICT1242'  AND c.Exam_code IN ('Q1','Q2','Q3','AS','MT')) OR
+    (p_sub_code='ICT1253'  AND c.Exam_code IN ('Q1','Q2','Q3','AS','MP')) OR
+    (p_sub_code='TCS1212'  AND c.Exam_code IN ('Q1','Q2','Q3','AS','MT')) OR
+    (p_sub_code='TCS1233'  AND c.Exam_code IN ('Q1','Q2','Q3','AS','MT'))
+  ORDER BY c.ord;
+END $$
+
+DELIMITER ;
 
 
+CALL Student_subject_breakdown('TG/2023/1779', 'ICT1242');
 
 
+###################################################################################################
 
 
 
