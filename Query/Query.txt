@@ -1243,21 +1243,20 @@ CREATE TABLE Medical (
 );
 
 
+
 INSERT INTO Medical 
 (Med_id, start_date, end_date, submitted_date, Status, Reason, Reg_no, Approved_by)
 VALUES
-('MED001','2025-03-01','2025-03-05','2025-03-10','Approved','High fever','TG/2023/1775','EMP0110'),
-('MED002','2025-04-10','2025-04-14','2025-04-25','pending','Waiting for doctor confirmation','TG/2023/1776',NULL),
-('MED003','2025-05-01','2025-05-04','2025-05-10','Approved','Sports injury','TG/2023/1780','EMP0121'),
-('MED004','2025-02-15','2025-02-20','2025-02-25','Approved','Positive for COVID-19','TG/2023/1784','EMP0101'),
-('MED005','2025-07-10','2025-07-14','2025-07-20','Approved','Minor operation recovery','TG/2023/1782','EMP0102'),
-('MED006','2025-07-01','2025-07-05','2025-07-25','Not approved','Late submission','TG/2023/1779',NULL),
-('MED007','2025-06-05','2025-06-08','2025-06-20','pending','Under medical review','TG/2023/1778',NULL),
-('MED008','2025-08-01','2025-08-05','2025-08-15','Approved','Severe allergy reaction','TG/2021/1455','EMP0114'),
-('MED009','2025-09-01','2025-09-03','2025-09-30','pending','Awaiting approval','TG/2021/1452',NULL),
-('MED010','2025-03-10','2025-03-14','2025-04-10','Not approved','Missing documents','TG/2023/1781',NULL),
-('MED011','2025-09-30','2025-09-30','2025-10-03','Approved','headache','TG/2023/1774','EMP0110');
-
+('MED001','2025-08-18','2025-08-18','2025-08-22','Approved','High fever','TG/2023/1775','EMP0110'),
+('MED002','2025-08-25','2025-08-25','2025-08-31','Approved','Sports injury','TG/2023/1776','EMP0121'),
+('MED003','2025-10-14','2025-10-14','2025-10-30','pending','Waiting for doctor confirmation','TG/2023/1776',NULL),
+('MED004','2025-10-06','2025-10-06','2025-10-10','Approved','Positive for COVID-19','TG/2023/1784','EMP0101'),
+('MED006','2025-08-11','2025-08-11','2025-08-25','Not approved','Late submission','TG/2023/1777',NULL),
+('MED007','2025-09-22','2025-09-22','2025-10-03','pending','Under medical review','TG/2023/1779',NULL),
+('MED008','2025-08-04','2025-08-05','2025-08-12','Approved','Severe allergy reaction','TG/2023/1780','EMP0114'),
+('MED009','2025-10-22','2025-10-22','2025-10-30','pending','Awaiting approval','TG/2023/1781',NULL),
+('MED010','2025-10-17','2025-10-17','2025-10-20','Approved','Missing documents','TG/2023/1779','EMP0110'),
+('MED011','2025-08-12','2025-08-12','2025-08-20','Approved','headache','TG/2023/1777','EMP0110');
 
 
 
