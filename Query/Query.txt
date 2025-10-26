@@ -584,6 +584,7 @@ CREATE TABLE Student_Sports (
     Sport_id VARCHAR(5) NOT NULL,
     Joined_date DATE,
     Position VARCHAR(30),
+    Have_colors ENUM('YES','NO') DEFAULT 'NO',
     PRIMARY KEY (Reg_no, Sport_id),
     FOREIGN KEY (Reg_no) REFERENCES Student(Reg_no)
         ON UPDATE CASCADE
