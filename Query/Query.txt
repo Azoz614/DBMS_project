@@ -4394,13 +4394,18 @@ ORDER BY c.Reg_no;
 
 
 
+DELIMITER $$
+
 DROP PROCEDURE IF EXISTS sp_repeat_result_by_student $$
 CREATE PROCEDURE sp_repeat_result_by_student(IN p_reg_no VARCHAR(20))
 BEGIN
-  SELECT *
-  FROM Final_results_repeat_only
-  WHERE Reg_no = p_reg_no;
-END $$
+    SELECT *
+    FROM Final_results_repeat_only
+    WHERE Reg_no = p_reg_no;
+END $$
+
+DELIMITER ;
+
 
 
 
