@@ -2,17 +2,32 @@ CREATE DATABASE Project;
 USE Project;
 
 
-CREATE USER 'Admin'@'localhost' IDENTIFIED BY 'password';
-GRANT ALL PRIVILEGES ON *.* TO 'Admin'@'localhost' WITH GRANT OPTION;
 
-CREATE USER 'Dean'@'localhost' IDENTIFIED BY 'password';
-GRANT ALL PRIVILEGES ON Project.* TO 'Dean'@'localhost';
+CREATE USER 'admin'@'localhost' IDENTIFIED BY 'Admin@123';
+GRANT ALL PRIVILEGES ON *.* TO 'admin'@'localhost' WITH GRANT OPTION;
 
-CREATE USER 'Lecturer'@'localhost' IDENTIFIED BY 'password';
-GRANT ALL PRIVILEGES ON Project.* TO 'Lecturer'@'localhost';
+CREATE USER 'dean'@'localhost' IDENTIFIED BY 'Dean@123';
+GRANT ALL PRIVILEGES ON *.* TO 'dean'@'localhost';
 
-CREATE USER 'Technical_officer'@'localhost' IDENTIFIED BY 'password';
-GRANT SELECT, INSERT, UPDATE ON Project.* TO 'Technical_officer'@'localhost';
+
+CREATE USER 'lecturer'@'localhost' IDENTIFIED BY 'Lecturer@123';
+GRANT ALL PRIVILEGES ON *.* TO 'lecturer'@'localhost';
+GRANT CREATE USER ON *.* TO 'lecturer'@'localhost';
+
+
+CREATE USER 'technical_officer'@'localhost' IDENTIFIED BY 'Tech@123';
+GRANT SELECT, INSERT, UPDATE ON attendance.* TO 'technical_officer'@'localhost';
+
+
+CREATE USER 'student'@'localhost' IDENTIFIED BY 'Student@123';
+GRANT SELECT ON project.View_Attendance_Summary TO 'student'@'localhost';
+GRANT SELECT ON project.whole_batch_summary TO 'student'@'localhost';
+GRANT SELECT ON project.8th_batch_marks_summary  TO 'student'@'localhost';
+GRANT SELECT ON project.Final_results  TO 'student'@'localhost';
+GRANT SELECT ON project.Final_results_repeat_only  TO 'student'@'localhost';
+
+
+FLUSH PRIVILEGES;
 
 
 
@@ -4255,199 +4270,7 @@ DELIMITER ;
 
 
 
-##################################################################################################   REAPEAT STUDENT RESULTS
 
-
-CREATE OR REPLACE VIEW Final_results_repeat_only AS
-WITH
-subject_list AS (
-  SELECT 'ENG1222' AS Sub_code UNION ALL
-  SELECT 'ICT1212' UNION ALL
-  SELECT 'ICT1222' UNION ALL
-  SELECT 'ICT1233' UNION ALL
-  SELECT 'ICT1242' UNION ALL
-  SELECT 'ICT1253' UNION ALL
-  SELECT 'TCS1212' UNION ALL
-  SELECT 'TCS1233'
-),
-
-repeat_flag AS (
-  SELECT DISTINCT Reg_no, Sub_code
-  FROM Marks
-  WHERE Type = 'Repeat'
-),
-repeat_students AS (
-  SELECT DISTINCT Reg_no FROM repeat_flag
-),
-student_subjects AS (
-  SELECT rs.Reg_no, sl.Sub_code
-  FROM repeat_students rs
-  CROSS JOIN subject_list sl
-),
-
-ca_unpivot AS (
-  SELECT Reg_no, 'ENG1222' AS Sub_code, ENG1222 AS ca_40 FROM whole_batch_CA
-  UNION ALL SELECT Reg_no, 'ICT1212', ICT1212 FROM whole_batch_CA
-  UNION ALL SELECT Reg_no, 'ICT1222', ICT1222 FROM whole_batch_CA
-  UNION ALL SELECT Reg_no, 'ICT1233', ICT1233 FROM whole_batch_CA
-  UNION ALL SELECT Reg_no, 'ICT1242', ICT1242 FROM whole_batch_CA
-  UNION ALL SELECT Reg_no, 'ICT1253', ICT1253 FROM whole_batch_CA
-  UNION ALL SELECT Reg_no, 'TCS1212', TCS1212 FROM whole_batch_CA
-  UNION ALL SELECT Reg_no, 'TCS1233', TCS1233 FROM whole_batch_CA
-),
-
-
-exam_setup AS (
-  SELECT
-    Sub_code,
-    MAX(CASE WHEN Exam_code='ET' THEN 1 ELSE 0 END) AS has_et,
-    MAX(CASE WHEN Exam_code='EP' THEN 1 ELSE 0 END) AS has_ep
-  FROM Exam_Subject
-  GROUP BY Sub_code
-),
-
-
-end_raw AS (
-  SELECT
-    Reg_no,
-    Sub_code,
-    MAX(CASE WHEN Exam_code='ET' THEN Mark END) AS et_mark,
-    MAX(CASE WHEN Exam_code='EP' THEN Mark END) AS ep_mark
-  FROM Marks
-  WHERE Exam_code IN ('ET','EP')
-  GROUP BY Reg_no, Sub_code
-),
-
-
-joined AS (
-  SELECT
-    ss.Reg_no,
-    ss.Sub_code,
-    COALESCE(ca.ca_40, 0) AS ca_40,
-    COALESCE(
-      CASE
-        WHEN COALESCE(es.has_et,0)=1 AND COALESCE(es.has_ep,0)=1
-          THEN COALESCE(er.et_mark,0)/100*30 + COALESCE(er.ep_mark,0)/100*30
-        WHEN COALESCE(es.has_et,0)=1 AND COALESCE(es.has_ep,0)=0
-          THEN COALESCE(er.et_mark,0)/100*60
-        WHEN COALESCE(es.has_et,0)=0 AND COALESCE(es.has_ep,0)=1
-          THEN COALESCE(er.ep_mark,0)/100*60
-        ELSE 0
-      END, 0
-    ) AS end_60,
-    CASE WHEN (er.et_mark IS NOT NULL OR er.ep_mark IS NOT NULL) THEN 1 ELSE 0 END AS sat_end
-  FROM student_subjects ss
-  LEFT JOIN ca_unpivot ca ON ca.Reg_no=ss.Reg_no AND ca.Sub_code=ss.Sub_code
-  LEFT JOIN end_raw   er  ON er.Reg_no=ss.Reg_no AND er.Sub_code=ss.Sub_code
-  LEFT JOIN exam_setup es ON es.Sub_code=ss.Sub_code
-),
-
-
-base AS (
-  SELECT
-    j.Reg_no, j.Sub_code, j.ca_40, j.end_60, j.sat_end,
-    CASE
-      WHEN j.sat_end = 0 THEN '-'                               
-      WHEN j.end_60  < 12 THEN 'E'                            
-      ELSE
-        CASE
-          WHEN (j.ca_40 + j.end_60) >= 85 THEN 'A+'
-          WHEN (j.ca_40 + j.end_60) >= 70 THEN 'A'
-          WHEN (j.ca_40 + j.end_60) >= 65 THEN 'A-'
-          WHEN (j.ca_40 + j.end_60) >= 60 THEN 'B+'
-          WHEN (j.ca_40 + j.end_60) >= 55 THEN 'B'
-          WHEN (j.ca_40 + j.end_60) >= 50 THEN 'B-'
-          WHEN (j.ca_40 + j.end_60) >= 45 THEN 'C+'
-          WHEN (j.ca_40 + j.end_60) >= 40 THEN 'C'
-          WHEN (j.ca_40 + j.end_60) >= 35 THEN 'C-'
-          WHEN (j.ca_40 + j.end_60) >= 30 THEN 'D+'
-          WHEN (j.ca_40 + j.end_60) >= 20 THEN 'D'
-          ELSE 'E'
-        END
-    END AS base_grade,
-    CASE
-      WHEN j.sat_end = 0 THEN NULL
-      WHEN j.end_60  < 12 THEN 0.00
-      ELSE
-        CASE
-          WHEN (j.ca_40 + j.end_60) >= 85 THEN 4.00
-          WHEN (j.ca_40 + j.end_60) >= 70 THEN 4.00
-          WHEN (j.ca_40 + j.end_60) >= 65 THEN 3.70
-          WHEN (j.ca_40 + j.end_60) >= 60 THEN 3.30
-          WHEN (j.ca_40 + j.end_60) >= 55 THEN 3.00
-          WHEN (j.ca_40 + j.end_60) >= 50 THEN 2.70
-          WHEN (j.ca_40 + j.end_60) >= 45 THEN 2.30
-          WHEN (j.ca_40 + j.end_60) >= 40 THEN 2.00
-          WHEN (j.ca_40 + j.end_60) >= 35 THEN 1.70
-          WHEN (j.ca_40 + j.end_60) >= 30 THEN 1.30
-          WHEN (j.ca_40 + j.end_60) >= 20 THEN 1.00
-          ELSE 0.00
-        END
-    END AS base_gp
-  FROM joined j
-),
-
-capped AS (
-  SELECT
-    b.Reg_no,
-    b.Sub_code,
-    CASE
-      WHEN EXISTS (SELECT 1 FROM repeat_flag r
-                   WHERE r.Reg_no=b.Reg_no AND r.Sub_code=b.Sub_code)
-           AND b.base_grade <> '-'
-           AND b.base_grade IN ('A+','A','A-','B+','B','B-','C+')
-        THEN 'C'
-      ELSE b.base_grade
-    END AS Grade,
-    CASE
-      WHEN EXISTS (SELECT 1 FROM repeat_flag r
-                   WHERE r.Reg_no=b.Reg_no AND r.Sub_code=b.Sub_code)
-           AND b.base_grade <> '-'
-        THEN LEAST(COALESCE(b.base_gp,0), 2.00)
-      ELSE b.base_gp
-    END AS GP
-  FROM base b
-),
-
-
-sgpa AS (
-  SELECT Reg_no, ROUND(AVG(GP),2) AS SGPA
-  FROM capped
-  WHERE GP IS NOT NULL
-  GROUP BY Reg_no
-)
-
-
-SELECT
-  c.Reg_no,
-  MAX(CASE WHEN c.Sub_code='ENG1222' THEN c.Grade END) AS ENG1222,
-  MAX(CASE WHEN c.Sub_code='ICT1212' THEN c.Grade END) AS ICT1212,
-  MAX(CASE WHEN c.Sub_code='ICT1222' THEN c.Grade END) AS ICT1222,
-  MAX(CASE WHEN c.Sub_code='ICT1233' THEN c.Grade END) AS ICT1233,
-  MAX(CASE WHEN c.Sub_code='ICT1242' THEN c.Grade END) AS ICT1242,
-  MAX(CASE WHEN c.Sub_code='ICT1253' THEN c.Grade END) AS ICT1253,
-  MAX(CASE WHEN c.Sub_code='TCS1212' THEN c.Grade END) AS TCS1212,
-  MAX(CASE WHEN c.Sub_code='TCS1233' THEN c.Grade END) AS TCS1233,
-  COALESCE(s.SGPA,0.00) AS SGPA,
-  COALESCE(s.SGPA,0.00) AS CGPA
-FROM capped c
-LEFT JOIN sgpa s ON s.Reg_no = c.Reg_no
-GROUP BY c.Reg_no, s.SGPA
-ORDER BY c.Reg_no;
-
-
-
-###############################################################################  ONE REPEAT STUDENT
-
-
-
-DROP PROCEDURE IF EXISTS sp_repeat_result_by_student $$
-CREATE PROCEDURE sp_repeat_result_by_student(IN p_reg_no VARCHAR(20))
-BEGIN
-  SELECT *
-  FROM Final_results_repeat_only
-  WHERE Reg_no = p_reg_no;
-END $$
 
 
 
