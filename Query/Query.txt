@@ -3659,6 +3659,15 @@ DELIMITER ;
 ############################################################################################################################
 
 
+INSERT INTO Sports (Sport_id, Sport_name)
+    VALUES ('S001', 'Cricket');
+	
+	INSERT INTO Student_Sports (Reg_no, Sport_id, Joined_date, Having_colors, Position)
+    VALUES
+   ('TG/2023/1774', 'S001', '2024-02-15', 'YES', 'Captain'),
+   ('TG/2023/1775', 'S001', '2024-02-20', 'NO', 'Batsman');
+
+
 
 
 
