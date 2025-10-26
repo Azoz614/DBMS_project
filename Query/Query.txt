@@ -494,7 +494,8 @@ INSERT INTO Exam_Subject (Exam_code, Sub_code, Date, Duration) VALUES
 ('ET', 'TCS1233', '2025-11-12', 3.00),
 ('EP', 'ICT1212', '2025-11-13', 3.00),
 ('EP', 'ICT1233', '2025-11-14', 2.00),
-('EP', 'ICT1253', '2025-11-15', 1.00);
+('EP', 'ICT1253', '2025-11-15', 1.00),
+('ET', 'ICT1222', '2025-11-16', 2.00);
 
 
 
@@ -583,6 +584,7 @@ CREATE TABLE Student_Sports (
     Reg_no VARCHAR(12) NOT NULL,
     Sport_id VARCHAR(5) NOT NULL,
     Joined_date DATE,
+    Having_colors ENUM('YES','NO') DEFAULT 'NO',
     Position VARCHAR(30),
     Have_colors ENUM('YES','NO') DEFAULT 'NO',
     PRIMARY KEY (Reg_no, Sport_id),
@@ -811,7 +813,6 @@ INSERT INTO Marks (Reg_no, Sub_code, Exam_code, Mark, Type) VALUES
 ('TG/2023/1779', 'ICT1242', 'MT', 53, 'Proper'),
 ('TG/2023/1779', 'ICT1242', 'Q1', 35, 'Proper'),
 ('TG/2023/1779', 'ICT1242', 'Q2', 68, 'Proper'),
-('TG/2023/1779', 'ICT1242', 'Q3', 74, 'Proper'),
 ('TG/2023/1779', 'ICT1253', 'AS', 69, 'Proper'),
 ('TG/2023/1779', 'ICT1253', 'EP', 63, 'Proper'),
 ('TG/2023/1779', 'ICT1253', 'ET', 26, 'Proper'),
@@ -968,7 +969,89 @@ INSERT INTO Marks (Reg_no, Sub_code, Exam_code, Mark, Type) VALUES
 ('TG/2021/1455','TCS1233','Q1',100,'Repeat'),
 ('TG/2021/1455','TCS1233','Q2',60,'Repeat'),
 ('TG/2021/1455','TCS1233','MT',75,'Repeat'),
-('TG/2021/1456','ICT1242','ET',80,'Repeat');
+('TG/2021/1456','ICT1242','ET',80,'Repeat'),
+('TG/2023/1774', 'TCS1212', 'ET', 19, 'Proper'),
+('TG/2023/1774', 'TCS1212', 'MT', 20, 'Proper'),
+('TG/2023/1774', 'TCS1233', 'AS', 85, 'Proper'),
+('TG/2023/1774', 'TCS1233', 'ET', 20, 'Proper'),
+('TG/2023/1774', 'TCS1233', 'MT', 92, 'Proper'),
+('TG/2023/1774', 'TCS1233', 'Q1', 80, 'Proper'),
+('TG/2023/1774', 'TCS1233', 'Q2', 75, 'Proper'),
+('TG/2023/1774', 'TCS1233', 'Q3', 95, 'Proper'),
+('TG/2023/1775', 'TCS1212', 'Q3', 85, 'Proper'),
+('TG/2023/1775', 'TCS1212', 'MT', 75, 'Proper'),
+('TG/2023/1775', 'TCS1233', 'AS', 88, 'Proper'),
+('TG/2023/1775', 'TCS1233', 'MT', 90, 'Proper'),
+('TG/2023/1775', 'TCS1233', 'Q1', 100, 'Proper'),
+('TG/2023/1775', 'TCS1233', 'Q2', 100, 'Proper'),
+('TG/2023/1775', 'TCS1233', 'Q3', 85, 'Proper'),
+('TG/2023/1776', 'TCS1212', 'ET', 78, 'Proper'),
+('TG/2023/1776', 'TCS1233', 'AS', 80, 'Proper'),
+('TG/2023/1776', 'TCS1233', 'ET', 85, 'Proper'),
+('TG/2023/1776', 'TCS1233', 'MT', 89, 'Proper'),
+('TG/2023/1776', 'TCS1233', 'Q1', 90, 'Proper'),
+('TG/2023/1776', 'TCS1233', 'Q2', 95, 'Proper'),
+('TG/2023/1776', 'TCS1233', 'Q3', 88, 'Proper'),
+('TG/2023/1777', 'TCS1212', 'Q3', 80, 'Proper'),
+('TG/2023/1777', 'TCS1212', 'ET', 82, 'Proper'),
+('TG/2023/1777', 'TCS1212', 'MT', 78, 'Proper'),
+('TG/2023/1777', 'TCS1233', 'AS', 75, 'Proper'),
+('TG/2023/1777', 'TCS1233', 'ET', 80, 'Proper'),
+('TG/2023/1777', 'TCS1233', 'MT', 78, 'Proper'),
+('TG/2023/1777', 'TCS1233', 'Q1', 85, 'Proper'),
+('TG/2023/1777', 'TCS1233', 'Q2', 70, 'Proper'),
+('TG/2023/1777', 'TCS1233', 'Q3', 88, 'Proper'),
+('TG/2023/1778', 'TCS1212', 'MT', 70, 'Proper'),
+('TG/2023/1778', 'TCS1233', 'AS', 80, 'Proper'),
+('TG/2023/1778', 'TCS1212', 'ET', 85, 'Proper'),
+('TG/2023/1778', 'TCS1233', 'ET', 87, 'Proper'),
+('TG/2023/1778', 'TCS1233', 'MT', 90, 'Proper'),
+('TG/2023/1778', 'TCS1233', 'Q1', 88, 'Proper'),
+('TG/2023/1778', 'TCS1233', 'Q2', 90, 'Proper'),
+('TG/2023/1778', 'TCS1233', 'Q3', 85, 'Proper'),
+('TG/2023/1779', 'TCS1233', 'AS', 72, 'Proper'),
+('TG/2023/1779', 'TCS1212', 'MT', 80, 'Proper'),
+('TG/2023/1779', 'TCS1212', 'ET', 78, 'Proper'),
+('TG/2023/1779', 'TCS1233', 'ET', 70, 'Proper'),
+('TG/2023/1779', 'TCS1233', 'MT', 80, 'Proper'),
+('TG/2023/1779', 'TCS1233', 'Q1', 82, 'Proper'),
+('TG/2023/1779', 'TCS1233', 'Q2', 77, 'Proper'),
+('TG/2023/1779', 'TCS1233', 'Q3', 73, 'Proper'),
+('TG/2023/1780', 'TCS1212', 'MT', 86, 'Proper'),
+('TG/2023/1780', 'TCS1233', 'AS', 79, 'Proper'),
+('TG/2023/1780', 'TCS1212', 'ET', 84, 'Proper'),
+('TG/2023/1780', 'TCS1233', 'ET', 81, 'Proper'),
+('TG/2023/1780', 'TCS1233', 'MT', 86, 'Proper'),
+('TG/2023/1780', 'TCS1233', 'Q1', 89, 'Proper'),
+('TG/2023/1780', 'TCS1233', 'Q2', 85, 'Proper'),
+('TG/2023/1780', 'TCS1233', 'Q3', 87, 'Proper'),
+('TG/2023/1781', 'TCS1212', 'MT', 76, 'Proper'),
+('TG/2023/1781', 'TCS1233', 'AS', 88, 'Proper'),
+('TG/2023/1781', 'TCS1212', 'ET', 90, 'Proper'),
+('TG/2023/1781', 'TCS1233', 'ET', 83, 'Proper'),
+('TG/2023/1781', 'TCS1233', 'MT', 85, 'Proper'),
+('TG/2023/1781', 'TCS1233', 'Q1', 92, 'Proper'),
+('TG/2023/1781', 'TCS1233', 'Q2', 88, 'Proper'),
+('TG/2023/1781', 'TCS1233', 'Q3', 90, 'Proper'),
+('TG/2023/1782', 'TCS1212', 'MT', 72, 'Proper'),
+('TG/2023/1782', 'TCS1233', 'AS', 85, 'Proper'),
+('TG/2023/1782', 'TCS1212', 'ET', 83, 'Proper'),
+('TG/2023/1782', 'TCS1233', 'ET', 80, 'Proper'),
+('TG/2023/1782', 'TCS1233', 'MT', 82, 'Proper'),
+('TG/2023/1782', 'TCS1233', 'Q1', 84, 'Proper'),
+('TG/2023/1782', 'TCS1233', 'Q2', 86, 'Proper'),
+('TG/2023/1782', 'TCS1233', 'Q3', 88, 'Proper'),
+('TG/2023/1783', 'TCS1212', 'MT', 94, 'Proper'),
+('TG/2023/1783', 'TCS1233', 'AS', 90, 'Proper'),
+('TG/2023/1783', 'TCS1212', 'ET', 92, 'Proper'),
+('TG/2023/1783', 'TCS1233', 'ET', 88, 'Proper'),
+('TG/2023/1783', 'TCS1233', 'MT', 94, 'Proper'),
+('TG/2023/1783', 'TCS1233', 'Q1', 90, 'Proper'),
+('TG/2023/1783', 'TCS1233', 'Q2', 88, 'Proper'),
+('TG/2023/1783', 'TCS1233', 'Q3', 96, 'Proper');
+
+
+
 
 
 
@@ -1244,21 +1327,20 @@ CREATE TABLE Medical (
 );
 
 
+
 INSERT INTO Medical 
 (Med_id, start_date, end_date, submitted_date, Status, Reason, Reg_no, Approved_by)
 VALUES
-('MED001','2025-03-01','2025-03-05','2025-03-10','Approved','High fever','TG/2023/1775','EMP0110'),
-('MED002','2025-04-10','2025-04-14','2025-04-25','pending','Waiting for doctor confirmation','TG/2023/1776',NULL),
-('MED003','2025-05-01','2025-05-04','2025-05-10','Approved','Sports injury','TG/2023/1780','EMP0121'),
-('MED004','2025-02-15','2025-02-20','2025-02-25','Approved','Positive for COVID-19','TG/2023/1784','EMP0101'),
-('MED005','2025-07-10','2025-07-14','2025-07-20','Approved','Minor operation recovery','TG/2023/1782','EMP0102'),
-('MED006','2025-07-01','2025-07-05','2025-07-25','Not approved','Late submission','TG/2023/1779',NULL),
-('MED007','2025-06-05','2025-06-08','2025-06-20','pending','Under medical review','TG/2023/1778',NULL),
-('MED008','2025-08-01','2025-08-05','2025-08-15','Approved','Severe allergy reaction','TG/2021/1455','EMP0114'),
-('MED009','2025-09-01','2025-09-03','2025-09-30','pending','Awaiting approval','TG/2021/1452',NULL),
-('MED010','2025-03-10','2025-03-14','2025-04-10','Not approved','Missing documents','TG/2023/1781',NULL),
-('MED011','2025-09-30','2025-09-30','2025-10-03','Approved','headache','TG/2023/1774','EMP0110');
-
+('MED001','2025-08-18','2025-08-18','2025-08-22','Approved','High fever','TG/2023/1775','EMP0110'),
+('MED002','2025-08-25','2025-08-25','2025-08-31','Approved','Sports injury','TG/2023/1776','EMP0121'),
+('MED003','2025-10-14','2025-10-14','2025-10-30','pending','Waiting for doctor confirmation','TG/2023/1776',NULL),
+('MED004','2025-10-06','2025-10-06','2025-10-10','Approved','Positive for COVID-19','TG/2023/1784','EMP0101'),
+('MED006','2025-08-11','2025-08-11','2025-08-25','Not approved','Late submission','TG/2023/1777',NULL),
+('MED007','2025-09-22','2025-09-22','2025-10-03','pending','Under medical review','TG/2023/1779',NULL),
+('MED008','2025-08-04','2025-08-05','2025-08-12','Approved','Severe allergy reaction','TG/2023/1780','EMP0114'),
+('MED009','2025-10-22','2025-10-22','2025-10-30','pending','Awaiting approval','TG/2023/1781',NULL),
+('MED010','2025-10-17','2025-10-17','2025-10-20','Approved','Missing documents','TG/2023/1779','EMP0110'),
+('MED011','2025-08-12','2025-08-12','2025-08-20','Approved','headache','TG/2023/1777','EMP0110');
 
 
 
@@ -3370,18 +3452,378 @@ END //
 DELIMITER ;
 CALL final_student_whole_sub('TG/2023/1774');
 
+#################################################################################
+
+
+CREATE OR REPLACE VIEW Rep_whole_batch_CA AS
+WITH
+
+Best2_quiz AS (
+  SELECT
+    Reg_no,
+    Sub_code,
+    (
+      COALESCE(MAX(CASE WHEN Exam_code='Q1' THEN Mark END), 0) +
+      COALESCE(MAX(CASE WHEN Exam_code='Q2' THEN Mark END), 0) +
+      COALESCE(MAX(CASE WHEN Exam_code='Q3' THEN Mark END), 0)
+    )
+    -
+    LEAST(
+      COALESCE(MAX(CASE WHEN Exam_code='Q1' THEN Mark END), 0),
+      COALESCE(MAX(CASE WHEN Exam_code='Q2' THEN Mark END), 0),
+      COALESCE(MAX(CASE WHEN Exam_code='Q3' THEN Mark END), 0)
+    ) AS Best2Quiz
+  FROM Marks
+  WHERE Exam_code IN ('Q1','Q2','Q3')
+  GROUP BY Reg_no, Sub_code
+),
+
+core AS (
+  SELECT
+    Reg_no,
+    Sub_code,
+    COALESCE(MAX(CASE WHEN Exam_code='AS' THEN Mark END), 0) AS AS_raw,
+    COALESCE(MAX(CASE WHEN Exam_code='MT' THEN Mark END), 0) AS MT_raw,
+    COALESCE(MAX(CASE WHEN Exam_code='MP' THEN Mark END), 0) AS MP_raw
+  FROM Marks
+  GROUP BY Reg_no, Sub_code
+),
+
+components AS (
+  SELECT
+    c.Reg_no,
+    c.Sub_code,
+    COALESCE(
+      CASE WHEN c.Sub_code IN ('ENG1222','ICT1222')
+           THEN c.AS_raw * 0.20
+           ELSE c.AS_raw * 0.10
+      END, 0
+    ) AS AS_contrib,
+    COALESCE(c.MT_raw * 0.20, 0) AS MT_contrib,
+    COALESCE(c.MP_raw * 0.20, 0) AS MP_contrib,
+    COALESCE(b.Best2Quiz / 200.0 * 10.0, 0) AS BQ_contrib
+  FROM core c
+  LEFT JOIN Best2_quiz b
+    ON b.Reg_no = c.Reg_no AND b.Sub_code = c.Sub_code
+),
+
+subject_ca AS (
+  SELECT
+    Reg_no,
+    Sub_code,
+    CASE Sub_code
+      WHEN 'ENG1222' THEN AS_contrib + MT_contrib
+      WHEN 'ICT1212' THEN BQ_contrib + MT_contrib + AS_contrib
+      WHEN 'ICT1222' THEN AS_contrib + MP_contrib
+      WHEN 'ICT1233' THEN BQ_contrib + MP_contrib + AS_contrib
+      WHEN 'ICT1242' THEN BQ_contrib + MT_contrib + AS_contrib
+      WHEN 'ICT1253' THEN BQ_contrib + MP_contrib + AS_contrib
+      WHEN 'TCS1212' THEN BQ_contrib + AS_contrib + MT_contrib
+      WHEN 'TCS1233' THEN BQ_contrib + MT_contrib + AS_contrib
+      ELSE NULL
+    END AS ca_raw,
+    40 AS ca_max
+  FROM components
+),
+
+scaled AS (
+  SELECT
+    Reg_no,
+    Sub_code,
+    ROUND(
+      CASE
+        WHEN ca_raw IS NULL THEN 0
+        ELSE ca_raw * 40.0 / ca_max
+      END, 2
+    ) AS ca_40
+  FROM subject_ca
+)
+
+SELECT
+  s.Reg_no,
+  COALESCE(MAX(CASE WHEN Sub_code='ENG1222' THEN ca_40 END), 0) AS ENG1222,
+  COALESCE(MAX(CASE WHEN Sub_code='ICT1212' THEN ca_40 END), 0) AS ICT1212,
+  COALESCE(MAX(CASE WHEN Sub_code='ICT1222' THEN ca_40 END), 0) AS ICT1222,
+  COALESCE(MAX(CASE WHEN Sub_code='ICT1233' THEN ca_40 END), 0) AS ICT1233,
+  COALESCE(MAX(CASE WHEN Sub_code='ICT1242' THEN ca_40 END), 0) AS ICT1242,
+  COALESCE(MAX(CASE WHEN Sub_code='ICT1253' THEN ca_40 END), 0) AS ICT1253,
+  COALESCE(MAX(CASE WHEN Sub_code='TCS1212' THEN ca_40 END), 0) AS TCS1212,
+  COALESCE(MAX(CASE WHEN Sub_code='TCS1233' THEN ca_40 END), 0) AS TCS1233
+FROM Student s
+LEFT JOIN scaled x
+  ON x.Reg_no = s.Reg_no
+
+WHERE s.Dep_id='ICT'
+  AND s.Reg_no IN (
+        SELECT DISTINCT Reg_no
+        FROM Marks
+        WHERE Type='Repeat'
+  )
+GROUP BY s.Reg_no
+ORDER BY s.Reg_no;
+
+###########################################################################################VIEW ATTANDENCE SUMMARY
+
+
+
+CREATE OR REPLACE VIEW View_Attendance_Summary AS
+WITH Approved_Medical AS (
+    SELECT Reg_no, start_date, end_date
+    FROM Medical
+    WHERE Status = 'Approved'
+),
+Subject_Total_Hours AS (
+    SELECT
+        Sub_code,
+        COALESCE(SUM(Hour),0) AS Total_Lessons_Hour
+    FROM Session
+    GROUP BY Sub_code
+),
+Session_With_Attendance AS (
+    SELECT
+        ss.Reg_no,
+        s.Sub_code,
+        s.Session_id,
+        s.Hour,
+        s.Ses_date,
+        ss.Status,
+        CASE
+            WHEN am.Reg_no IS NOT NULL
+                 AND ss.Status = 'Absent'
+                 AND s.Ses_date BETWEEN am.start_date AND am.end_date
+            THEN 1 ELSE 0
+        END AS Is_Medical
+    FROM Session_Student ss
+    JOIN Session s
+      ON ss.Sub_code = s.Sub_code
+     AND ss.Session_id = s.Session_id
+    LEFT JOIN Approved_Medical am
+      ON ss.Reg_no = am.Reg_no
+     AND s.Ses_date BETWEEN am.start_date AND am.end_date
+),
+Student_Summary AS (
+    SELECT
+        swa.Reg_no,
+        swa.Sub_code,
+        SUM(CASE WHEN swa.Status = 'Present' THEN swa.Hour ELSE 0 END) AS Participate_Hour,
+        SUM(CASE WHEN swa.Is_Medical = 1 AND swa.Status = 'Absent' THEN swa.Hour ELSE 0 END) AS Total_Medical_Submitted_Hour
+    FROM Session_With_Attendance swa
+    GROUP BY swa.Reg_no, swa.Sub_code
+)
+SELECT
+    ss.Reg_no,
+    st.Sub_code,
+    subj.Sub_name,
+    st.Total_Lessons_Hour,
+    COALESCE(ss.Participate_Hour, 0) AS Participate_Hour,
+    COALESCE(ss.Total_Medical_Submitted_Hour, 0) AS Total_Medical_Submitted_Hour,
+    LEAST(COALESCE(ss.Total_Medical_Submitted_Hour,0), ROUND(0.2 * st.Total_Lessons_Hour, 2)) AS Accepted_Medical_Hour,
+    GREATEST(COALESCE(ss.Total_Medical_Submitted_Hour,0) - LEAST(COALESCE(ss.Total_Medical_Submitted_Hour,0), ROUND(0.2 * st.Total_Lessons_Hour, 2)), 0) AS Ignored_Medical_Hour,
+    ROUND(
+      (LEAST(COALESCE(ss.Total_Medical_Submitted_Hour,0), 0.2 * st.Total_Lessons_Hour) / NULLIF(st.Total_Lessons_Hour,0)) * 100
+    , 2) AS Medical_Percentage,
+    ROUND(
+      ( (COALESCE(ss.Participate_Hour,0) + LEAST(COALESCE(ss.Total_Medical_Submitted_Hour,0), 0.2 * st.Total_Lessons_Hour))
+        / NULLIF(st.Total_Lessons_Hour,0)
+      ) * 100
+    , 2) AS Total_Attendance_Percentage
+FROM Subject_Total_Hours st
+JOIN Subject subj ON st.Sub_code = subj.Sub_code
+LEFT JOIN Student_Summary ss ON st.Sub_code = ss.Sub_code
+ORDER BY ss.Reg_no, st.Sub_code;
+
+
+
+####################################################################################################WHOLE BATCH SUMMARY
+
+
+
+CREATE VIEW whole_batch_summary AS 
+   SELECT Reg_no,Sub_code,Total_Lessons_Hour AS Total_hrs, Participate_Hour,
+   Accepted_Medical_Hour AS Medical_hour, Medical_Percentage,Total_Attendance_Percentage AS Percentage
+   FROM View_Attendance_Summary;
+
+
+
+########################################################################################VIEW ATTANDANCE BY COURSE TYPE
 
 
 
 
 
+DELIMITER //
+
+CREATE PROCEDURE Attendance_By_Type(IN sub_code VARCHAR(10),IN p_type VARCHAR(25))
+BEGIN
+           IF p_type = 'Theory' THEN
+                 SELECT DISTINCT 
+                       am.Reg_no,am.Sub_code,s.TYPE,
+                       am.Total_Lessons_Hour AS Total_hrs, am.Participate_Hour,
+                       am.Accepted_Medical_Hour AS Medical_hour, am.Medical_Percentage,
+                        am.Total_Attendance_Percentage AS Percentage
+                  FROM View_Attendance_Summary AM
+                  JOIN Session s ON s.Sub_code=am.Sub_code
+                    WHERE s.TYPE = 'Theory' AND s.Sub_code=sub_code;
+                     
+         ELSEIF p_type = 'Practical' THEN
+                 SELECT DISTINCT
+                    am.Reg_no,am.Sub_code,s.TYPE,
+                    am.Total_Lessons_Hour AS Total_hrs, am.Participate_Hour,
+                  am.Accepted_Medical_Hour AS Medical_hour, 
+                    am.Medical_Percentage,am.Total_Attendance_Percentage AS Percentage
+                  FROM View_Attendance_Summary AM
+                  JOIN Session s ON s.Sub_code=am.Sub_code
+                    WHERE s.TYPE = 'Theory' AND s.Sub_code=sub_code;
+                    
+       ELSE
+            SELECT DISTINCT
+                  am.Reg_no,am.Sub_code,s.TYPE,
+                  am.Total_Lessons_Hour AS Total_hrs, am.Participate_Hour,
+                  am.Accepted_Medical_Hour AS Medical_hour, 
+                  am.Medical_Percentage,am.Total_Attendance_Percentage AS Percentage
+                  FROM View_Attendance_Summary AM
+                  JOIN Session s ON s.Sub_code=am.Sub_code
+                    WHERE s.Sub_code=sub_code;
+             END IF;
+END // 
+
+DELIMITER ;
+
+
+###########################################################################################VIEW ATTANDENTACE INDIVITUAL
+
+
+DELIMITER //
+
+CREATE PROCEDURE Attendance_indivitual_student(IN p_reg_no VARCHAR(20))
+BEGIN  
+ SELECT Sub_code,Total_Lessons_Hour,Participate_Hour,Accepted_Medical_Hour,Medical_Percentage,Total_Attendance_Percentage
+ FROM View_Attendance_Summary
+	WHERE Reg_no=p_reg_no;
+   END//
+
+DELIMITER ;
+
+##################################################################################VIEW ATTANDENTACE course and student
+
+
+DELIMITER //
+
+CREATE PROCEDURE indivitual_by_student_course(IN p_reg_no VARCHAR(20), IN p_course VARCHAR(10))
+BEGIN  
+ SELECT Sub_code,Total_Lessons_Hour,Participate_Hour,Accepted_Medical_Hour,Medical_Percentage,Total_Attendance_Percentage
+ FROM View_Attendance_Summary
+	WHERE Reg_no=p_reg_no AND Sub_code=p_course;
+   END//
+
+DELIMITER ;
+
+
+
+########################################################################################VIEW ATTANDENTACE course
 
 
 
 
 
+DELIMITER //
+
+CREATE PROCEDURE indivitual_by_cource(IN p_course VARCHAR(10))
+BEGIN  
+ SELECT Reg_no,Total_Lessons_Hour,Participate_Hour,Accepted_Medical_Hour,Medical_Percentage,Total_Attendance_Percentage
+ FROM View_Attendance_Summary
+	WHERE Sub_code=p_course;
+   END//
+
+DELIMITER ;
 
 
+
+############################################################################################################################
+
+
+INSERT INTO Sports (Sport_id, Sport_name)
+    VALUES ('S001', 'Cricket');
+	
+	INSERT INTO Student_Sports (Reg_no, Sport_id, Joined_date, Having_colors, Position)
+    VALUES
+   ('TG/2023/1774', 'S001', '2024-02-15', 'YES', 'Captain'),
+   ('TG/2023/1775', 'S001', '2024-02-20', 'NO', 'Batsman');
+
+
+
+
+##############################################################################################
+
+DELIMITER $$
+
+CREATE PROCEDURE Student_subject_breakdown(
+  IN p_reg_no   VARCHAR(12),
+  IN p_sub_code VARCHAR(10)
+)
+BEGIN
+  SELECT
+    c.Exam_code AS Exam_type,
+    CASE
+      
+      WHEN m.raw_mark IS NULL AND EXISTS (
+        SELECT 1 FROM Medical
+        WHERE Reg_no = p_reg_no AND Status = 'Approved'
+      ) THEN 'MC'
+
+      
+      ELSE CAST(ROUND(
+        CASE c.Exam_code
+          WHEN 'AS' THEN 
+            COALESCE(m.raw_mark,0) *
+            (CASE WHEN p_sub_code IN ('ENG1222','ICT1222') THEN 0.20 ELSE 0.10 END)
+          WHEN 'MT' THEN COALESCE(m.raw_mark,0) * 0.20
+          WHEN 'MP' THEN COALESCE(m.raw_mark,0) * 0.20
+          WHEN 'Q1' THEN COALESCE(m.raw_mark,0) / 100.0 * 5.0
+          WHEN 'Q2' THEN COALESCE(m.raw_mark,0) / 100.0 * 5.0
+          WHEN 'Q3' THEN COALESCE(m.raw_mark,0) / 100.0 * 5.0
+          ELSE 0
+        END, 2) AS CHAR)
+    END AS mark
+  FROM (
+    SELECT 'Q1' AS Exam_code, 1 AS ord UNION ALL
+    SELECT 'Q2', 2 UNION ALL
+    SELECT 'Q3', 3 UNION ALL
+    SELECT 'AS', 4 UNION ALL
+    SELECT 'MT', 5 UNION ALL
+    SELECT 'MP', 6
+  ) AS c
+
+  LEFT JOIN (
+    SELECT Exam_code, MAX(Mark) AS raw_mark
+    FROM Marks
+    WHERE Reg_no = p_reg_no
+      AND Sub_code = p_sub_code
+      AND Exam_code IN ('Q1','Q2','Q3','AS','MT','MP')
+    GROUP BY Exam_code
+  ) AS m
+    ON c.Exam_code = m.Exam_code
+
+  
+  WHERE
+    (p_sub_code='ENG1222'  AND c.Exam_code IN ('AS','MT')) OR
+    (p_sub_code='ICT1212'  AND c.Exam_code IN ('Q1','Q2','Q3','AS','MT','MP')) OR
+    (p_sub_code='ICT1222'  AND c.Exam_code IN ('AS','MP')) OR
+    (p_sub_code='ICT1233'  AND c.Exam_code IN ('Q1','Q2','Q3','AS','MP')) OR
+    (p_sub_code='ICT1242'  AND c.Exam_code IN ('Q1','Q2','Q3','AS','MT')) OR
+    (p_sub_code='ICT1253'  AND c.Exam_code IN ('Q1','Q2','Q3','AS','MP')) OR
+    (p_sub_code='TCS1212'  AND c.Exam_code IN ('Q1','Q2','Q3','AS','MT')) OR
+    (p_sub_code='TCS1233'  AND c.Exam_code IN ('Q1','Q2','Q3','AS','MT'))
+  ORDER BY c.ord;
+END $$
+
+DELIMITER ;
+
+
+CALL Student_subject_breakdown('TG/2023/1779', 'ICT1242');
+
+
+###################################################################################################
 
 
 
