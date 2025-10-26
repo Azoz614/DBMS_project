@@ -583,6 +583,7 @@ CREATE TABLE Student_Sports (
     Reg_no VARCHAR(12) NOT NULL,
     Sport_id VARCHAR(5) NOT NULL,
     Joined_date DATE,
+    Having_colors ENUM('YES','NO') DEFAULT 'NO''
     Position VARCHAR(30),
     PRIMARY KEY (Reg_no, Sport_id),
     FOREIGN KEY (Reg_no) REFERENCES Student(Reg_no)
