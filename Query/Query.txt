@@ -3682,13 +3682,13 @@ BEGIN
   SELECT
     c.Exam_code AS Exam_type,
     CASE
-      -- Show "MC" if student was absent but has approved medical
+      
       WHEN m.raw_mark IS NULL AND EXISTS (
         SELECT 1 FROM Medical
         WHERE Reg_no = p_reg_no AND Status = 'Approved'
       ) THEN 'MC'
 
-      -- Otherwise show the weighted mark (same logic as whole_batch_CA)
+      
       ELSE CAST(ROUND(
         CASE c.Exam_code
           WHEN 'AS' THEN 
@@ -3721,7 +3721,7 @@ BEGIN
   ) AS m
     ON c.Exam_code = m.Exam_code
 
-  -- Filter only valid components for each subject
+  
   WHERE
     (p_sub_code='ENG1222'  AND c.Exam_code IN ('AS','MT')) OR
     (p_sub_code='ICT1212'  AND c.Exam_code IN ('Q1','Q2','Q3','AS','MT','MP')) OR
