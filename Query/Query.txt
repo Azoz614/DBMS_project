@@ -3883,7 +3883,7 @@ subject_grades AS (
     CASE
       WHEN m.Reg_no IS NOT NULL THEN 'MC'
       WHEN e.end_exam_60 IS NULL THEN 'E*'
-      WHEN COALESCE(e.end_exam_60,0) < 12 THEN 'E'
+      WHEN COALESCE(e.end_exam_60,0) < 21 THEN 'E'
       ELSE CASE
         WHEN (c.c_mark + COALESCE(e.end_exam_60,0)) >= 85 THEN 'A+'
         WHEN (c.c_mark + COALESCE(e.end_exam_60,0)) >= 75 THEN 'A'
