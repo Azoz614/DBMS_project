@@ -4063,7 +4063,7 @@ CREATE PROCEDURE sp_view_student_marks(IN p_reg_no VARCHAR(20))
 BEGIN
   SELECT 'ENG1222' AS Sub_code,
          COALESCE(c.ENG1222,0) AS CA_40,
-         LEAST(60, GREATEST(COALESCE(s.ENG1222,0) - COALESCE(c.ENG1222,0), 0)) AS End_60,
+         LEAST(60, GREATEST(COALESCE(s.ENG1222,0) - COALESCE(c.ENG1222,0), 2)) AS End_60,
          COALESCE(s.ENG1222,0) AS Total_100
   FROM whole_batch_CA c
   LEFT JOIN 8th_batch_marks_summary s ON s.Reg_no=c.Reg_no
@@ -4071,49 +4071,49 @@ BEGIN
 
   UNION ALL SELECT 'ICT1212',
          COALESCE(c.ICT1212,0),
-         LEAST(60, GREATEST(COALESCE(s.ICT1212,0) - COALESCE(c.ICT1212,0), 0)),
+         LEAST(60, GREATEST(COALESCE(s.ICT1212,0) - COALESCE(c.ICT1212,0), 2)),
          COALESCE(s.ICT1212,0)
   FROM whole_batch_CA c LEFT JOIN 8th_batch_marks_summary s ON s.Reg_no=c.Reg_no
   WHERE c.Reg_no=p_reg_no
 
   UNION ALL SELECT 'ICT1222',
          COALESCE(c.ICT1222,0),
-         LEAST(60, GREATEST(COALESCE(s.ICT1222,0) - COALESCE(c.ICT1222,0), 0)),
+         LEAST(60, GREATEST(COALESCE(s.ICT1222,0) - COALESCE(c.ICT1222,0), 2)),
          COALESCE(s.ICT1222,0)
   FROM whole_batch_CA c LEFT JOIN 8th_batch_marks_summary s ON s.Reg_no=c.Reg_no
   WHERE c.Reg_no=p_reg_no
 
   UNION ALL SELECT 'ICT1233',
          COALESCE(c.ICT1233,0),
-         LEAST(60, GREATEST(COALESCE(s.ICT1233,0) - COALESCE(c.ICT1233,0), 0)),
+         LEAST(60, GREATEST(COALESCE(s.ICT1233,0) - COALESCE(c.ICT1233,0), 2)),
          COALESCE(s.ICT1233,0)
   FROM whole_batch_CA c LEFT JOIN 8th_batch_marks_summary s ON s.Reg_no=c.Reg_no
   WHERE c.Reg_no=p_reg_no
 
   UNION ALL SELECT 'ICT1242',
          COALESCE(c.ICT1242,0),
-         LEAST(60, GREATEST(COALESCE(s.ICT1242,0) - COALESCE(c.ICT1242,0), 0)),
+         LEAST(60, GREATEST(COALESCE(s.ICT1242,0) - COALESCE(c.ICT1242,0), 2)),
          COALESCE(s.ICT1242,0)
   FROM whole_batch_CA c LEFT JOIN 8th_batch_marks_summary s ON s.Reg_no=c.Reg_no
   WHERE c.Reg_no=p_reg_no
 
   UNION ALL SELECT 'ICT1253',
          COALESCE(c.ICT1253,0),
-         LEAST(60, GREATEST(COALESCE(s.ICT1253,0) - COALESCE(c.ICT1253,0), 0)),
+         LEAST(60, GREATEST(COALESCE(s.ICT1253,0) - COALESCE(c.ICT1253,0), 2)),
          COALESCE(s.ICT1253,0)
   FROM whole_batch_CA c LEFT JOIN 8th_batch_marks_summary s ON s.Reg_no=c.Reg_no
   WHERE c.Reg_no=p_reg_no
 
   UNION ALL SELECT 'TCS1212',
          COALESCE(c.TCS1212,0),
-         LEAST(60, GREATEST(COALESCE(s.TCS1212,0) - COALESCE(c.TCS1212,0), 0)),
+         LEAST(60, GREATEST(COALESCE(s.TCS1212,0) - COALESCE(c.TCS1212,0), 2)),
          COALESCE(s.TCS1212,0)
   FROM whole_batch_CA c LEFT JOIN 8th_batch_marks_summary s ON s.Reg_no=c.Reg_no
   WHERE c.Reg_no=p_reg_no
 
   UNION ALL SELECT 'TCS1233',
          COALESCE(c.TCS1233,0),
-         LEAST(60, GREATEST(COALESCE(s.TCS1233,0) - COALESCE(c.TCS1233,0), 0)),
+         LEAST(60, GREATEST(COALESCE(s.TCS1233,0) - COALESCE(c.TCS1233,0), 2)),
          COALESCE(s.TCS1233,0)
   FROM whole_batch_CA c LEFT JOIN 8th_batch_marks_summary s ON s.Reg_no=c.Reg_no
   WHERE c.Reg_no=p_reg_no
