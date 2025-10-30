@@ -4115,7 +4115,7 @@ BEGIN
          COALESCE(c.TCS1233,0),
          LEAST(60, GREATEST(COALESCE(s.TCS1233,0) - COALESCE(c.TCS1233,0), 0)),
          COALESCE(s.TCS1233,0)
-  FROM whole_batch_CA c LEFT JOIN v_whole_batch_marks_summary s ON s.Reg_no=c.Reg_no
+  FROM whole_batch_CA c LEFT JOIN 8th_batch_marks_summary s ON s.Reg_no=c.Reg_no
   WHERE c.Reg_no=p_reg_no
   ORDER BY Sub_code;
 END $$
@@ -4199,7 +4199,7 @@ BEGIN
       ) AS Total_100
 
   FROM whole_batch_CA w
-  LEFT JOIN v_whole_batch_marks_summary s ON s.Reg_no = w.Reg_no
+  LEFT JOIN 8th_batch_marks_summary s ON s.Reg_no = w.Reg_no
   ORDER BY w.Reg_no;
 END $$
 
