@@ -4493,8 +4493,7 @@ JOIN (
     FROM View_Attendance_Summary
     GROUP BY Reg_no
 ) att ON a.Reg_no = att.Reg_no
-JOIN whole_batch_CA ca ON a.Reg_no = ca.Reg_no
-ORDER BY a.Reg_no;
+LEFT JOIN whole_batch_CA ca ON a.Reg_no = ca.Reg_no;
 
 
 
@@ -4542,66 +4541,9 @@ GRANT SELECT, INSERT, UPDATE ON attendance.* TO 'technical_officer'@'localhost';
 CREATE USER 'student'@'localhost' IDENTIFIED BY 'Student@123';
 GRANT SELECT ON project.View_Attendance_Summary TO 'student'@'localhost';
 GRANT SELECT ON project.whole_batch_summary TO 'student'@'localhost';
-GRANT SELECT ON project.8th_batch_marks_summary  TO 'student'@'localhost';
+GRANT SELECT ON project.'8th_batch_marks_summary'  TO 'student'@'localhost';
 GRANT SELECT ON project.Final_results  TO 'student'@'localhost';
 GRANT SELECT ON project.Final_results_repeat_only  TO 'student'@'localhost';
 
 
 FLUSH PRIVILEGES;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
