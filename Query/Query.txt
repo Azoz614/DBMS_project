@@ -4515,8 +4515,7 @@ BEGIN
     FROM Eligibility_Summary
     WHERE Reg_no = p_reg_no;
 END$$
-
-DELIMITER ;
+DELIMITER ;
 
 
 
